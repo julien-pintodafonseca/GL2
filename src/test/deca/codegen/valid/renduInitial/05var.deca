@@ -1,0 +1,7 @@
+{
+	int x;
+	x=3;
+	println("3=",x);
+	x=7;
+	println("7=",x);
+}

@@ -1,0 +1,10 @@
+{
+	int x=5,z,y=3,t=x;
+	println("3=",y);
+	println("5=",x);
+	println("swap"); 
+	x=y;
+	y=t;
+	println("5=",y);
+	println("3=",x);
+}

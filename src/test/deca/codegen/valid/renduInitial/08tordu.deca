@@ -1,0 +1,8 @@
+{
+    int float;
+    float int;
+    float = 2;
+    int = 2.5;
+    println("2 = ", float);
+    println("2.5 = ", int);
+}

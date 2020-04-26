@@ -1,0 +1,6 @@
+{
+	int z ;
+	z=1 ;
+	println(z);
+	println(y);
+}
