@@ -13,9 +13,10 @@ options {
 
 OBRACE: '{';
 CBRACE: '}';
+SEMI: ';';
 
-NEW_LINE: '\n' { skip(); };
-CARRIAGE_RETURN: '\r' { skip(); };
+SPACES : (' ' | '\t' | '\n' | '\r') { skip(); };
+
 
 // Deca lexer rules.
 DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.

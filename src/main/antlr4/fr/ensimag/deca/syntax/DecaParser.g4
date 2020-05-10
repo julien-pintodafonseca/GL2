@@ -100,6 +100,7 @@ list_inst returns[ListInst tree]
             $tree = new ListInst();
         }
     : (inst {
+            $tree.add($inst.tree);
         }
       )*
     ;
@@ -109,6 +110,7 @@ inst returns[AbstractInst tree]
             assert($e1.tree != null);
         }
     | SEMI {
+            $tree = new NoOperation();
         }
     | PRINT OPARENT list_expr CPARENT SEMI {
             assert($list_expr.tree != null);
