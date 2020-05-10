@@ -11,6 +11,12 @@ options {
 @members {
 }
 
+OBRACE: '{';
+CBRACE: '}';
+
+NEW_LINE: '\n' { skip(); };
+CARRIAGE_RETURN: '\r' { skip(); };
+
 // Deca lexer rules.
 DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
                 // A FAIRE : Il faut la supprimer et la remplacer par les vraies règles.

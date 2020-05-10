@@ -47,6 +47,11 @@ do
     test_synt_invalid "$cas_de_test"
 done
 
+for cas_de_test in src/test/deca/syntax/valid/*.deca
+do
+    test_synt_valid "$cas_de_test"
+done
+
 for cas_de_test in src/test/deca/syntax/valid/provided/*.deca
 do
     test_synt_valid "$cas_de_test"

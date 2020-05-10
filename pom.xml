@@ -450,6 +450,7 @@
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.6.0</version>
             <executions>
+              <!-->
               <execution>
                 <id>basic-debug</id>
                 <configuration>
@@ -462,6 +463,7 @@
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
               </execution>
+              -->
               <!-- One <execution> per executable to launch. Execution
                    failure (exit status != 0) will stop the tests. -->
               <execution>
