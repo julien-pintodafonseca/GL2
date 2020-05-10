@@ -360,6 +360,9 @@ ident returns[AbstractIdentifier tree]
 /****     Class related rules     ****/
 
 list_classes returns[ListDeclClass tree]
+@init   {
+            $tree = new ListDeclClass();
+        }
     :
       (c1=class_decl {
         }
