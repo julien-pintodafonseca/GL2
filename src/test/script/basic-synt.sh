@@ -21,6 +21,7 @@ PATH=./src/test/script/launchers:"$PATH"
 
 # exemple de définition d'une fonction
 test_synt_invalid () {
+    # fonction à modifier plus tard
     # $1 = premier argument.
     if test_synt "$1" 2>&1 | grep -q -e "$1:[0-9][0-9]*:"
     then
@@ -33,29 +34,37 @@ test_synt_invalid () {
 
 test_synt_valid () {
     # $1 = premier argument.
-    if test_synt "$1" 2>&1 | grep -q -e "$1:[0-9][0-9]*:"
+    # ex : src/test/deca/syntax/valid/01brackets.deca
+
+    path=$(echo $1 | tr '\\' '/')
+    #echo $1
+    #result=$(test_synt "$1" 2>&1 | tr '\\' '/')
+    #echo $result
+
+    cmd=$(test_synt "$path" 2>&1) # on exécute notre test
+    code=$? # si code vaut 0 alors succès, sinon échec
+
+    #on exécute notre test en filtrant le message d'erreur, err vaut 1 s'il y a une erreur, 0 sinon
+    err=$(test_synt "$path" 2>&1 | tr '\\' '/' | grep -c -e "$path:[0-9][0-9]*:")
+
+    if [ $code -eq 0 ] && [ $err -eq 0 ]
     then
+        echo "Succes attendu de test_synt sur $1."
+    else
         echo "Echec inattendu pour test_synt sur $1."
         exit 1
-    else
-        echo "Succes attendu de test_synt sur $1."
     fi
 }
 
-for cas_de_test in src/test/deca/syntax/invalid/provided/*.deca
-do
-    test_synt_invalid "$cas_de_test"
-done
+#for cas_de_test in src/test/deca/syntax/invalid/provided/*.deca
+#do
+#    test_synt_invalid "$cas_de_test"
+#done
 
-for cas_de_test in src/test/deca/syntax/valid/*.deca
-do
-    test_synt_valid "$cas_de_test"
-done
-
-for cas_de_test in src/test/deca/syntax/valid/provided/*.deca
-do
-    test_synt_valid "$cas_de_test"
-done
+#for cas_de_test in src/test/deca/syntax/valid/provided/*.deca
+#do
+#    test_synt_valid "$cas_de_test"
+#done
 
 for cas_de_test in src/test/deca/syntax/valid/*.deca
 do
