@@ -1,0 +1,10 @@
+{
+    int x ;
+    print("Entrez un entier:");
+    x = readInt();
+    if (17 < x) {
+        println("17 < ", x);
+    } else {
+        println(x, " <= 17");
+    }
+}
