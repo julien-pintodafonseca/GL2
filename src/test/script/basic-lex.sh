@@ -17,6 +17,8 @@ cd "$(dirname "$0")"/../../.. || exit 1
 
 PATH=./src/test/script/launchers:"$PATH"
 
+echo "===== TODO ====="
+
 # /!\ test valide lexicalement, mais invalide pour l'étape A.
 # test_lex peut au choix afficher les messages sur la sortie standard
 # (1) ou sortie d'erreur (2). On redirige la sortie d'erreur sur la
