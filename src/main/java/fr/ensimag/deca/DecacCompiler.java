@@ -119,15 +119,15 @@ public class DecacCompiler {
      * The main program. Every instruction generated will eventually end up here.
      */
     private final IMAProgram program = new IMAProgram();
- 
+
 
     /** The global environment for types (and the symbolTable) */
     public final EnvironmentType environmentType = new EnvironmentType(this);
     public final SymbolTable symbolTable = new SymbolTable();
 
     public Symbol createSymbol(String name) {
-        return null; // A FAIRE: remplacer par la ligne en commentaire ci-dessous
-        // return symbolTable.create(name);
+        SymbolTable ST = new SymbolTable();
+        return ST.create(name);
     }
 
     /**

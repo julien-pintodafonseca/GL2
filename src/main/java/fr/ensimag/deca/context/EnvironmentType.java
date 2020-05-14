@@ -17,7 +17,7 @@ import fr.ensimag.deca.tree.Location;
 public class EnvironmentType {
     public EnvironmentType(DecacCompiler compiler) {
         
-        envTypes = new HashMap<Symbol, TypeDefinition>();
+        envTypes = new HashMap<>();
         
         Symbol intSymb = compiler.createSymbol("int");
         INT = new IntType(intSymb);

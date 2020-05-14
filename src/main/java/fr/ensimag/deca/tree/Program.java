@@ -2,6 +2,7 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import java.io.PrintStream;
@@ -35,8 +36,13 @@ public class Program extends AbstractProgram {
     @Override
     public void verifyProgram(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify program: start");
-        throw new UnsupportedOperationException("not yet implemented");
-        // LOG.debug("verify program: end");
+        EnvironmentType env = new EnvironmentType(compiler);
+        // Règle syntaxe contextuelle : (3.1)
+        //getClasses().verifyListClass(compiler); // Passe 1 : vérifie le nom des classes et la hiérarchie de classes
+        //getClasses().verifyListClassMembers(compiler); // Passe 2: vérifie les champs et la signature des méthodes des différentes classes
+        //getClasses().verifyListClassBody(compiler); // Passe 3 : vérifie les blocs, les instructions, les expressions et les initialisations
+        getMain().verifyMain(compiler);
+        LOG.debug("verify program: end");
     }
 
     @Override

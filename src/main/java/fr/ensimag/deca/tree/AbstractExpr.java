@@ -90,7 +90,8 @@ public abstract class AbstractExpr extends AbstractInst {
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Règle syntaxe contextuelle : (3.20)
+        verifyExpr(compiler, localEnv, currentClass);
     }
 
     /**

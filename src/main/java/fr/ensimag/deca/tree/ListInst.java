@@ -27,19 +27,22 @@ public class ListInst extends TreeList<AbstractInst> {
     public void verifyListInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Règle syntaxe contextuelle : (3.19)
+        for (AbstractInst inst : getList()) {
+            inst.verifyInst(compiler, localEnv, currentClass, returnType);
+        }
     }
 
     public void codeGenListInst(DecacCompiler compiler) {
-        for (AbstractInst i : getList()) {
-            i.codeGenInst(compiler);
+        for (AbstractInst inst : getList()) {
+            inst.codeGenInst(compiler);
         }
     }
 
     @Override
     public void decompile(IndentPrintStream s) {
-        for (AbstractInst i : getList()) {
-            i.decompileInst(s);
+        for (AbstractInst inst : getList()) {
+            inst.decompileInst(s);
             s.println();
         }
     }

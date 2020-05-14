@@ -16,7 +16,7 @@ import java.util.Map;
  * @date @DATE@
  */
 public class SymbolTable {
-    private Map<String, Symbol> map = new HashMap<String, Symbol>();
+    private Map<String, Symbol> map = new HashMap<>();
 
     /**
      * Create or reuse a symbol.

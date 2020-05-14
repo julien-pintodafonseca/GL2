@@ -1,5 +1,6 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -33,6 +34,11 @@ public class DeclVar extends AbstractDeclVar {
     protected void verifyDeclVar(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
+        // Règle syntaxe contextuelle : (3.17)
+
+        //if (compiler.environmentType.defOfType(this.type.getName()) == compiler.environmentType.VOID) {
+        //    throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_NULL_DECLVAR, getLocation());
+        //}
     }
 
     
