@@ -10,7 +10,7 @@ import java.util.List;
  * @date @DATE@
  */
 public class Signature {
-    List<Type> args = new ArrayList<Type>();
+    List<Type> args = new ArrayList<>();
 
     public void add(Type t) {
         args.add(t);
