@@ -29,7 +29,7 @@ public class DecacMain {
             throw new UnsupportedOperationException("decac -b not yet implemented");
         }
         if (options.getSourceFiles().isEmpty()) {
-            throw new UnsupportedOperationException("decac without argument not yet implemented");
+            options.displayUsage();
         }
         if (options.getParallel()) {
             // A FAIRE : instancier DecacCompiler pour chaque fichier à
