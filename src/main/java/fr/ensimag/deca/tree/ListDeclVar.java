@@ -40,7 +40,7 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
         for (AbstractDeclVar declVar : this.getList()) {
             declVar.verifyDeclVar(compiler, localEnv, currentClass);
         }
-        LOG.debug("verify listDeclVar: start");
+        LOG.debug("verify listDeclVar: end");
     }
 
 

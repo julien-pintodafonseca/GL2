@@ -42,11 +42,11 @@ public abstract class AbstractPrint extends AbstractInst {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         // Règles syntaxe contextuelle : (3.26), (3.27)
-        LOG.debug("verify inst: \"abstractPrint\" start ");
+        LOG.debug("verify inst: start (abstractPrint)");
         for (AbstractExpr expr : getArguments().getList()) {
             expr.verifyExpr(compiler, localEnv, currentClass);
         }
-        LOG.debug("verify inst: \"abstractPrint\" start");
+        LOG.debug("verify inst: end (abstractPrint)");
     }
 
     @Override

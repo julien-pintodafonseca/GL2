@@ -162,7 +162,7 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         // Règle syntaxe contextuelle : (0.1)
-        LOG.debug("verify expr: \""+getName().getName()+"\" start ");
+        LOG.debug("verify expr: start ("+getName().getName()+")");
         ExpDefinition expDef = localEnv.get(getName());
 
         if (expDef == null) {
@@ -170,7 +170,7 @@ public class Identifier extends AbstractIdentifier {
         } else {
             setDefinition(expDef);
             setType(expDef.getType());
-            LOG.debug("verify expr: \""+getName().getName()+"\" end ");
+            LOG.debug("verify expr: end ("+getName().getName()+")");
             return expDef.getType();
         }
     }
@@ -182,7 +182,7 @@ public class Identifier extends AbstractIdentifier {
     @Override
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         // Règle syntaxe contextuelle : (0.2)
-        LOG.debug("verify type: \""+getName().getName()+"\" start ");
+        LOG.debug("verify type: start ("+getName().getName()+")");
         TypeDefinition typeDef = compiler.environmentType.defOfType(getName());
 
         if (typeDef == null) {
@@ -190,7 +190,7 @@ public class Identifier extends AbstractIdentifier {
         } else {
             setDefinition(typeDef);
             setType(typeDef.getType());
-            LOG.debug("verify type: \""+getName().getName()+"\" end ");
+            LOG.debug("verify type: end ("+getName().getName()+")");
             return typeDef.getType();
         }
     }
