@@ -2,6 +2,7 @@ package fr.ensimag.deca;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,11 +40,48 @@ public class CompilerOptions {
     private int debug = 0;
     private boolean parallel = false;
     private boolean printBanner = false;
-    private List<File> sourceFiles = new ArrayList<File>();
+    private List<File> sourceFiles = new ArrayList<>();
 
     
     public void parseArgs(String[] args) throws CLIException {
         // A FAIRE : parcourir args pour positionner les options correctement.
+        if (args.length == 0) {
+            displayUsage();
+        } else {
+            for (String arg : args) {
+                if (arg.startsWith("-")) {
+                    // Gestion des options
+                    switch(arg) {
+                        case "-b":
+                        case "-p":
+                        case "-v":
+                        case "-n":
+                        case "-r":
+                        case "-d":
+                        case "-P":
+                            throw new UnsupportedOperationException("not yet implemented");
+                        default:
+                            throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_OPTION + arg);
+                    }
+                } else if (arg.endsWith(".deca")) {
+                    // Gestion du fichier d'entrée
+                    // String path = Paths.get(".").toAbsolutePath().normalize().toString();
+                    // System.out.println(path);
+                    // System.out.println(arg);
+                    File file = new File(arg);
+                    if (file.exists()) {
+                        if (!sourceFiles.contains(file)) {
+                            sourceFiles.add(file);
+                        }
+                    } else {
+                        throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_FILE + arg);
+                    }
+                } else {
+                    throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_ENTRY + arg);
+                }
+            }
+        }
+
         Logger logger = Logger.getRootLogger();
         // map command-line debug option to log4j's level.
         switch (getDebug()) {
@@ -66,8 +104,6 @@ public class CompilerOptions {
         } else {
             logger.info("Java assertions disabled");
         }
-
-        throw new UnsupportedOperationException("not yet implemented");
     }
 
     protected void displayUsage() {
