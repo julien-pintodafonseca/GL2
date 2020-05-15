@@ -35,10 +35,9 @@ public class DeclVar extends AbstractDeclVar {
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.17)
-
-        //if (compiler.environmentType.defOfType(this.type.getName()) == compiler.environmentType.VOID) {
-        //    throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_NULL_DECLVAR, getLocation());
-        //}
+        if (varName.verifyType(compiler) == compiler.environmentType.VOID) {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_NULL, getLocation());
+        }
     }
 
     
