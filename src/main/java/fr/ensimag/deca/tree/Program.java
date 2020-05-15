@@ -35,9 +35,8 @@ public class Program extends AbstractProgram {
 
     @Override
     public void verifyProgram(DecacCompiler compiler) throws ContextualError {
-        LOG.debug("verify program: start");
-        EnvironmentType env = new EnvironmentType(compiler);
         // Règle syntaxe contextuelle : (3.1)
+        LOG.debug("verify program: start");
         //getClasses().verifyListClass(compiler); // Passe 1 : vérifie le nom des classes et la hiérarchie de classes
         //getClasses().verifyListClassMembers(compiler); // Passe 2: vérifie les champs et la signature des méthodes des différentes classes
         //getClasses().verifyListClassBody(compiler); // Passe 3 : vérifie les blocs, les instructions, les expressions et les initialisations

@@ -15,8 +15,9 @@ import fr.ensimag.deca.tree.Location;
  * @date @DATE@
  */
 public class EnvironmentType {
+    private final Map<Symbol, TypeDefinition> envTypes;
+
     public EnvironmentType(DecacCompiler compiler) {
-        
         envTypes = new HashMap<>();
         
         Symbol intSymb = compiler.createSymbol("int");
@@ -40,8 +41,6 @@ public class EnvironmentType {
         // not added to envTypes, it's not visible for the user.
         
     }
-
-    private final Map<Symbol, TypeDefinition> envTypes;
 
     public TypeDefinition defOfType(Symbol s) {
         return envTypes.get(s);

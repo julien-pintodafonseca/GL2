@@ -8,4 +8,7 @@ public final class ErrorMessages {
 
     // ContextualError messages
     public static final String CONTEXTUAL_ERROR_DECLVAR_NULL = "La variable déclarée est de type void.";
+    public static final String CONTEXTUAL_ERROR_DECLVAR_DUPE = "La variable déclarée est dupliquée.";
+    public static final String CONTEXTUAL_ERROR_IDENT_NULL_VAR = "Variable indéfinie.";
+    public static final String CONTEXTUAL_ERROR_IDENT_NULL_TYPE = "Type de variable indéfini.";
 }

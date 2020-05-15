@@ -11,6 +11,7 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Label;
 import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
 
 /**
  * Print statement (print, println, ...).
@@ -19,6 +20,7 @@ import org.apache.commons.lang.Validate;
  * @date @DATE@
  */
 public abstract class AbstractPrint extends AbstractInst {
+    private static final Logger LOG = Logger.getLogger(AbstractPrint.class);
 
     private boolean printHex;
     private ListExpr arguments = new ListExpr();
@@ -40,9 +42,11 @@ public abstract class AbstractPrint extends AbstractInst {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         // Règles syntaxe contextuelle : (3.26), (3.27)
+        LOG.debug("verify inst: \"abstractPrint\" start ");
         for (AbstractExpr expr : getArguments().getList()) {
             expr.verifyExpr(compiler, localEnv, currentClass);
         }
+        LOG.debug("verify inst: \"abstractPrint\" start");
     }
 
     @Override

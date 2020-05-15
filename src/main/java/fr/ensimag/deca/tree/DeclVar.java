@@ -1,22 +1,21 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * @author @AUTHOR@
  * @date @DATE@
  */
 public class DeclVar extends AbstractDeclVar {
+    private static final Logger LOG = Logger.getLogger(DeclVar.class);
 
-    
     final private AbstractIdentifier type;
     final private AbstractIdentifier varName;
     final private AbstractInitialization initialization;
@@ -35,9 +34,23 @@ public class DeclVar extends AbstractDeclVar {
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.17)
-        if (varName.verifyType(compiler) == compiler.environmentType.VOID) {
+        LOG.debug("verify declVar: start");
+        Type typeVar = varName.verifyType(compiler);
+
+        // Condition type != void
+        if (typeVar.isVoid()) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_NULL, getLocation());
         }
+
+        // Déclaration de variable
+        try {
+            localEnv.declare(varName.getName(), new VariableDefinition(typeVar, getLocation()));
+        } catch (Exception e) {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_DUPE, getLocation());
+        }
+
+        varName.verifyExpr(compiler, localEnv, currentClass);
+        LOG.debug("verify declVar: end");
     }
 
     

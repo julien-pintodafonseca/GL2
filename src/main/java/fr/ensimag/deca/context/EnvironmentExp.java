@@ -2,6 +2,8 @@ package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 
+import java.util.HashMap;
+
 /**
  * Dictionary associating identifier's ExpDefinition to their names.
  * 
@@ -20,14 +22,12 @@ import fr.ensimag.deca.tools.SymbolTable.Symbol;
  * @date @DATE@
  */
 public class EnvironmentExp {
-    // A FAIRE : implémenter la structure de donnée représentant un
-    // environnement (association nom -> définition, avec possibilité
-    // d'empilement).
-
     EnvironmentExp parentEnvironment;
+    HashMap<Symbol, ExpDefinition> dictionary;
     
     public EnvironmentExp(EnvironmentExp parentEnvironment) {
         this.parentEnvironment = parentEnvironment;
+        this.dictionary = new HashMap<>();
     }
 
     public static class DoubleDefException extends Exception {
@@ -39,7 +39,11 @@ public class EnvironmentExp {
      * symbol is undefined.
      */
     public ExpDefinition get(Symbol key) {
-        throw new UnsupportedOperationException("not yet implemented");
+        if (key != null) {
+            return dictionary.get(key);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -58,7 +62,11 @@ public class EnvironmentExp {
      *
      */
     public void declare(Symbol name, ExpDefinition def) throws DoubleDefException {
-        throw new UnsupportedOperationException("not yet implemented");
+        if (dictionary.get(name) != null) {
+            throw new DoubleDefException();
+        } else {
+            dictionary.put(name, def);
+        }
     }
 
 }

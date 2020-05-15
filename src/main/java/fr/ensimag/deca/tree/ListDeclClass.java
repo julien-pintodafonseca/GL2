@@ -15,8 +15,8 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
     
     @Override
     public void decompile(IndentPrintStream s) {
-        for (AbstractDeclClass c : getList()) {
-            c.decompile(s);
+        for (AbstractDeclClass declClass : getList()) {
+            declClass.decompile(s);
             s.println();
         }
     }
@@ -43,8 +43,8 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
     public void verifyListClassBody(DecacCompiler compiler) throws ContextualError {
         // Règle syntaxe contextuelle : (3.2)
         LOG.debug("verify listClassBody: start");
-        for (AbstractDeclClass c : getList()) {
-            c.verifyClassBody(compiler);
+        for (AbstractDeclClass declClass : getList()) {
+            declClass.verifyClassBody(compiler);
         }
         LOG.debug("verify listClassBody: end");
     }
