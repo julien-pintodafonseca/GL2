@@ -1,13 +1,15 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * Single precision, floating-point literal
@@ -16,6 +18,7 @@ import org.apache.commons.lang.Validate;
  * @date @DATE@
  */
 public class FloatLiteral extends AbstractExpr {
+    private static Logger LOG = Logger.getLogger(FloatLiteral.class);
 
     public float getValue() {
         return value;
@@ -34,11 +37,13 @@ public class FloatLiteral extends AbstractExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
+        LOG.debug("verify expr: start (FloatLiteral)");
         // Règle syntaxe contextuelle : (3.45)
-        setType(compiler.environmentType.FLOAT);
-        return getType();
+        Type type = compiler.environmentType.FLOAT;
+        setType(type);
+        LOG.debug("verify expr: end (FloatLiteral)");
+        return type;
     }
-
 
     @Override
     public void decompile(IndentPrintStream s) {

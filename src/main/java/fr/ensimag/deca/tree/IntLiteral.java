@@ -1,11 +1,13 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import org.apache.log4j.Logger;
+
 import java.io.PrintStream;
 
 /**
@@ -15,6 +17,7 @@ import java.io.PrintStream;
  * @date @DATE@
  */
 public class IntLiteral extends AbstractExpr {
+    private static Logger LOG = Logger.getLogger(IntLiteral.class);
     public int getValue() {
         return value;
     }
@@ -28,11 +31,13 @@ public class IntLiteral extends AbstractExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
+        LOG.debug("verify expr: start (intLiteral)");
         // Règle syntaxe contextuelle : (3.44)
-        setType(compiler.environmentType.INT);
-        return getType();
+        Type type = compiler.environmentType.INT;
+        setType(type);
+        LOG.debug("verify expr: end (intLiteral)");
+        return type;
     }
-
 
     @Override
     String prettyPrintNode() {
