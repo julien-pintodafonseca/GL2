@@ -1,11 +1,10 @@
 # Do not version generated files.
 /target
+*.res
+*.ass
 
 # ANTLR 4 default generated files directory
 /gen
-
-# Generated tests results files
-*.res
 
 # IDEA IntelliJ #
 .idea/
