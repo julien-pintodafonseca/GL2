@@ -1,12 +1,12 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
+import org.apache.log4j.Logger;
 
 /**
  * 
@@ -14,6 +14,7 @@ import fr.ensimag.ima.pseudocode.Label;
  * @date @DATE@
  */
 public class ListInst extends TreeList<AbstractInst> {
+    private static final Logger LOG = Logger.getLogger(ListInst.class);
 
     /**
      * Implements non-terminal "list_inst" of [SyntaxeContextuelle] in pass 3
@@ -28,9 +29,11 @@ public class ListInst extends TreeList<AbstractInst> {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.19)
+        LOG.debug("verify ListInst: start");
         for (AbstractInst inst : getList()) {
             inst.verifyInst(compiler, localEnv, currentClass, returnType);
         }
+        LOG.debug("verify ListInst: end");
     }
 
     public void codeGenListInst(DecacCompiler compiler) {

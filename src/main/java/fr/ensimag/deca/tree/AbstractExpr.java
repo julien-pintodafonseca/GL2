@@ -1,15 +1,16 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
-import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * Expression, i.e. anything that has a value.
@@ -18,6 +19,7 @@ import org.apache.commons.lang.Validate;
  * @date @DATE@
  */
 public abstract class AbstractExpr extends AbstractInst {
+    private static final Logger LOG = Logger.getLogger(AbstractExpr.class);
     /**
      * @return true if the expression does not correspond to any concrete token
      * in the source code (and should be decompiled to the empty string).
@@ -91,7 +93,9 @@ public abstract class AbstractExpr extends AbstractInst {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.20)
+        LOG.debug("verify inst: start (abstractExpr)");
         verifyExpr(compiler, localEnv, currentClass);
+        LOG.debug("verify inst: end (abstractExpr)");
     }
 
     /**
