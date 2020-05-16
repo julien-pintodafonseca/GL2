@@ -188,8 +188,7 @@ public class Identifier extends AbstractIdentifier {
         if (typeDef == null) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_TYPE, getLocation());
         } else {
-            // setDefinition(typeDef); //TODO : vérifier si ok
-            // setType(typeDef.getType()); //TODO : vérifier si ok
+            setDefinition(typeDef);
             LOG.debug("verify type: end ("+getName().getName()+")");
             return typeDef.getType();
         }

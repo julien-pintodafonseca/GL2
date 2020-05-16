@@ -3,6 +3,7 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Dictionary associating identifier's ExpDefinition to their names.
@@ -23,7 +24,7 @@ import java.util.HashMap;
  */
 public class EnvironmentExp {
     EnvironmentExp parentEnvironment;
-    HashMap<Symbol, ExpDefinition> dictionary;
+    Map<Symbol, ExpDefinition> dictionary;
     
     public EnvironmentExp(EnvironmentExp parentEnvironment) {
         this.parentEnvironment = parentEnvironment;

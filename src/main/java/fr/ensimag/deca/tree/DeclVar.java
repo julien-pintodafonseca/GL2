@@ -36,25 +36,24 @@ public class DeclVar extends AbstractDeclVar {
         // Règle syntaxe contextuelle : (3.17)
         LOG.debug("verify declVar: start");
         Type typeVar = type.verifyType(compiler);
-        type.setDefinition(new TypeDefinition(typeVar, getLocation()));
+        VariableDefinition defVar = new VariableDefinition(typeVar, getLocation());
 
         // Condition typeVar != void
         if (typeVar.isVoid()) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_NULL, getLocation());
         }
 
-        // initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass); //TODO : vérifier si ok
+        varName.setType(typeVar);
+        varName.setDefinition(defVar);
 
         // Déclaration de variable
         try {
-            localEnv.declare(varName.getName(), new VariableDefinition(typeVar, getLocation()));
+            localEnv.declare(varName.getName(), defVar);
         } catch (Exception e) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_DUPE, getLocation());
         }
 
-        // varName.verifyExpr(compiler, localEnv, currentClass); //TODO : vérifier si ok
-        varName.setType(typeVar);
-        // varName.setDefinition(); //TODO : vérifier si ok
+        // initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass); //TODO
         LOG.debug("verify declVar: end");
     }
 
