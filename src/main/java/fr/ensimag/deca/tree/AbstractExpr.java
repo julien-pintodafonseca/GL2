@@ -86,10 +86,10 @@ public abstract class AbstractExpr extends AbstractInst {
             Type expectedType) throws ContextualError {
         LOG.debug("verify expr: start (abstractExpr)");
         // Règle syntaxe contextuelle : (3.28)
-        Type type = verifyExpr(compiler, localEnv, currentClass);
+        Type rType = verifyExpr(compiler, localEnv, currentClass);
 
-        // Condition assign_compatible(env_types, type1, type2)
-        if (!assign_compatible(compiler, type, expectedType)) {
+        // Condition assign_compatible(env_types, exceptedType, rType)
+        if (!assign_compatible(compiler, expectedType, rType)) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE, getLocation());
         }
 
@@ -99,10 +99,10 @@ public abstract class AbstractExpr extends AbstractInst {
         return this;
     }
 
-    public boolean assign_compatible(DecacCompiler compiler, Type type1, Type type2) {
-        if (type1.sameType(type2)) {
+    public boolean assign_compatible(DecacCompiler compiler, Type exceptedType, Type rType) {
+        if (rType.sameType(exceptedType)) {
             return true;
-        } else if (type1.isFloat() && type2.isInt()) {
+        } else if (exceptedType.isFloat() && rType.isInt()) {
             return true;
         } else {
             return false;
