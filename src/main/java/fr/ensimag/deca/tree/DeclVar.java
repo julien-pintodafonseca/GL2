@@ -35,12 +35,15 @@ public class DeclVar extends AbstractDeclVar {
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.17)
         LOG.debug("verify declVar: start");
-        Type typeVar = varName.verifyType(compiler);
+        Type typeVar = type.verifyType(compiler);
+        type.setDefinition(new TypeDefinition(typeVar, getLocation()));
 
-        // Condition type != void
+        // Condition typeVar != void
         if (typeVar.isVoid()) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_NULL, getLocation());
         }
+
+        //initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass);
 
         // Déclaration de variable
         try {
@@ -49,7 +52,9 @@ public class DeclVar extends AbstractDeclVar {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_DUPE, getLocation());
         }
 
-        varName.verifyExpr(compiler, localEnv, currentClass);
+        //varName.verifyExpr(compiler, localEnv, currentClass);
+        varName.setType(typeVar);
+        //varName.setDefinition();
         LOG.debug("verify declVar: end");
     }
 

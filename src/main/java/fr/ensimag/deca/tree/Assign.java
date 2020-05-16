@@ -1,11 +1,11 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.Definition;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
+import org.apache.log4j.Logger;
 
 /**
  * Assignment, i.e. lvalue = expr.
@@ -14,6 +14,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
  * @date @DATE@
  */
 public class Assign extends AbstractBinaryExpr {
+    private static final Logger LOG = Logger.getLogger(Assign.class);
 
     @Override
     public AbstractLValue getLeftOperand() {
@@ -29,7 +30,12 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        LOG.debug("verify exp: start (assign)");
+        // Règle syntaxe contextuelle : (3.32)
+        Type leftType = getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type rightType = getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        LOG.debug("verify exp: start (assign)");
+        return leftType;
     }
 
 
