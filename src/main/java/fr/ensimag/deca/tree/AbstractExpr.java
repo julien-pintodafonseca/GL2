@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -82,9 +83,30 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     public AbstractExpr verifyRValue(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass, 
-            Type expectedType)
-            throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+            Type expectedType) throws ContextualError {
+        LOG.debug("verify expr: start (abstractExpr)");
+        // Règle syntaxe contextuelle : (3.28)
+        Type type = verifyExpr(compiler, localEnv, currentClass);
+
+        // Condition assign_compatible(env_types, type1, type2)
+        if (!assign_compatible(compiler, type, expectedType)) {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE, getLocation());
+        }
+
+        // TODO: gestion du cast entre Float et Int
+
+        LOG.debug("verify expr: end (abstractExpr)");
+        return this;
+    }
+
+    public boolean assign_compatible(DecacCompiler compiler, Type type1, Type type2) {
+        if (type1.sameType(type2)) {
+            return true;
+        } else if (type1.isFloat() && type2.isInt()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     

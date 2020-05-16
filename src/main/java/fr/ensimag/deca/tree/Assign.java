@@ -30,11 +30,13 @@ public class Assign extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        LOG.debug("verify exp: start (assign)");
+        LOG.debug("verify expr: start (assign)");
         // Règle syntaxe contextuelle : (3.32)
         Type leftType = getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
-        Type rightType = getRightOperand().verifyExpr(compiler, localEnv, currentClass);
-        LOG.debug("verify exp: start (assign)");
+        AbstractExpr rightExpr = getRightOperand().verifyRValue(compiler, localEnv, currentClass, leftType);
+        setRightOperand(rightExpr);
+        setType(leftType);
+        LOG.debug("verify expr: end (assign)");
         return leftType;
     }
 

@@ -11,4 +11,5 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_DECLVAR_DUPE = "La variable déclarée est dupliquée.";
     public static final String CONTEXTUAL_ERROR_IDENT_NULL_VAR = "Variable indéfinie.";
     public static final String CONTEXTUAL_ERROR_IDENT_NULL_TYPE = "Type de variable indéfini.";
+    public static final String CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE = "Type de variable incompatible pour l'affectation.";
 }

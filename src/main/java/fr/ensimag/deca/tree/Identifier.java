@@ -162,15 +162,14 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         // Règle syntaxe contextuelle : (0.1)
-        LOG.debug("verify expr: start ("+getName().getName()+")");
+        LOG.debug("verify expr: start ("+getName()+")");
         ExpDefinition expDef = localEnv.get(getName());
 
         if (expDef == null) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_VAR, getLocation());
         } else {
-            // setDefinition(expDef); //TODO : vérifier si ok
-            // setType(expDef.getType()); //TODO : vérifier si ok
-            LOG.debug("verify expr: end ("+getName().getName()+")");
+            setDefinition(expDef);
+            LOG.debug("verify expr: end ("+getName()+")");
             return expDef.getType();
         }
     }
@@ -189,7 +188,7 @@ public class Identifier extends AbstractIdentifier {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_TYPE, getLocation());
         } else {
             setDefinition(typeDef);
-            LOG.debug("verify type: end ("+getName().getName()+")");
+            LOG.debug("verify type: end ("+getName()+")");
             return typeDef.getType();
         }
     }
