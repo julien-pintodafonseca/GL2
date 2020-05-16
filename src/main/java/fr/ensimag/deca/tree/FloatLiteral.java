@@ -6,6 +6,10 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.ImmediateFloat;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -43,6 +47,12 @@ public class FloatLiteral extends AbstractExpr {
         setType(type);
         LOG.debug("verify expr: end (FloatLiteral)");
         return type;
+    }
+
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler) {
+        compiler.addInstruction(new LOAD(new ImmediateFloat(getValue()), Register.R1));
+        compiler.addInstruction(new WFLOAT());
     }
 
     @Override
