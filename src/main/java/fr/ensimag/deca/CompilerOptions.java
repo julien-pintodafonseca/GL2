@@ -53,6 +53,8 @@ public class CompilerOptions {
                     case "-n":
                     case "-r":
                     case "-d":
+                        debug++;
+                        break;
                     case "-P":
                         throw new UnsupportedOperationException("not yet implemented");
                     default:
