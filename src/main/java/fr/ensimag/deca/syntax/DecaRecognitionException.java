@@ -12,7 +12,7 @@ import org.antlr.v4.runtime.Token;
  * Base class for exception to be thrown manually within parser
  * actions.
  *
- * @author Ensimag
+ * @author Equipe GL2
  */
 class DecaRecognitionException extends RecognitionException {
     private static final long serialVersionUID = -4104122409998903414L;

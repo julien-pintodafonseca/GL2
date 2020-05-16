@@ -3,8 +3,8 @@ package fr.ensimag.ima.pseudocode;
 /**
  * Internal error related to IMA code. Should never happen.
  * 
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class IMAInternalError extends RuntimeException {
     public IMAInternalError(String message, Throwable cause) {

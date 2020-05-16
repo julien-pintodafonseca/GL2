@@ -6,8 +6,8 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 
 /**
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class DIV extends BinaryInstructionDValToReg {
 

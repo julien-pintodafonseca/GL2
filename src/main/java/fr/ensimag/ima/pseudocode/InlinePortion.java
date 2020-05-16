@@ -6,8 +6,8 @@ import java.io.PrintStream;
  * Portion of IMA assembly code to be dumped verbatim into the
  * generated code.
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class InlinePortion extends AbstractLine {
     private final String asmCode;

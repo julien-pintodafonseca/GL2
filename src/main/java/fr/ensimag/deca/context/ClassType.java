@@ -6,8 +6,8 @@ import fr.ensimag.deca.tree.Location;
 /**
  * Type defined by a class.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class ClassType extends Type {
     

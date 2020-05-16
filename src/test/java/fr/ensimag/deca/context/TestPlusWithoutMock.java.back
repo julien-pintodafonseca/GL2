@@ -16,8 +16,8 @@ import static org.junit.Assert.*;
  * @see TestPlusPlain to see how the Mockito library can help writing this kind
  * of tests.
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class TestPlusWithoutMock {
     static final Type INT = new IntType(null);

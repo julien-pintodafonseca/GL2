@@ -1,7 +1,7 @@
 #! /bin/sh
 
-# Auteur : @AUTHOR@
-# Version initiale : @DATE@
+# Auteur : Equipe GL2
+# Version initiale : 2020
 
 # Test minimaliste de la vérification contextuelle.
 # Le principe et les limitations sont les mêmes que pour basic-synt.sh

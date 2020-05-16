@@ -7,8 +7,8 @@ import java.io.File;
 /**
  * Main class for the command-line Deca compiler.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class DecacMain {
     private static Logger LOG = Logger.getLogger(DecacMain.class);

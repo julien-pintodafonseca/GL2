@@ -16,8 +16,8 @@ import org.apache.log4j.Logger;
 /**
  * Print statement (print, println, ...).
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public abstract class AbstractPrint extends AbstractInst {
     private static final Logger LOG = Logger.getLogger(AbstractPrint.class);

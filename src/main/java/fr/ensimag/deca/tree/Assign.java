@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 /**
  * Assignment, i.e. lvalue = expr.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class Assign extends AbstractBinaryExpr {
     private static final Logger LOG = Logger.getLogger(Assign.class);

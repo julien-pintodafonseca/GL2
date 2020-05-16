@@ -14,8 +14,8 @@ import java.io.PrintStream;
  * Absence of initialization (e.g. "int x;" as opposed to "int x =
  * 42;").
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class NoInitialization extends AbstractInitialization {
     private static final Logger LOG = Logger.getLogger(NoInitialization.class);

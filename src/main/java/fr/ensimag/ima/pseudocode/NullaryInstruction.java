@@ -5,8 +5,8 @@ import java.io.PrintStream;
 /**
  * Instruction without operand.
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public abstract class NullaryInstruction extends Instruction {
     @Override

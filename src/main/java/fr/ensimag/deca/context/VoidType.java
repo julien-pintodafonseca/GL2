@@ -4,8 +4,8 @@ import fr.ensimag.deca.tools.SymbolTable;
 
 /**
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class VoidType extends Type {
 

@@ -1,11 +1,10 @@
 package fr.ensimag.deca.tree;
 
-
 /**
  * read...() statement.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public abstract class AbstractReadExpr extends AbstractExpr {
 

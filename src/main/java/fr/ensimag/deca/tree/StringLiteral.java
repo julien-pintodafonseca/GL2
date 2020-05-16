@@ -16,8 +16,8 @@ import java.io.PrintStream;
 /**
  * String literal
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class StringLiteral extends AbstractStringLiteral {
     private static Logger LOG = Logger.getLogger(StringLiteral.class);

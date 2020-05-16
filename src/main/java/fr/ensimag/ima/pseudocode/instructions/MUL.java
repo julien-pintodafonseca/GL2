@@ -5,8 +5,8 @@ import fr.ensimag.ima.pseudocode.DVal;
 import fr.ensimag.ima.pseudocode.GPRegister;
 
 /**
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class MUL extends BinaryInstructionDValToReg {
     public MUL(DVal op1, GPRegister op2) {

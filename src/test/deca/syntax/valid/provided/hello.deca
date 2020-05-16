@@ -5,7 +5,7 @@
 //    Hello
 //
 // Historique:
-//    cree le @DATE@
+//    cree le 2020
 
 {
         println("Hello");

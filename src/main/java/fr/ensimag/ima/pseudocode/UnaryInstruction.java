@@ -6,8 +6,8 @@ import org.apache.commons.lang.Validate;
 /**
  * Instruction with a single operand.
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public abstract class UnaryInstruction extends Instruction {
     private Operand operand;

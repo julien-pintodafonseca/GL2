@@ -4,8 +4,8 @@ import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.UnaryInstruction;
 
 /**
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class PEA extends UnaryInstruction {
 

@@ -14,8 +14,8 @@ import static org.mockito.Mockito.*;
  * @see TestPlusWithoutMock too see what would need to be written if the test
  * was done without using Mockito.
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class TestPlusPlain {
     final Type INT = new IntType(null);

@@ -5,8 +5,8 @@ import org.apache.commons.lang.Validate;
 /**
  * Label used as operand
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class LabelOperand extends DVal {
     public Label getLabel() {

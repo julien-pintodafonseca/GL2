@@ -6,8 +6,8 @@ import org.apache.log4j.Logger;
 
 /**
  * 
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class ManualTestLex {
     // This is a test class, we do not try to give user-friendly error messages

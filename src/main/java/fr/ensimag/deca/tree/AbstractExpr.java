@@ -16,8 +16,8 @@ import java.io.PrintStream;
 /**
  * Expression, i.e. anything that has a value.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public abstract class AbstractExpr extends AbstractInst {
     private static final Logger LOG = Logger.getLogger(AbstractExpr.class);

@@ -6,7 +6,7 @@
  * fr.ensimag.ima.pseudocode.Instruction}, and a comment
  * (represented as a String).
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 package fr.ensimag.ima.pseudocode;

@@ -4,8 +4,8 @@ import fr.ensimag.ima.pseudocode.NullaryInstruction;
 
 /**
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class SETROUND_TONEAREST extends NullaryInstruction {
 

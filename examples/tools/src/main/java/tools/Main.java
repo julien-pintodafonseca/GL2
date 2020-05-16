@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
  *
  * A FAIRE : Alice et Bob rajoutent leurs noms sur la ligne suivante
  *
- * @author ... and ...
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class Main {
 

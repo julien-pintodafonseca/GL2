@@ -9,8 +9,8 @@ import fr.ensimag.deca.DecacCompiler;
 
 /**
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class ManualTestInitialGencode {
     

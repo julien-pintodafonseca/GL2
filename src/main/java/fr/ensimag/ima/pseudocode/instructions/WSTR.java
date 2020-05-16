@@ -4,8 +4,8 @@ import fr.ensimag.ima.pseudocode.ImmediateString;
 import fr.ensimag.ima.pseudocode.UnaryInstruction;
 
 /**
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class WSTR extends UnaryInstruction {
     public WSTR(ImmediateString op) {

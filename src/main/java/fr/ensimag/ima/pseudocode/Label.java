@@ -6,8 +6,8 @@ import org.apache.commons.lang.Validate;
  * Representation of a label in IMA code. The same structure is used for label
  * declaration (e.g. foo: instruction) or use (e.g. BRA foo).
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class Label extends Operand {
 

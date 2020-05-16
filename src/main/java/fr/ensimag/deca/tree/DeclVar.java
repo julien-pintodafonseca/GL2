@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 import java.io.PrintStream;
 
 /**
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class DeclVar extends AbstractDeclVar {
     private static final Logger LOG = Logger.getLogger(DeclVar.class);

@@ -13,8 +13,8 @@ import java.io.PrintStream;
 /**
  * Integer literal
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class IntLiteral extends AbstractExpr {
     private static Logger LOG = Logger.getLogger(IntLiteral.class);

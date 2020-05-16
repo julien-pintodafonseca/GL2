@@ -2,8 +2,8 @@ package fr.ensimag.ima.pseudocode;
 
 /**
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class BranchInstruction extends UnaryInstruction {
 

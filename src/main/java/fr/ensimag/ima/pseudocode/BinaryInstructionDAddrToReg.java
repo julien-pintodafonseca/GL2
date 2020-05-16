@@ -4,8 +4,8 @@ package fr.ensimag.ima.pseudocode;
  * Base class for instructions with 2 operands, the first being a
  * DAddr, and the second a Register.
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class BinaryInstructionDAddrToReg extends BinaryInstructionDValToReg {
 

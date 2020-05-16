@@ -1,5 +1,10 @@
 package fr.ensimag.deca;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public final class ErrorMessages {
     // DecacCompilerError messages
     public static final String DECAC_COMPILER_WRONG_ENTRY = "L'entrée suivante n'est pas reconnue : ";

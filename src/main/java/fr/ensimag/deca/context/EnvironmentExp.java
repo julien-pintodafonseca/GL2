@@ -19,8 +19,8 @@ import java.util.Map;
  * 
  * Insertion (through method declare) is always done in the "current" dictionary.
  * 
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class EnvironmentExp {
     EnvironmentExp parentEnvironment;

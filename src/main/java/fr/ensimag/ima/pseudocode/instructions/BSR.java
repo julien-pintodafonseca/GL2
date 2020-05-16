@@ -6,8 +6,8 @@ import fr.ensimag.ima.pseudocode.LabelOperand;
 import fr.ensimag.ima.pseudocode.UnaryInstruction;
 
 /**
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class BSR extends UnaryInstruction {
 

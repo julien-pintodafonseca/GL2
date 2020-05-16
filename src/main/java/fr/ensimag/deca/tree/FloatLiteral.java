@@ -14,8 +14,8 @@ import java.io.PrintStream;
 /**
  * Single precision, floating-point literal
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class FloatLiteral extends AbstractExpr {
     private static Logger LOG = Logger.getLogger(FloatLiteral.class);

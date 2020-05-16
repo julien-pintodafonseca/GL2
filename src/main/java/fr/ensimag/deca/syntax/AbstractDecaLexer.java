@@ -25,9 +25,9 @@ import fr.ensimag.deca.tree.LocationException;
  * This is the super class for the lexer. It is extended by the lexer class
  * generated from DecaLexer.g.
  * 
- * @author @AUTHOR@, Based on template by Jim Idle - Temporal Wave LLC
+ * @author Equipe GL2, Based on template by Jim Idle - Temporal Wave LLC
  *         (jimi@idle.ws)
- * @date @DATE@
+ * @date 2020
  */
 public abstract class AbstractDecaLexer extends Lexer {
     private static final Logger LOG = Logger.getLogger(AbstractDecaLexer.class);

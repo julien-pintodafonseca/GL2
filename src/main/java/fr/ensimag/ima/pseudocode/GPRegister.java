@@ -3,8 +3,8 @@ package fr.ensimag.ima.pseudocode;
 /**
  * General Purpose Register operand (R0, R1, ... R15).
  * 
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class GPRegister extends Register {
     /**

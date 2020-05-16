@@ -9,8 +9,8 @@ import org.apache.commons.lang.Validate;
 
 /**
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public abstract class TreeList<TreeType extends Tree> extends Tree {
     /*

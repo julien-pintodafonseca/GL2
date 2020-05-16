@@ -14,8 +14,8 @@ import org.mockito.MockitoAnnotations;
 /**
  * Test for the Plus node using mockito, using @Mock and @Before annotations.
  *
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class TestPlusAdvanced {
 

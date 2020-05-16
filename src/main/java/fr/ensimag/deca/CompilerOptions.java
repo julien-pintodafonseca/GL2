@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * User-specified options influencing the compilation.
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class CompilerOptions {
     public static final int QUIET = 0;

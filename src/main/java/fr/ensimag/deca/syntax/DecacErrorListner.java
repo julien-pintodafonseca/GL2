@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  * Error listener that stops the compilation at the first error usuing
  * ParseCancellationException.
  *
- * @author Ensimag
+ * @author Equipe GL2
  */
 public class DecacErrorListner implements ANTLRErrorListener {
     private static final Logger LOG = Logger.getLogger(DecacErrorListner.class);

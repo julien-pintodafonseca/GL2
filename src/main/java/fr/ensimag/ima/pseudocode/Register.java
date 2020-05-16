@@ -3,8 +3,8 @@ package fr.ensimag.ima.pseudocode;
 /**
  * Register operand (including special registers like SP).
  * 
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class Register extends DVal {
     private String name;

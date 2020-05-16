@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 /**
  * List of declarations (e.g. int x; float y,z).
  * 
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class ListDeclVar extends TreeList<AbstractDeclVar> {
     private static final Logger LOG = Logger.getLogger(ListDeclVar.class);

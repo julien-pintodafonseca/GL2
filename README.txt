@@ -1,2 +1,2 @@
 Projet Génie Logiciel, Ensimag.
-@AUTHOR@, @DATE@.
+Equipe GL2, 2020.

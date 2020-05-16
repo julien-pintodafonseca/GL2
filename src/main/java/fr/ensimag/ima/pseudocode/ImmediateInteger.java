@@ -3,8 +3,8 @@ package fr.ensimag.ima.pseudocode;
 /**
  * Immediate operand representing an integer.
  * 
- * @author Ensimag
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class ImmediateInteger extends DVal {
     private int value;

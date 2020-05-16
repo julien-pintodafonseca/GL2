@@ -12,8 +12,8 @@ import java.io.PrintStream;
 
 /**
  *
- * @author @AUTHOR@
- * @date @DATE@
+ * @author Equipe GL2
+ * @date 2020
  */
 public class BooleanLiteral extends AbstractExpr {
     private static Logger LOG = Logger.getLogger(BooleanLiteral.class);
