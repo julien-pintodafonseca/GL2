@@ -34,7 +34,6 @@ options {
     protected AbstractProgram parseProgram() {
         return prog().tree;
     }
-    SymbolTable ST = new SymbolTable();
 }
 
 prog returns[AbstractProgram tree]
@@ -419,7 +418,9 @@ literal returns[AbstractExpr tree]
 
 ident returns[AbstractIdentifier tree]
     : IDENT {
-            $tree = new Identifier(ST.create($IDENT.text));
+            $tree = new Identifier(
+                getDecacCompiler().createSymbol($IDENT.text)
+            );
         }
     ;
 
