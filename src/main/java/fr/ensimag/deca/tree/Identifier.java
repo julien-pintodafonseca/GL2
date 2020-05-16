@@ -168,8 +168,8 @@ public class Identifier extends AbstractIdentifier {
         if (expDef == null) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_VAR, getLocation());
         } else {
-            setDefinition(expDef);
-            setType(expDef.getType());
+            // setDefinition(expDef); //TODO : vérifier si ok
+            // setType(expDef.getType()); //TODO : vérifier si ok
             LOG.debug("verify expr: end ("+getName().getName()+")");
             return expDef.getType();
         }
@@ -183,15 +183,13 @@ public class Identifier extends AbstractIdentifier {
     public Type verifyType(DecacCompiler compiler) throws ContextualError {
         // Règle syntaxe contextuelle : (0.2)
         LOG.debug("verify type: start ("+getName()+")");
-        // TODO: Ici le symbole "getName()" est un symbole 'int' mais n'est pas reconnu par defOfType !!!
         TypeDefinition typeDef = compiler.environmentType.defOfType(getName());
-        LOG.debug(typeDef); // TODO: A supprimer lorsque le problème est résolu
 
         if (typeDef == null) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_TYPE, getLocation());
         } else {
-            setDefinition(typeDef);
-            setType(typeDef.getType());
+            // setDefinition(typeDef); //TODO : vérifier si ok
+            // setType(typeDef.getType()); //TODO : vérifier si ok
             LOG.debug("verify type: end ("+getName().getName()+")");
             return typeDef.getType();
         }

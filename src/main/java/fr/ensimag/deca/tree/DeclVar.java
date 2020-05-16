@@ -43,7 +43,7 @@ public class DeclVar extends AbstractDeclVar {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_NULL, getLocation());
         }
 
-        //initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass);
+        // initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass); //TODO : vérifier si ok
 
         // Déclaration de variable
         try {
@@ -52,9 +52,9 @@ public class DeclVar extends AbstractDeclVar {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_DUPE, getLocation());
         }
 
-        //varName.verifyExpr(compiler, localEnv, currentClass);
+        // varName.verifyExpr(compiler, localEnv, currentClass); //TODO : vérifier si ok
         varName.setType(typeVar);
-        //varName.setDefinition();
+        // varName.setDefinition(); //TODO : vérifier si ok
         LOG.debug("verify declVar: end");
     }
 
