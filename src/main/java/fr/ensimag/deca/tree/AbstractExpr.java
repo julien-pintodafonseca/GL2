@@ -86,29 +86,19 @@ public abstract class AbstractExpr extends AbstractInst {
             Type expectedType) throws ContextualError {
         LOG.debug("verify expr: start (abstractExpr)");
         // Règle syntaxe contextuelle : (3.28)
-        Type rType = verifyExpr(compiler, localEnv, currentClass);
+        Type rightType = verifyExpr(compiler, localEnv, currentClass);
 
-        // Condition assign_compatible(env_types, exceptedType, rType)
-        if (!assign_compatible(compiler, expectedType, rType)) {
+        // Condition de types
+        if (rightType.sameType(expectedType)) {
+            return this;
+        } else if (expectedType.isFloat() && rightType.isInt()) {
+            ConvFloat conv = new ConvFloat(this);
+            conv.setType(expectedType);
+            return conv;
+        } else {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE, getLocation());
         }
-
-        // TODO: gestion du cast entre Float et Int
-
-        LOG.debug("verify expr: end (abstractExpr)");
-        return this;
     }
-
-    public boolean assign_compatible(DecacCompiler compiler, Type exceptedType, Type rType) {
-        if (rType.sameType(exceptedType)) {
-            return true;
-        } else if (exceptedType.isFloat() && rType.isInt()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
     
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
