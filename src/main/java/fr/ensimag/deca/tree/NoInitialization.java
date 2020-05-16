@@ -1,11 +1,13 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import org.apache.log4j.Logger;
+
 import java.io.PrintStream;
 
 /**
@@ -16,12 +18,16 @@ import java.io.PrintStream;
  * @date @DATE@
  */
 public class NoInitialization extends AbstractInitialization {
+    private static final Logger LOG = Logger.getLogger(NoInitialization.class);
 
     @Override
     protected void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Règle syntaxe contextuelle : (3.9)
+        LOG.debug("verify initialization: start");
+        // nothing
+        LOG.debug("verify initialization: end");
     }
 
 

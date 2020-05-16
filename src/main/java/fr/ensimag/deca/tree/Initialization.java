@@ -1,19 +1,22 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * @author @AUTHOR@
  * @date @DATE@
  */
 public class Initialization extends AbstractInitialization {
+    private static final Logger LOG = Logger.getLogger(Initialization.class);
 
     public AbstractExpr getExpression() {
         return expression;
@@ -35,7 +38,12 @@ public class Initialization extends AbstractInitialization {
     protected void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Règle syntaxe contextuelle : (3.8)
+        LOG.debug("verify initialization: start");
+        AbstractExpr rightExpr = getExpression().verifyRValue(compiler, localEnv, currentClass, t);
+        setExpression(rightExpr);
+        rightExpr.verifyExpr(compiler, localEnv, currentClass);
+        LOG.debug("verify initialization: end");
     }
 
 

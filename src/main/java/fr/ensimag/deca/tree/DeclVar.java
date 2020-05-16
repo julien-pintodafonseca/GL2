@@ -53,7 +53,7 @@ public class DeclVar extends AbstractDeclVar {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_DUPE, getLocation());
         }
 
-        // initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass); //TODO
+        initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass);
         LOG.debug("verify declVar: end");
     }
 
