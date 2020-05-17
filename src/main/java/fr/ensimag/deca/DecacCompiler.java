@@ -1,5 +1,7 @@
 package fr.ensimag.deca;
 
+import fr.ensimag.deca.codegen.RegisterManager;
+import fr.ensimag.deca.codegen.StackManager;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
@@ -48,6 +50,28 @@ public class DecacCompiler {
         super();
         this.compilerOptions = compilerOptions;
         this.source = source;
+    }
+
+    /**
+     * Register manager
+     */
+    private RegisterManager registerManager;
+
+    public RegisterManager getRegisterManager() { return registerManager; }
+
+    public void setRegisterManager(int n) {
+        registerManager = new RegisterManager(n);
+    }
+
+    /**
+     * Stack manager
+     */
+    private StackManager stackManager;
+
+    public StackManager getStackManager() { return stackManager; }
+
+    public void setStackManager(RegisterManager rm) {
+        stackManager = new StackManager(rm);
     }
 
     /**

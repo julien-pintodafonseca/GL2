@@ -46,8 +46,9 @@ public class Program extends AbstractProgram {
 
     @Override
     public void codeGenProgram(DecacCompiler compiler) {
-        // A FAIRE: compléter ce squelette très rudimentaire de code
         compiler.addComment("Main program");
+        compiler.setRegisterManager(compiler.getCompilerOptions().getRegisters());
+        compiler.setStackManager(compiler.getRegisterManager());
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());
     }

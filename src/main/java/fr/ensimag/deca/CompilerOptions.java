@@ -23,6 +23,8 @@ public class CompilerOptions {
         return debug;
     }
 
+    public int getRegisters() { return registers; }
+
     public boolean getParallel() {
         return parallel;
     }
@@ -36,13 +38,15 @@ public class CompilerOptions {
     }
 
     private int debug = 0;
+    private int registers = 16;
     private boolean parallel = false;
     private boolean printBanner = false;
     private List<File> sourceFiles = new ArrayList<>();
 
     
     public void parseArgs(String[] args) throws CLIException {
-        // A FAIRE : parcourir args pour positionner les options correctement.
+        boolean registersOpt = false;
+
         for (String arg : args) {
             if (arg.startsWith("-")) {
                 // Gestion des options
@@ -52,6 +56,8 @@ public class CompilerOptions {
                     case "-v":
                     case "-n":
                     case "-r":
+                        registersOpt = true;
+                        break;
                     case "-d":
                         debug++;
                         break;
@@ -69,6 +75,19 @@ public class CompilerOptions {
                     }
                 } else {
                     throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_FILE + arg);
+                }
+            } else if (registersOpt) {
+                // -r X option
+                registersOpt = false;
+                try {
+                    int n = Integer.parseInt(arg); // On récupère l'arg X contenant le nombre de registres
+                    if (n >= 4 && n <= 16) {
+                        registers = Integer.parseInt(arg); // On set notre variable registers
+                    } else {
+                        throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_R_OPT_VALUE + arg);
+                    }
+                } catch (Exception e) {
+                    throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_OPTION + "-r " + arg);
                 }
             } else {
                 throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_ENTRY + arg);
