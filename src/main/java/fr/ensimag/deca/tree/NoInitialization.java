@@ -6,6 +6,7 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.DAddr;
 import org.apache.log4j.Logger;
 
 import java.io.PrintStream;
@@ -30,6 +31,10 @@ public class NoInitialization extends AbstractInitialization {
         LOG.debug("verify initialization: end");
     }
 
+    @Override
+    protected void codeGenInit(DecacCompiler compiler, DAddr addr) {
+        // do nothing
+    }
 
     /**
      * Node contains no real information, nothing to check.

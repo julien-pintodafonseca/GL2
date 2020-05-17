@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -43,7 +44,7 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
         LOG.debug("verify listDeclVar: end");
     }
 
-    public void codeGenListDeclVar(DecacCompiler compiler) {
+    public void codeGenListDeclVar(DecacCompiler compiler) throws DecacFatalError {
         compiler.addComment("Declaration of variables:");
         for (AbstractDeclVar declVar : getList()) {
             declVar.codeGenDeclVar(compiler);

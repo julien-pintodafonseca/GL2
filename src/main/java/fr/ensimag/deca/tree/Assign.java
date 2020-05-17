@@ -1,10 +1,9 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.*;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.log4j.Logger;
 
 /**
@@ -40,6 +39,18 @@ public class Assign extends AbstractBinaryExpr {
         return leftType;
     }
 
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) {
+        AbstractExpr leftOp = getLeftOperand();
+        if (leftOp instanceof Identifier) {
+            VariableDefinition varDef = ((Identifier) leftOp).getVariableDefinition();
+            getRightOperand().codeGenInst(compiler);
+            compiler.addInstruction(new STORE(Register.R1, varDef.getOperand()));
+        } else {
+            super.codeGenInst(compiler);
+        }
+
+    }
 
     @Override
     protected String getOperatorName() {

@@ -6,6 +6,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 
 /**
  *
@@ -28,13 +29,13 @@ public class ManualTestInitialGencode {
         return source;
     }
     
-    public static String gencodeSource(AbstractProgram source) {
+    public static String gencodeSource(AbstractProgram source) throws DecacFatalError {
         DecacCompiler compiler = new DecacCompiler(null,null);
         source.codeGenProgram(compiler);
         return compiler.displayIMAProgram();
     }
 
-    public static void test1() {
+    public static void test1() throws DecacFatalError {
         AbstractProgram source = initTest1();
         System.out.println("---- From the following Abstract Syntax Tree ----");
         source.prettyPrint(System.out);
@@ -52,7 +53,7 @@ public class ManualTestInitialGencode {
 
         
         
-    public static void main(String args[]) {
+    public static void main(String args[]) throws DecacFatalError {
         test1();
     }
 }

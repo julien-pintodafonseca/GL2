@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
@@ -62,11 +63,12 @@ public class DeclVar extends AbstractDeclVar {
     }
 
     @Override
-    protected void codeGenDeclVar(DecacCompiler compiler) {
-        compiler.addInstruction(new LOAD(17, Register.R1)); // valeur initialisation
-
-        RegisterOffset addr = new RegisterOffset(1, Register.GB); //valeur de l'offset
-        compiler.addInstruction(new STORE(Register.R1, addr));
+    protected void codeGenDeclVar(DecacCompiler compiler) throws DecacFatalError {
+        int offset = compiler.getRegisterManager().nextAvailable();
+        assert(offset != -1);
+        RegisterOffset addr = new RegisterOffset(offset, Register.GB); //valeur de l'offset
+        compiler.getRegisterManager().take(offset);
+        initialization.codeGenInit(compiler, addr);
         VariableDefinition varDef = varName.getVariableDefinition();
         varDef.setOperand(addr);
         varName.setDefinition(varDef);

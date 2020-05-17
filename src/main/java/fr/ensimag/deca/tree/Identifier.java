@@ -6,6 +6,11 @@ import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
+import fr.ensimag.ima.pseudocode.DAddr;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -196,6 +201,26 @@ public class Identifier extends AbstractIdentifier {
     
     private Definition definition;
 
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler) {
+        VariableDefinition varDef = getVariableDefinition();
+        DAddr addr = varDef.getOperand();
+        compiler.addInstruction(new LOAD(addr, Register.R1));
+        if(varDef.getType().isInt()) {
+            compiler.addInstruction(new WINT());
+        } else if (varDef.getType().isFloat()) {
+            compiler.addInstruction(new WFLOAT());
+        } else {
+            throw new UnsupportedOperationException("not yet implemented");
+        }
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) {
+        VariableDefinition varDef = getVariableDefinition();
+        DAddr addr = varDef.getOperand();
+        compiler.addInstruction(new LOAD(addr, Register.R1));
+    }
 
     @Override
     protected void iterChildren(TreeFunction f) {

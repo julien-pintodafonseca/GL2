@@ -1,8 +1,8 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import java.io.PrintStream;
@@ -45,7 +45,7 @@ public class Program extends AbstractProgram {
     }
 
     @Override
-    public void codeGenProgram(DecacCompiler compiler) {
+    public void codeGenProgram(DecacCompiler compiler) throws DecacFatalError {
         compiler.addComment("Main program");
         compiler.setRegisterManager(compiler.getCompilerOptions().getRegisters());
         compiler.setStackManager(compiler.getRegisterManager());
