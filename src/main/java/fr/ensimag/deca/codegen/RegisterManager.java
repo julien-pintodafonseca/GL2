@@ -23,7 +23,7 @@ public class RegisterManager {
         size = n;
         registers = new HashMap<>();
 
-        for(int i=1; i<=(size-1); i++) { // gestion temporaire du registre (i=0 normalement)
+        for(int i=0; i<=(size-1); i++) {
             registers.put(i, false);
         }
     }
@@ -48,7 +48,7 @@ public class RegisterManager {
     }
 
     public int nextAvailable() {
-        for(int i=1; i<=(size-1); i++) { // gestion temporaire du registre (i=0 normalement)
+        for(int i=0; i<=(size-1); i++) {
             if (!registers.get(i)) {
                 return i;
             }
@@ -57,7 +57,7 @@ public class RegisterManager {
     }
 
     private void verifyRegNumber(int regNumber) throws DecacFatalError {
-        boolean verifyMinVal = regNumber >= 1; // gestion temporaire du registre (i=0 normalement)
+        boolean verifyMinVal = regNumber >= 0;
         boolean verifyMaxVal = regNumber <= (size-1);
         if (!verifyMinVal || !verifyMaxVal) {
             throw new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+regNumber);

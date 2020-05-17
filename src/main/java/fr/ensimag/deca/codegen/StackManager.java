@@ -17,8 +17,8 @@ public class StackManager {
 
     public StackManager(RegisterManager _registerManager) {
         registerManager = _registerManager;
-        initGB();
-        initLB();
+        GB = 1 ;
+        LB = 1;
         // SP = TODO
     }
 
@@ -30,14 +30,6 @@ public class StackManager {
         return LB;
     }
 
-    public void initGB() {
-        GB = 1;
-    }
-
-    public void initLB() {
-        LB = 1;
-    }
-
     public void incrGB() {
         GB++;
     }
@@ -46,14 +38,4 @@ public class StackManager {
         LB++;
     }
 
-    public GPRegister getAvailableGBRegister() throws DecacFatalError {
-        int size = registerManager.getSize();
-        int nextAvailableRegister = registerManager.nextAvailable();
-        if (nextAvailableRegister != -1) {
-            registerManager.take(nextAvailableRegister);
-            return GPRegister.getR(nextAvailableRegister);
-        } else {
-            return null; // If null is returned, there is no more available register
-        }
-    }
 }
