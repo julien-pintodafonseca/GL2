@@ -32,7 +32,7 @@ public class NoInitialization extends AbstractInitialization {
     }
 
     @Override
-    protected void codeGenInit(DecacCompiler compiler, DAddr addr) {
+    protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) {
         // do nothing
     }
 

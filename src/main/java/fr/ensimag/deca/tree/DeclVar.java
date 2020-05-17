@@ -7,8 +7,6 @@ import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -68,7 +66,7 @@ public class DeclVar extends AbstractDeclVar {
         compiler.getStackManager().incrGB();
         RegisterOffset addr = new RegisterOffset(offset, Register.GB);
         compiler.getRegisterManager().take(offset);
-        initialization.codeGenInit(compiler, addr);
+        initialization.codeGenInitialization(compiler, addr);
         VariableDefinition varDef = varName.getVariableDefinition();
         varDef.setOperand(addr);
         varName.setDefinition(varDef);

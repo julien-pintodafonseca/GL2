@@ -13,7 +13,7 @@ public final class ErrorMessages {
     public static final String DECAC_COMPILER_WRONG_ENTRY = "L'entrée suivante n'est pas reconnue : ";
     public static final String DECAC_COMPILER_WRONG_OPTION = "L'option suivante n'est pas reconnue : ";
     public static final String DECAC_COMPILER_WRONG_FILE = "Le fichier suivant n'existe pas : ";
-    public static final String DECAC_COMPILER_WRONG_R_OPT_VALUE = "Option -r X incorrect : 4 <= X <= 16.";
+    public static final String DECAC_COMPILER_WRONG_R_OPT_VALUE = "Option -r X incorrecte ! Contrainte à respecter : 4 <= X <= 16.";
 
     // ContextualError messages
     public static final String CONTEXTUAL_ERROR_DECLVAR_NULL = "La variable déclarée est de type void.";

@@ -40,12 +40,6 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    protected void codeGenInit(DecacCompiler compiler, DAddr addr) {
-        getExpression().codeGenInst(compiler);
-        compiler.addInstruction(new STORE(Register.R1, addr));
-    }
-
-    @Override
     protected void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
@@ -57,6 +51,11 @@ public class Initialization extends AbstractInitialization {
         LOG.debug("verify initialization: end");
     }
 
+    @Override
+    protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) {
+        getExpression().codeGenInst(compiler);
+        compiler.addInstruction(new STORE(Register.R1, addr));
+    }
 
     @Override
     public void decompile(IndentPrintStream s) {

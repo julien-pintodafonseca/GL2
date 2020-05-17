@@ -46,6 +46,7 @@ public class CompilerOptions {
     
     public void parseArgs(String[] args) throws CLIException {
         boolean registersOpt = false;
+        boolean registerOptWrongValue = false;
 
         for (String arg : args) {
             if (arg.startsWith("-")) {
@@ -84,10 +85,13 @@ public class CompilerOptions {
                     if (n >= 4 && n <= 16) {
                         registers = Integer.parseInt(arg); // On set notre variable registers
                     } else {
-                        throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_R_OPT_VALUE + arg);
+                        registerOptWrongValue = true;
                     }
                 } catch (Exception e) {
                     throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_OPTION + "-r " + arg);
+                }
+                if (registerOptWrongValue) {
+                    throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_R_OPT_VALUE);
                 }
             } else {
                 throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_ENTRY + arg);
