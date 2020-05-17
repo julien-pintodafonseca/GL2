@@ -4,6 +4,10 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -57,7 +61,17 @@ public class DeclVar extends AbstractDeclVar {
         LOG.debug("verify declVar: end");
     }
 
-    
+    @Override
+    protected void codeGenDeclVar(DecacCompiler compiler) {
+        compiler.addInstruction(new LOAD(17, Register.R1)); // valeur initialisation
+
+        RegisterOffset addr = new RegisterOffset(1, Register.GB); //valeur de l'offset
+        compiler.addInstruction(new STORE(Register.R1, addr));
+        VariableDefinition varDef = varName.getVariableDefinition();
+        varDef.setOperand(addr);
+        varName.setDefinition(varDef);
+    }
+
     @Override
     public void decompile(IndentPrintStream s) {
         throw new UnsupportedOperationException("not yet implemented");
