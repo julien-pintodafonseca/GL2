@@ -1,0 +1,8 @@
+{
+    int x = 4;
+    if ( x == 4 )
+        println("hello if", x);
+    else
+        println("hello else", x);
+
+}

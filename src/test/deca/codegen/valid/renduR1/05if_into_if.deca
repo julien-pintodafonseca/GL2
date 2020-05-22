@@ -1,0 +1,16 @@
+{
+    int x = 3;
+    if ( x > 0 ) {
+        println("x > 0 : ", x);
+        if ( x == 1)
+        {
+            println("x = 1 : ", x);
+        }
+        else if (x == 2) {
+            println("x = 3 : ", x);
+        }
+    } else if ( x < 0) {
+        println("x < 0 : ", x);
+    }
+
+}

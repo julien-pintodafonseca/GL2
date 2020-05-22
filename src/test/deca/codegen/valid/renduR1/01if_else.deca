@@ -1,0 +1,9 @@
+{
+    int x = 2;
+    if ( x == 0 ) {
+        println("hello if", x);
+    } else {
+        println("hello else", x);
+    }
+
+}

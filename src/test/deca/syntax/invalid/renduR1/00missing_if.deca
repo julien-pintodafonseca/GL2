@@ -1,0 +1,9 @@
+{
+    int x = 4;
+    else if (x == 3) {
+        println("hello else_if1 : ", x);
+    } else if (x == 4) {
+        println("hello else_if2 : ", x);
+    }
+
+}

@@ -18,7 +18,9 @@ OPARENT: '(';
 CPARENT: ')';
 IF: 'if';
 LT: '<';
+GT: '>';
 EQUALS: '=';
+EQEQ: '==';
 COMMA: ',';
 ELSE: 'else';
 

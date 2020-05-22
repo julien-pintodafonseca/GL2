@@ -96,7 +96,7 @@ decl_var[AbstractIdentifier t] returns[AbstractDeclVar tree]
             init = new NoInitialization();
         }
       (eq=EQUALS e=expr {
-            assert($e.tree!=null)
+            assert($e.tree!=null);
             init = new Initialization($e.tree);
             setLocation(init, $eq);
         }
@@ -177,13 +177,14 @@ if_then_else returns[IfThenElse tree]
             assert($elsif_cond.tree != null);
             assert($elsif_li.tree != null);
             elseInst.add(new IfThenElse($elsif_cond.tree, $elsif_li.tree, elsifInst));
+            setLocation($tree, elseInst.start);
             elseInst = elsifInst;
             elsifInst = new ListInst();
         }
       )*
       (ELSE OBRACE li_else=list_inst CBRACE {
             for (AbstractInst tt : $li_else.tree.getList()) {
-                assert(tt != null)
+                assert(tt != null);
                 elseInst.add(tt);
             }
         }
@@ -195,7 +196,7 @@ list_expr returns[ListExpr tree]
             $tree = new ListExpr();
         }
     : (e1=expr {
-            assert($el.tree != null);
+            assert($e1.tree != null);
             $tree.add($e1.tree);
             setLocation($e1.tree, $e1.start);
         }
@@ -264,6 +265,7 @@ eq_neq_expr returns[AbstractExpr tree]
     | e1=eq_neq_expr EQEQ e2=inequality_expr {
             assert($e1.tree != null);
             assert($e2.tree != null);
+            $tree = new Equals($e1.tree, $e2.tree);
         }
     | e1=eq_neq_expr NEQ e2=inequality_expr {
             assert($e1.tree != null);

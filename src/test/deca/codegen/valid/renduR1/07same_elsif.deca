@@ -1,0 +1,13 @@
+{
+    int x = 3;
+    if ( x == 0 ) {
+        println("hello if", x);
+    } else if (x == 3) {
+        println("hello else_if1 : ", x);
+    } else if (x == 3) {
+        println("hello else_if2 : ", x);
+    } else {
+        println("x < 0 : ", x);
+    }
+
+}
