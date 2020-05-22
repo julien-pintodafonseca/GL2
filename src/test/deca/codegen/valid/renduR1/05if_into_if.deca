@@ -7,7 +7,7 @@
             println("x = 1 : ", x);
         }
         else if (x == 2) {
-            println("x = 3 : ", x);
+            println("x = 2 : ", x);
         }
     } else if ( x < 0) {
         println("x < 0 : ", x);
