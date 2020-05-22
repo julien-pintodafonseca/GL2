@@ -1,0 +1,1 @@
+src\test\deca\syntax\invalid\renduR1\02missing_condition_if.deca:3:9: mismatched input ')' expecting {'(', 'readInt', IDENT, FLOAT, INT, STRING, MINUS, EXCLAM, READFLOAT, NEW, TRUE, FALSE, THIS, NULL}
