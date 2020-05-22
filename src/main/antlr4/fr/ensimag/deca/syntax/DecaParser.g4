@@ -177,7 +177,6 @@ if_then_else returns[IfThenElse tree]
             assert($elsif_cond.tree != null);
             assert($elsif_li.tree != null);
             elseInst.add(new IfThenElse($elsif_cond.tree, $elsif_li.tree, elsifInst));
-            setLocation($tree, elseInst.start);
             elseInst = elsifInst;
             elsifInst = new ListInst();
         }
