@@ -79,8 +79,10 @@ decl_var_set[ListDeclVar l]
 
 list_decl_var[ListDeclVar l, AbstractIdentifier t]
     : dv1=decl_var[$t] {
+            assert($dv1.tree != null);
             $l.add($dv1.tree);
         } (COMMA dv2=decl_var[$t] {
+            assert($dv2.tree != null);
             $l.add($dv2.tree);
         }
       )*
@@ -94,10 +96,14 @@ decl_var[AbstractIdentifier t] returns[AbstractDeclVar tree]
             init = new NoInitialization();
         }
       (eq=EQUALS e=expr {
+            assert($e.tree!=null)
             init = new Initialization($e.tree);
             setLocation(init, $eq);
         }
       )? {
+            assert($t != null);
+            assert($i.tree !=null);
+            assert(init != null);
             $tree = new DeclVar($t, $i.tree, init);
             setLocation($tree, $i.start);
             setLocation($i.tree, $i.start);
@@ -109,6 +115,7 @@ list_inst returns[ListInst tree]
             $tree = new ListInst();
         }
     : (inst {
+            assert($inst.tree != null);
             $tree.add($inst.tree);
             setLocation($inst.tree, $inst.start);
         }
@@ -167,6 +174,8 @@ if_then_else returns[IfThenElse tree]
             $tree = new IfThenElse($condition.tree, $li_if.tree, elseInst);
         }
       (ELSE elsif=IF OPARENT elsif_cond=expr CPARENT OBRACE elsif_li=list_inst CBRACE {
+            assert($elsif_cond.tree != null);
+            assert($elsif_li.tree != null);
             elseInst.add(new IfThenElse($elsif_cond.tree, $elsif_li.tree, elsifInst));
             elseInst = elsifInst;
             elsifInst = new ListInst();
@@ -174,6 +183,7 @@ if_then_else returns[IfThenElse tree]
       )*
       (ELSE OBRACE li_else=list_inst CBRACE {
             for (AbstractInst tt : $li_else.tree.getList()) {
+                assert(tt != null)
                 elseInst.add(tt);
             }
         }
@@ -185,10 +195,12 @@ list_expr returns[ListExpr tree]
             $tree = new ListExpr();
         }
     : (e1=expr {
+            assert($el.tree != null);
             $tree.add($e1.tree);
             setLocation($e1.tree, $e1.start);
         }
        (COMMA e2=expr {
+            assert($e2.tree != null);
             $tree.add($e2.tree);
             setLocation($e2.tree, $e2.start);
         }
