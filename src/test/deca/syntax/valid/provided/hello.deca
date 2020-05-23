@@ -3,9 +3,6 @@
 //
 // Resultats:
 //    Hello
-//
-// Historique:
-//    cree le 2020
 
 {
         println("Hello");

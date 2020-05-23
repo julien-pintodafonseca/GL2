@@ -4,14 +4,9 @@
 // Resultats:
 //    ok
 //    ok
-//
-// Historique:
-//    cree le 2020
 
 {
    println("ok") ; 
    print("ok") ; 
    println() ; 
 }
-
-
