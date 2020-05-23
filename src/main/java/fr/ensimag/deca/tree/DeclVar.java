@@ -65,7 +65,6 @@ public class DeclVar extends AbstractDeclVar {
         int offset = compiler.getStackManager().getGB();
         compiler.getStackManager().incrGB();
         RegisterOffset addr = new RegisterOffset(offset, Register.GB);
-        compiler.getRegisterManager().take(offset);
         initialization.codeGenInitialization(compiler, addr);
         VariableDefinition varDef = varName.getVariableDefinition();
         varDef.setOperand(addr);
