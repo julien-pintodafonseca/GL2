@@ -1,0 +1,52 @@
+`> [7, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [7, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [8, 8] DeclVar
+      |  ||  +> [8, 4] Identifier (int)
+      |  ||  +> [8, 8] Identifier (x)
+      |  ||  `> [8, 10] Initialization
+      |  ||     `> [8, 12] Int (1)
+      |  []> [9, 8] DeclVar
+      |  ||  +> [9, 4] Identifier (int)
+      |  ||  +> [9, 8] Identifier (y)
+      |  ||  `> [9, 10] Initialization
+      |  ||     `> [9, 12] Int (3)
+      |  []> [10, 10] DeclVar
+      |  ||  +> [10, 4] Identifier (float)
+      |  ||  +> [10, 10] Identifier (z)
+      |  ||  `> [10, 12] Initialization
+      |  ||     `> [10, 14] Float (5.2)
+      |  []> [11, 11] DeclVar
+      |      +> [11, 4] Identifier (string)
+      |      +> [11, 11] Identifier (st)
+      |      `> [11, 14] Initialization
+      |         `> [11, 16] StringLiteral (hello)
+      `> ListInst [List with 1 elements]
+         []> [12, 4] IfThenElse
+             +> [12, 36] And
+             |  +> [12, 19] And
+             |  |  +> [12, 11] And
+             |  |  |  +> [12, 8] Not
+             |  |  |  |  `> [12, 9] Identifier (x)
+             |  |  |  `> [12, 15] GreaterOrEqual
+             |  |  |     +> [12, 14] Identifier (y)
+             |  |  |     `> [12, 17] Int (1)
+             |  |  `> [12, 27] Or
+             |  |     +> [12, 24] Lower
+             |  |     |  +> [12, 23] Identifier (z)
+             |  |     |  `> [12, 25] Int (5)
+             |  |     `> [12, 31] Equals
+             |  |        +> [12, 30] Identifier (z)
+             |  |        `> [12, 33] Int (0)
+             |  `> [12, 42] NotEquals
+             |     +> [12, 39] Identifier (st)
+             |     `> [12, 45] StringLiteral (goodbye)
+             +> ListInst [List with 1 elements]
+             |  []> [13, 8] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [13, 16] StringLiteral (ok)
+             `> ListInst [List with 1 elements]
+                []> [15, 8] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [15, 14] StringLiteral (erreur)
