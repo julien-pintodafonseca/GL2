@@ -2,7 +2,8 @@
 //    tests de programme incorrect lexicalement (expression ">" est une expression binaire et non unaire)
 //
 // Resultats:
-//    Ligne 10 : symbole '>' inattendu
+//    Erreur syntaxique
+//    Ligne 11 : symbole '>' inattendu
 
 {
     int x = 1;
