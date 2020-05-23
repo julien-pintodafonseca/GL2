@@ -26,7 +26,7 @@ public class DecacMain {
             options.displayUsage();
             System.exit(1);
         }
-        if (options.getPrintBanner()) {
+        if (options.getBanner()) {
             throw new UnsupportedOperationException("decac -b not yet implemented");
         }
         if (options.getSourceFiles().isEmpty()) {
