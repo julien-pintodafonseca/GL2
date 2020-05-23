@@ -1,0 +1,21 @@
+// Description:
+//    tests conditionnelle : expression "plus grand ou égal" (symbole >=)
+//
+// Resultats:
+//    ok
+//    ok
+
+{
+    int x = 2;
+    float y = 0.0;
+    if ( x >= y ) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+    if ( x >= 2 ) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}

@@ -1,0 +1,15 @@
+// Description:
+//    tests de programme incorrect lexicalement (expression ">" est une expression binaire et non unaire)
+//
+// Resultats:
+//    Ligne 10 : symbole '>' inattendu
+
+{
+    int x = 1;
+    int y = 2;
+    if ( == x) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}

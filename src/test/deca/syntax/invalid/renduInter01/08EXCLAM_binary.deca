@@ -1,0 +1,15 @@
+// Description:
+//    tests de programme incorrect lexicalement (expression "not" est une expression binaire => symbole '!' non attendu)
+//
+// Resultats:
+//    Ligne 10 : symbole '!' inattendu
+
+{
+    int x = 1;
+    int y = 2;
+    if ( y !x) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}

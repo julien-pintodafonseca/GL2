@@ -1,0 +1,17 @@
+// Description:
+//    tests conditionnelle : expression combinée
+//
+// Resultats:
+//    ok
+
+{
+    int x = 1;
+    int y = 3;
+    float z = 5.2;
+    string st = "hello";
+    if (!x && y>=1 && (z<5 || st==0) && st != "goodbye") {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}

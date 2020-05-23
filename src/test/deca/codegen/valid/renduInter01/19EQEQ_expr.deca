@@ -1,0 +1,14 @@
+// Description:
+//    tests conditionnelle : expression "égal" (symbole ==)
+//
+// Resultats:
+//    ok
+
+{
+    int x = 2;
+    if ( x == 2 ) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}

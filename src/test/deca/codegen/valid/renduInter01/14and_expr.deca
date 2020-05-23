@@ -1,0 +1,15 @@
+// Description:
+//    tests conditionnelle : expression "and" (symbole &&)
+//
+// Resultats:
+//    ok
+
+{
+    int x = 2;
+    int y = 3;
+    if ( x == 2 && y == 3) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}

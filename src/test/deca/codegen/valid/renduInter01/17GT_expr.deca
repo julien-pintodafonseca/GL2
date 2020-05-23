@@ -1,0 +1,14 @@
+// Description:
+//    tests conditionnelle : expression "plus grand" (symbole >)
+//
+// Resultats:
+//    ok
+
+{
+    int x = 2;
+    if ( x > 0 ) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}

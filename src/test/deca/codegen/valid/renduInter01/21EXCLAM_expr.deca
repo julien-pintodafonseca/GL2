@@ -1,0 +1,14 @@
+// Description:
+//    tests conditionnelle : expression "not" (symbole unaire !)
+//
+// Resultats:
+//    ok
+
+{
+    int x = 1;
+    if (!x) {
+        println("ok");
+    } else {
+        print("erreur");
+    }
+}
