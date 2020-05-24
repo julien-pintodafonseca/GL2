@@ -29,6 +29,7 @@ AND: '&&';
 OR: '||';
 COMMA: ',';
 ELSE: 'else';
+WHILE: 'while';
 
 SPACES: (' ' | '\t' | '\n' | '\r') { skip(); };
 
