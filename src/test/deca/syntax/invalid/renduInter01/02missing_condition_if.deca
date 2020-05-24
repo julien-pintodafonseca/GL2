@@ -1,6 +1,8 @@
 {
     int x = 4;
-    else (x == 4) {
+    if ( ) {
+        println("hello if", x);
+    } else {
         println("hello else_if2 : ", x);
     }
 
