@@ -1,0 +1,15 @@
+/*  this is a comment,
+    a
+    very
+    long
+    comment
+    and
+    beautiful
+    comment
+    */
+{
+// This is a empty comment :
+    /**/ // yes it is.
+	println("hello");
+/* test */
+}

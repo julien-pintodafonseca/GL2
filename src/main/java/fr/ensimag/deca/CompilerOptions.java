@@ -19,30 +19,43 @@ public class CompilerOptions {
     public static final int INFO  = 1;
     public static final int DEBUG = 2;
     public static final int TRACE = 3;
+
+    private boolean banner = false;
+    private boolean parse = false;
+    private boolean verification = false;
+    private int registers = 16;
+    private int debug = 0;
+    private boolean parallel = false;
+
+    private List<File> sourceFiles = new ArrayList<>();
+
+    public boolean getBanner() {
+        return banner;
+    }
+
+    public boolean getParse() {
+        return parse;
+    }
+
+    public boolean getVerification() {
+        return verification;
+    }
+
+    public int getRegisters() {
+        return registers;
+    }
+
     public int getDebug() {
         return debug;
     }
-
-    public int getRegisters() { return registers; }
 
     public boolean getParallel() {
         return parallel;
     }
 
-    public boolean getPrintBanner() {
-        return printBanner;
-    }
-    
     public List<File> getSourceFiles() {
         return Collections.unmodifiableList(sourceFiles);
     }
-
-    private int debug = 0;
-    private int registers = 16;
-    private boolean parallel = false;
-    private boolean printBanner = false;
-    private List<File> sourceFiles = new ArrayList<>();
-
     
     public void parseArgs(String[] args) throws CLIException {
         boolean registersOpt = false;
@@ -53,9 +66,15 @@ public class CompilerOptions {
                 // Gestion des options
                 switch(arg) {
                     case "-b":
+                        throw new UnsupportedOperationException("not yet implemented");
                     case "-p":
+                        parse = true;
+                        break;
                     case "-v":
+                        verification = true;
+                        throw new UnsupportedOperationException("not yet implemented");
                     case "-n":
+                        throw new UnsupportedOperationException("not yet implemented");
                     case "-r":
                         registersOpt = true;
                         break;
@@ -95,6 +114,10 @@ public class CompilerOptions {
                 }
             } else {
                 throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_ENTRY + arg);
+            }
+
+            if (parse && verification) {
+                throw new CLIException(ErrorMessages.DECAC_COMPILER_INCOMPATIBLE_OPTIONS);
             }
         }
 

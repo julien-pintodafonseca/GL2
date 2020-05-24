@@ -65,7 +65,6 @@ public class DeclVar extends AbstractDeclVar {
         int offset = compiler.getStackManager().getGB();
         compiler.getStackManager().incrGB();
         RegisterOffset addr = new RegisterOffset(offset, Register.GB);
-        compiler.getRegisterManager().take(offset);
         initialization.codeGenInitialization(compiler, addr);
         VariableDefinition varDef = varName.getVariableDefinition();
         varDef.setOperand(addr);
@@ -74,7 +73,11 @@ public class DeclVar extends AbstractDeclVar {
 
     @Override
     public void decompile(IndentPrintStream s) {
-        throw new UnsupportedOperationException("not yet implemented");
+        type.decompile(s);
+        s.print(" ");
+        varName.decompile(s);
+        initialization.decompile(s);
+        s.println(";");
     }
 
     @Override

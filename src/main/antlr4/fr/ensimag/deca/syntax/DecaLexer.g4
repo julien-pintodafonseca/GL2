@@ -19,8 +19,14 @@ CPARENT: ')';
 IF: 'if';
 LT: '<';
 GT: '>';
+LEQ: '<=';
+GEQ: '>=';
+EXCLAM: '!';
 EQUALS: '=';
 EQEQ: '==';
+NEQ: '!=';
+AND: '&&';
+OR: '||';
 COMMA: ',';
 ELSE: 'else';
 

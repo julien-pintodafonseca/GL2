@@ -3,9 +3,6 @@
 //
 // Resultats:
 //    Ligne 15: Affectation de types incompatibles.
-// 
-// Historique:
-//    cree le 2020
 
 {
    int a;

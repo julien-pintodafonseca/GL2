@@ -1,0 +1,13 @@
+// Description:
+//    tests de programme incorrect au niveau du typage (expression "not" applicable sur un booléen seulement)
+//
+// Resultats:
+//    Erreur contextuelle
+//    Ligne 10 : incompatible type
+
+{
+    String x = "hello";
+    if ( !x ) {
+        println("ok");
+    }
+}
