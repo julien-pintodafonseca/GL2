@@ -23,4 +23,7 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_IDENT_NULL_VAR = "Variable indéfinie.";
     public static final String CONTEXTUAL_ERROR_IDENT_NULL_TYPE = "Type de variable indéfini.";
     public static final String CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE = "Type de variable incompatible pour l'affectation.";
+    public static final String CONTEXTUAL_ERROR_COMPARAISON_INCOMPATIBLE_TYPE = "Deux expressions ne peuvent pas être comparées si leurs types sont les suivants : ";
+    public static final String CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE = "L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : ";
+
 }

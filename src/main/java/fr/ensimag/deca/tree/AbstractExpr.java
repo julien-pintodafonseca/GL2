@@ -13,6 +13,8 @@ import org.apache.log4j.Logger;
 
 import java.io.PrintStream;
 
+import static fr.ensimag.deca.ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE;
+
 /**
  * Expression, i.e. anything that has a value.
  *
@@ -123,8 +125,7 @@ public abstract class AbstractExpr extends AbstractInst {
     void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         if (!type.isBoolean()) {
-            // Modif Elina
-            throw new UnsupportedOperationException("not yet implemented");
+            throw new ContextualError(CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE + type + ".", getLocation());
         }
     }
 
