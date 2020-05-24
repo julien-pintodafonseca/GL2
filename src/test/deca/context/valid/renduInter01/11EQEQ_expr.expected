@@ -4,20 +4,27 @@
       +> ListDeclVar [List with 1 elements]
       |  []> [8, 8] DeclVar
       |      +> [8, 4] Identifier (int)
+      |      |  definition: type (builtin), type=int
       |      +> [8, 8] Identifier (x)
+      |      |  definition: variable defined at [8, 8], type=int
       |      `> [8, 10] Initialization
-      |         `> [8, 12] Int (1)
+      |         `> [8, 12] Int (2)
+      |            type: int
       `> ListInst [List with 1 elements]
          []> [9, 4] IfThenElse
-             +> [9, 8] Not
-             |  `> [9, 11] Equals
-             |     +> [9, 10] Identifier (x)
-             |     `> [9, 13] Int (1)
+             +> [9, 11] Equals
+             |  type: boolean
+             |  +> [9, 9] Identifier (x)
+             |  |  definition: variable defined at [8, 8], type=int
+             |  `> [9, 14] Int (2)
+             |     type: int
              +> ListInst [List with 1 elements]
              |  []> [10, 8] Println
              |      `> ListExpr [List with 1 elements]
              |         []> [10, 16] StringLiteral (ok)
+             |             type: string
              `> ListInst [List with 1 elements]
                 []> [12, 8] Print
                     `> ListExpr [List with 1 elements]
                        []> [12, 14] StringLiteral (erreur)
+                           type: string

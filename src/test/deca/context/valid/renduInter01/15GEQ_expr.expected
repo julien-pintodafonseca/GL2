@@ -1,0 +1,55 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [9, 8] DeclVar
+      |  ||  +> [9, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [9, 8] Identifier (x)
+      |  ||  |  definition: variable defined at [9, 8], type=int
+      |  ||  `> [9, 10] Initialization
+      |  ||     `> [9, 12] Int (2)
+      |  ||        type: int
+      |  []> [10, 10] DeclVar
+      |      +> [10, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [10, 10] Identifier (y)
+      |      |  definition: variable defined at [10, 10], type=float
+      |      `> [10, 12] Initialization
+      |         `> [10, 14] Float (0.0)
+      |            type: float
+      `> ListInst [List with 2 elements]
+         []> [11, 4] IfThenElse
+         ||  +> [11, 11] GreaterOrEqual
+         ||  |  type: boolean
+         ||  |  +> [11, 9] Identifier (x)
+         ||  |  |  definition: variable defined at [9, 8], type=int
+         ||  |  `> [11, 14] Identifier (y)
+         ||  |     definition: variable defined at [10, 10], type=float
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [12, 8] Println
+         ||  |      `> ListExpr [List with 1 elements]
+         ||  |         []> [12, 16] StringLiteral (ok)
+         ||  |             type: string
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [14, 8] Print
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [14, 14] StringLiteral (erreur)
+         ||                type: string
+         []> [16, 4] IfThenElse
+             +> [16, 11] GreaterOrEqual
+             |  type: boolean
+             |  +> [16, 9] Identifier (x)
+             |  |  definition: variable defined at [9, 8], type=int
+             |  `> [16, 14] Int (2)
+             |     type: int
+             +> ListInst [List with 1 elements]
+             |  []> [17, 8] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [17, 16] StringLiteral (ok)
+             |             type: string
+             `> ListInst [List with 1 elements]
+                []> [19, 8] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [19, 14] StringLiteral (erreur)
+                           type: string

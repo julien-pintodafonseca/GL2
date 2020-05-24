@@ -175,7 +175,8 @@ public class Identifier extends AbstractIdentifier {
         } else {
             setDefinition(expDef);
             LOG.debug("verify expr: end ("+getName()+")");
-            return expDef.getType();
+            setType(expDef.getType());
+            return getType();
         }
     }
 

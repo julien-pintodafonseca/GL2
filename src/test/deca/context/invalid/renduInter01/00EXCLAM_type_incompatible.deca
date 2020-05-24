@@ -6,7 +6,7 @@
 //    Ligne 10 : incompatible type
 
 {
-    String x = "hello";
+    string x = "hello";
     if ( !x ) {
         println("ok");
     }

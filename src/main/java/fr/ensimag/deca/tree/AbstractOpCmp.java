@@ -20,8 +20,26 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
-    }
+        // Syntaxe contextuelle : règle (3.33)
+        getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type t1 = getLeftOperand().getType();
+        Type t2 = getRightOperand().getType();
 
+        // Syntaxe contextuelle : signature des opérateurs
+        if ( this instanceof AbstractOpExactCmp ) {
+            Type t = compiler.environmentType.BOOLEAN;
+            setType(t);
+            return t;
+        } else if ( (t1.isInt() || t1.isFloat()) && (t2.isInt() || t2.isFloat()) ) {
+            Type t = compiler.environmentType.BOOLEAN;
+            setType(t);
+            return t;
+        } else {
+            // Modif Elina
+            throw new UnsupportedOperationException("not yet implemented");
+        }
+
+    }
 
 }

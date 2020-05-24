@@ -6,7 +6,7 @@
 
 {
     int x = 1;
-    if (!x) {
+    if (!(x==1)) {
         println("ok");
     } else {
         print("erreur");
