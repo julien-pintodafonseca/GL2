@@ -1,1 +1,1 @@
-src\test\deca\syntax\invalid\renduInter01\09not_unary_operator.deca:11:9: extraneous input '>' expecting {'(', '!', 'readInt', IDENT, FLOAT, INT, STRING, MINUS, READFLOAT, NEW, TRUE, FALSE, THIS, NULL}
+09not_unary_operator.deca:11:9: extraneous input '>'
