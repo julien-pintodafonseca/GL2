@@ -1,3 +1,10 @@
+// Description:
+//      tests de programme incorrecte lexicalement (il manque une condition dans le parenthese)
+//
+// Resultats:
+//      Erreur syntaxique
+//      Ligne 10 : manque de condition
+
 {
     int x = 4;
     while ( ) {

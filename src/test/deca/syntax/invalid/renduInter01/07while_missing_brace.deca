@@ -1,3 +1,10 @@
+// Description:
+//      tests de programme incorrecte lexicalement (il manque deux accrolades)
+//
+// Resultats:
+//      Erreur syntaxique
+//      Ligne 11 : manque de accrolade
+
 {
     int x = 4;
     while (x == 4) 

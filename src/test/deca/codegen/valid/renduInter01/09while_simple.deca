@@ -1,3 +1,8 @@
+// Description:
+//      tests while : condition "egal" (x == 0)
+// Resultats:
+//      ok
+
 {
     int x = 0;
     while ( x == 0 ) {
