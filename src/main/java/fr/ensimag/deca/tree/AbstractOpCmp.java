@@ -1,12 +1,11 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
-
-import static fr.ensimag.deca.ErrorMessages.CONTEXTUAL_ERROR_COMPARAISON_INCOMPATIBLE_TYPE;
 
 /**
  *
@@ -38,7 +37,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             setType(t);
             return t;
         } else {
-            throw new ContextualError(CONTEXTUAL_ERROR_COMPARAISON_INCOMPATIBLE_TYPE + t1 + " (pour " +
+            throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_COMPARAISON_INCOMPATIBLE_TYPE + t1 + " (pour " +
                     getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
         }
 
