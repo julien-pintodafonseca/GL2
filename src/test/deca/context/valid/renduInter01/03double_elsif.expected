@@ -1,0 +1,58 @@
+`> [6, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [6, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [7, 8] DeclVar
+      |      +> [7, 4] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [7, 8] Identifier (x)
+      |      |  definition: variable defined at [7, 8], type=int
+      |      `> [7, 10] Initialization
+      |         `> [7, 12] Int (4)
+      |            type: int
+      `> ListInst [List with 1 elements]
+         []> [8, 4] IfThenElse
+             +> [8, 11] Equals
+             |  type: boolean
+             |  +> [8, 9] Identifier (x)
+             |  |  definition: variable defined at [7, 8], type=int
+             |  `> [8, 14] Int (0)
+             |     type: int
+             +> ListInst [List with 1 elements]
+             |  []> [9, 8] Println
+             |      `> ListExpr [List with 2 elements]
+             |         []> [9, 16] StringLiteral (hello if)
+             |         ||  type: string
+             |         []> [9, 28] Identifier (x)
+             |             definition: variable defined at [7, 8], type=int
+             `> ListInst [List with 1 elements]
+                []> [10, 11] IfThenElse
+                    +> [10, 17] Equals
+                    |  type: boolean
+                    |  +> [10, 15] Identifier (x)
+                    |  |  definition: variable defined at [7, 8], type=int
+                    |  `> [10, 20] Int (3)
+                    |     type: int
+                    +> ListInst [List with 1 elements]
+                    |  []> [11, 8] Println
+                    |      `> ListExpr [List with 2 elements]
+                    |         []> [11, 16] StringLiteral (hello else_if1 : )
+                    |         ||  type: string
+                    |         []> [11, 37] Identifier (x)
+                    |             definition: variable defined at [7, 8], type=int
+                    `> ListInst [List with 1 elements]
+                       []> [12, 11] IfThenElse
+                           +> [12, 17] Equals
+                           |  type: boolean
+                           |  +> [12, 15] Identifier (x)
+                           |  |  definition: variable defined at [7, 8], type=int
+                           |  `> [12, 20] Int (4)
+                           |     type: int
+                           +> ListInst [List with 1 elements]
+                           |  []> [13, 8] Println
+                           |      `> ListExpr [List with 2 elements]
+                           |         []> [13, 16] StringLiteral (hello else_if2 : )
+                           |         ||  type: string
+                           |         []> [13, 37] Identifier (x)
+                           |             definition: variable defined at [7, 8], type=int
+                           `> ListInst [List with 0 elements]
