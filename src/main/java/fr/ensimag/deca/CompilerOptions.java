@@ -72,7 +72,7 @@ public class CompilerOptions {
                         break;
                     case "-v":
                         verification = true;
-                        throw new UnsupportedOperationException("not yet implemented");
+                        break;
                     case "-n":
                         throw new UnsupportedOperationException("not yet implemented");
                     case "-r":
