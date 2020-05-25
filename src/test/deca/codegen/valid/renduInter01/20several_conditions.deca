@@ -9,7 +9,7 @@
     int y = 3;
     float z = 5.2;
     string st = "hello";
-    if (!x && y>=1 && (z<5 || z==0) && st != "goodbye") {
+    if (!(x==1) && y>=1 && (z<6 || z==0) && st != "goodbye") {
         println("ok");
     } else {
         print("erreur");

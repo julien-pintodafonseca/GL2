@@ -24,24 +24,26 @@
       |         `> [11, 16] StringLiteral (hello)
       `> ListInst [List with 1 elements]
          []> [12, 4] IfThenElse
-             +> [12, 36] And
-             |  +> [12, 19] And
-             |  |  +> [12, 11] And
+             +> [12, 41] And
+             |  +> [12, 24] And
+             |  |  +> [12, 16] And
              |  |  |  +> [12, 8] Not
-             |  |  |  |  `> [12, 9] Identifier (x)
-             |  |  |  `> [12, 15] GreaterOrEqual
-             |  |  |     +> [12, 14] Identifier (y)
-             |  |  |     `> [12, 17] Int (1)
-             |  |  `> [12, 27] Or
-             |  |     +> [12, 24] Lower
-             |  |     |  +> [12, 23] Identifier (z)
-             |  |     |  `> [12, 25] Int (5)
-             |  |     `> [12, 31] Equals
-             |  |        +> [12, 30] Identifier (z)
-             |  |        `> [12, 33] Int (0)
-             |  `> [12, 42] NotEquals
-             |     +> [12, 39] Identifier (st)
-             |     `> [12, 45] StringLiteral (goodbye)
+             |  |  |  |  `> [12, 11] Equals
+             |  |  |  |     +> [12, 10] Identifier (x)
+             |  |  |  |     `> [12, 13] Int (1)
+             |  |  |  `> [12, 20] GreaterOrEqual
+             |  |  |     +> [12, 19] Identifier (y)
+             |  |  |     `> [12, 22] Int (1)
+             |  |  `> [12, 32] Or
+             |  |     +> [12, 29] Lower
+             |  |     |  +> [12, 28] Identifier (z)
+             |  |     |  `> [12, 30] Int (6)
+             |  |     `> [12, 36] Equals
+             |  |        +> [12, 35] Identifier (z)
+             |  |        `> [12, 38] Int (0)
+             |  `> [12, 47] NotEquals
+             |     +> [12, 44] Identifier (st)
+             |     `> [12, 50] StringLiteral (goodbye)
              +> ListInst [List with 1 elements]
              |  []> [13, 8] Println
              |      `> ListExpr [List with 1 elements]

@@ -1,0 +1,172 @@
+DEBUG fr.ensimag.deca.tree.Program.verifyProgram(Program.java:39) - verify program: start
+DEBUG fr.ensimag.deca.tree.Main.verifyMain(Main.java:34) - verify Main: start
+DEBUG fr.ensimag.deca.tree.ListDeclVar.verifyListDeclVariable(ListDeclVar.java:43) - verify listDeclVar: start
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:40) - verify declVar: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:190) - verify type: start (int)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:197) - verify type: end (int)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:47) - verify initialization: start
+DEBUG fr.ensimag.deca.tree.AbstractExpr.verifyRValue(AbstractExpr.java:87) - verify expr: start (abstractExpr)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:51) - verify initialization: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:60) - verify declVar: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:40) - verify declVar: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:190) - verify type: start (int)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:197) - verify type: end (int)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:47) - verify initialization: start
+DEBUG fr.ensimag.deca.tree.AbstractExpr.verifyRValue(AbstractExpr.java:87) - verify expr: start (abstractExpr)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:51) - verify initialization: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:60) - verify declVar: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:40) - verify declVar: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:190) - verify type: start (float)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:197) - verify type: end (float)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:47) - verify initialization: start
+DEBUG fr.ensimag.deca.tree.AbstractExpr.verifyRValue(AbstractExpr.java:87) - verify expr: start (abstractExpr)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:44) - verify expr: start (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:48) - verify expr: end (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:44) - verify expr: start (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:48) - verify expr: end (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:51) - verify initialization: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:60) - verify declVar: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:40) - verify declVar: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:190) - verify type: start (string)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:197) - verify type: end (string)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:47) - verify initialization: start
+DEBUG fr.ensimag.deca.tree.AbstractExpr.verifyRValue(AbstractExpr.java:87) - verify expr: start (abstractExpr)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:40) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:40) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:51) - verify initialization: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:60) - verify declVar: end
+DEBUG fr.ensimag.deca.tree.ListDeclVar.verifyListDeclVariable(ListDeclVar.java:48) - verify listDeclVar: end
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:32) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:170) - verify expr: start (x)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:177) - verify expr: end (x)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+helloDEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:170) - verify expr: start (y)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:177) - verify expr: end (y)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:170) - verify expr: start (z)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:177) - verify expr: end (z)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:170) - verify expr: start (z)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:177) - verify expr: end (z)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:38) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:42) - verify expr: end (intLiteral)
+helloDEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:170) - verify expr: start (st)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:177) - verify expr: end (st)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:40) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: end (stringLiteral)
+helloDEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:32) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:45) - verify inst: start (abstractPrint)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:40) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:49) - verify inst: end (abstractPrint)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:36) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:32) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:45) - verify inst: start (abstractPrint)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:40) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:49) - verify inst: end (abstractPrint)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:36) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:36) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.Main.verifyMain(Main.java:38) - verify Main: end
+DEBUG fr.ensimag.deca.tree.Program.verifyProgram(Program.java:44) - verify program: end
+`> [7, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [7, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [8, 8] DeclVar
+      |  ||  +> [8, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [8, 8] Identifier (x)
+      |  ||  |  definition: variable defined at [8, 8], type=int
+      |  ||  `> [8, 10] Initialization
+      |  ||     `> [8, 12] Int (1)
+      |  ||        type: int
+      |  []> [9, 8] DeclVar
+      |  ||  +> [9, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [9, 8] Identifier (y)
+      |  ||  |  definition: variable defined at [9, 8], type=int
+      |  ||  `> [9, 10] Initialization
+      |  ||     `> [9, 12] Int (3)
+      |  ||        type: int
+      |  []> [10, 10] DeclVar
+      |  ||  +> [10, 4] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [10, 10] Identifier (z)
+      |  ||  |  definition: variable defined at [10, 10], type=float
+      |  ||  `> [10, 12] Initialization
+      |  ||     `> [10, 14] Float (5.2)
+      |  ||        type: float
+      |  []> [11, 11] DeclVar
+      |      +> [11, 4] Identifier (string)
+      |      |  definition: type (builtin), type=string
+      |      +> [11, 11] Identifier (st)
+      |      |  definition: variable defined at [11, 11], type=string
+      |      `> [11, 14] Initialization
+      |         `> [11, 16] StringLiteral (hello)
+      |            type: string
+      `> ListInst [List with 1 elements]
+         []> [12, 4] IfThenElse
+             +> [12, 41] And
+             |  type: boolean
+             |  +> [12, 24] And
+             |  |  type: boolean
+             |  |  +> [12, 16] And
+             |  |  |  type: boolean
+             |  |  |  +> [12, 8] Not
+             |  |  |  |  type: boolean
+             |  |  |  |  `> [12, 11] Equals
+             |  |  |  |     type: boolean
+             |  |  |  |     +> [12, 10] Identifier (x)
+             |  |  |  |     |  definition: variable defined at [8, 8], type=int
+             |  |  |  |     `> [12, 13] Int (1)
+             |  |  |  |        type: int
+             |  |  |  `> [12, 20] GreaterOrEqual
+             |  |  |     type: boolean
+             |  |  |     +> [12, 19] Identifier (y)
+             |  |  |     |  definition: variable defined at [9, 8], type=int
+             |  |  |     `> [12, 22] Int (1)
+             |  |  |        type: int
+             |  |  `> [12, 32] Or
+             |  |     type: boolean
+             |  |     +> [12, 29] Lower
+             |  |     |  type: boolean
+             |  |     |  +> [12, 28] Identifier (z)
+             |  |     |  |  definition: variable defined at [10, 10], type=float
+             |  |     |  `> [12, 30] Int (6)
+             |  |     |     type: int
+             |  |     `> [12, 36] Equals
+             |  |        type: boolean
+             |  |        +> [12, 35] Identifier (z)
+             |  |        |  definition: variable defined at [10, 10], type=float
+             |  |        `> [12, 38] Int (0)
+             |  |           type: int
+             |  `> [12, 47] NotEquals
+             |     type: boolean
+             |     +> [12, 44] Identifier (st)
+             |     |  definition: variable defined at [11, 11], type=string
+             |     `> [12, 50] StringLiteral (goodbye)
+             |        type: string
+             +> ListInst [List with 1 elements]
+             |  []> [13, 8] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [13, 16] StringLiteral (ok)
+             |             type: string
+             `> ListInst [List with 1 elements]
+                []> [15, 8] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [15, 14] StringLiteral (erreur)
+                           type: string

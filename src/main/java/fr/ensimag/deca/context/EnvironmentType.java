@@ -38,7 +38,7 @@ public class EnvironmentType {
 
         Symbol stringSymb = compiler.createSymbol("string");
         STRING = new StringType(stringSymb);
-        // not added to envTypes, it's not visible for the user.
+        envTypes.put(stringSymb, new TypeDefinition(STRING, Location.BUILTIN));
         
     }
 
