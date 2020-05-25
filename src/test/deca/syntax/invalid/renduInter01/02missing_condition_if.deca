@@ -1,3 +1,10 @@
+// Description:
+//      tests de programme incorrecte lexicalement (il manque une condition dans les parenthèses)
+//
+// Resultats:
+//      Erreur syntaxique
+//      Ligne 10 : manque une condition (=> token ')' inattendu)
+
 {
     int x = 4;
     if ( ) {

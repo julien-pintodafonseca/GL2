@@ -1,1 +1,1 @@
-src\test\deca\syntax\invalid\renduR1\03missing_parent_if.deca:3:7: missing '(' at 'x'
+03missing_parent_if.deca:10:7: missing '(' at 'x'

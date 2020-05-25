@@ -1,3 +1,10 @@
+// Description:
+//      tests de programme incorrecte lexicalement (il manque une branche if dans la boucle if_else)
+//
+// Resultats:
+//      Erreur syntaxique
+//      Ligne 10 : token else inattendu
+
 {
     int x = 4;
     else if (x == 3) {

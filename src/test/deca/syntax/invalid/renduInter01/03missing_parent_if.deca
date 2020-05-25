@@ -1,3 +1,10 @@
+// Description:
+//      tests de programme incorrecte lexicalement (il manque deux parenthèses)
+//
+// Resultats:
+//      Erreur syntaxique
+//      Ligne 10 : manque les parenthèses (=> expected '(', token 'x' inexpected)
+
 {
     int x = 4;
     if x == 4

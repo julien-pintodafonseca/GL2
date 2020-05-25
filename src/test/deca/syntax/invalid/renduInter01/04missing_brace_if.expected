@@ -1,1 +1,1 @@
-src\test\deca\syntax\invalid\renduR1\04missing_semicolon_if.deca:4:8: missing '{' at 'println'
+04missing_brace_if.deca:11:8: missing '{' at 'println'

@@ -1,1 +1,1 @@
-src\test\deca\syntax\invalid\renduR1\00missing_if.deca:3:4: mismatched input 'else' expecting {';', '<', '>', '=', '==', ',', OR, AND, NEQ, LEQ, GEQ, INSTANCEOF, PLUS, MINUS, TIMES, SLASH, PERCENT, DOT}
+00missing_if.deca:10:4: mismatched input 'else'

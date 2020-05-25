@@ -1,3 +1,10 @@
+// Description:
+//      tests de programme incorrecte lexicalement (il manque les accolades)
+//
+// Resultats:
+//      Erreur syntaxique
+//      Ligne 11 : manque les accolades (=> expected '{', token 'println' inexpected)
+
 {
     int x = 4;
     if ( x == 4 )

@@ -1,9 +1,9 @@
 // Description:
-//      tests de programme incorrecte lexicalement (il manque deux accrolades)
+//      tests de programme incorrecte lexicalement (il manque deux accolades)
 //
 // Resultats:
 //      Erreur syntaxique
-//      Ligne 11 : manque de accrolade
+//      Ligne 11 : manque les accolades
 
 {
     int x = 4;
