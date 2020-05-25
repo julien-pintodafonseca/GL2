@@ -49,6 +49,7 @@ public class Program extends AbstractProgram {
         compiler.addComment("Main program");
         compiler.setRegisterManager(compiler.getCompilerOptions().getRegisters());
         compiler.setStackManager(compiler.getRegisterManager());
+        compiler.setLabelManager();
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());
     }

@@ -8,6 +8,7 @@ package fr.ensimag.deca;
 public final class ErrorMessages {
     // DecacFatalError messages
     public static final String DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER = "Numéro de registre inexistant : ";
+    public static final String DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE = "Un type de label inexistant a été utilisé.";
 
     // DecacCompilerError messages
     public static final String DECAC_COMPILER_WRONG_ENTRY = "L'entrée suivante n'est pas reconnue : ";
