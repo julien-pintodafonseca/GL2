@@ -49,7 +49,6 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
     }
 
     public void codeGenListDeclVar(DecacCompiler compiler) throws DecacFatalError {
-        compiler.addComment("Declaration of variables:");
         for (AbstractDeclVar declVar : getList()) {
             declVar.codeGenDeclVar(compiler);
         }
