@@ -8,7 +8,8 @@
 //          Erreur : la saisie est incorrecte
 
 {
+    int x;
     println("Veuillez entrer un nombre entier : ");
-    int x = readInt();
+    x = readInt();
     println("x=", x);
 }
