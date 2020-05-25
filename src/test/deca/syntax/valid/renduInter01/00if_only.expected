@@ -1,20 +1,20 @@
-`> [1, 0] Program
+`> [6, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [1, 0] Main
+   `> [6, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [2, 8] DeclVar
-      |      +> [2, 4] Identifier (int)
-      |      +> [2, 8] Identifier (x)
-      |      `> [2, 10] Initialization
-      |         `> [2, 12] Int (0)
+      |  []> [7, 8] DeclVar
+      |      +> [7, 4] Identifier (int)
+      |      +> [7, 8] Identifier (x)
+      |      `> [7, 10] Initialization
+      |         `> [7, 12] Int (0)
       `> ListInst [List with 1 elements]
-         []> [3, 4] IfThenElse
-             +> [3, 9] Equals
-             |  +> [3, 9] Identifier (x)
-             |  `> [3, 14] Int (0)
+         []> [8, 4] IfThenElse
+             +> [8, 11] Equals
+             |  +> [8, 9] Identifier (x)
+             |  `> [8, 14] Int (0)
              +> ListInst [List with 1 elements]
-             |  []> [4, 8] Println
+             |  []> [9, 8] Println
              |      `> ListExpr [List with 2 elements]
-             |         []> [4, 16] StringLiteral (hello)
-             |         []> [4, 25] Identifier (x)
+             |         []> [9, 16] StringLiteral (hello)
+             |         []> [9, 25] Identifier (x)
              `> ListInst [List with 0 elements]

@@ -1,3 +1,8 @@
+// Description:
+//      tests if_else : boucle if_else avec une branche "if" et deux branches "else if"
+// Resultats:
+//      hello else_if2 : 4
+
 {
     int x = 4;
     if ( x == 0 ) {

@@ -1,44 +1,44 @@
-`> [1, 0] Program
+`> [6, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [1, 0] Main
+   `> [6, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [2, 8] DeclVar
-      |      +> [2, 4] Identifier (int)
-      |      +> [2, 8] Identifier (x)
-      |      `> [2, 10] Initialization
-      |         `> [2, 12] Int (7)
+      |  []> [7, 8] DeclVar
+      |      +> [7, 4] Identifier (int)
+      |      +> [7, 8] Identifier (x)
+      |      `> [7, 10] Initialization
+      |         `> [7, 12] Int (7)
       `> ListInst [List with 1 elements]
-         []> [3, 4] IfThenElse
-             +> [3, 9] Equals
-             |  +> [3, 9] Identifier (x)
-             |  `> [3, 14] Int (0)
+         []> [8, 4] IfThenElse
+             +> [8, 11] Equals
+             |  +> [8, 9] Identifier (x)
+             |  `> [8, 14] Int (0)
              +> ListInst [List with 1 elements]
-             |  []> [4, 8] Println
+             |  []> [9, 8] Println
              |      `> ListExpr [List with 2 elements]
-             |         []> [4, 16] StringLiteral (hello if)
-             |         []> [4, 28] Identifier (x)
+             |         []> [9, 16] StringLiteral (hello if)
+             |         []> [9, 28] Identifier (x)
              `> ListInst [List with 1 elements]
-                []> [5, 11] IfThenElse
-                    +> [5, 15] Equals
-                    |  +> [5, 15] Identifier (x)
-                    |  `> [5, 20] Int (3)
+                []> [10, 11] IfThenElse
+                    +> [10, 17] Equals
+                    |  +> [10, 15] Identifier (x)
+                    |  `> [10, 20] Int (3)
                     +> ListInst [List with 1 elements]
-                    |  []> [6, 8] Println
+                    |  []> [11, 8] Println
                     |      `> ListExpr [List with 2 elements]
-                    |         []> [6, 16] StringLiteral (hello else_if1 : )
-                    |         []> [6, 37] Identifier (x)
+                    |         []> [11, 16] StringLiteral (hello else_if1 : )
+                    |         []> [11, 37] Identifier (x)
                     `> ListInst [List with 1 elements]
-                       []> [7, 11] IfThenElse
-                           +> [7, 15] Equals
-                           |  +> [7, 15] Identifier (x)
-                           |  `> [7, 20] Int (4)
+                       []> [12, 11] IfThenElse
+                           +> [12, 17] Equals
+                           |  +> [12, 15] Identifier (x)
+                           |  `> [12, 20] Int (4)
                            +> ListInst [List with 1 elements]
-                           |  []> [8, 8] Println
+                           |  []> [13, 8] Println
                            |      `> ListExpr [List with 2 elements]
-                           |         []> [8, 16] StringLiteral (hello else_if2 : )
-                           |         []> [8, 37] Identifier (x)
+                           |         []> [13, 16] StringLiteral (hello else_if2 : )
+                           |         []> [13, 37] Identifier (x)
                            `> ListInst [List with 1 elements]
-                              []> [10, 8] Println
+                              []> [15, 8] Println
                                   `> ListExpr [List with 2 elements]
-                                     []> [10, 16] StringLiteral (hello else : )
-                                     []> [10, 33] Identifier (x)
+                                     []> [15, 16] StringLiteral (hello else : )
+                                     []> [15, 33] Identifier (x)
