@@ -15,6 +15,7 @@ public final class ErrorMessages {
     public static final String DECAC_COMPILER_WRONG_FILE = "Le fichier suivant n'existe pas : ";
     public static final String DECAC_COMPILER_WRONG_R_OPT_VALUE = "Option -r X incorrecte ! Contrainte à respecter : 4 <= X <= 16.";
     public static final String DECAC_COMPILER_INCOMPATIBLE_OPTIONS = "Les options -p et -v sont incompatibles.";
+    public static final String DECAC_COMPILER_ERROR_B_OPT_TOO_MANY_ARGS = "L'option -b ne peut être utilisée que sans autre option, et sans fichier source.";
 
     // ContextualError messages
     public static final String CONTEXTUAL_ERROR_DECLVAR_NULL = "La variable déclarée est de type void.";

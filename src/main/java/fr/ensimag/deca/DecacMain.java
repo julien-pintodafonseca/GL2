@@ -3,6 +3,8 @@ package fr.ensimag.deca;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main class for the command-line Deca compiler.
@@ -27,9 +29,22 @@ public class DecacMain {
             System.exit(1);
         }
         if (options.getBanner()) {
-            throw new UnsupportedOperationException("decac -b not yet implemented");
+            List<String> banner = new ArrayList<>();
+            banner.add("============================================= DecacCompiler =============================================");
+            banner.add("                      _______            _                 ______ _       ______                         ");
+            banner.add("                     | ______)          (_)               / _____) |     (_____ \\                       ");
+            banner.add("                     | |___   ____ _   _ _ ____   ____   | /  ___| |       ____) )                       ");
+            banner.add("                     |  ___) / _  | | | | |  _ \\ / _  )  | | (___) |      /_____/                       ");
+            banner.add("                     | |____| | | | |_| | | | | ( (/ /   | \\____/| |_____| (____                        ");
+            banner.add("                     |_______)_|| |\\____|_| ||_/ \\____)   \\_____/|_______|_______)                    ");
+            banner.add("                                |_|       |_|                                                            ");
+            banner.add("=========================================================================================================");
+
+            for (String line : banner) {
+                System.out.println(line);
+            }
         }
-        if (options.getSourceFiles().isEmpty()) {
+        if (options.getSourceFiles().isEmpty() && !options.getBanner()) {
             options.displayUsage();
         }
         if (options.getParallel()) {

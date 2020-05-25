@@ -66,7 +66,7 @@ public class CompilerOptions {
                 // Gestion des options
                 switch(arg) {
                     case "-b":
-                        throw new UnsupportedOperationException("not yet implemented");
+                        banner = true;
                     case "-p":
                         parse = true;
                         break;
@@ -116,6 +116,9 @@ public class CompilerOptions {
                 throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_ENTRY + arg);
             }
 
+            if (banner && args.length > 1) {
+                throw new CLIException(ErrorMessages.DECAC_COMPILER_ERROR_B_OPT_TOO_MANY_ARGS);
+            }
             if (parse && verification) {
                 throw new CLIException(ErrorMessages.DECAC_COMPILER_INCOMPATIBLE_OPTIONS);
             }
@@ -148,20 +151,20 @@ public class CompilerOptions {
     protected void displayUsage() {
         List<String> help = new ArrayList<>();
         help.add("============================================= DecacCompiler =============================================");
-        help.add("La syntaxe d'utilisation de l'exécutable decac est la suivante :");
-        help.add("decac [[-p | -v] [-n] [-r X] [-d]* [-P] [-w] <fichier deca>...] | [-b]");
+        help.add("La syntaxe d'utilisation de l'exécutable decac est la suivante :                                         ");
+        help.add("decac [[-p | -v] [-n] [-r X] [-d]* [-P] [-w] <fichier deca>...] | [-b]                                   ");
         help.add("=========================================================================================================");
-        help.add("-b   (banner)       : affiche une banière indiquant le nom de l'équipe");
-        help.add("-p   (parse)        : arrête decac après l'étape de construction de l'arbre, et affiche la décompilation");
-        help.add("-v   (verification) : arrête decac après l'étape de vérification");
-        help.add("-n   (no check)     : supprime les tests de débordement à l'exécution");
-        help.add("                       - débordement arithmétique");
-        help.add("                       - débordement mémoire");
-        help.add("                       - déréférencement de null");
-        help.add("-r X (registrers)   : limites les registres banalisés disponibles à R0 ... R{X-1}, avec 4 <= X <= 16");
+        help.add("-b   (banner)       : affiche une banière indiquant le nom de l'équipe                                   ");
+        help.add("-p   (parse)        : arrête decac après l'étape de construction de l'arbre, et affiche la décompilation ");
+        help.add("-v   (verification) : arrête decac après l'étape de vérification                                         ");
+        help.add("-n   (no check)     : supprime les tests de débordement à l'exécution                                    ");
+        help.add("                       - débordement arithmétique                                                        ");
+        help.add("                       - débordement mémoire                                                             ");
+        help.add("                       - déréférencement de null                                                         ");
+        help.add("-r X (registrers)   : limites les registres banalisés disponibles à R0 ... R{X-1}, avec 4 <= X <= 16     ");
         help.add("-d   (debug)        : active les traces de bug. Répéter l'option plusieurs fois pour avoir plus de traces");
         help.add("-P   (parallel)     : s'il y a plusieurs fichiers sources, lance la compilation des fichiers en parallèle");
-        help.add("                      (pour accélérer la compilation)");
+        help.add("                      (pour accélérer la compilation)                                                    ");
 
         for (String line : help) {
             System.out.println(line);
