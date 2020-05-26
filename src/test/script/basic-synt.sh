@@ -20,35 +20,30 @@ cd "$(dirname "$0")"/../../.. || exit 1
 PATH=./src/test/script/launchers:"$PATH"
 
 # exemple de définition d'une fonction
-test_synt_invalid () {
+test_synt_invalid_advanced () {
     # $1 = premier argument.
+    # $2 = deuxième argument
 
     path=$(echo $1 | tr '\\' '/')
-    #echo $1
-    #result=$(test_synt "$1" 2>&1 | tr '\\' '/')
-    #echo $result
 
     cmd=$(test_synt "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
 
     #on exécute notre test en filtrant le message d'erreur, err vaut 1 s'il y a une erreur, 0 sinon
-    file="${path%.deca}"
-    test_synt "$path" 2>&1 | grep ".deca" > "${file}.res"
-
-    if diff -q  "${file}.res" "${file}.expected" > /dev/null ; then
-        echo "Echec attendu de test_synt sur $1."
-    else
-        echo "Succes inattendu pour test_synt sur $1."
-        exit 1
-    fi
-    # fonction à modifier plus tard
-    # $1 = premier argument.
-    if test_synt "$1" 2>&1 | grep -q -e "$1:[0-9][0-9]*:"
+    err=$(test_synt "$path" 2>&1 | tr '\\' '/' | grep -c -e "$path:[0-9][0-9]*:")
+    file=${2%*.expected}
+    if [ $code -eq 0 ] && [ $err -eq 0 ]
     then
-        echo "Echec attendu pour test_synt sur $1."
+        echo "$1 : KO"
     else
-        echo "Succes inattendu de test_synt sur $1."
-        exit 1
+        test_synt "$path" 2>&1 | grep ".deca" > "$file.res"
+
+        if grep "$(cat $2)" "$file.res" > /dev/null ; then
+            echo "$1 : PASSED."
+            ((nbpassed++))
+        else
+            echo "$1 : FAILED."
+        fi
     fi
 }
 
@@ -76,14 +71,11 @@ test_synt_valid () {
     fi
 }
 
-test_synt_valid_2 () {
+test_synt_valid_advanced () {
     # $1 = premier argument.
-    # ex : src/test/deca/syntax/valid/01brackets.deca
+    # $2 = deuxième argument
 
     path=$(echo $1 | tr '\\' '/')
-    #echo $1
-    #result=$(test_synt "$1" 2>&1 | tr '\\' '/')
-    #echo $result
 
     cmd=$(test_synt "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
@@ -124,7 +116,16 @@ do
     ((nbtests++))
     expected=$(basename $cas_de_test .${cas_de_test##*.})
     file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
-    test_synt_valid_2 "$cas_de_test" "$file"
+    test_synt_valid_advanced "$cas_de_test" "$file"
+done
+
+echo "### TEST: src/test/deca/codegen/interactive/renduInter01/ ###"
+for cas_de_test in src/test/deca/codegen/interactive/renduInter01/*.deca
+do
+    ((nbtests++))
+    expected=$(basename $cas_de_test .${cas_de_test##*.})
+    file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
+    test_synt_valid_advanced "$cas_de_test" "$file"
 done
 
 echo "### TEST: src/test/deca/context/invalid/renduInter01/ ###"
@@ -133,11 +134,15 @@ do
     ((nbtests++))
     expected=$(basename $cas_de_test .${cas_de_test##*.})
     file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
-    test_synt_valid_2 "$cas_de_test" "$file"
+    test_synt_valid_advanced "$cas_de_test" "$file"
 done
 
-echo "$nbpassed/$nbtests"
+echo "### TEST: src/test/deca/syntax/invalid/renduInter01/ ###"
 for cas_de_test in src/test/deca/syntax/invalid/renduInter01/*.deca
 do
-    test_synt_invalid "$cas_de_test"
+    ((nbtests++))
+    expected=$(basename $cas_de_test .${cas_de_test##*.})
+    file="src/test/deca/syntax/invalid/renduInter01/$expected"
+    test_synt_invalid_advanced "$cas_de_test"  "$file.expected"
 done
+echo "$nbpassed/$nbtests"
