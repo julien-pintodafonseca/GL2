@@ -1,5 +1,9 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.ima.pseudocode.Label;
+
 /**
  *
  * @author Equipe GL2
@@ -16,5 +20,9 @@ public class And extends AbstractOpBool {
         return "&&";
     }
 
-
+    @Override
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+        getLeftOperand().codeGenCMP(compiler, label);
+        getRightOperand().codeGenCMP(compiler, label);
+    }
 }

@@ -1,11 +1,18 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.CLIException;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
 
 /**
  *
@@ -43,4 +50,21 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
 
     }
 
+    @Override
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            getLeftOperand().codeGenInst(compiler, Register.getR(i));
+            int j = compiler.getRegisterManager().nextAvailable();
+            if (j != -1) {
+                getRightOperand().codeGenInst(compiler, Register.getR(j));
+                compiler.addInstruction(new CMP(Register.getR(j), Register.get(i)));
+            } else {
+                throw new DecacFatalError("not yet implemented");
+            }
+        } else {
+            throw new DecacFatalError("not yet implemented");
+        }
+    }
 }

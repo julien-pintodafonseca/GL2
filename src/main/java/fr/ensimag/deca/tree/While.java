@@ -1,5 +1,7 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.codegen.LabelType;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -8,6 +10,8 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Label;
 import java.io.PrintStream;
+
+import fr.ensimag.ima.pseudocode.instructions.BRA;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -35,16 +39,26 @@ public class While extends AbstractInst {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
-    }
-
-    @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         condition.verifyExpr(compiler, localEnv, currentClass);
         body.verifyListInst(compiler, localEnv, currentClass, returnType);
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+        int i = compiler.getLabelManager().getLabelValue(LabelType.LB_WHILE);
+        Label labelBegin = new Label("while" + i);
+        Label labelEnd = new Label("while_end" + i);
+        compiler.getLabelManager().incrLabelValue(LabelType.LB_WHILE);
+
+        compiler.addLabel(labelBegin);
+        condition.codeGenCMP(compiler, labelEnd);
+
+        body.codeGenListInst(compiler);
+        compiler.addInstruction(new BRA(labelBegin));
+        compiler.addLabel(labelEnd);
     }
 
     @Override
