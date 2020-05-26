@@ -1,5 +1,7 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.codegen.LabelType;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -7,6 +9,9 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
+
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -40,8 +45,17 @@ public class IfThenElse extends AbstractInst {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+        int i = compiler.getLabelManager().getLabelValue(LabelType.LB_ELSE);
+        compiler.getLabelManager().incrLabelValue(LabelType.LB_ELSE);
+        Label labelBegin = new Label("else" + i);
+        Label labelEnd = new Label("end_if" + i);
+        condition.codeGenCMP(compiler, labelBegin);
+        thenBranch.codeGenListInst(compiler);
+        compiler.addInstruction(new BRA(labelEnd));
+        compiler.addLabel(labelBegin);
+        elseBranch.codeGenListInst(compiler);
+        compiler.addLabel(labelEnd);
     }
 
     @Override

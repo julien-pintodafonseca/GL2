@@ -3,13 +3,12 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -139,8 +138,18 @@ public abstract class AbstractExpr extends AbstractInst {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            codeGenInst(compiler, Register.getR(i));
+        } else {
+            throw new DecacFatalError("not yet implemented");
+        }
+    }
+
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        throw new DecacFatalError("not yet implemented");
     }
 
     /**

@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -52,9 +53,15 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) {
-        getExpression().codeGenInst(compiler);
-        compiler.addInstruction(new STORE(Register.R1, addr));
+    protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            getExpression().codeGenInst(compiler);
+            compiler.addInstruction(new STORE(Register.getR(i), addr));
+            compiler.getRegisterManager().free(i);
+        } else {
+            throw new DecacFatalError("not yet implemented");
+        }
     }
 
     @Override

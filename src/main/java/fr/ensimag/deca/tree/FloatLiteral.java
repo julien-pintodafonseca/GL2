@@ -1,11 +1,13 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
@@ -56,8 +58,8 @@ public class FloatLiteral extends AbstractExpr {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
-        compiler.addInstruction(new LOAD(new ImmediateFloat(getValue()), Register.R1));
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
+        compiler.addInstruction(new LOAD(new ImmediateFloat(getValue()), register));
     }
 
     @Override

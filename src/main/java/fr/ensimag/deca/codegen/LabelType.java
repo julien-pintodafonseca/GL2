@@ -8,5 +8,5 @@ package fr.ensimag.deca.codegen;
 public enum LabelType {
     LB_WHILE,
     LB_OR,
-    LB_IF
+    LB_ELSE
 }

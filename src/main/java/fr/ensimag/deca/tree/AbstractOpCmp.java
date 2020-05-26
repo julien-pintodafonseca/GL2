@@ -51,18 +51,19 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError { // exp == expr
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
-            compiler.getRegisterManager().take(i);
-            getLeftOperand().codeGenInst(compiler, Register.getR(i));
+            getLeftOperand().codeGenInst(compiler);
             int j = compiler.getRegisterManager().nextAvailable();
             if (j != -1) {
-                getRightOperand().codeGenInst(compiler, Register.getR(j));
-                compiler.addInstruction(new CMP(Register.getR(j), Register.get(i)));
+                getRightOperand().codeGenInst(compiler);
+                compiler.addInstruction(new CMP(Register.getR(j), Register.getR(i)));
+                compiler.getRegisterManager().free(j);
             } else {
                 throw new DecacFatalError("not yet implemented");
             }
+            compiler.getRegisterManager().free(i);
         } else {
             throw new DecacFatalError("not yet implemented");
         }
