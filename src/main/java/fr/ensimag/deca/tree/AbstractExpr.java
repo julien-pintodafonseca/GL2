@@ -141,14 +141,18 @@ public abstract class AbstractExpr extends AbstractInst {
     protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
+        	System.out.println("hello2");
             compiler.getRegisterManager().take(i);
+            System.out.println("hello3");
             codeGenInst(compiler, Register.getR(i));
+            System.out.println("hello4");
         } else {
             throw new DecacFatalError("not yet implemented");
         }
     }
 
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+    	System.out.println("hello5");
         throw new DecacFatalError("not yet implemented");
     }
 
@@ -163,6 +167,18 @@ public abstract class AbstractExpr extends AbstractInst {
         throw new UnsupportedOperationException("not yet implemented");
     }
 
+    /**
+     * Generate code to verify that a condition is not respected
+     *
+     * @param compiler
+     * @param label : label where the program must continue if the condition is respected
+     * @throws DecacFatalError
+     */
+    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
+        throw new UnsupportedOperationException("not yet implemented");
+    }
+    
+    
     @Override
     protected void decompileInst(IndentPrintStream s) {
         decompile(s);

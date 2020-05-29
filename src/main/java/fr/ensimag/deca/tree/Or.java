@@ -34,4 +34,9 @@ public class Or extends AbstractOpBool {
         compiler.addLabel(labelEnd);
     }
 
+    @Override
+    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
+        getLeftOperand().codeGenCMPNot(compiler, label);
+        getRightOperand().codeGenCMPNot(compiler, label);
+    }
 }

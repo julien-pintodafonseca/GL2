@@ -1,3 +1,65 @@
+DEBUG fr.ensimag.deca.tree.Program.verifyProgram(Program.java:39) - verify program: start
+DEBUG fr.ensimag.deca.tree.Main.verifyMain(Main.java:34) - verify Main: start
+DEBUG fr.ensimag.deca.tree.ListDeclVar.verifyListDeclVariable(ListDeclVar.java:43) - verify listDeclVar: start
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:40) - verify declVar: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:192) - verify type: start (int)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:199) - verify type: end (int)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:48) - verify initialization: start
+DEBUG fr.ensimag.deca.tree.AbstractExpr.verifyRValue(AbstractExpr.java:88) - verify expr: start (abstractExpr)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:40) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:44) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:40) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:44) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:52) - verify initialization: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:60) - verify declVar: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:40) - verify declVar: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:192) - verify type: start (float)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyType(Identifier.java:199) - verify type: end (float)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:48) - verify initialization: start
+DEBUG fr.ensimag.deca.tree.AbstractExpr.verifyRValue(AbstractExpr.java:88) - verify expr: start (abstractExpr)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:46) - verify expr: start (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:50) - verify expr: end (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:46) - verify expr: start (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.FloatLiteral.verifyExpr(FloatLiteral.java:50) - verify expr: end (FloatLiteral)
+DEBUG fr.ensimag.deca.tree.Initialization.verifyInitialization(Initialization.java:52) - verify initialization: end
+DEBUG fr.ensimag.deca.tree.DeclVar.verifyDeclVar(DeclVar.java:60) - verify declVar: end
+DEBUG fr.ensimag.deca.tree.ListDeclVar.verifyListDeclVariable(ListDeclVar.java:48) - verify listDeclVar: end
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:33) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:172) - verify expr: start (x)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:179) - verify expr: end (x)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:40) - verify expr: start (intLiteral)
+DEBUG fr.ensimag.deca.tree.IntLiteral.verifyExpr(IntLiteral.java:44) - verify expr: end (intLiteral)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:33) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:45) - verify inst: start (abstractPrint)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:48) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:49) - verify inst: end (abstractPrint)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:37) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:33) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:45) - verify inst: start (abstractPrint)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:48) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:49) - verify inst: end (abstractPrint)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:37) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:172) - verify expr: start (x)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:179) - verify expr: end (x)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:172) - verify expr: start (y)
+DEBUG fr.ensimag.deca.tree.Identifier.verifyExpr(Identifier.java:179) - verify expr: end (y)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:33) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:45) - verify inst: start (abstractPrint)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:48) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:49) - verify inst: end (abstractPrint)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:37) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:33) - verify ListInst: start
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:45) - verify inst: start (abstractPrint)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:44) - verify expr: start (stringLiteral)
+DEBUG fr.ensimag.deca.tree.StringLiteral.verifyExpr(StringLiteral.java:48) - verify expr: end (stringLiteral)
+DEBUG fr.ensimag.deca.tree.AbstractPrint.verifyInst(AbstractPrint.java:49) - verify inst: end (abstractPrint)
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:37) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.ListInst.verifyListInst(ListInst.java:37) - verify ListInst: end
+DEBUG fr.ensimag.deca.tree.Main.verifyMain(Main.java:38) - verify Main: end
+DEBUG fr.ensimag.deca.tree.Program.verifyProgram(Program.java:44) - verify program: end
 `> [8, 0] Program
    +> ListDeclClass [List with 0 elements]
    `> [8, 0] Main
@@ -39,8 +101,10 @@
          []> [16, 4] IfThenElse
              +> [16, 11] LowerOrEqual
              |  type: boolean
-             |  +> [16, 9] Identifier (x)
-             |  |  definition: variable defined at [9, 8], type=int
+             |  +> ConvFloat
+             |  |  type: float
+             |  |  `> [16, 9] Identifier (x)
+             |  |     definition: variable defined at [9, 8], type=int
              |  `> [16, 14] Identifier (y)
              |     definition: variable defined at [10, 10], type=float
              +> ListInst [List with 1 elements]
