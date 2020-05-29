@@ -1,5 +1,11 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.instructions.BGT;
+import fr.ensimag.ima.pseudocode.instructions.BLE;
+
 /**
  * Operator "x <= y"
  *
@@ -15,6 +21,18 @@ public class LowerOrEqual extends AbstractOpIneq {
     @Override
     protected String getOperatorName() {
         return "<=";
+    }
+
+    @Override
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+        super.codeGenCMP(compiler, label);
+        compiler.addInstruction(new BGT(label));
+    }
+    
+    @Override
+    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
+    	super.codeGenCMP(compiler, label);
+        compiler.addInstruction(new BLE(label));
     }
 
 }

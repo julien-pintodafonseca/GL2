@@ -1,13 +1,14 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.GPRegister;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -137,11 +138,43 @@ public abstract class AbstractExpr extends AbstractInst {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
+    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            codeGenInst(compiler, Register.getR(i));
+        } else {
+            throw new DecacFatalError("not yet implemented");
+        }
+    }
+
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        throw new DecacFatalError("not yet implemented");
+    }
+
+    /**
+     * Generate code to verify that a condition is respected
+     *
+     * @param compiler
+     * @param label : label where the program must continue if the condition is not respected
+     * @throws DecacFatalError
+     */
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+        throw new UnsupportedOperationException("not yet implemented");
+    }
+
+    /**
+     * Generate code to verify that a condition is not respected
+     *
+     * @param compiler
+     * @param label : label where the program must continue if the condition is respected
+     * @throws DecacFatalError
+     */
+    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
         throw new UnsupportedOperationException("not yet implemented");
     }
     
-
+    
     @Override
     protected void decompileInst(IndentPrintStream s) {
         decompile(s);

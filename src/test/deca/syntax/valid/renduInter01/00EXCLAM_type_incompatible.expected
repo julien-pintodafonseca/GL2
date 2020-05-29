@@ -3,7 +3,7 @@
    `> [8, 0] Main
       +> ListDeclVar [List with 1 elements]
       |  []> [9, 11] DeclVar
-      |      +> [9, 4] Identifier (String)
+      |      +> [9, 4] Identifier (string)
       |      +> [9, 11] Identifier (x)
       |      `> [9, 13] Initialization
       |         `> [9, 15] StringLiteral (hello)

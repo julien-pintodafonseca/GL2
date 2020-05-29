@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
@@ -40,12 +41,17 @@ public class Assign extends AbstractBinaryExpr {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
+    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
         AbstractExpr leftOp = getLeftOperand();
         if (leftOp instanceof Identifier) {
             VariableDefinition varDef = ((Identifier) leftOp).getVariableDefinition();
-            getRightOperand().codeGenInst(compiler);
-            compiler.addInstruction(new STORE(Register.R1, varDef.getOperand()));
+            int i = compiler.getRegisterManager().nextAvailable();
+            if (i != -1) {
+                getRightOperand().codeGenInst(compiler);
+                compiler.addInstruction(new STORE(Register.getR(i), varDef.getOperand()));
+            } else {
+                super.codeGenInst(compiler);
+            }
         } else {
             super.codeGenInst(compiler);
         }

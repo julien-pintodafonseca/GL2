@@ -22,8 +22,10 @@
          []> [11, 4] IfThenElse
          ||  +> [11, 11] GreaterOrEqual
          ||  |  type: boolean
-         ||  |  +> [11, 9] Identifier (x)
-         ||  |  |  definition: variable defined at [9, 8], type=int
+         ||  |  +> ConvFloat
+         ||  |  |  type: float
+         ||  |  |  `> [11, 9] Identifier (x)
+         ||  |  |     definition: variable defined at [9, 8], type=int
          ||  |  `> [11, 14] Identifier (y)
          ||  |     definition: variable defined at [10, 10], type=float
          ||  +> ListInst [List with 1 elements]

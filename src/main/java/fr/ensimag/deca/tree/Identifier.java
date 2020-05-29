@@ -1,12 +1,14 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.DAddr;
+import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
@@ -217,10 +219,9 @@ public class Identifier extends AbstractIdentifier {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
-        VariableDefinition varDef = getVariableDefinition();
-        DAddr addr = varDef.getOperand();
-        compiler.addInstruction(new LOAD(addr, Register.R1));
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
+        DAddr addr = getVariableDefinition().getOperand();
+        compiler.addInstruction(new LOAD(addr, register));
     }
 
     @Override
