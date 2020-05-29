@@ -1,9 +1,9 @@
 // Description:
-//    ecriture de chaines
+//      Ecriture de chaînes
 //
 // Resultats:
-//    ok
-//    ok
+//      ok
+//      ok
 
 {
    println("ok") ; 

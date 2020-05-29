@@ -1,9 +1,9 @@
 // Description:
-//    tests d'expressions entieres
+//      Expressions entières
 //
 // Resultats:
-//    1
-//    2
+//      1
+//      2
 
 {
    int i ; 

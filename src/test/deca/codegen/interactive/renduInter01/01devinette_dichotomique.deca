@@ -1,7 +1,17 @@
 // Description:
-//      OUI
+//      Jeu de la devinette dichotomique (rendu intermédiaire 01)
+//
 // Resultats:
-//      OUI
+//      Quel est mon nombre entre 0 et 1000 ?
+// -> Si le nombre saisi est supérieur à 421:
+//      Trop petit !
+//       Autre proposition ?
+// -> Si le nombre saisi est inférieur à 421:
+//      Trop grand !
+//       Autre proposition ?
+// -> Si le nombre saisi est 421:
+//      Bravo...
+
 
 {
     int secret, user;
