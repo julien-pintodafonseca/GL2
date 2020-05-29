@@ -23,8 +23,7 @@ public class NoInitialization extends AbstractInitialization {
 
     @Override
     protected void verifyInitialization(DecacCompiler compiler, Type t,
-            EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError {
+            EnvironmentExp localEnv, ClassDefinition currentClass) {
         // Règle syntaxe contextuelle : (3.9)
         LOG.debug("verify initialization: start");
         // nothing

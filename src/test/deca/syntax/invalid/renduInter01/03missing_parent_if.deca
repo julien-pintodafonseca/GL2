@@ -1,5 +1,5 @@
 // Description:
-//      tests de programme incorrecte lexicalement (il manque deux parenthèses)
+//      test de programme incorrect lexicalement (il manque deux parenthèses)
 //
 // Resultats:
 //      Erreur syntaxique

@@ -30,6 +30,7 @@ public class And extends AbstractOpBool {
     	
     @Override
     protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
+        // not(expr1 && expr2) => not(expr1) || not(expr2)
     	int i = compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
     	compiler.getLabelManager().incrLabelValue(LabelType.LB_OR);
         Label labelBegin = new Label("or" + i);

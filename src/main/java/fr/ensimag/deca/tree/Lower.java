@@ -7,7 +7,8 @@ import fr.ensimag.ima.pseudocode.instructions.BGE;
 import fr.ensimag.ima.pseudocode.instructions.BLT;
 
 /**
- * Operator x < y
+ * Operator "x < y"
+ *
  * @author Equipe GL2
  * @date 2020
  */

@@ -1,5 +1,5 @@
 // Description:
-//    tests de programme incorrect au niveau du typage (expression "not" applicable sur un booléen seulement)
+//    test de programme incorrect au niveau du typage (expression "not" applicable sur un booléen seulement)
 //
 // Resultats:
 //    Erreur contextuelle

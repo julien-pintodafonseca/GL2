@@ -1,5 +1,5 @@
 // Description:
-//    tests conditionnelle : expression "plus grand" (symbole >)
+//    test expression conditionnelle : expression "plus grand" (symbole >)
 //
 // Resultats:
 //    Erreur contextuelle : l'opérateur > n'est pas utilisable avec une variable de type string

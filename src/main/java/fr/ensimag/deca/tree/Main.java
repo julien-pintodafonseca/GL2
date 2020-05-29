@@ -2,7 +2,6 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.codegen.StackManager;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
@@ -40,8 +39,9 @@ public class Main extends AbstractMain {
 
     @Override
     protected void codeGenMain(DecacCompiler compiler) throws DecacFatalError {
-        compiler.addComment("Beginning of main instructions:");
+        compiler.addComment("Beginning of variable declarations:");
         declVariables.codeGenListDeclVar(compiler);
+        compiler.addComment("Beginning of main instructions:");
         insts.codeGenListInst(compiler);
     }
     

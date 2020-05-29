@@ -1,5 +1,5 @@
 // Description:
-//      tests de programme incorrecte lexicalement (il manque les accolades)
+//      test de programme incorrect lexicalement (il manque les accolades)
 //
 // Resultats:
 //      Erreur syntaxique

@@ -1,5 +1,5 @@
 // Description:
-//    tests de programme incorrect lexicalement (expression "not" est une expression binaire => symbole '!' non attendu)
+//    test de programme incorrect lexicalement (expression "not" est une expression binaire => symbole '!' non attendu)
 //
 // Resultats:
 //    Erreur syntaxique

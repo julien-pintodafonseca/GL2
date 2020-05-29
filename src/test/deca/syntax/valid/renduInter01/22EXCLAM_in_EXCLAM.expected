@@ -1,0 +1,38 @@
+`> [7, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [7, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [8, 8] DeclVar
+      |  ||  +> [8, 4] Identifier (int)
+      |  ||  +> [8, 8] Identifier (x)
+      |  ||  `> [8, 10] Initialization
+      |  ||     `> [8, 12] Int (1)
+      |  []> [9, 8] DeclVar
+      |  ||  +> [9, 4] Identifier (int)
+      |  ||  +> [9, 8] Identifier (y)
+      |  ||  `> [9, 10] Initialization
+      |  ||     `> [9, 12] Int (3)
+      |  []> [10, 10] DeclVar
+      |      +> [10, 4] Identifier (float)
+      |      +> [10, 10] Identifier (z)
+      |      `> [10, 12] Initialization
+      |         `> [10, 14] Float (5.2)
+      `> ListInst [List with 1 elements]
+         []> [11, 4] IfThenElse
+             +> [11, 8] Not
+             |  `> [11, 15] And
+             |     +> [11, 11] NotEquals
+             |     |  +> [11, 10] Identifier (x)
+             |     |  `> [11, 13] Int (1)
+             |     `> [11, 18] Not
+             |        `> [11, 21] Lower
+             |           +> [11, 20] Identifier (z)
+             |           `> [11, 22] Int (6)
+             +> ListInst [List with 1 elements]
+             |  []> [12, 8] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [12, 16] StringLiteral (ok)
+             `> ListInst [List with 1 elements]
+                []> [14, 8] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [14, 14] StringLiteral (erreur)

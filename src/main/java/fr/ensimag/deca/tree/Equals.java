@@ -6,7 +6,8 @@ import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
- * Operator x == y
+ * Operator "x == y"
+ *
  * @author Equipe GL2
  * @date 2020
  */
