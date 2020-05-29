@@ -1,6 +1,5 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.CLIException;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
@@ -11,8 +10,6 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
-import fr.ensimag.ima.pseudocode.instructions.POP;
-import fr.ensimag.ima.pseudocode.instructions.PUSH;
 
 /**
  *
@@ -40,6 +37,16 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             setType(t);
             return t;
         } else if ( (t1.isInt() || t1.isFloat()) && (t2.isInt() || t2.isFloat()) ) {
+        	if(t1.isInt() && t2.isFloat()) {
+        		ConvFloat conv = new ConvFloat(getLeftOperand());
+        		conv.setType(t2);
+        		setLeftOperand(conv);
+        	}else if(t1.isFloat() && t2.isInt()) {
+        		ConvFloat conv = new ConvFloat(getRightOperand());
+        		conv.setType(t1);
+        		setRightOperand(conv);
+        		
+        	}
             Type t = compiler.environmentType.BOOLEAN;
             setType(t);
             return t;
@@ -51,7 +58,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError { // exp == expr
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError { 
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
             getLeftOperand().codeGenInst(compiler);
@@ -68,4 +75,6 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             throw new DecacFatalError("not yet implemented");
         }
     }
+    
+    
 }
