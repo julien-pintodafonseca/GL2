@@ -1,0 +1,49 @@
+`> [6, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [6, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [7, 8] DeclVar
+      |  ||  +> [7, 4] Identifier (int)
+      |  ||  +> [7, 8] Identifier (secret)
+      |  ||  `> NoInitialization
+      |  []> [7, 16] DeclVar
+      |      +> [7, 4] Identifier (int)
+      |      +> [7, 16] Identifier (user)
+      |      `> NoInitialization
+      `> ListInst [List with 5 elements]
+         []> [8, 11] Assign
+         ||  +> [8, 4] Identifier (secret)
+         ||  `> [8, 13] Int (421)
+         []> [9, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [9, 12] StringLiteral (Quel est mon nombre entre 0 et 1000 ?)
+         []> [10, 9] Assign
+         ||  +> [10, 4] Identifier (user)
+         ||  `> [10, 11] ReadInt
+         []> [11, 4] While
+         ||  +> [11, 11] Not
+         ||  |  `> [11, 19] Equals
+         ||  |     +> [11, 14] Identifier (user)
+         ||  |     `> [11, 22] Identifier (secret)
+         ||  `> ListInst [List with 3 elements]
+         ||     []> [12, 8] IfThenElse
+         ||     ||  +> [12, 17] Lower
+         ||     ||  |  +> [12, 12] Identifier (user)
+         ||     ||  |  `> [12, 19] Identifier (secret)
+         ||     ||  +> ListInst [List with 1 elements]
+         ||     ||  |  []> [13, 12] Print
+         ||     ||  |      `> ListExpr [List with 1 elements]
+         ||     ||  |         []> [13, 18] StringLiteral (Trop petit !)
+         ||     ||  `> ListInst [List with 1 elements]
+         ||     ||     []> [15, 12] Print
+         ||     ||         `> ListExpr [List with 1 elements]
+         ||     ||            []> [15, 18] StringLiteral (Trop grand !)
+         ||     []> [17, 8] Println
+         ||     ||  `> ListExpr [List with 1 elements]
+         ||     ||     []> [17, 16] StringLiteral ( Autre proposition ?)
+         ||     []> [18, 13] Assign
+         ||         +> [18, 8] Identifier (user)
+         ||         `> [18, 15] ReadInt
+         []> [20, 4] Println
+             `> ListExpr [List with 1 elements]
+                []> [20, 12] StringLiteral (Bravo...)
