@@ -53,11 +53,6 @@ public class StringLiteral extends AbstractStringLiteral {
     protected void codeGenPrint(DecacCompiler compiler) {
         compiler.addInstruction(new WSTR(new ImmediateString(value)));
     }
-    
-    @Override
-    protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
-       // compiler.addInstruction(new LEA(new ImmediateString(getValue()), register));
-    }
 
     @Override
     public void decompile(IndentPrintStream s) {

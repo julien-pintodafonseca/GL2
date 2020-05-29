@@ -25,6 +25,7 @@ public class Or extends AbstractOpBool {
     @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
         int i = compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
+        compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
         Label labelBegin = new Label("or" + i);
         Label labelEnd = new Label("or_end" + i);
         getLeftOperand().codeGenCMP(compiler, labelBegin);
