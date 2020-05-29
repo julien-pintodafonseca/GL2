@@ -144,12 +144,12 @@ public abstract class AbstractExpr extends AbstractInst {
             compiler.getRegisterManager().take(i);
             codeGenInst(compiler, Register.getR(i));
         } else {
-            throw new DecacFatalError("not yet implemented");
+            throw new UnsupportedOperationException("not yet implemented");
         }
     }
 
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
-        throw new DecacFatalError("not yet implemented");
+        throw new UnsupportedOperationException("not yet implemented");
     }
 
     /**

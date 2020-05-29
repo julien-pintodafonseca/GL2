@@ -60,7 +60,7 @@ public class Initialization extends AbstractInitialization {
             compiler.addInstruction(new STORE(Register.getR(i), addr));
             compiler.getRegisterManager().free(i);
         } else {
-            throw new DecacFatalError("not yet implemented");
+            throw new UnsupportedOperationException("not yet implemented");
         }
     }
 

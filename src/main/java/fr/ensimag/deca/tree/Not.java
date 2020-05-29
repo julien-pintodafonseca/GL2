@@ -54,7 +54,7 @@ public class Not extends AbstractUnaryExpr {
             compiler.getRegisterManager().free(i);
         } else {
         	
-            throw new DecacFatalError("not yet implemented");
+            throw new UnsupportedOperationException("not yet implemented");
         }
         
         compiler.addInstruction(new BNE(label));

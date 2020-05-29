@@ -68,11 +68,11 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
                 compiler.addInstruction(new CMP(Register.getR(j), Register.getR(i)));
                 compiler.getRegisterManager().free(j);
             } else {
-                throw new DecacFatalError("not yet implemented");
+                throw new UnsupportedOperationException("not yet implemented");
             }
             compiler.getRegisterManager().free(i);
         } else {
-            throw new DecacFatalError("not yet implemented");
+            throw new UnsupportedOperationException("not yet implemented");
         }
     }
     

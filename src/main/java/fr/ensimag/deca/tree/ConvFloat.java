@@ -32,7 +32,7 @@ public class ConvFloat extends AbstractUnaryExpr {
             compiler.addInstruction(new FLOAT(Register.getR(j), register));
             compiler.getRegisterManager().free(j);
         } else {
-            throw new DecacFatalError("not yet implemented");
+            throw new UnsupportedOperationException("not yet implemented");
         }
     }
 
