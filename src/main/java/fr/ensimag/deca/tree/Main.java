@@ -40,9 +40,8 @@ public class Main extends AbstractMain {
 
     @Override
     protected void codeGenMain(DecacCompiler compiler) throws DecacFatalError {
-        compiler.addComment("Beginning of variable declarations:");
-        declVariables.codeGenListDeclVar(compiler);
         compiler.addComment("Beginning of main instructions:");
+        declVariables.codeGenListDeclVar(compiler);
         insts.codeGenListInst(compiler);
     }
     
