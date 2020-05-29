@@ -33,4 +33,39 @@ public class Not extends AbstractUnaryExpr {
     protected String getOperatorName() {
         return "!";
     }
+   
+    @Override
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+    	int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+        	if(getOperand() instanceof BooleanLiteral) {
+        		getOperand().codeGenInst(compiler);
+        		compiler.addInstruction(new CMP(0,Register.getR(i)));
+                compiler.addInstruction(new BNE(label));
+        	} else {
+        		getOperand().codeGenCMPNot(compiler, label);
+        	}
+            compiler.getRegisterManager().free(i);
+        } else {
+            throw new DecacFatalError("not yet implemented");
+        }
+    }
+
+    @Override
+    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
+        // not( not(expr)) => expr
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            if(getOperand() instanceof BooleanLiteral) {
+                getOperand().codeGenInst(compiler);
+                compiler.addInstruction(new CMP(1,Register.getR(i)));
+                compiler.addInstruction(new BNE(label));
+            } else {
+                getOperand().codeGenCMP(compiler, label);
+            }
+            compiler.getRegisterManager().free(i);
+        } else {
+            throw new DecacFatalError("not yet implemented");
+        }
+    }
 }

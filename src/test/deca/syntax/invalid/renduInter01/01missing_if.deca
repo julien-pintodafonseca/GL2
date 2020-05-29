@@ -1,5 +1,5 @@
 // Description:
-//      tests de programme incorrecte lexicalement (il manque une branche if dans la boucle if_else)
+//      test de programme incorrect lexicalement (il manque une branche if dans la boucle if_else)
 //
 // Resultats:
 //      Erreur syntaxique

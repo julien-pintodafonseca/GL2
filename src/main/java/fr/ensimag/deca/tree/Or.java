@@ -16,5 +16,25 @@ public class Or extends AbstractOpBool {
         return "||";
     }
 
+    @Override
+    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+        int i = compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
+        compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
+        Label labelBegin = new Label("or" + i);
+        Label labelEnd = new Label("or_end" + i);
+
+        getLeftOperand().codeGenCMP(compiler, labelBegin);
+        compiler.addInstruction(new BRA(labelEnd));
+        compiler.addLabel(labelBegin);
+        getRightOperand().codeGenCMP(compiler, label);
+        compiler.addLabel(labelEnd);
+    }
+
+    @Override
+    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
+        // not(expr1 || expr2) => not(expr1) && not(expr2)
+        getLeftOperand().codeGenCMPNot(compiler, label);
+        getRightOperand().codeGenCMPNot(compiler, label);
+    }
 
 }

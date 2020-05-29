@@ -1,5 +1,5 @@
 // Description:
-//      tests if_else : boucle if_else avec une branche "if", deux branches "else if" identiques et une branche "else"
+//      test if_else : boucle if_else avec une branche "if", deux branches "else if" identiques et une branche "else"
 // Resultats:
 //      hello else_if1 : 3
 

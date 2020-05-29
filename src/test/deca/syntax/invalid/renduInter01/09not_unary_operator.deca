@@ -1,5 +1,5 @@
 // Description:
-//    tests de programme incorrect lexicalement (expression ">" est une expression binaire et non unaire)
+//    test de programme incorrect lexicalement (expression ">" est une expression binaire et non unaire)
 //
 // Resultats:
 //    Erreur syntaxique

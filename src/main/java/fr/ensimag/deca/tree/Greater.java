@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 /**
+ * Operator "x > y"
  *
  * @author Equipe GL2
  * @date 2020

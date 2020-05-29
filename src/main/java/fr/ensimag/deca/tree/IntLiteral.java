@@ -34,7 +34,7 @@ public class IntLiteral extends AbstractExpr {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) {
         LOG.debug("verify expr: start (intLiteral)");
         // Règle syntaxe contextuelle : (3.44)
         Type type = compiler.environmentType.INT;

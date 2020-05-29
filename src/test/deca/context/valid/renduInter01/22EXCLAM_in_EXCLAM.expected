@@ -1,0 +1,60 @@
+`> [7, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [7, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [8, 8] DeclVar
+      |  ||  +> [8, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [8, 8] Identifier (x)
+      |  ||  |  definition: variable defined at [8, 8], type=int
+      |  ||  `> [8, 10] Initialization
+      |  ||     `> [8, 12] Int (1)
+      |  ||        type: int
+      |  []> [9, 8] DeclVar
+      |  ||  +> [9, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [9, 8] Identifier (y)
+      |  ||  |  definition: variable defined at [9, 8], type=int
+      |  ||  `> [9, 10] Initialization
+      |  ||     `> [9, 12] Int (3)
+      |  ||        type: int
+      |  []> [10, 10] DeclVar
+      |      +> [10, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [10, 10] Identifier (z)
+      |      |  definition: variable defined at [10, 10], type=float
+      |      `> [10, 12] Initialization
+      |         `> [10, 14] Float (5.2)
+      |            type: float
+      `> ListInst [List with 1 elements]
+         []> [11, 4] IfThenElse
+             +> [11, 8] Not
+             |  type: boolean
+             |  `> [11, 15] And
+             |     type: boolean
+             |     +> [11, 11] NotEquals
+             |     |  type: boolean
+             |     |  +> [11, 10] Identifier (x)
+             |     |  |  definition: variable defined at [8, 8], type=int
+             |     |  `> [11, 13] Int (1)
+             |     |     type: int
+             |     `> [11, 18] Not
+             |        type: boolean
+             |        `> [11, 21] Lower
+             |           type: boolean
+             |           +> [11, 20] Identifier (z)
+             |           |  definition: variable defined at [10, 10], type=float
+             |           `> ConvFloat
+             |              type: float
+             |              `> [11, 22] Int (6)
+             |                 type: int
+             +> ListInst [List with 1 elements]
+             |  []> [12, 8] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [12, 16] StringLiteral (ok)
+             |             type: string
+             `> ListInst [List with 1 elements]
+                []> [14, 8] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [14, 14] StringLiteral (erreur)
+                           type: string
