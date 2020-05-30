@@ -6,6 +6,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.FLOAT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
 /**
  * Conversion of an int into a float. Used for implicit conversions.
@@ -26,16 +27,9 @@ public class ConvFloat extends AbstractUnaryExpr {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
-        int j = compiler.getRegisterManager().nextAvailable();
-        if (j != -1) {
-            getOperand().codeGenInst(compiler, Register.getR(j));
-            compiler.addInstruction(new FLOAT(Register.getR(j), register));
-            compiler.getRegisterManager().free(j);
-        } else {
-            // chargement dans la pile de 1 registres
-            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-            // restauration dans le registre
-        }
+            getOperand().codeGenInst(compiler, register);
+            compiler.addInstruction(new FLOAT(register, Register.R1));
+            compiler.addInstruction(new LOAD(Register.R1, register));
     }
 
     @Override

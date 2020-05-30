@@ -57,11 +57,12 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError { 
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
             compiler.getRegisterManager().take(i);
             getLeftOperand().codeGenInst(compiler, Register.getR(i));
+
             int j = compiler.getRegisterManager().nextAvailable();
             if (j != -1) {
                 compiler.getRegisterManager().take(j);
@@ -69,10 +70,11 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
                 compiler.addInstruction(new CMP(Register.getR(j), Register.getR(i)));
                 compiler.getRegisterManager().free(j);
             } else {
-                // chargement dans la pile de 1 registres
+                // chargement dans la pile de 1 registre
                 throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
                 // restauration dans le registre
             }
+
             compiler.getRegisterManager().free(i);
         } else {
             // chargement dans la pile de 2 registres
