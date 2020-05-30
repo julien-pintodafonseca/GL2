@@ -144,7 +144,9 @@ public abstract class AbstractExpr extends AbstractInst {
             compiler.getRegisterManager().take(i);
             codeGenInst(compiler, Register.getR(i));
         } else {
-            throw new UnsupportedOperationException("not yet implemented");
+            // chargement dans la pile de 1 registres
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration dans le registre
         }
     }
 

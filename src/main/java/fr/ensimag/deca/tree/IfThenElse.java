@@ -50,6 +50,7 @@ public class IfThenElse extends AbstractInst {
         compiler.getLabelManager().incrLabelValue(LabelType.LB_ELSE);
         Label labelBegin = new Label("else" + i);
         Label labelEnd = new Label("end_if" + i);
+
         condition.codeGenCMP(compiler, labelBegin);
         thenBranch.codeGenListInst(compiler);
         compiler.addInstruction(new BRA(labelEnd));

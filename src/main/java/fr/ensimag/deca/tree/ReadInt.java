@@ -7,6 +7,7 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.RINT;
@@ -29,13 +30,9 @@ public class ReadInt extends AbstractReadExpr {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
-        int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            compiler.getRegisterManager().take(i);
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
             compiler.addInstruction(new RINT()); // load the read value in the register R1
-            compiler.addInstruction(new LOAD(Register.R1, Register.getR(i)));
-        }
+            compiler.addInstruction(new LOAD(Register.R1, register));
     }
 
     @Override

@@ -42,37 +42,47 @@ public class Not extends AbstractUnaryExpr {
 
     @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
-    	int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            if(getOperand() instanceof BooleanLiteral) {
-        	getOperand().codeGenInst(compiler);
-        	compiler.addInstruction(new CMP(0,Register.getR(i)));
+        if(getOperand() instanceof BooleanLiteral) {
+            // if the son is a boolean
+            int i = compiler.getRegisterManager().nextAvailable();
+            if (i != -1) {
+                compiler.getRegisterManager().take(i);
+                getOperand().codeGenInst(compiler, Register.getR(i));
+                compiler.addInstruction(new CMP(0, Register.getR(i)));
                 compiler.addInstruction(new BNE(label));
+                compiler.getRegisterManager().free(i);
             } else {
-        	getOperand().codeGenCMPNot(compiler, label);
+                // chargement dans la pile de 1 registres
+                throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+                // restauration dans le registre
             }
-            compiler.getRegisterManager().free(i);
         } else {
-            throw new DecacFatalError("not yet implemented");
+            // else the son is a Abstract ???
+            getOperand().codeGenCMPNot(compiler, label);
         }
     }
 
     @Override
     protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
         // not( not(expr)) => expr
-        int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            if(getOperand() instanceof BooleanLiteral) {
-                getOperand().codeGenInst(compiler);
+
+        if(getOperand() instanceof BooleanLiteral) {
+            // if the son is a boolean
+            int i = compiler.getRegisterManager().nextAvailable();
+            if (i != -1) {
+                compiler.getRegisterManager().take(i);
+                getOperand().codeGenInst(compiler, Register.getR(i));
                 compiler.addInstruction(new CMP(1,Register.getR(i)));
                 compiler.addInstruction(new BNE(label));
+                compiler.getRegisterManager().free(i);
             } else {
-                getOperand().codeGenCMP(compiler, label);
+                // chargement dans la pile de 1 registres
+                throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+                // restauration dans le registre
             }
-            compiler.getRegisterManager().free(i);
         } else {
-        	
-            throw new UnsupportedOperationException("not yet implemented");
+            // else the son is a Abstract ???
+            getOperand().codeGenCMP(compiler, label);
         }
     }
 }

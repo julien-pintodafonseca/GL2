@@ -44,18 +44,20 @@ public class Assign extends AbstractBinaryExpr {
     protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
         AbstractExpr leftOp = getLeftOperand();
         if (leftOp instanceof Identifier) {
+            // gestion de la règle LValue -> Identifier
             VariableDefinition varDef = ((Identifier) leftOp).getVariableDefinition();
             int i = compiler.getRegisterManager().nextAvailable();
             if (i != -1) {
-                getRightOperand().codeGenInst(compiler);
+                compiler.getRegisterManager().take(i);
+                getRightOperand().codeGenInst(compiler, Register.getR(i));
                 compiler.addInstruction(new STORE(Register.getR(i), varDef.getOperand()));
             } else {
-                super.codeGenInst(compiler);
+                throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
             }
         } else {
-            super.codeGenInst(compiler);
+            // gestion de la règle LValue -> Selection [ expr identifier]
+            throw new UnsupportedOperationException("rule LValue -> Selection[expr identifier] : not yet implemented");
         }
-
     }
 
     @Override

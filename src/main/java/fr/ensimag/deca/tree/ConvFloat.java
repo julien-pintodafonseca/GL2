@@ -28,11 +28,13 @@ public class ConvFloat extends AbstractUnaryExpr {
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
         int j = compiler.getRegisterManager().nextAvailable();
         if (j != -1) {
-            getOperand().codeGenInst(compiler);
+            getOperand().codeGenInst(compiler, Register.getR(j));
             compiler.addInstruction(new FLOAT(Register.getR(j), register));
             compiler.getRegisterManager().free(j);
         } else {
-            throw new UnsupportedOperationException("not yet implemented");
+            // chargement dans la pile de 1 registres
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration dans le registre
         }
     }
 
