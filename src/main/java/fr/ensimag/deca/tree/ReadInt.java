@@ -9,6 +9,7 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.RINT;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
 
 import java.io.PrintStream;
 
@@ -26,6 +27,12 @@ public class ReadInt extends AbstractReadExpr {
         Type t = compiler.environmentType.INT;
         setType(t);
         return t;
+    }
+
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler) {
+        compiler.addInstruction(new RINT()); // load the read value in the register R1
+        compiler.addInstruction(new WINT());
     }
 
     @Override

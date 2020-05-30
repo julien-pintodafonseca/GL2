@@ -134,6 +134,7 @@ public abstract class AbstractExpr extends AbstractInst {
      * @param compiler
      */
     protected void codeGenPrint(DecacCompiler compiler) {
+        // affichage des expressions binaires
         throw new UnsupportedOperationException("not yet implemented");
     }
 

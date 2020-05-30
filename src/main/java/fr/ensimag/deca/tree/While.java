@@ -54,7 +54,7 @@ public class While extends AbstractInst {
         compiler.getLabelManager().incrLabelValue(LabelType.LB_WHILE);
 
         compiler.addLabel(labelBegin);
-        condition.codeGenCMP(compiler, labelEnd);
+        condition.codeGenCMP(compiler, labelEnd, true);
 
         body.codeGenListInst(compiler);
         compiler.addInstruction(new BRA(labelBegin));

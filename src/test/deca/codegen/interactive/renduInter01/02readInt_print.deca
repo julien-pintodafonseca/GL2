@@ -1,5 +1,5 @@
 // Description:
-//      test readInt : lecture d'un nombre entier saisi par l'utilisateur
+//      test readInt : lecture et affichage d'un nombre entier saisi par l'utilisateur
 // Resultats:
 //      Si l'utilisateur saisi un nombre entier :
 //          Veuillez entrer un nombre entier
@@ -10,6 +10,5 @@
 {
     int x;
     println("Veuillez entrer un nombre entier : ");
-    x = readInt();
-    println("x=", x);
+    println("x=", readInt());
 }
