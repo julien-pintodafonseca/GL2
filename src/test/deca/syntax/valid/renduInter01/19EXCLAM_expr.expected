@@ -10,7 +10,7 @@
       `> ListInst [List with 1 elements]
          []> [9, 4] IfThenElse
              +> [9, 8] Not
-             |  `> [9, 11] Equals
+             |  `> [9, 11] NotEquals
              |     +> [9, 10] Identifier (x)
              |     `> [9, 13] Int (1)
              +> ListInst [List with 1 elements]
