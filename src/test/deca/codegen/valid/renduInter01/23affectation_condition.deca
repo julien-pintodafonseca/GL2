@@ -1,0 +1,15 @@
+// Description:
+//      Instruction conditionnelle if...else
+//      Test d'expression conditionnelle avec affection "="
+//
+// Resultats:
+//      ok, x=18
+
+{
+    int x = 2;
+    if ( x = 18 ) {
+        println("ok, x=", x);
+    } else {
+        print("erreur");
+    }
+}

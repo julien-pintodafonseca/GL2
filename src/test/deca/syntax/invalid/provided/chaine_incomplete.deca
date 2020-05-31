@@ -1,10 +1,8 @@
 // Description:
-//    tests de programme incorrect lexicalement (chaine non terminee)
+//     Programme lexicalement incorrect
+//     => chaîne non terminée
 //
 // Resultats:
-//    ligne 10 : Erreur, chaine non terminee (sur fin de fichier)
-//
-// Historique:
-//    cree le 2020
+//      ligne 8 : Erreur, chaine non terminee (sur fin de fichier)
 
 "chaine pas finie

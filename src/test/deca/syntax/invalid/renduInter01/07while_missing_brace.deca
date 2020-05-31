@@ -1,9 +1,10 @@
 // Description:
-//      test de programme incorrect lexicalement (il manque deux accolades)
+//      Programme lexicalement incorrect
+//      => une boucle while doit comporter des accolades "while (condition) { ... }"
 //
 // Resultats:
 //      Erreur syntaxique
-//      Ligne 11 : manque les accolades
+//      Ligne 12 : token 'x' inattendu => token '{' attendu
 
 {
     int x = 4;

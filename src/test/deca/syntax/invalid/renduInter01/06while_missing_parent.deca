@@ -1,9 +1,10 @@
 // Description:
-//      test de programme incorrect lexicalement (il manque deux parentheses)
+//      Programme lexicalement incorrect
+//      => une boucle while doit posséder une condition entre parenthèses "while (condition) { ... }"
 //
 // Resultats:
 //      Erreur syntaxique
-//      Ligne 10 : manque de parenthese
+//      Ligne 11 : token 'x' inattendu => token '(' attendu
 
 {
     int x = 4;

@@ -1,9 +1,10 @@
 // Description:
-//      test de programme incorrect lexicalement (il manque deux parenthèses)
+//      Programme lexicalement incorrect
+//      => une instruction conditionnelle if...else doit posséder une condition de départ entre parenthèses "if (condition) { ... } else { ... }"
 //
 // Resultats:
 //      Erreur syntaxique
-//      Ligne 10 : manque les parenthèses (=> expected '(', token 'x' inexpected)
+//      Ligne 11 : token 'x' inattendu => token '(' attendu
 
 {
     int x = 4;

@@ -1,9 +1,10 @@
 // Description:
-//    test de programme incorrect lexicalement (expression "not" est une expression binaire => symbole '!' non attendu)
+//      Programme lexicalement incorrect
+//      => l'opérateur NOT (symbole "!") est un opérateur unaire
 //
 // Resultats:
-//    Erreur syntaxique
-//    Ligne 11 : symbole '!' inattendu
+//      Erreur syntaxique
+//      Ligne 12 : token '!' inattendu
 
 {
     int x = 1;

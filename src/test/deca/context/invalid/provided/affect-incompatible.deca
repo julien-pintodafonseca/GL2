@@ -3,7 +3,7 @@
 //
 // Resultats:
 //      Erreur contextuelle
-//      Ligne 15: Affectation de types incompatibles
+//      Ligne 13 : Affectation de types incompatibles
 
 {
    int a;

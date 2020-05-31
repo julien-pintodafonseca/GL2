@@ -1,1 +1,1 @@
-04missing_brace_if.deca:11:8: missing '{' at 'println'
+04missing_brace_if.deca:12:8: missing '{' at 'println'

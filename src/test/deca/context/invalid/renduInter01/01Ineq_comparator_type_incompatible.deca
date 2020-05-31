@@ -4,7 +4,7 @@
 //
 // Resultats:
 //      Erreur contextuelle
-//      Ligne 9 : Types int et string incompatibles pour la comparaison
+//      Ligne 11 : Types int et string incompatibles pour la comparaison
 
 {
     int x = 2;

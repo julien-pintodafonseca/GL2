@@ -1,12 +1,9 @@
 // Description:
-//    tests de programme lexicalement correct.
+//      Programme lexicalement correct
 //
 // Resultats:
-//    Ligne 11 : Erreur de syntaxe.
-//    test_lex ne doit pas donner d'erreur.
-//
-// Historique:
-//    cree le 2020
+//      Ligne 8 : Erreur de syntaxe.
+//      test_lex ne doit pas donner d'erreur.
 
 idf _autre_idf
 {

@@ -1,9 +1,10 @@
 // Description:
-//      test de programme incorrect lexicalement (il manque les accolades)
+//      Programme lexicalement incorrect
+//      => une instruction conditionnelle if...else doit comporter des accolades "if (condition) { ... } else { ... }"
 //
 // Resultats:
 //      Erreur syntaxique
-//      Ligne 11 : manque les accolades (=> expected '{', token 'println' inexpected)
+//      Ligne 12 : token 'println' inattendu => token '{' attendu
 
 {
     int x = 4;
