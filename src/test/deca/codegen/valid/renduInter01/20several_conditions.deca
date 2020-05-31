@@ -1,8 +1,9 @@
 // Description:
-//    test expression conditionnelle : expression combinée
+//      Instruction conditionnelle if...else
+//      Test d'expression conditionnelle combinée avec : "!=", double "&&", ">=", "<", "||", "==", "!"
 //
 // Resultats:
-//    ok
+//      ok
 
 {
     int x = 1;

@@ -1,9 +1,10 @@
 // Description:
-//    test expression conditionnelle : expression "plus petit ou égal" (symbole <=)
+//      Double instructions conditionnelles if...else
+//      Test d'expression conditionnelle avec comparaison "<=" sur entiers et flottants
 //
 // Resultats:
-//    ok
-//    ok
+//      ok
+//      ok
 
 {
     int x = 2;

@@ -1,8 +1,9 @@
 // Description:
-//    test expression conditionnelle : expression "égal" (symbole ==)
+//      Instruction conditionnelle if...else
+//      Test d'expression conditionnelle avec comparaison "=="
 //
 // Resultats:
-//    ok
+//      ok
 
 {
     int x = 2;

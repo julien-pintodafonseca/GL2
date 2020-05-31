@@ -1,12 +1,10 @@
 // Description:
-<<<<<<< HEAD
-//    test expression conditionnelle : expression combinée précédée d'un not
-=======
-//    tests conditionnelle : expression combinée
->>>>>>> develop
+//      Instruction conditionnelle if...else
+//      Test d'expression conditionnelle avec : "!=", double "&&", ">=", "<", "||", "==", "!"
+//      => Cas spécifique où le l'opérateur unaire NOT (symbole "!") est appliqué à l'expression entière
 //
 // Resultats:
-//    ok
+//      ok
 
 {
     int x = 1;

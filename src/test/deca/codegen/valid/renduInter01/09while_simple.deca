@@ -1,5 +1,7 @@
 // Description:
-//      tests while : condition "egal" (x == 0)
+//      Test de boucle while
+//      Condition (variable == entier)
+//
 // Resultats:
 //      ok
 

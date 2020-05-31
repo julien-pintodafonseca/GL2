@@ -1,8 +1,9 @@
 // Description:
-//    test expression conditionnelle : expression "or" (symbole ||)
+//      Instruction conditionnelle if...else
+//      Test d'expression conditionnelle avec opérateur "||"
 //
 // Resultats:
-//    ok
+//      ok
 
 {
     int x = 2;

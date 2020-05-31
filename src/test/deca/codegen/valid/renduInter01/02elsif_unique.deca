@@ -1,5 +1,7 @@
 // Description:
-//      test if_else : boucle if_else avec une branche "if" et une branche "else if"
+//      Test d'instruction conditionnelle if...else_if
+//      Conditions (variable == entier)
+//
 // Resultats:
 //      hello else_if3
 

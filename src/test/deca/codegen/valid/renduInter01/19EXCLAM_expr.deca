@@ -1,8 +1,9 @@
 // Description:
-//    test expression conditionnelle : expression "not" (symbole unaire !)
+//      Instruction conditionnelle if...else
+//      Test d'expression conditionnelle avec opérateur unaire NOT (symbole "!")
 //
 // Resultats:
-//    ok
+//      ok
 
 {
     int x = 1;

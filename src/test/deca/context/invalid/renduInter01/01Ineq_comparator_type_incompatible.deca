@@ -1,8 +1,10 @@
 // Description:
-//    test expression conditionnelle : expression "plus grand" (symbole >)
+//      Expression conditionnelle incorrecte au niveau de la comparaison
+//      => les types int et string ne peuvent pas être comparés
 //
 // Resultats:
-//    Erreur contextuelle : l'opérateur > n'est pas utilisable avec une variable de type string
+//      Erreur contextuelle
+//      Ligne 9 : Types int et string incompatibles pour la comparaison
 
 {
     int x = 2;

@@ -1,9 +1,10 @@
 // Description:
-//    test de programme incorrect au niveau du typage (expression "not" applicable sur un booléen seulement)
+//      Expression conditionnelle incorrecte au niveau du typage
+//      => l'opérateur NOT est uniquement applicable sur un booléen
 //
 // Resultats:
-//    Erreur contextuelle
-//    Ligne 10 : incompatible type
+//      Erreur contextuelle
+//      Ligne 10 : Type string incompatible avec l'opérateur NOT
 
 {
     string x = "hello";

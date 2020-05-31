@@ -1,5 +1,8 @@
 // Description:
-//      test if_else : boucle if_else avec une branche "if", deux branches "else if" identiques et une branche "else"
+//      Test d'instruction conditionnelle if...else_if...else_if...else
+//      Conditions (variable == entier)
+//      => Cas spécifique où les deux else_if possèdent la même condition
+//
 // Resultats:
 //      hello else_if1 : 3
 

@@ -1,5 +1,6 @@
 // Description:
 //      Fonction readInt() : permet la lecture d'un nombre entier saisi par l'utilisateur
+//
 // Resultats:
 // -> Si l'utilisateur saisi un nombre entier:
 //      Veuillez entrer un nombre entier :
