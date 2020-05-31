@@ -47,7 +47,8 @@ public class While extends AbstractInst {
         if (condition.getType().isBoolean()) {
             body.verifyListInst(compiler, localEnv, currentClass, returnType);
         } else {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE + condition.getType(), getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE +
+                    condition.getType(), getLocation());
         }
     }
 

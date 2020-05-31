@@ -1,1 +1,1 @@
-src/test/deca/context/invalid/renduInter01/02affectation_condition.deca:10:4: L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : int
+02affectation_condition.deca:10:4: L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : int
