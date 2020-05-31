@@ -1,73 +1,73 @@
-`> [7, 0] Program
+`> [8, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [7, 0] Main
+   `> [8, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [8, 8] DeclVar
-      |      +> [8, 4] Identifier (int)
+      |  []> [9, 8] DeclVar
+      |      +> [9, 4] Identifier (int)
       |      |  definition: type (builtin), type=int
-      |      +> [8, 8] Identifier (x)
-      |      |  definition: variable defined at [8, 8], type=int
-      |      `> [8, 10] Initialization
-      |         `> [8, 12] Int (3)
+      |      +> [9, 8] Identifier (x)
+      |      |  definition: variable defined at [9, 8], type=int
+      |      `> [9, 10] Initialization
+      |         `> [9, 12] Int (3)
       |            type: int
       `> ListInst [List with 1 elements]
-         []> [9, 4] IfThenElse
-             +> [9, 11] Greater
+         []> [10, 4] IfThenElse
+             +> [10, 11] Greater
              |  type: boolean
-             |  +> [9, 9] Identifier (x)
-             |  |  definition: variable defined at [8, 8], type=int
-             |  `> [9, 13] Int (0)
+             |  +> [10, 9] Identifier (x)
+             |  |  definition: variable defined at [9, 8], type=int
+             |  `> [10, 13] Int (0)
              |     type: int
              +> ListInst [List with 2 elements]
-             |  []> [10, 8] Println
+             |  []> [11, 8] Println
              |  ||  `> ListExpr [List with 2 elements]
-             |  ||     []> [10, 16] StringLiteral (x > 0 : )
+             |  ||     []> [11, 16] StringLiteral (x > 0 : )
              |  ||     ||  type: string
-             |  ||     []> [10, 28] Identifier (x)
-             |  ||         definition: variable defined at [8, 8], type=int
-             |  []> [11, 8] IfThenElse
-             |      +> [11, 15] Equals
+             |  ||     []> [11, 28] Identifier (x)
+             |  ||         definition: variable defined at [9, 8], type=int
+             |  []> [12, 8] IfThenElse
+             |      +> [12, 15] Equals
              |      |  type: boolean
-             |      |  +> [11, 13] Identifier (x)
-             |      |  |  definition: variable defined at [8, 8], type=int
-             |      |  `> [11, 18] Int (1)
+             |      |  +> [12, 13] Identifier (x)
+             |      |  |  definition: variable defined at [9, 8], type=int
+             |      |  `> [12, 18] Int (1)
              |      |     type: int
              |      +> ListInst [List with 1 elements]
-             |      |  []> [13, 12] Println
+             |      |  []> [14, 12] Println
              |      |      `> ListExpr [List with 2 elements]
-             |      |         []> [13, 20] StringLiteral (x = 1 : )
+             |      |         []> [14, 20] StringLiteral (x = 1 : )
              |      |         ||  type: string
-             |      |         []> [13, 32] Identifier (x)
-             |      |             definition: variable defined at [8, 8], type=int
+             |      |         []> [14, 32] Identifier (x)
+             |      |             definition: variable defined at [9, 8], type=int
              |      `> ListInst [List with 1 elements]
-             |         []> [15, 13] IfThenElse
-             |             +> [15, 19] Equals
+             |         []> [16, 13] IfThenElse
+             |             +> [16, 19] Equals
              |             |  type: boolean
-             |             |  +> [15, 17] Identifier (x)
-             |             |  |  definition: variable defined at [8, 8], type=int
-             |             |  `> [15, 22] Int (2)
+             |             |  +> [16, 17] Identifier (x)
+             |             |  |  definition: variable defined at [9, 8], type=int
+             |             |  `> [16, 22] Int (2)
              |             |     type: int
              |             +> ListInst [List with 1 elements]
-             |             |  []> [16, 12] Println
+             |             |  []> [17, 12] Println
              |             |      `> ListExpr [List with 2 elements]
-             |             |         []> [16, 20] StringLiteral (x = 2 : )
+             |             |         []> [17, 20] StringLiteral (x = 2 : )
              |             |         ||  type: string
-             |             |         []> [16, 32] Identifier (x)
-             |             |             definition: variable defined at [8, 8], type=int
+             |             |         []> [17, 32] Identifier (x)
+             |             |             definition: variable defined at [9, 8], type=int
              |             `> ListInst [List with 0 elements]
              `> ListInst [List with 1 elements]
-                []> [18, 11] IfThenElse
-                    +> [18, 18] Lower
+                []> [19, 11] IfThenElse
+                    +> [19, 18] Lower
                     |  type: boolean
-                    |  +> [18, 16] Identifier (x)
-                    |  |  definition: variable defined at [8, 8], type=int
-                    |  `> [18, 20] Int (0)
+                    |  +> [19, 16] Identifier (x)
+                    |  |  definition: variable defined at [9, 8], type=int
+                    |  `> [19, 20] Int (0)
                     |     type: int
                     +> ListInst [List with 1 elements]
-                    |  []> [19, 8] Println
+                    |  []> [20, 8] Println
                     |      `> ListExpr [List with 2 elements]
-                    |         []> [19, 16] StringLiteral (x < 0 : )
+                    |         []> [20, 16] StringLiteral (x < 0 : )
                     |         ||  type: string
-                    |         []> [19, 28] Identifier (x)
-                    |             definition: variable defined at [8, 8], type=int
+                    |         []> [20, 28] Identifier (x)
+                    |             definition: variable defined at [9, 8], type=int
                     `> ListInst [List with 0 elements]

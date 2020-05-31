@@ -1,1 +1,1 @@
-01Ineq_comparator_type_incompatible.deca:9:11: Deux expressions ne peuvent pas être comparées si leurs types sont les suivants : int (pour x) et string (pour "hello").
+01Ineq_comparator_type_incompatible.deca:11:11: Deux expressions ne peuvent pas être comparées si leurs types sont les suivants : int (pour x) et string (pour "hello").

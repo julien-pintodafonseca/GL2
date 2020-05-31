@@ -1,0 +1,75 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [2, 5] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [2, 5] Identifier (x)
+      |  ||  |  definition: variable defined at [2, 5], type=int
+      |  ||  `> [2, 6] Initialization
+      |  ||     `> [2, 7] Int (5)
+      |  ||        type: int
+      |  []> [2, 9] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [2, 9] Identifier (z)
+      |  ||  |  definition: variable defined at [2, 9], type=int
+      |  ||  `> NoInitialization
+      |  []> [2, 11] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [2, 11] Identifier (y)
+      |  ||  |  definition: variable defined at [2, 11], type=int
+      |  ||  `> [2, 12] Initialization
+      |  ||     `> [2, 13] Int (3)
+      |  ||        type: int
+      |  []> [2, 15] DeclVar
+      |      +> [2, 1] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [2, 15] Identifier (t)
+      |      |  definition: variable defined at [2, 15], type=int
+      |      `> [2, 16] Initialization
+      |         `> [2, 17] Identifier (x)
+      |            definition: variable defined at [2, 5], type=int
+      `> ListInst [List with 7 elements]
+         []> [3, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [3, 9] StringLiteral (3=)
+         ||     ||  type: string
+         ||     []> [3, 14] Identifier (y)
+         ||         definition: variable defined at [2, 11], type=int
+         []> [4, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [4, 9] StringLiteral (5=)
+         ||     ||  type: string
+         ||     []> [4, 14] Identifier (x)
+         ||         definition: variable defined at [2, 5], type=int
+         []> [5, 1] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [5, 9] StringLiteral (swap)
+         ||         type: string
+         []> [6, 2] Assign
+         ||  type: int
+         ||  +> [6, 1] Identifier (x)
+         ||  |  definition: variable defined at [2, 5], type=int
+         ||  `> [6, 3] Identifier (y)
+         ||     definition: variable defined at [2, 11], type=int
+         []> [7, 2] Assign
+         ||  type: int
+         ||  +> [7, 1] Identifier (y)
+         ||  |  definition: variable defined at [2, 11], type=int
+         ||  `> [7, 3] Identifier (t)
+         ||     definition: variable defined at [2, 15], type=int
+         []> [8, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [8, 9] StringLiteral (5=)
+         ||     ||  type: string
+         ||     []> [8, 14] Identifier (y)
+         ||         definition: variable defined at [2, 11], type=int
+         []> [9, 1] Println
+             `> ListExpr [List with 2 elements]
+                []> [9, 9] StringLiteral (3=)
+                ||  type: string
+                []> [9, 14] Identifier (x)
+                    definition: variable defined at [2, 5], type=int

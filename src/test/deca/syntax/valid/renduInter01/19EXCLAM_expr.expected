@@ -1,23 +1,23 @@
-`> [7, 0] Program
+`> [8, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [7, 0] Main
+   `> [8, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [8, 8] DeclVar
-      |      +> [8, 4] Identifier (int)
-      |      +> [8, 8] Identifier (x)
-      |      `> [8, 10] Initialization
-      |         `> [8, 12] Int (1)
+      |  []> [9, 8] DeclVar
+      |      +> [9, 4] Identifier (int)
+      |      +> [9, 8] Identifier (x)
+      |      `> [9, 10] Initialization
+      |         `> [9, 12] Int (1)
       `> ListInst [List with 1 elements]
-         []> [9, 4] IfThenElse
-             +> [9, 8] Not
-             |  `> [9, 11] NotEquals
-             |     +> [9, 10] Identifier (x)
-             |     `> [9, 13] Int (1)
+         []> [10, 4] IfThenElse
+             +> [10, 8] Not
+             |  `> [10, 11] NotEquals
+             |     +> [10, 10] Identifier (x)
+             |     `> [10, 13] Int (1)
              +> ListInst [List with 1 elements]
-             |  []> [10, 8] Println
+             |  []> [11, 8] Println
              |      `> ListExpr [List with 1 elements]
-             |         []> [10, 16] StringLiteral (ok)
+             |         []> [11, 16] StringLiteral (ok)
              `> ListInst [List with 1 elements]
-                []> [12, 8] Print
+                []> [13, 8] Print
                     `> ListExpr [List with 1 elements]
-                       []> [12, 14] StringLiteral (erreur)
+                       []> [13, 14] StringLiteral (erreur)

@@ -1,31 +1,31 @@
-`> [6, 0] Program
+`> [8, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [6, 0] Main
+   `> [8, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [7, 8] DeclVar
-      |      +> [7, 4] Identifier (int)
+      |  []> [9, 8] DeclVar
+      |      +> [9, 4] Identifier (int)
       |      |  definition: type (builtin), type=int
-      |      +> [7, 8] Identifier (x)
-      |      |  definition: variable defined at [7, 8], type=int
-      |      `> [7, 10] Initialization
-      |         `> [7, 12] Int (0)
+      |      +> [9, 8] Identifier (x)
+      |      |  definition: variable defined at [9, 8], type=int
+      |      `> [9, 10] Initialization
+      |         `> [9, 12] Int (0)
       |            type: int
       `> ListInst [List with 1 elements]
-         []> [8, 4] While
-             +> [8, 14] Equals
+         []> [10, 4] While
+             +> [10, 14] Equals
              |  type: boolean
-             |  +> [8, 12] Identifier (x)
-             |  |  definition: variable defined at [7, 8], type=int
-             |  `> [8, 17] Int (0)
+             |  +> [10, 12] Identifier (x)
+             |  |  definition: variable defined at [9, 8], type=int
+             |  `> [10, 17] Int (0)
              |     type: int
              `> ListInst [List with 2 elements]
-                []> [9, 6] Assign
+                []> [11, 6] Assign
                 ||  type: int
-                ||  +> [9, 5] Identifier (x)
-                ||  |  definition: variable defined at [7, 8], type=int
-                ||  `> [9, 7] Int (1)
+                ||  +> [11, 5] Identifier (x)
+                ||  |  definition: variable defined at [9, 8], type=int
+                ||  `> [11, 7] Int (1)
                 ||     type: int
-                []> [10, 5] Println
+                []> [12, 5] Println
                     `> ListExpr [List with 1 elements]
-                       []> [10, 13] StringLiteral (OK)
+                       []> [12, 13] StringLiteral (OK)
                            type: string

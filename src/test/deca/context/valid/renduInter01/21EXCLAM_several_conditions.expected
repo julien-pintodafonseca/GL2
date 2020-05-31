@@ -1,74 +1,74 @@
-`> [7, 0] Program
+`> [9, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [7, 0] Main
+   `> [9, 0] Main
       +> ListDeclVar [List with 3 elements]
-      |  []> [8, 8] DeclVar
-      |  ||  +> [8, 4] Identifier (int)
+      |  []> [10, 8] DeclVar
+      |  ||  +> [10, 4] Identifier (int)
       |  ||  |  definition: type (builtin), type=int
-      |  ||  +> [8, 8] Identifier (x)
-      |  ||  |  definition: variable defined at [8, 8], type=int
-      |  ||  `> [8, 10] Initialization
-      |  ||     `> [8, 12] Int (1)
+      |  ||  +> [10, 8] Identifier (x)
+      |  ||  |  definition: variable defined at [10, 8], type=int
+      |  ||  `> [10, 10] Initialization
+      |  ||     `> [10, 12] Int (1)
       |  ||        type: int
-      |  []> [9, 8] DeclVar
-      |  ||  +> [9, 4] Identifier (int)
+      |  []> [11, 8] DeclVar
+      |  ||  +> [11, 4] Identifier (int)
       |  ||  |  definition: type (builtin), type=int
-      |  ||  +> [9, 8] Identifier (y)
-      |  ||  |  definition: variable defined at [9, 8], type=int
-      |  ||  `> [9, 10] Initialization
-      |  ||     `> [9, 12] Int (3)
+      |  ||  +> [11, 8] Identifier (y)
+      |  ||  |  definition: variable defined at [11, 8], type=int
+      |  ||  `> [11, 10] Initialization
+      |  ||     `> [11, 12] Int (3)
       |  ||        type: int
-      |  []> [10, 10] DeclVar
-      |      +> [10, 4] Identifier (float)
+      |  []> [12, 10] DeclVar
+      |      +> [12, 4] Identifier (float)
       |      |  definition: type (builtin), type=float
-      |      +> [10, 10] Identifier (z)
-      |      |  definition: variable defined at [10, 10], type=float
-      |      `> [10, 12] Initialization
-      |         `> [10, 14] Float (5.2)
+      |      +> [12, 10] Identifier (z)
+      |      |  definition: variable defined at [12, 10], type=float
+      |      `> [12, 12] Initialization
+      |         `> [12, 14] Float (5.2)
       |            type: float
       `> ListInst [List with 1 elements]
-         []> [11, 4] IfThenElse
-             +> [11, 8] Not
+         []> [13, 4] IfThenElse
+             +> [13, 8] Not
              |  type: boolean
-             |  `> [11, 23] And
+             |  `> [13, 23] And
              |     type: boolean
-             |     +> [11, 15] And
+             |     +> [13, 15] And
              |     |  type: boolean
-             |     |  +> [11, 11] NotEquals
+             |     |  +> [13, 11] NotEquals
              |     |  |  type: boolean
-             |     |  |  +> [11, 10] Identifier (x)
-             |     |  |  |  definition: variable defined at [8, 8], type=int
-             |     |  |  `> [11, 13] Int (1)
+             |     |  |  +> [13, 10] Identifier (x)
+             |     |  |  |  definition: variable defined at [10, 8], type=int
+             |     |  |  `> [13, 13] Int (1)
              |     |  |     type: int
-             |     |  `> [11, 19] GreaterOrEqual
+             |     |  `> [13, 19] GreaterOrEqual
              |     |     type: boolean
-             |     |     +> [11, 18] Identifier (y)
-             |     |     |  definition: variable defined at [9, 8], type=int
-             |     |     `> [11, 21] Int (1)
+             |     |     +> [13, 18] Identifier (y)
+             |     |     |  definition: variable defined at [11, 8], type=int
+             |     |     `> [13, 21] Int (1)
              |     |        type: int
-             |     `> [11, 31] Or
+             |     `> [13, 31] Or
              |        type: boolean
-             |        +> [11, 28] Lower
+             |        +> [13, 28] Lower
              |        |  type: boolean
-             |        |  +> [11, 27] Identifier (z)
-             |        |  |  definition: variable defined at [10, 10], type=float
+             |        |  +> [13, 27] Identifier (z)
+             |        |  |  definition: variable defined at [12, 10], type=float
              |        |  `> ConvFloat
              |        |     type: float
-             |        |     `> [11, 29] Int (6)
+             |        |     `> [13, 29] Int (6)
              |        |        type: int
-             |        `> [11, 35] Equals
+             |        `> [13, 35] Equals
              |           type: boolean
-             |           +> [11, 34] Identifier (z)
-             |           |  definition: variable defined at [10, 10], type=float
-             |           `> [11, 37] Int (0)
+             |           +> [13, 34] Identifier (z)
+             |           |  definition: variable defined at [12, 10], type=float
+             |           `> [13, 37] Int (0)
              |              type: int
              +> ListInst [List with 1 elements]
-             |  []> [12, 8] Println
+             |  []> [14, 8] Println
              |      `> ListExpr [List with 1 elements]
-             |         []> [12, 16] StringLiteral (ok)
+             |         []> [14, 16] StringLiteral (ok)
              |             type: string
              `> ListInst [List with 1 elements]
-                []> [14, 8] Print
+                []> [16, 8] Print
                     `> ListExpr [List with 1 elements]
-                       []> [14, 14] StringLiteral (erreur)
+                       []> [16, 14] StringLiteral (erreur)
                            type: string

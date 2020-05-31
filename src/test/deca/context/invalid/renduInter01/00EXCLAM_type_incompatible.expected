@@ -1,1 +1,1 @@
-00EXCLAM_type_incompatible.deca:10:10: L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : int.
+00EXCLAM_type_incompatible.deca:11:10: L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : int.

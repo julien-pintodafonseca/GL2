@@ -1,24 +1,24 @@
-`> [6, 0] Program
+`> [8, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [6, 0] Main
+   `> [8, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [7, 8] DeclVar
-      |      +> [7, 4] Identifier (int)
-      |      +> [7, 8] Identifier (x)
-      |      `> [7, 10] Initialization
-      |         `> [7, 12] Int (2)
+      |  []> [9, 8] DeclVar
+      |      +> [9, 4] Identifier (int)
+      |      +> [9, 8] Identifier (x)
+      |      `> [9, 10] Initialization
+      |         `> [9, 12] Int (2)
       `> ListInst [List with 1 elements]
-         []> [8, 4] IfThenElse
-             +> [8, 11] Equals
-             |  +> [8, 9] Identifier (x)
-             |  `> [8, 14] Int (0)
+         []> [10, 4] IfThenElse
+             +> [10, 11] Equals
+             |  +> [10, 9] Identifier (x)
+             |  `> [10, 14] Int (0)
              +> ListInst [List with 1 elements]
-             |  []> [9, 8] Println
+             |  []> [11, 8] Println
              |      `> ListExpr [List with 2 elements]
-             |         []> [9, 16] StringLiteral (hello if)
-             |         []> [9, 28] Identifier (x)
+             |         []> [11, 16] StringLiteral (hello if)
+             |         []> [11, 28] Identifier (x)
              `> ListInst [List with 1 elements]
-                []> [11, 8] Println
+                []> [13, 8] Println
                     `> ListExpr [List with 2 elements]
-                       []> [11, 16] StringLiteral (hello else)
-                       []> [11, 30] Identifier (x)
+                       []> [13, 16] StringLiteral (hello else)
+                       []> [13, 30] Identifier (x)

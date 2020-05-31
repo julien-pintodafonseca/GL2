@@ -78,6 +78,7 @@ test_synt_valid () {
     fi
 }
 
+# ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "provided"
 test_step_provided() {
   echo "=== STEP: PROVIDED ==="
@@ -233,12 +234,14 @@ test_step_renduInter01() {
   echo
 }
 
+# ----------------------------------------------------------------------------------------------------
+# Main
 
 nbtests=0
 nbpassed=0
 
-#test_step_provided
-#test_step_renduInitial
+test_step_provided
+test_step_renduInitial
 test_step_renduInter01
 
 echo "### RESULTS: $nbpassed/$nbtests"

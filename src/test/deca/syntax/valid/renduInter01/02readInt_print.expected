@@ -1,16 +1,16 @@
-`> [10, 0] Program
+`> [12, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [10, 0] Main
+   `> [12, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [11, 8] DeclVar
-      |      +> [11, 4] Identifier (int)
-      |      +> [11, 8] Identifier (x)
+      |  []> [13, 8] DeclVar
+      |      +> [13, 4] Identifier (int)
+      |      +> [13, 8] Identifier (x)
       |      `> NoInitialization
       `> ListInst [List with 2 elements]
-         []> [12, 4] Println
+         []> [14, 4] Println
          ||  `> ListExpr [List with 1 elements]
-         ||     []> [12, 12] StringLiteral (Veuillez entrer un nombre entier : )
-         []> [13, 4] Println
+         ||     []> [14, 12] StringLiteral (Veuillez entrer un nombre entier : )
+         []> [15, 4] Println
              `> ListExpr [List with 2 elements]
-                []> [13, 12] StringLiteral (x=)
-                []> [13, 18] ReadInt
+                []> [15, 12] StringLiteral (x=)
+                []> [15, 18] ReadInt

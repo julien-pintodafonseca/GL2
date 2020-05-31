@@ -1,0 +1,53 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [2, 7] DeclVar
+      |  ||  +> [2, 1] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [2, 7] Identifier (x)
+      |  ||  |  definition: variable defined at [2, 7], type=float
+      |  ||  `> NoInitialization
+      |  []> [3, 5] DeclVar
+      |      +> [3, 1] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [3, 5] Identifier (y)
+      |      |  definition: variable defined at [3, 5], type=int
+      |      `> NoInitialization
+      `> ListInst [List with 6 elements]
+         []> [4, 2] Assign
+         ||  type: float
+         ||  +> [4, 1] Identifier (x)
+         ||  |  definition: variable defined at [2, 7], type=float
+         ||  `> [4, 3] Float (3.14)
+         ||     type: float
+         []> [5, 2] Assign
+         ||  type: int
+         ||  +> [5, 1] Identifier (y)
+         ||  |  definition: variable defined at [3, 5], type=int
+         ||  `> [5, 3] Int (5)
+         ||     type: int
+         []> [6, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [6, 9] StringLiteral (5=)
+         ||     ||  type: string
+         ||     []> [6, 14] Identifier (y)
+         ||         definition: variable defined at [3, 5], type=int
+         []> [7, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [7, 9] StringLiteral (3.14=)
+         ||     ||  type: string
+         ||     []> [7, 17] Identifier (x)
+         ||         definition: variable defined at [2, 7], type=float
+         []> [8, 2] Assign
+         ||  type: float
+         ||  +> [8, 1] Identifier (x)
+         ||  |  definition: variable defined at [2, 7], type=float
+         ||  `> [8, 3] Float (1.25)
+         ||     type: float
+         []> [9, 1] Println
+             `> ListExpr [List with 2 elements]
+                []> [9, 9] StringLiteral (1.25=)
+                ||  type: string
+                []> [9, 17] Identifier (x)
+                    definition: variable defined at [2, 7], type=float
