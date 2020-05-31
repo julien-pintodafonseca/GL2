@@ -1,6 +1,6 @@
 // Description:
 //      Instruction conditionnelle if...else
-//      Test d'expression conditionnelle avec affection "="
+//      Test d'expression conditionnelle avec affectation "="
 //
 // Resultats:
 //      ok, x=18

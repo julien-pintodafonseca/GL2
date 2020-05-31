@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.codegen.LabelType;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
@@ -43,7 +44,11 @@ public class While extends AbstractInst {
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         condition.verifyExpr(compiler, localEnv, currentClass);
-        body.verifyListInst(compiler, localEnv, currentClass, returnType);
+        if (condition.getType().isBoolean()) {
+            body.verifyListInst(compiler, localEnv, currentClass, returnType);
+        } else {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE + condition.getType(), getLocation());
+        }
     }
 
     @Override
