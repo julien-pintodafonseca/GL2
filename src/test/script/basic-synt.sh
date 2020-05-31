@@ -63,7 +63,7 @@ test_synt_valid () {
             echo "$1 : Fichier .expected inexistant"
         else
             # On regarde si le résultat obtenu correspond à celui attendu
-             file=${2%*.expected}
+            file=${2%*.expected}
             test_synt "$path" > "$file.res"
 
             if diff -q "$file.res" "$2" > /dev/null ; then
@@ -78,64 +78,167 @@ test_synt_valid () {
     fi
 }
 
-#for cas_de_test in src/test/deca/syntax/valid/provided/*.deca
-#do
-#    nbtests=$((nbtests+1))
-#    expected=$(basename $cas_de_test .${cas_de_test##*.})
-#    file="src/test/deca/syntax/valid/provided/$expected.expected"
-#    test_synt_valid "$cas_de_test"
-#done
+# Fonction permettant d'exécuter tous les tests de l'étape "provided"
+test_step_provided() {
+  echo "=== STEP: PROVIDED ==="
 
-#for cas_de_test in src/test/deca/syntax/valid/renduInitial/*.deca
-#do
-#    nbtests=$((nbtests+1))
-#    expected=$(basename $cas_de_test .${cas_de_test##*.})
-#    file="src/test/deca/syntax/valid/renduInitial/$expected.expected"
-#    test_synt_valid "$cas_de_test"
-#done
-#
-# ...
+  # no src/test/deca/codegen/interactive/provided/
+
+  # no src/test/deca/codegen/invalid/provided/
+
+  echo "### TEST: src/test/deca/codegen/valid/provided/ ###"
+  for cas_de_test in src/test/deca/codegen/valid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/provided/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/invalid/provided/ ###"
+  for cas_de_test in src/test/deca/context/invalid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/provided/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/valid/provided/ ###"
+  for cas_de_test in src/test/deca/context/valid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/provided/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/syntax/valid/provided/ ###"
+  for cas_de_test in src/test/deca/syntax/valid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/provided/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/syntax/invalid/provided/ ###"
+  for cas_de_test in src/test/deca/syntax/invalid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/invalid/provided/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+}
+
+# ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "renduInitial"
+test_step_renduInitial() {
+  echo "=== STEP: RENDU_INITIAL ==="
+
+  # no src/test/deca/codegen/interactive/renduInitial/
+
+  # no src/test/deca/codegen/invalid/renduInitial/
+
+  echo "### TEST: src/test/deca/codegen/valid/renduInitial/ ###"
+  for cas_de_test in src/test/deca/codegen/valid/renduInitial/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/renduInitial/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/invalid/renduInitial/ ###"
+  for cas_de_test in src/test/deca/context/invalid/renduInitial/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/renduInitial/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  # no src/test/deca/context/valid/renduInitial/
+
+  echo "### TEST: src/test/deca/syntax/valid/renduInitial/ ###"
+  for cas_de_test in src/test/deca/syntax/valid/renduInitial/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/renduInitial/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  # no src/test/deca/syntax/invalid/renduInitial/
+}
+
+# ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "renduInter01"
+test_step_renduInter01() {
+  echo "=== STEP: RENDU_INTER01 ==="
+
+  echo "### TEST: src/test/deca/codegen/interactive/renduInter01/ ###"
+  for cas_de_test in src/test/deca/codegen/interactive/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  # no src/test/deca/codegen/invalid/renduInter01/
+
+  echo "### TEST: src/test/deca/codegen/valid/renduInter01/ ###"
+  for cas_de_test in src/test/deca/codegen/valid/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/invalid/renduInter01/ ###"
+  for cas_de_test in src/test/deca/context/invalid/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
+      test_synt_valid "$cas_de_test" "$file"
+  done
+  echo
+
+  # no src/test/deca/context/valid/renduInter01/
+
+  # no src/test/deca/syntax/valid/renduInter01/
+
+  echo "### TEST: src/test/deca/syntax/invalid/renduInter01/ ###"
+  for cas_de_test in src/test/deca/syntax/invalid/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/syntax/invalid/renduInter01/$expected"
+      test_synt_invalid "$cas_de_test" "$file.expected"
+  done
+  echo
+}
+
 
 nbtests=0
 nbpassed=0
-echo "### TEST: src/test/deca/codegen/valid/renduInter01/ ###"
-for cas_de_test in src/test/deca/codegen/valid/renduInter01/*.deca
-do
-    nbtests=$((nbtests+1))
-    expected=$(basename $cas_de_test .${cas_de_test##*.})
-    file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
-    test_synt_valid "$cas_de_test" "$file"
-done
-echo
 
-echo "### TEST: src/test/deca/codegen/interactive/renduInter01/ ###"
-for cas_de_test in src/test/deca/codegen/interactive/renduInter01/*.deca
-do
-    nbtests=$((nbtests+1))
-    expected=$(basename $cas_de_test .${cas_de_test##*.})
-    file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
-    test_synt_valid "$cas_de_test" "$file"
-done
-echo
+#test_step_provided
+#test_step_renduInitial
+test_step_renduInter01
 
-echo "### TEST: src/test/deca/context/invalid/renduInter01/ ###"
-for cas_de_test in src/test/deca/context/invalid/renduInter01/*.deca
-do
-    nbtests=$((nbtests+1))
-    expected=$(basename $cas_de_test .${cas_de_test##*.})
-    file="src/test/deca/syntax/valid/renduInter01/$expected.expected"
-    test_synt_valid "$cas_de_test" "$file"
-done
-echo
-
-echo "### TEST: src/test/deca/syntax/invalid/renduInter01/ ###"
-for cas_de_test in src/test/deca/syntax/invalid/renduInter01/*.deca
-do
-    nbtests=$((nbtests+1))
-    expected=$(basename $cas_de_test .${cas_de_test##*.})
-    file="src/test/deca/syntax/invalid/renduInter01/$expected"
-    test_synt_invalid "$cas_de_test"  "$file.expected"
-done
-echo
-
-echo "$nbpassed/$nbtests"
+echo "### RESULTS: $nbpassed/$nbtests"

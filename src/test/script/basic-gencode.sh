@@ -51,13 +51,25 @@ test_codegen () {
 
 nbtests=0
 nbpassed=0
-#echo "### TEST: src/test/deca/codegen/valid/provided/ ###"
-#for cas_de_test in src/test/deca/codegen/valid/provided/*.deca
-#do
-#    nbtests=$((nbtests+1))
-#    expected=${cas_de_test%.deca}
-#    test_codegen "$cas_de_test" "$expected.expected"
-#done
+echo "=== STEP: PROVIDED ==="
+
+# no src/test/deca/context/interactive/renduInter01/
+
+echo "### TEST: src/test/deca/codegen/valid/provided/ ###"
+for cas_de_test in src/test/deca/codegen/valid/provided/*.deca
+do
+    nbtests=$((nbtests+1))
+    expected=${cas_de_test%.deca}
+    test_codegen "$cas_de_test" "$expected.expected"
+done
+echo
+
+# no src/test/deca/codegen/invalid/provided/
+
+# ----------------------------------------------------------------------------------------------------
+echo "=== STEP: RENDU_INITIAL ==="
+
+# no src/test/deca/context/interactive/renduInitial/
 
 echo "### TEST: src/test/deca/codegen/valid/renduInitial/ ###"
 for cas_de_test in src/test/deca/codegen/valid/renduInitial/*.deca
@@ -66,6 +78,14 @@ do
     expected=${cas_de_test%.deca}
     test_codegen "$cas_de_test" "$expected.expected"
 done
+echo
+
+# no src/test/deca/codegen/invalid/renduInitial/
+
+# ----------------------------------------------------------------------------------------------------
+echo "=== STEP: RENDU_INTER01 ==="
+
+# Le contenu de src/test/deca/context/interactive/renduInitial/ doit être testé manuellement
 
 echo "### TEST: src/test/deca/codegen/valid/renduInter01/ ###"
 for cas_de_test in src/test/deca/codegen/valid/renduInter01/*.deca
@@ -74,4 +94,8 @@ do
     expected=${cas_de_test%.deca}
     test_codegen "$cas_de_test" "$expected.expected"
 done
-echo "$nbpassed/$nbtests"
+echo
+
+# no src/test/deca/codegen/invalid/renduInter01/
+
+echo "### RESULTS: $nbpassed/$nbtests"

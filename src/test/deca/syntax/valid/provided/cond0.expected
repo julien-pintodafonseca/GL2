@@ -1,0 +1,17 @@
+`> [7, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [7, 0] Main
+      +> ListDeclVar [List with 0 elements]
+      `> ListInst [List with 1 elements]
+         []> [8, 3] IfThenElse
+             +> [8, 9] GreaterOrEqual
+             |  +> [8, 7] Int (1)
+             |  `> [8, 12] Int (0)
+             +> ListInst [List with 1 elements]
+             |  []> [9, 6] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [9, 14] StringLiteral (ok)
+             `> ListInst [List with 1 elements]
+                []> [11, 6] Println
+                    `> ListExpr [List with 1 elements]
+                       []> [11, 14] StringLiteral (erreur)

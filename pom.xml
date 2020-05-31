@@ -139,6 +139,19 @@
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.6.0</version>
             <executions>
+              <!--
+              <execution>
+                <id>basic-debug</id>
+                <configuration>
+                  <executable>./src/test/script/launchers/test_synt</executable>
+                  <arguments>
+                    <argument>src/test/deca/syntax/valid/A0empty_main.deca</argument>
+                  </arguments>
+                </configuration>
+                <phase>test</phase>
+                <goals><goal>exec</goal></goals>
+              </execution>
+              -->
               <!-- One <execution> per executable to launch. Execution
                    failure (exit status != 0) will stop the tests. -->
               <execution>
@@ -450,14 +463,14 @@
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.6.0</version>
             <executions>
-              <!-->
+              <!--
               <execution>
                 <id>basic-debug</id>
                 <configuration>
                   <executable>C:/Program Files/Git/bin/sh.exe</executable>
                   <arguments>
                     <argument>./src/test/script/launchers/test_synt</argument>
-                    <argument>src/test/deca/syntax/valid/00empty_main.deca</argument>
+                    <argument>src/test/deca/syntax/valid/A0empty_main.deca</argument>
                   </arguments>
                 </configuration>
                 <phase>test</phase>

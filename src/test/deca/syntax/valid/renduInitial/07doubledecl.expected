@@ -1,0 +1,24 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [2, 5] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  +> [2, 5] Identifier (x)
+      |  ||  `> NoInitialization
+      |  []> [2, 8] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  +> [2, 8] Identifier (y)
+      |  ||  `> NoInitialization
+      |  []> [2, 11] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  +> [2, 11] Identifier (z)
+      |  ||  `> NoInitialization
+      |  []> [2, 14] DeclVar
+      |      +> [2, 1] Identifier (int)
+      |      +> [2, 14] Identifier (y)
+      |      `> NoInitialization
+      `> ListInst [List with 1 elements]
+         []> [3, 2] Assign
+             +> [3, 1] Identifier (z)
+             `> [3, 3] Int (1)

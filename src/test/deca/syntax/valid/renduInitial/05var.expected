@@ -1,0 +1,23 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [2, 5] DeclVar
+      |      +> [2, 1] Identifier (int)
+      |      +> [2, 5] Identifier (x)
+      |      `> NoInitialization
+      `> ListInst [List with 4 elements]
+         []> [3, 2] Assign
+         ||  +> [3, 1] Identifier (x)
+         ||  `> [3, 3] Int (3)
+         []> [4, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [4, 9] StringLiteral (3=)
+         ||     []> [4, 14] Identifier (x)
+         []> [5, 2] Assign
+         ||  +> [5, 1] Identifier (x)
+         ||  `> [5, 3] Int (7)
+         []> [6, 1] Println
+             `> ListExpr [List with 2 elements]
+                []> [6, 9] StringLiteral (7=)
+                []> [6, 14] Identifier (x)

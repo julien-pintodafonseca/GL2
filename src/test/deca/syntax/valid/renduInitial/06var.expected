@@ -1,0 +1,55 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [2, 5] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  +> [2, 5] Identifier (x)
+      |  ||  `> NoInitialization
+      |  []> [3, 5] DeclVar
+      |  ||  +> [3, 1] Identifier (int)
+      |  ||  +> [3, 5] Identifier (z)
+      |  ||  `> NoInitialization
+      |  []> [4, 12] DeclVar
+      |  ||  +> [4, 8] Identifier (int)
+      |  ||  +> [4, 12] Identifier (y)
+      |  ||  `> NoInitialization
+      |  []> [4, 15] DeclVar
+      |      +> [4, 8] Identifier (int)
+      |      +> [4, 15] Identifier (t)
+      |      `> NoInitialization
+      `> ListInst [List with 10 elements]
+         []> [5, 2] Assign
+         ||  +> [5, 1] Identifier (x)
+         ||  `> [5, 3] Int (5)
+         []> [6, 2] Assign
+         ||  +> [6, 1] Identifier (y)
+         ||  `> [6, 3] Int (3)
+         []> [7, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [7, 9] StringLiteral (3=)
+         ||     []> [7, 14] Identifier (y)
+         []> [8, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [8, 9] StringLiteral (5=)
+         ||     []> [8, 14] Identifier (x)
+         []> [9, 1] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [9, 9] StringLiteral (swap)
+         []> [10, 2] Assign
+         ||  +> [10, 1] Identifier (t)
+         ||  `> [10, 3] Identifier (x)
+         []> [11, 2] Assign
+         ||  +> [11, 1] Identifier (x)
+         ||  `> [11, 3] Identifier (y)
+         []> [12, 2] Assign
+         ||  +> [12, 1] Identifier (y)
+         ||  `> [12, 3] Identifier (t)
+         []> [13, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [13, 9] StringLiteral (5=)
+         ||     []> [13, 14] Identifier (y)
+         []> [14, 1] Println
+             `> ListExpr [List with 2 elements]
+                []> [14, 9] StringLiteral (3=)
+                []> [14, 14] Identifier (x)

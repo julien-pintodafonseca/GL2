@@ -1,0 +1,49 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [2, 5] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  +> [2, 5] Identifier (x)
+      |  ||  `> [2, 6] Initialization
+      |  ||     `> [2, 7] Int (5)
+      |  []> [2, 9] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  +> [2, 9] Identifier (z)
+      |  ||  `> NoInitialization
+      |  []> [2, 11] DeclVar
+      |  ||  +> [2, 1] Identifier (int)
+      |  ||  +> [2, 11] Identifier (y)
+      |  ||  `> [2, 12] Initialization
+      |  ||     `> [2, 13] Int (3)
+      |  []> [2, 15] DeclVar
+      |      +> [2, 1] Identifier (int)
+      |      +> [2, 15] Identifier (t)
+      |      `> [2, 16] Initialization
+      |         `> [2, 17] Identifier (x)
+      `> ListInst [List with 7 elements]
+         []> [3, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [3, 9] StringLiteral (3=)
+         ||     []> [3, 14] Identifier (y)
+         []> [4, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [4, 9] StringLiteral (5=)
+         ||     []> [4, 14] Identifier (x)
+         []> [5, 1] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [5, 9] StringLiteral (swap)
+         []> [6, 2] Assign
+         ||  +> [6, 1] Identifier (x)
+         ||  `> [6, 3] Identifier (y)
+         []> [7, 2] Assign
+         ||  +> [7, 1] Identifier (y)
+         ||  `> [7, 3] Identifier (t)
+         []> [8, 1] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [8, 9] StringLiteral (5=)
+         ||     []> [8, 14] Identifier (y)
+         []> [9, 1] Println
+             `> ListExpr [List with 2 elements]
+                []> [9, 9] StringLiteral (3=)
+                []> [9, 14] Identifier (x)

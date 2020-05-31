@@ -1,0 +1,29 @@
+`> [1, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [1, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [2, 8] DeclVar
+      |      +> [2, 4] Identifier (int)
+      |      +> [2, 8] Identifier (x)
+      |      `> NoInitialization
+      `> ListInst [List with 3 elements]
+         []> [3, 4] Print
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [3, 10] StringLiteral (Entrez un entier:)
+         []> [4, 6] Assign
+         ||  +> [4, 4] Identifier (x)
+         ||  `> [4, 8] ReadInt
+         []> [5, 4] IfThenElse
+             +> [5, 11] Lower
+             |  +> [5, 8] Int (17)
+             |  `> [5, 13] Identifier (x)
+             +> ListInst [List with 1 elements]
+             |  []> [6, 8] Println
+             |      `> ListExpr [List with 2 elements]
+             |         []> [6, 16] StringLiteral (17 < )
+             |         []> [6, 25] Identifier (x)
+             `> ListInst [List with 1 elements]
+                []> [8, 8] Println
+                    `> ListExpr [List with 2 elements]
+                       []> [8, 16] Identifier (x)
+                       []> [8, 19] StringLiteral ( <= 17)
