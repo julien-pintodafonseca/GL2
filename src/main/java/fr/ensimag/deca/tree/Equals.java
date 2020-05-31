@@ -24,14 +24,13 @@ public class Equals extends AbstractOpExactCmp {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
-        super.codeGenCMP(compiler, label);
-        compiler.addInstruction(new BNE(label));
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+        super.codeGenCMP(compiler, label, reverse);
+        if (reverse) {
+            compiler.addInstruction(new BNE(label));
+        } else {
+            compiler.addInstruction(new BEQ(label));
+        }
     }
-    
-    @Override
-    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
-    	super.codeGenCMP(compiler, label);
-        compiler.addInstruction(new BEQ(label));
-    }
+
 }

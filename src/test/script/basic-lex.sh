@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # Auteur : Equipe GL2
-# Version initiale : 2020
+# Date : 2020
 
 # Base pour un script de test de la lexicographie.
 # On teste un fichier valide et un fichier invalide.

@@ -23,23 +23,24 @@ public class Or extends AbstractOpBool {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
-        int i = compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
-        compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
-        Label labelBegin = new Label("or" + i);
-        Label labelEnd = new Label("or_end" + i);
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+        if (reverse) {
+            // expr1 || expr2
+            int i = compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
+            compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
+            Label labelBegin = new Label("or" + i);
+            Label labelEnd = new Label("or_end" + i);
 
-        getLeftOperand().codeGenCMP(compiler, labelBegin);
-        compiler.addInstruction(new BRA(labelEnd));
-        compiler.addLabel(labelBegin);
-        getRightOperand().codeGenCMP(compiler, label);
-        compiler.addLabel(labelEnd);
+            getLeftOperand().codeGenCMP(compiler, labelBegin, true);
+            compiler.addInstruction(new BRA(labelEnd));
+            compiler.addLabel(labelBegin);
+            getRightOperand().codeGenCMP(compiler, label, true);
+            compiler.addLabel(labelEnd);
+        } else {
+            // not(expr1 || expr2) => not(expr1) && not(expr2)
+            getLeftOperand().codeGenCMP(compiler, label, false);
+            getRightOperand().codeGenCMP(compiler, label, false);
+        }
     }
 
-    @Override
-    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
-        // not(expr1 || expr2) => not(expr1) && not(expr2)
-        getLeftOperand().codeGenCMPNot(compiler, label);
-        getRightOperand().codeGenCMPNot(compiler, label);
-    }
 }

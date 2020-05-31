@@ -39,8 +39,8 @@
              |             `> ListInst [List with 1 elements]
              |                []> [21, 12] Println
              |                    `> ListExpr [List with 2 elements]
-             |                       []> [21, 20] StringLiteral ( x = )
-             |                       []> [21, 29] Identifier (x)
+             |                       []> [21, 20] StringLiteral (x = )
+             |                       []> [21, 28] Identifier (x)
              `> ListInst [List with 1 elements]
                 []> [24, 8] Println
                     `> ListExpr [List with 2 elements]

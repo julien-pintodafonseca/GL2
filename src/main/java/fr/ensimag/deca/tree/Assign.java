@@ -3,6 +3,7 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.*;
+import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.log4j.Logger;
@@ -41,21 +42,17 @@ public class Assign extends AbstractBinaryExpr {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
         AbstractExpr leftOp = getLeftOperand();
         if (leftOp instanceof Identifier) {
+            // gestion de la règle LValue -> Identifier
             VariableDefinition varDef = ((Identifier) leftOp).getVariableDefinition();
-            int i = compiler.getRegisterManager().nextAvailable();
-            if (i != -1) {
-                getRightOperand().codeGenInst(compiler);
-                compiler.addInstruction(new STORE(Register.getR(i), varDef.getOperand()));
-            } else {
-                super.codeGenInst(compiler);
-            }
+            getRightOperand().codeGenInst(compiler, register);
+            compiler.addInstruction(new STORE(register, varDef.getOperand()));
         } else {
-            super.codeGenInst(compiler);
+            // gestion de la règle LValue -> Selection[expr identifier]
+            throw new UnsupportedOperationException("rule LValue -> Selection[expr identifier] in Assign : not yet implemented");
         }
-
     }
 
     @Override

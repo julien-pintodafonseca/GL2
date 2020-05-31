@@ -1,30 +1,131 @@
 #! /bin/sh
 
 # Auteur : Equipe GL2
-# Version initiale : 2020
+# Date : 2020
 
-# Test minimaliste de la vérification contextuelle.
-# Le principe et les limitations sont les mêmes que pour basic-synt.sh
+# Test de la vérification contextuelle.
+# On lance test_context sur les fichier .deca valides ou invalides
+#
+# Dans le cas d'un fichier valide, on teste qu'il n'y a pas d'erreur.
+# Ensuite, on compare l'arbre généré avec le résultat attendu.
+#
+# Dans le cas d'un fichier invalide, on teste que la commande test_context retourne bien une erreur (code de retour != 0).
+# Ensuite, on vérifie que l'erreur générée correspond bien à l'erreur attendue.
+
 cd "$(dirname "$0")"/../../.. || exit 1
 
 PATH=./src/test/script/launchers:"$PATH"
 
-echo "===== TODO ====="
+# Fonction vérifiant les tests invalides contextuellement
+test_context_invalid () {
+    # $1 = fichier .deca
+    # $2 = fichier .expected
 
-#if test_context src/test/deca/context/invalid/provided/affect-incompatible.deca 2>&1 | \
-#    grep -q -e 'affect-incompatible.deca:15:'
-#then
-#    echo "Echec attendu pour test_context"
-#else
-#    echo "Succes inattendu de test_context"
-#    exit 1
-#fi
+    path=$(echo $1 | tr '\\' '/')
 
-#if test_context src/test/deca/context/valid/provided/hello-world.deca 2>&1 | \
-#    grep -q -e 'hello-world.deca:[0-9]'
-#then
-#    echo "Echec inattendu pour test_context"
-#    exit 1
-#else
-#    echo "Succes attendu de test_context"
-#fi
+    cmd=$(test_context "$path" 2>&1) # on exécute notre test
+    code=$? # si code vaut 0 alors succès, sinon échec
+
+    if [ $code -eq 0 ]
+    then
+        echo "$1 : KO"
+    else
+        # si le test s'est exécuté avec une erreur, on regarde si l'erreur générée correspond à celle attendue
+        file=${2%*.expected}
+        test_context "$path" 2> "$file.res" > /dev/null
+
+        if [ -f $2 ]; then
+            if grep "$(cat $2)" "$file.res" > /dev/null ; then
+                echo "$1 : PASSED."
+                nbpassed=$((nbpassed+1))
+            else
+                echo "$1 : FAILED."
+                echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
+            fi
+        else
+            echo "$1 : Fichier .expected inexistant"
+        fi
+    fi
+}
+
+# Fonction vérifiant les tests valides contextuellement
+test_context_valid () {
+    # $1 = fichier .deca
+    # $2 = fichier .expected
+
+    path=$(echo $1 | tr '\\' '/')
+
+    cmd=$(test_context "$path" 2>&1) # on exécute notre test
+    code=$? # si code vaut 0 alors succès, sinon échec
+
+    if [ $code -eq 0 ]
+    then
+        # si le test s'est exécuté sans erreur, on regarde si le résultat généré correspond à celui attendu
+        file=${2%*.expected}
+        test_context "$path" > "$file.res"
+
+        if [ -f $2 ]; then
+            if grep "$(cat $2)" "$file.res" > /dev/null ; then
+                echo "$1 : PASSED."
+                nbpassed=$((nbpassed+1))
+            else
+                echo "$1 : FAILED."
+                diff "$2" "${file}.res"
+            fi
+        else
+            echo "$1 : Fichier .expected inexistant"
+        fi
+    else
+        echo "$1 : KO"
+    fi
+}
+
+#for cas_de_test in src/test/deca/syntax/valid/provided/*.deca
+#do
+#    nbtests=$((nbtests+1))
+#    expected=$(basename $cas_de_test .${cas_de_test##*.})
+#    file="src/test/deca/context/valid/provided/$expected.expected"
+#    test_context_valid "$cas_de_test"
+#done
+
+#for cas_de_test in src/test/deca/syntax/valid/renduInitial/*.deca
+#do
+#    nbtests=$((nbtests+1))
+#    expected=$(basename $cas_de_test .${cas_de_test##*.})
+#    file="src/test/deca/context/valid/renduInitial/$expected.expected"
+#    test_context_valid "$cas_de_test"
+#done
+
+nbtests=0
+nbpassed=0
+echo "### TEST: src/test/deca/codegen/valid/renduInter01/ ###"
+for cas_de_test in src/test/deca/codegen/valid/renduInter01/*.deca
+do
+    nbtests=$((nbtests+1))
+    expected=$(basename $cas_de_test .${cas_de_test##*.})
+    file="src/test/deca/context/valid/renduInter01/$expected.expected"
+    test_context_valid "$cas_de_test" "$file"
+done
+echo
+
+echo "### TEST: src/test/deca/codegen/interactive/renduInter01/ ###"
+for cas_de_test in src/test/deca/codegen/interactive/renduInter01/*.deca
+do
+    nbtests=$((nbtests+1))
+    expected=$(basename $cas_de_test .${cas_de_test##*.})
+    file="src/test/deca/context/valid/renduInter01/$expected.expected"
+    test_context_valid "$cas_de_test" "$file"
+done
+echo
+
+echo "### TEST: src/test/deca/context/invalid/renduInter01/ ###"
+for cas_de_test in src/test/deca/context/invalid/renduInter01/*.deca
+do
+    nbtests=$((nbtests+1))
+    expected=$(basename $cas_de_test .${cas_de_test##*.})
+    file="src/test/deca/context/invalid/renduInter01/$expected"
+    test_context_invalid "$cas_de_test"  "$file.expected"
+done
+echo
+
+echo "$nbpassed/$nbtests"

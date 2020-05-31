@@ -220,8 +220,7 @@ public class Identifier extends AbstractIdentifier {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
-        DAddr addr = getVariableDefinition().getOperand();
-        compiler.addInstruction(new LOAD(addr, register));
+        compiler.addInstruction(new LOAD(getVariableDefinition().getOperand(), register));
     }
 
     @Override

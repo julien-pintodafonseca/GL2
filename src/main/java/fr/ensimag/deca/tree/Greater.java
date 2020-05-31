@@ -25,14 +25,13 @@ public class Greater extends AbstractOpIneq {
     }
     
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
-        super.codeGenCMP(compiler, label);
-        compiler.addInstruction(new BLE(label));
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+        super.codeGenCMP(compiler, label, reverse);
+        if (reverse) {
+            compiler.addInstruction(new BLE(label));
+        } else {
+            compiler.addInstruction(new BGT(label));
+        }
     }
 
-    @Override
-    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
-    	super.codeGenCMP(compiler, label);
-        compiler.addInstruction(new BGT(label));
-    }
 }

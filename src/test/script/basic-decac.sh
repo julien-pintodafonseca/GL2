@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# Auteur : Equipe GL2
+# Date : 2020
+
 # Test de l'interface en ligne de commande de decac.
 # On ne met ici qu'un test trivial, a vous d'en ecrire de meilleurs.
 

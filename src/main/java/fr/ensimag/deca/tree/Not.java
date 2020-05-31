@@ -3,6 +3,7 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.BNE;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.deca.DecacCompiler;
@@ -33,46 +34,39 @@ public class Not extends AbstractUnaryExpr {
         return t;
     }
 
-
     @Override
     protected String getOperatorName() {
         return "!";
     }
 
-
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
-    	int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            if(getOperand() instanceof BooleanLiteral) {
-        	getOperand().codeGenInst(compiler);
-        	compiler.addInstruction(new CMP(0,Register.getR(i)));
-                compiler.addInstruction(new BNE(label));
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+        if(getOperand() instanceof BooleanLiteral) {
+            // if the son is a boolean
+            int i = compiler.getRegisterManager().nextAvailable();
+            if (i != -1) {
+                compiler.getRegisterManager().take(i);
+                getOperand().codeGenInst(compiler, Register.getR(i));
+                compiler.addInstruction(new CMP(1, Register.getR(i)));
+                if (reverse) {
+                    compiler.addInstruction(new BEQ(label));
+                } else {
+                    compiler.addInstruction(new BNE(label));
+                }
+                compiler.getRegisterManager().free(i);
             } else {
-        	getOperand().codeGenCMPNot(compiler, label);
+                // chargement dans la pile de 1 registre
+                throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+                // restauration dans le registre
             }
-            compiler.getRegisterManager().free(i);
         } else {
-            throw new DecacFatalError("not yet implemented");
+            // else the son is any other AbstractExpr
+            if (reverse) {
+                getOperand().codeGenCMP(compiler, label, false);
+            } else {
+                getOperand().codeGenCMP(compiler, label, true);
+            }
         }
     }
 
-    @Override
-    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
-        // not( not(expr)) => expr
-        int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            if(getOperand() instanceof BooleanLiteral) {
-                getOperand().codeGenInst(compiler);
-                compiler.addInstruction(new CMP(1,Register.getR(i)));
-                compiler.addInstruction(new BNE(label));
-            } else {
-                getOperand().codeGenCMP(compiler, label);
-            }
-            compiler.getRegisterManager().free(i);
-        } else {
-        	
-            throw new UnsupportedOperationException("not yet implemented");
-        }
-    }
 }

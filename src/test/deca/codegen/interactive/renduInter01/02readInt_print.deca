@@ -1,6 +1,6 @@
 // Description:
 //      Fonction readInt() : permet la lecture d'un nombre entier saisi par l'utilisateur
-//      Test d'appel de la fonction readInt() lors d'une affectation
+//      => Cas spécifique avec appel de la fonction readInt() lors d'un affichage (println)
 //
 // Resultats:
 // -> Si l'utilisateur saisi un nombre entier:
@@ -12,6 +12,5 @@
 {
     int x;
     println("Veuillez entrer un nombre entier : ");
-    x = readInt();
-    println("x=", x);
+    println("x=", readInt());
 }

@@ -134,6 +134,7 @@ public abstract class AbstractExpr extends AbstractInst {
      * @param compiler
      */
     protected void codeGenPrint(DecacCompiler compiler) {
+        // affichage des expressions binaires
         throw new UnsupportedOperationException("not yet implemented");
     }
 
@@ -143,11 +144,20 @@ public abstract class AbstractExpr extends AbstractInst {
         if (i != -1) {
             compiler.getRegisterManager().take(i);
             codeGenInst(compiler, Register.getR(i));
+            compiler.getRegisterManager().free(i);
         } else {
-            throw new UnsupportedOperationException("not yet implemented");
+            // chargement dans la pile de 1 registre
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration dans le registre
         }
     }
 
+    /**
+     * Generate assembly code for the instruction and put the result of the instruction in the register.
+     *
+     * @param compiler
+     * @param register
+     */
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
         throw new UnsupportedOperationException("not yet implemented");
     }
@@ -157,23 +167,14 @@ public abstract class AbstractExpr extends AbstractInst {
      *
      * @param compiler
      * @param label : label where the program must continue if the condition is not respected
+     * @param reverse : if reverse is true, we compare instructions to have (expr1 op expr2) => true
+     *                if reverse is false, we compare instructions to have (expr1 op expr2) => false
+     *                with op a comparison operator
      * @throws DecacFatalError
      */
-    protected void codeGenCMP(DecacCompiler compiler, Label label) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         throw new UnsupportedOperationException("not yet implemented");
     }
-
-    /**
-     * Generate code to verify that a condition is not respected
-     *
-     * @param compiler
-     * @param label : label where the program must continue if the condition is respected
-     * @throws DecacFatalError
-     */
-    protected void codeGenCMPNot(DecacCompiler compiler, Label label) throws DecacFatalError {
-        throw new UnsupportedOperationException("not yet implemented");
-    }
-    
     
     @Override
     protected void decompileInst(IndentPrintStream s) {
