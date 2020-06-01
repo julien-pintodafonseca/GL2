@@ -23,8 +23,8 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_DECLVAR_DUPE = "La variable suivante a déjà été déclarée précédemment : ";
     public static final String CONTEXTUAL_ERROR_IDENT_NULL_VAR = "La variable suivante est indéfinie : ";
     public static final String CONTEXTUAL_ERROR_IDENT_NULL_TYPE = "Le type de variable suivant est indéfini : ";
-    public static final String CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE = "Le type de variable suivant est incompatible pour l'affectation : ";
-    public static final String CONTEXTUAL_ERROR_COMPARAISON_INCOMPATIBLE_TYPE = "Deux expressions ne peuvent pas être comparées si leurs types sont les suivants : ";
-    public static final String CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE = "L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : ";
+    public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_ASSIGN_TYPE = "Le type de variable suivant est incompatible pour l'affectation : ";
+    public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE = "Deux expressions ne peuvent pas être comparées si leurs types sont les suivants : ";
+    public static final String CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE = "L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : ";
 
 }

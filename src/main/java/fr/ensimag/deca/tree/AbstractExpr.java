@@ -97,7 +97,7 @@ public abstract class AbstractExpr extends AbstractInst {
             conv.setType(expectedType);
             return conv;
         } else {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE + rightType + " ( type attendue : "+ expectedType + " )",getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_ASSIGN_TYPE + rightType + " ( type attendue : "+ expectedType + " )",getLocation());
         }
     }
     
@@ -124,7 +124,7 @@ public abstract class AbstractExpr extends AbstractInst {
     void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         if (!type.isBoolean()) {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE + type + ".", getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + type + ".", getLocation());
         }
     }
 

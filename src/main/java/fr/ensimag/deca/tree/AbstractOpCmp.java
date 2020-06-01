@@ -50,7 +50,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             setType(t);
             return t;
         } else {
-            throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_COMPARAISON_INCOMPATIBLE_TYPE + t1 + " (pour " +
+            throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE + t1 + " (pour " +
                     getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
         }
 

@@ -45,7 +45,7 @@ public class IfThenElse extends AbstractInst {
             thenBranch.verifyListInst(compiler, localEnv, currentClass, returnType);
             elseBranch.verifyListInst(compiler, localEnv, currentClass, returnType);
         } else {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEENNE_INCOMPATIBLE_TYPE +
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE +
                     condition.getType(), getLocation());
         }
     }
