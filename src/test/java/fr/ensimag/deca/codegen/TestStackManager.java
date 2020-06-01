@@ -3,8 +3,6 @@ package fr.ensimag.deca.codegen;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class TestStackManager extends TestCase {
 
     @Test

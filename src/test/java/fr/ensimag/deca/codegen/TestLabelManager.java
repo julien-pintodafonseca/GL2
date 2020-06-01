@@ -1,32 +1,41 @@
 package fr.ensimag.deca.codegen;
 
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThrows;
+
 public class TestLabelManager extends TestCase {
+    final DecacFatalError expectedLabelTypeEx = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
 
     @Test
-    public void testGetLabelValue() throws DecacFatalError {
-        LabelManager lm = new LabelManager();
+    public void testLabelType() {
         // Tous les labels nécessaires sont présents dans l'enum "LabelType"
         assertNotNull(LabelType.valueOf("LB_WHILE"));
         assertNotNull(LabelType.valueOf("LB_OR"));
         assertNotNull(LabelType.valueOf("LB_ELSE"));
-
-        // Les différents label types sont présents dans la map "myLabels"
-        for (LabelType lt : LabelType.values()) {
-            assertNotNull(lm.getLabelValue(lt));
-        }
-
-        // La demande d'un label qui ne fait pas parti de l'enum "LabelType" renvoie une erreur.
-        // => Ne peut pas être testé car un type enum contient un nombre fini d'élément.
-        //    Or, on a vérifié que tous les éléments faisaient parti de la liste "myLabels".
-
     }
 
     @Test
-    public static void testIncrLabelValue() throws DecacFatalError {
+    public void testGetLabelValue() throws DecacFatalError {
+        LabelManager lm = new LabelManager();
+
+        // Les différents labelTypes sont présents dans l'attribut "myLabels"
+        for (LabelType lt : LabelType.values()) {
+            assertEquals(lm.getLabelValue(lt), Integer.valueOf(0));
+        }
+
+        // On vérifie le cas où le labelType est incorrect
+        DecacFatalError result = assertThrows(DecacFatalError.class, () -> {lm.getLabelValue(null);});
+        assertThat(result.getMessage(), is(expectedLabelTypeEx.getMessage()));
+    }
+
+    @Test
+    public void testIncrLabelValue() throws DecacFatalError {
         LabelManager lm = new LabelManager();
 
         // La map "myLabels" est actualisée : on augmente la valeur de 1 en 1

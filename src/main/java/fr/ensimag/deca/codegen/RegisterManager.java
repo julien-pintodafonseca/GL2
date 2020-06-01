@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2020
  */
 public class RegisterManager {
-    private Map<Integer, Boolean> registers; // Boolean is true if the registers is actually using
+    private Map<Integer, Boolean> registers; // Value is true if the register is used
     private int size; // R0 ... R{size-1}
 
     public RegisterManager(int n) {
@@ -23,6 +23,7 @@ public class RegisterManager {
         size = n;
         registers = new HashMap<>();
 
+        // We don't deal with scratch registers R0 & R1
         for(int i=2; i<=(size-1); i++) {
             registers.put(i, false);
         }
@@ -32,7 +33,7 @@ public class RegisterManager {
         return size;
     }
 
-    public boolean isAvailable(int regNumber) throws DecacFatalError {
+    public boolean isTaken(int regNumber) throws DecacFatalError {
         verifyRegNumber(regNumber);
         return registers.get(regNumber);
     }
@@ -57,7 +58,7 @@ public class RegisterManager {
     }
 
     private void verifyRegNumber(int regNumber) throws DecacFatalError {
-        boolean verifyMinVal = regNumber >= 2;
+        boolean verifyMinVal = regNumber >= 2; // We don't deal with scratch registers R0 & R1
         boolean verifyMaxVal = regNumber <= (size-1);
         if (!verifyMinVal || !verifyMaxVal) {
             throw new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+regNumber);
