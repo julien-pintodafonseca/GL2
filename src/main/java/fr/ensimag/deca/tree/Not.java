@@ -42,7 +42,7 @@ public class Not extends AbstractUnaryExpr {
     @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         if(getOperand() instanceof BooleanLiteral) {
-            // if the son is a boolean
+            // Si l'attribut "operand" est un booleanLiteral
             int i = compiler.getRegisterManager().nextAvailable();
             if (i != -1) {
                 compiler.getRegisterManager().take(i);
@@ -60,7 +60,7 @@ public class Not extends AbstractUnaryExpr {
                 // restauration dans le registre
             }
         } else {
-            // else the son is any other AbstractExpr
+            // sinon si l'attribut "operand" est un autre objet de type AbstractExpr
             if (reverse) {
                 getOperand().codeGenCMP(compiler, label, false);
             } else {

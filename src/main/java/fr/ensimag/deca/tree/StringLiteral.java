@@ -40,7 +40,7 @@ public class StringLiteral extends AbstractStringLiteral {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) {
         LOG.debug("verify expr: start (stringLiteral)");
         // Règle syntaxe contextuelle : (3.47)
         Type type = compiler.environmentType.STRING;

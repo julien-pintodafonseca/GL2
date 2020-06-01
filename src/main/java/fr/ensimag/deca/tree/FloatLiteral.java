@@ -42,7 +42,7 @@ public class FloatLiteral extends AbstractExpr {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) {
         LOG.debug("verify expr: start (FloatLiteral)");
         // Règle syntaxe contextuelle : (3.45)
         Type type = compiler.environmentType.FLOAT;
