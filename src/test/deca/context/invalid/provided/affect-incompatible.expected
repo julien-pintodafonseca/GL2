@@ -1,1 +1,1 @@
-affect-incompatible.deca:13:7: Type de variable incompatible pour l'affectation.
+affect-incompatible.deca:13:7: Le type de variable suivant est incompatible pour l'affectation : boolean ( type attendue : int )
