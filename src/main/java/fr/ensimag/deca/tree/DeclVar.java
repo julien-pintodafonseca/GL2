@@ -43,7 +43,7 @@ public class DeclVar extends AbstractDeclVar {
 
         // Condition typeVar != void
         if (typeVar.isVoid()) {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_NULL, getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_NULL + typeVar.getName(), getLocation());
         }
 
         varName.setType(typeVar);
@@ -53,7 +53,7 @@ public class DeclVar extends AbstractDeclVar {
         try {
             localEnv.declare(varName.getName(), defVar);
         } catch (Exception e) {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_DUPE, getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLVAR_DUPE + varName.getName(), getLocation());
         }
 
         initialization.verifyInitialization(compiler, typeVar, localEnv, currentClass);

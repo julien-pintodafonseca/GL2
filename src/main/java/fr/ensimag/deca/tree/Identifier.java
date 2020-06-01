@@ -193,7 +193,7 @@ public class Identifier extends AbstractIdentifier {
         TypeDefinition typeDef = compiler.environmentType.defOfType(getName());
 
         if (typeDef == null) {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_TYPE, getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_TYPE + getName(), getLocation());
         } else {
             setDefinition(typeDef);
             LOG.debug("verify type: end ("+getName()+")");

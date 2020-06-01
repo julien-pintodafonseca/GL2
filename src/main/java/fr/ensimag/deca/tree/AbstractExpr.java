@@ -97,7 +97,7 @@ public abstract class AbstractExpr extends AbstractInst {
             conv.setType(expectedType);
             return conv;
         } else {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE, getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ASSIGN_INCOMPATIBLE_TYPE + rightType + " ( type attendue : "+ expectedType + " )",getLocation());
         }
     }
     
