@@ -136,7 +136,7 @@ public abstract class AbstractExpr extends AbstractInst {
      *
      * @param compiler
      */
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) {
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
         if(getType().isInt()) {
             compiler.addInstruction(new WINT());
         } else if (getType().isFloat()) {

@@ -45,7 +45,18 @@ public class UnaryMinus extends AbstractUnaryExpr {
 
     @Override
     protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        codeGenInst(compiler);
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            getOperand().codeGenInst(compiler, Register.getR(i));
+            compiler.addInstruction(new OPP(Register.getR(i), Register.R1));
+            super.codeGenPrint(compiler, printHex);
+            compiler.getRegisterManager().free(i);
+        } else {
+            // chargement dans la pile de 1 registre
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration dans le registre
+        }
     }
 
     @Override

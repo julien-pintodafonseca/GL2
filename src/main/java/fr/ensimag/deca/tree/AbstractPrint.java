@@ -1,5 +1,6 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.FloatType;
 import fr.ensimag.deca.context.IntType;
@@ -50,7 +51,7 @@ public abstract class AbstractPrint extends AbstractInst {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) {
+    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
         for (AbstractExpr a : getArguments().getList()) {
             a.codeGenPrint(compiler, getPrintHex());
         }
