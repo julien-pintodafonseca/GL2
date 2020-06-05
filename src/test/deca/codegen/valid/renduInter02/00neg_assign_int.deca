@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur unaire neg
+//      => Cas spécifique avec utilisation de neg lors de l'affectation d'une variable de type INT
+//
+// Resultats:
+//      x=-1
+
+{
+    int x;
+    x = -1;
+    print("x=", x);
+}

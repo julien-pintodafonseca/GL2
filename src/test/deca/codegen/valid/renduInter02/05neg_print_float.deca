@@ -1,0 +1,14 @@
+// Description:
+//      Opérateur unaire neg
+//      => Cas spécifique avec utilisation de neg lors de l'affichage d'une variable de type FLOAT
+//
+// Resultats:
+//      x=-1
+//      y=7.2
+
+{
+    float x = 1;
+    float y = -(7.2);
+    print("x=", -x);
+    print("y=", -y);
+}

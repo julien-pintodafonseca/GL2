@@ -4,7 +4,7 @@
 //
 // Resultats:
 //      Erreur contextuelle
-//      Ligne 11 : Type string incompatible avec l'opérateur NOT
+//      Ligne 11 : Type int incompatible avec l'opérateur NOT
 
 {
     int x = 42;

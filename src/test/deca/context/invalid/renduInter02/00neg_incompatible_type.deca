@@ -1,0 +1,11 @@
+// Description:
+//      Opérateur NEG incorrect au niveau du typage
+//      => l'opérateur neg est uniquement applicable sur un entier ou un réel
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : Type string incompatible avec l'opérateur NEG
+
+{
+    print("x=", -("hello"));
+}
