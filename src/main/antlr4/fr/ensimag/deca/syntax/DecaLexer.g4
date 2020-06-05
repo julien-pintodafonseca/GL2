@@ -37,6 +37,7 @@ PRINT: 'print';
 PRINTLN: 'println';
 READINT: 'readInt';
 READFLOAT: 'readFloat';
+MINUS: '-';
 
 fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
 fragment DIGIT: '0' .. '9';
