@@ -1,5 +1,6 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -19,7 +20,15 @@ public class UnaryMinus extends AbstractUnaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Syntaxe contextuelle : règle (3.37)
+        getOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type t = getOperand().getType();
+        if (t.isFloat() || t.isInt()) {
+            setType(t);
+            return t;
+        } else {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_UNARY_MINUS_INCOMPATIBLE_TYPE + t + ".", getLocation());
+        }
     }
 
 

@@ -1,0 +1,47 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [9, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [10, 10] DeclVar
+      |  ||  +> [10, 4] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [10, 10] Identifier (x)
+      |  ||  |  definition: variable defined at [10, 10], type=float
+      |  ||  `> NoInitialization
+      |  []> [11, 10] DeclVar
+      |      +> [11, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [11, 10] Identifier (y)
+      |      |  definition: variable defined at [11, 10], type=float
+      |      `> NoInitialization
+      `> ListInst [List with 4 elements]
+         []> [12, 6] Assign
+         ||  type: float
+         ||  +> [12, 4] Identifier (x)
+         ||  |  definition: variable defined at [10, 10], type=float
+         ||  `> ConvFloat
+         ||     type: float
+         ||     `> [12, 8] UnaryMinus
+         ||        type: int
+         ||        `> [12, 9] Int (1)
+         ||           type: int
+         []> [13, 6] Assign
+         ||  type: float
+         ||  +> [13, 4] Identifier (y)
+         ||  |  definition: variable defined at [11, 10], type=float
+         ||  `> [13, 8] UnaryMinus
+         ||     type: float
+         ||     `> [13, 9] Float (7.2)
+         ||        type: float
+         []> [14, 4] Print
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [14, 10] StringLiteral (x=)
+         ||     ||  type: string
+         ||     []> [14, 16] Identifier (x)
+         ||         definition: variable defined at [10, 10], type=float
+         []> [15, 4] Print
+             `> ListExpr [List with 2 elements]
+                []> [15, 10] StringLiteral (y=)
+                ||  type: string
+                []> [15, 16] Identifier (y)
+                    definition: variable defined at [11, 10], type=float

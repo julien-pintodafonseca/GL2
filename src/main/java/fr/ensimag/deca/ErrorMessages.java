@@ -26,5 +26,6 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_ASSIGN_TYPE = "Le type de variable suivant est incompatible pour l'affectation : ";
     public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE = "Deux expressions ne peuvent pas être comparées si leurs types sont les suivants : ";
     public static final String CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE = "L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : ";
+    public static final String CONTEXTUAL_ERROR_UNARY_MINUS_INCOMPATIBLE_TYPE = "L'opérateur moins unaire (symbole \"-\") doit s'appliquer sur une expression de type int ou float. Or, il est appliqué sur une expression de type : ";
 
 }

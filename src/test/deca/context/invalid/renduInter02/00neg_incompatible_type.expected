@@ -1,0 +1,1 @@
+00neg_incompatible_type.deca:10:16: L'opérateur moins unaire (symbole "-") doit s'appliquer sur une expression de type int ou float. Or, il est appliqué sur une expression de type : string.
