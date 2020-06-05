@@ -10,7 +10,7 @@
 //      Erreur : la saisie est incorrecte
 
 {
-    int x;
+    float x;
     println("Veuillez entrer un nombre réel : ");
     println("x=", readFloat());
 }
