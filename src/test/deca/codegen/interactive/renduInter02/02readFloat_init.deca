@@ -1,0 +1,16 @@
+// Description:
+//      Fonction readFloat() : permet la lecture d'un nombre entier saisi par l'utilisateur
+//      Test d'appel de la fonction readFloat() lors d'une initialisation
+//
+// Resultats:
+// -> Si l'utilisateur saisi un nombre réel:
+//      Veuillez entrer un nombre réel :
+//      x=<valeur de x>
+// -> Sinon:
+//      Erreur : la saisie est incorrecte
+
+{
+    int x = readFloat();
+    println("Veuillez entrer un nombre réel : ");
+    println("x=", x);
+}

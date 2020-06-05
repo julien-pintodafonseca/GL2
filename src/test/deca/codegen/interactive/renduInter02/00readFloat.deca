@@ -1,0 +1,17 @@
+// Description:
+//      Fonction readFloat() : permet la lecture d'un nombre flottant saisi par l'utilisateur
+//      Test d'appel de la fonction readFloat() lors d'une affectation
+//
+// Resultats:
+// -> Si l'utilisateur saisi un nombre réel :
+//      Veuillez entrer un nombre réel :
+//      x=<valeur de x>
+// -> Sinon:
+//      Erreur : la saisie est incorrecte
+
+{
+    int x;
+    println("Veuillez entrer un nombre réel : ");
+    x = readFloat();
+    println("x=", x);
+}
