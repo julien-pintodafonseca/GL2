@@ -7,26 +7,26 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 
-public class TestReadInt extends TestCase {
+public class TestReadFloat extends TestCase {
 
     private DecacCompiler compiler = compiler = new DecacCompiler(null, null);
 
     @Test
     public void testVerifyExpr() {
-        ReadInt read = new ReadInt();
+        ReadFloat read = new ReadFloat();
 
-        // Le type renvoyé est bien INT
-        assertEquals(read.verifyExpr(compiler, null, null), compiler.environmentType.INT);
+        // Le type renvoyé est bien FLOAT
+        assertEquals(read.verifyExpr(compiler, null, null), compiler.environmentType.FLOAT);
 
-        // Le type de l'expression est bien INT
-        assertEquals(read.getType(), compiler.environmentType.INT);
+        // Le type de l'expression est bien FLOAT
+        assertEquals(read.getType(), compiler.environmentType.FLOAT);
     }
 
     @Test
     public void testCodeGenPrint() {
-        ReadInt read = new ReadInt();
+        ReadFloat read = new ReadFloat();
         read.verifyExpr(compiler, null, null);
-        ReadInt readCodeGenPrint = new ReadInt();
+        ReadFloat readCodeGenPrint = new ReadFloat();
         readCodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
@@ -36,9 +36,9 @@ public class TestReadInt extends TestCase {
 
     @Test
     public void testCodeGenInst() {
-        ReadInt read = new ReadInt();
+        ReadFloat read = new ReadFloat();
         read.verifyExpr(compiler, null, null);
-        ReadInt readCodeGenPrint = new ReadInt();
+        ReadFloat readCodeGenPrint = new ReadFloat();
         readCodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code

@@ -37,11 +37,11 @@ public class TestStringLiteral extends TestCase {
         str2CodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
-        str1CodeGenPrint.codeGenPrint(compiler);
+        str1CodeGenPrint.codeGenPrint(compiler, false);
         assertEquals(str1.getValue(), str1CodeGenPrint.getValue());
         assertEquals(str1.getType(), str1CodeGenPrint.getType());
 
-        str2CodeGenPrint.codeGenPrint(compiler);
+        str2CodeGenPrint.codeGenPrint(compiler, true);
         assertEquals(str2.getValue(), str2CodeGenPrint.getValue());
         assertEquals(str2.getType(), str2CodeGenPrint.getType());
     }

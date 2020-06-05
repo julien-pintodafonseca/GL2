@@ -53,11 +53,11 @@ public class TestFloatLiteral extends TestCase {
         float2CodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
-        float1CodeGenPrint.codeGenPrint(compiler);
+        float1CodeGenPrint.codeGenPrint(compiler, false);
         assertEquals(float1.getValue(), float1CodeGenPrint.getValue());
         assertEquals(float1.getType(), float1CodeGenPrint.getType());
 
-        float2CodeGenPrint.codeGenPrint(compiler);
+        float2CodeGenPrint.codeGenPrint(compiler, false);
         assertEquals(float2.getValue(), float2CodeGenPrint.getValue());
         assertEquals(float2.getType(), float2CodeGenPrint.getType());
     }

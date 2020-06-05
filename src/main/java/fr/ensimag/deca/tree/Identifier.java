@@ -205,17 +205,11 @@ public class Identifier extends AbstractIdentifier {
     private Definition definition;
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler) {
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) {
         VariableDefinition varDef = getVariableDefinition();
         DAddr addr = varDef.getOperand();
         compiler.addInstruction(new LOAD(addr, Register.R1));
-        if(varDef.getType().isInt()) {
-            compiler.addInstruction(new WINT());
-        } else if (varDef.getType().isFloat()) {
-            compiler.addInstruction(new WFLOAT());
-        } else {
-            throw new UnsupportedOperationException("not yet implemented");
-        }
+        super.codeGenPrint(compiler, printHex);
     }
 
     @Override

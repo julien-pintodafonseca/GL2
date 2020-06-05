@@ -53,11 +53,11 @@ public class TestIntLiteral extends TestCase {
         int2CodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
-        int1CodeGenPrint.codeGenPrint(compiler);
+        int1CodeGenPrint.codeGenPrint(compiler, false);
         assertEquals(int1.getValue(), int1CodeGenPrint.getValue());
         assertEquals(int1.getType(), int1CodeGenPrint.getType());
 
-        int2CodeGenPrint.codeGenPrint(compiler);
+        int2CodeGenPrint.codeGenPrint(compiler, false);
         assertEquals(int2.getValue(), int2CodeGenPrint.getValue());
         assertEquals(int2.getType(), int2CodeGenPrint.getType());
     }

@@ -9,6 +9,9 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
+import fr.ensimag.ima.pseudocode.instructions.WFLOATX;
+import fr.ensimag.ima.pseudocode.instructions.WINT;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -133,9 +136,18 @@ public abstract class AbstractExpr extends AbstractInst {
      *
      * @param compiler
      */
-    protected void codeGenPrint(DecacCompiler compiler) {
-        // affichage des expressions binaires
-        throw new UnsupportedOperationException("not yet implemented");
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) {
+        if(getType().isInt()) {
+            compiler.addInstruction(new WINT());
+        } else if (getType().isFloat()) {
+            if (printHex) {
+                compiler.addInstruction(new WFLOATX());
+            } else {
+                compiler.addInstruction(new WFLOAT());
+            }
+        } else {
+            throw new UnsupportedOperationException("not yet implemented");
+        }
     }
 
     @Override
