@@ -404,8 +404,9 @@ primary_expr returns[AbstractExpr tree]
             $tree = new ReadInt();
             setLocation($tree, $token);
         }
-    | READFLOAT OPARENT CPARENT {
+    | token=READFLOAT OPARENT CPARENT {
             $tree = new ReadFloat();
+            setLocation($tree, $token);
         }
     | NEW ident OPARENT CPARENT {
             assert($ident.tree != null);

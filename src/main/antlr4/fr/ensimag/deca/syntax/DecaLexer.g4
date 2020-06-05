@@ -36,6 +36,7 @@ SPACES: (' ' | '\t' | '\n' | '\r') { skip(); };
 PRINT: 'print';
 PRINTLN: 'println';
 READINT: 'readInt';
+READFLOAT: 'readFloat';
 
 fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
 fragment DIGIT: '0' .. '9';
