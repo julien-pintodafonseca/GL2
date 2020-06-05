@@ -46,7 +46,6 @@ public class Initialization extends AbstractInitialization {
         LOG.debug("verify initialization: start");
         AbstractExpr rightExpr = getExpression().verifyRValue(compiler, localEnv, currentClass, t);
         setExpression(rightExpr);
-        rightExpr.verifyExpr(compiler, localEnv, currentClass);
         LOG.debug("verify initialization: end");
     }
 

@@ -1,0 +1,16 @@
+// Description:
+//      Fonction readInt() : permet la lecture d'un nombre entier saisi par l'utilisateur
+//      => Cas spécifique avec appel de la fonction readInt() lors de l'initialisation d'une variable INT
+//
+// Resultats:
+// -> Si l'utilisateur saisi un nombre entier:
+//      Veuillez entrer un nombre entier :
+//      x=<valeur de x>
+// -> Sinon:
+//      Erreur : la saisie est incorrecte
+
+{
+    int x = readInt();
+    println("Veuillez entrer un nombre entier : ");
+    println("x=", x);
+}
