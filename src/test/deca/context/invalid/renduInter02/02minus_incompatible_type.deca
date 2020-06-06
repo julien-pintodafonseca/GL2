@@ -1,10 +1,10 @@
 // Description:
-//      Opérateur minus incorrect au niveau du typage
-//      => l'opérateur minus est uniquement applicable sur un entier ou un réel
+//      Opérateur moins incorrect au niveau du typage
+//      => l'opérateur moins est uniquement applicable sur un entier ou un réel
 //
 // Resultats:
 //      Erreur contextuelle
-//      Ligne 10 : Type string incompatible avec l'opérateur minus
+//      Ligne 10 : Type string incompatible avec l'opérateur moins
 
 {
     int x = 7 - "hello";

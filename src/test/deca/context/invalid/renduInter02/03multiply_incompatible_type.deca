@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur de multiplication incorrect au niveau du typage
+//      => l'opérateur de multiplication est uniquement applicable sur un entier ou un réel
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : Type string incompatible avec l'opérateur de multiplication
+
+{
+    int x = 7 * "hello";
+    println("x=", x);
+}
