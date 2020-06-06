@@ -1,5 +1,5 @@
 // Description:
-//      Opérateur binaire % incorrecte au niveau des valeurs utilisées
+//      Opération binaire % incorrecte : valeurs inappropriées utilisées pour le calcul
 //      => L'opérateur % ne peut pas donner le reste d'une division par 0
 //
 // Resultats:

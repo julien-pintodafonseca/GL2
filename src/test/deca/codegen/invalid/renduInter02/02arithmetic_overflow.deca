@@ -1,0 +1,15 @@
+// Description:
+//      Programme incorrecte à l'exécution
+//      => Dépassemement arithmétique lors de calculs sur des grands nombres
+//
+// Resultats:
+//      Erreur à l'exécution
+//      Ligne 10 : dépassement arithmétique
+
+{
+    int x = 50000000000000000000;
+    int y = 52892861549631486315;
+    int z = 21465435486135;
+    int t = (z+y) * y * x * y;
+    println("t=", t);
+}

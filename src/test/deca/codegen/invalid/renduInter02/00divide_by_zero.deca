@@ -1,5 +1,5 @@
 // Description:
-//      Opérateur binaire de division incorrecte au niveau des valeurs utilisées
+//      Opération binaire "/" incorrecte : valeurs inappropriées utilisées pour le calcul
 //      => L'opérateur de division ne peut pas diviser un nombre par 0
 //
 // Resultats:

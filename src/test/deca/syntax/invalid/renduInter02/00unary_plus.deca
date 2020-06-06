@@ -1,6 +1,6 @@
 // Description:
 //      Programme lexicalement incorrect
-//      => l'opérateur "+" est un opérateur binaire
+//      => L'opérateur "+" est un opérateur binaire
 //
 // Resultats:
 //      Erreur syntaxique

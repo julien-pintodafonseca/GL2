@@ -1,0 +1,13 @@
+// Description:
+//      Calcul arithémtique
+//      Test d'un calcul arithmétique avec les opérateurs "+", "-", "*", "/" et "%"
+//
+// Resultats:
+//      Résultat=-57.5
+
+{
+    int x = 8;
+    int y = 3;
+    float z = -20;
+    println("Résultat=", ((52-y) % 23) * (z / x));
+}
