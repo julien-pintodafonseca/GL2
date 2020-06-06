@@ -50,8 +50,10 @@ public class Program extends AbstractProgram {
         compiler.setRegisterManager(compiler.getCompilerOptions().getRegisters());
         compiler.setStackManager(compiler.getRegisterManager());
         compiler.setLabelManager();
+        compiler.setErrorLabelManager();
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());
+        compiler.getErrorLabelManager().printErrors(compiler);
     }
 
     @Override

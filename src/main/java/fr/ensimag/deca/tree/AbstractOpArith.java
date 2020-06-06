@@ -1,11 +1,19 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.codegen.ErrorLabelType;
+import fr.ensimag.deca.codegen.LabelType;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.ima.pseudocode.GPRegister;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
 
 /**
  * Arithmetic binary operations (+, -, /, ...)
@@ -51,4 +59,28 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
                     getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
         }
     }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        getLeftOperand().codeGenInst(compiler, register);
+
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            getRightOperand().codeGenInst(compiler, Register.getR(i));
+
+            codeGenInstArith(compiler, Register.getR(i), register);
+            // test débordement arithmétique ou division par zéro
+            compiler.getErrorLabelManager().addError(ErrorLabelType.LB_ARITHMETIC_OVERFLOW);
+            compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW))));
+
+            compiler.getRegisterManager().free(i);
+        } else {
+            // chargement dans la pile de 1 registres
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration du registre
+        }
+    }
+
+    public abstract void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2);
 }
