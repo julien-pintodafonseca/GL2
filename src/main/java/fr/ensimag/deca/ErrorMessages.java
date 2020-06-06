@@ -27,5 +27,7 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE = "Deux expressions ne peuvent pas être comparées si leurs types sont les suivants : ";
     public static final String CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE = "L'expression dans la condition booléenne doit être de type booléen. Or, elle est de type : ";
     public static final String CONTEXTUAL_ERROR_UNARY_MINUS_INCOMPATIBLE_TYPE = "L'opérateur moins unaire (symbole \"-\") doit s'appliquer sur une expression de type int ou float. Or, il est appliqué sur une expression de type : ";
+    public static final String CONTEXTUAL_ERROR_ARITHMETIC_OPERATION_INCOMPATIBLE_TYPE = "Deux expressions ne peuvent pas être additionnées, soustraites, divisées ou multipliées si elles ne sont pas de type int ou float. Or, leurs types sont les suivants : ";
+    public static final String CONTEXTUAL_ERROR_MODULO_INCOMPATIBLE_TYPE = "L'opérateur % n'est utilisable qu'avec deux expressions de type int. Or, il est actuellement utilisé avec des expressions de type : ";
 
 }

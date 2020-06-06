@@ -1,0 +1,59 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [9, 8] DeclVar
+      |  ||  +> [9, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [9, 8] Identifier (x)
+      |  ||  |  definition: variable defined at [9, 8], type=int
+      |  ||  `> [9, 10] Initialization
+      |  ||     `> [9, 12] Int (8)
+      |  ||        type: int
+      |  []> [10, 8] DeclVar
+      |  ||  +> [10, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [10, 8] Identifier (y)
+      |  ||  |  definition: variable defined at [10, 8], type=int
+      |  ||  `> [10, 10] Initialization
+      |  ||     `> [10, 12] Int (3)
+      |  ||        type: int
+      |  []> [11, 10] DeclVar
+      |      +> [11, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [11, 10] Identifier (z)
+      |      |  definition: variable defined at [11, 10], type=float
+      |      `> [11, 12] Initialization
+      |         `> ConvFloat
+      |            type: float
+      |            `> [11, 14] UnaryMinus
+      |               type: int
+      |               `> [11, 15] Int (20)
+      |                  type: int
+      `> ListInst [List with 1 elements]
+         []> [12, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [12, 12] StringLiteral (Résultat=)
+                ||  type: string
+                []> [12, 39] Multiply
+                    type: float
+                    +> ConvFloat
+                    |  type: float
+                    |  `> [12, 33] Modulo
+                    |     type: int
+                    |     +> [12, 29] Minus
+                    |     |  type: int
+                    |     |  +> [12, 27] Int (52)
+                    |     |  |  type: int
+                    |     |  `> [12, 30] Identifier (y)
+                    |     |     definition: variable defined at [10, 8], type=int
+                    |     `> [12, 35] Int (23)
+                    |        type: int
+                    `> [12, 44] Divide
+                       type: float
+                       +> [12, 42] Identifier (z)
+                       |  definition: variable defined at [11, 10], type=float
+                       `> ConvFloat
+                          type: float
+                          `> [12, 46] Identifier (x)
+                             definition: variable defined at [9, 8], type=int

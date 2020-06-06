@@ -1,0 +1,83 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [11, 8] DeclVar
+      |  ||  +> [11, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [11, 8] Identifier (t)
+      |  ||  |  definition: variable defined at [11, 8], type=int
+      |  ||  `> [11, 10] Initialization
+      |  ||     `> [11, 12] Int (1)
+      |  ||        type: int
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [12, 8] Identifier (y)
+      |  ||  |  definition: variable defined at [12, 8], type=int
+      |  ||  `> NoInitialization
+      |  []> [13, 8] DeclVar
+      |  ||  +> [13, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [13, 8] Identifier (z)
+      |  ||  |  definition: variable defined at [13, 8], type=int
+      |  ||  `> NoInitialization
+      |  []> [14, 8] DeclVar
+      |      +> [14, 4] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [14, 8] Identifier (x)
+      |      |  definition: variable defined at [14, 8], type=int
+      |      `> NoInitialization
+      `> ListInst [List with 6 elements]
+         []> [15, 6] Assign
+         ||  type: int
+         ||  +> [15, 4] Identifier (y)
+         ||  |  definition: variable defined at [12, 8], type=int
+         ||  `> [15, 10] Modulo
+         ||     type: int
+         ||     +> [15, 8] Int (7)
+         ||     |  type: int
+         ||     `> [15, 12] Identifier (t)
+         ||        definition: variable defined at [11, 8], type=int
+         []> [16, 6] Assign
+         ||  type: int
+         ||  +> [16, 4] Identifier (z)
+         ||  |  definition: variable defined at [13, 8], type=int
+         ||  `> [16, 11] Modulo
+         ||     type: int
+         ||     +> [16, 8] Int (10)
+         ||     |  type: int
+         ||     `> [16, 13] UnaryMinus
+         ||        type: int
+         ||        `> [16, 14] Int (5)
+         ||           type: int
+         []> [17, 6] Assign
+         ||  type: int
+         ||  +> [17, 4] Identifier (x)
+         ||  |  definition: variable defined at [14, 8], type=int
+         ||  `> [17, 10] Modulo
+         ||     type: int
+         ||     +> [17, 8] Identifier (y)
+         ||     |  definition: variable defined at [12, 8], type=int
+         ||     `> [17, 13] UnaryMinus
+         ||        type: int
+         ||        `> [17, 14] Identifier (z)
+         ||           definition: variable defined at [13, 8], type=int
+         []> [18, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [18, 12] StringLiteral (x=)
+         ||     ||  type: string
+         ||     []> [18, 18] Identifier (x)
+         ||         definition: variable defined at [14, 8], type=int
+         []> [19, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [19, 12] StringLiteral (y=)
+         ||     ||  type: string
+         ||     []> [19, 18] Identifier (y)
+         ||         definition: variable defined at [12, 8], type=int
+         []> [20, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [20, 12] StringLiteral (z=)
+                ||  type: string
+                []> [20, 18] Identifier (z)
+                    definition: variable defined at [13, 8], type=int

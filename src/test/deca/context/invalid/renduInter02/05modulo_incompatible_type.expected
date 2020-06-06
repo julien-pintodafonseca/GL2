@@ -1,0 +1,1 @@
+05modulo_incompatible_type.deca:10:18: L'opérateur % n'est utilisable qu'avec deux expressions de type int. Or, il est actuellement utilisé avec des expressions de type : float (pour 0x1.ccccccp2) et int (pour 1).

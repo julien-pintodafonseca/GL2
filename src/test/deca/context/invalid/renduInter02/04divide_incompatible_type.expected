@@ -1,0 +1,1 @@
+04divide_incompatible_type.deca:10:14: Deux expressions ne peuvent pas être additionnées, soustraites, divisées ou multipliées si elles ne sont pas de type int ou float. Or, leurs types sont les suivants : int (pour 7) et string (pour "hello").

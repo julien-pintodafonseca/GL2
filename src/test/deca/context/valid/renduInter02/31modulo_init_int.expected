@@ -1,0 +1,71 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [11, 8] DeclVar
+      |  ||  +> [11, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [11, 8] Identifier (t)
+      |  ||  |  definition: variable defined at [11, 8], type=int
+      |  ||  `> [11, 10] Initialization
+      |  ||     `> [11, 12] Int (1)
+      |  ||        type: int
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [12, 8] Identifier (y)
+      |  ||  |  definition: variable defined at [12, 8], type=int
+      |  ||  `> [12, 10] Initialization
+      |  ||     `> [12, 14] Modulo
+      |  ||        type: int
+      |  ||        +> [12, 12] Int (7)
+      |  ||        |  type: int
+      |  ||        `> [12, 16] Identifier (t)
+      |  ||           definition: variable defined at [11, 8], type=int
+      |  []> [13, 8] DeclVar
+      |  ||  +> [13, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [13, 8] Identifier (z)
+      |  ||  |  definition: variable defined at [13, 8], type=int
+      |  ||  `> [13, 10] Initialization
+      |  ||     `> [13, 15] Modulo
+      |  ||        type: int
+      |  ||        +> [13, 12] Int (10)
+      |  ||        |  type: int
+      |  ||        `> [13, 17] UnaryMinus
+      |  ||           type: int
+      |  ||           `> [13, 18] Int (5)
+      |  ||              type: int
+      |  []> [14, 8] DeclVar
+      |      +> [14, 4] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [14, 8] Identifier (x)
+      |      |  definition: variable defined at [14, 8], type=int
+      |      `> [14, 10] Initialization
+      |         `> [14, 14] Modulo
+      |            type: int
+      |            +> [14, 12] Identifier (y)
+      |            |  definition: variable defined at [12, 8], type=int
+      |            `> [14, 17] UnaryMinus
+      |               type: int
+      |               `> [14, 18] Identifier (z)
+      |                  definition: variable defined at [13, 8], type=int
+      `> ListInst [List with 3 elements]
+         []> [15, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [15, 12] StringLiteral (x=)
+         ||     ||  type: string
+         ||     []> [15, 18] Identifier (x)
+         ||         definition: variable defined at [14, 8], type=int
+         []> [16, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [16, 12] StringLiteral (y=)
+         ||     ||  type: string
+         ||     []> [16, 18] Identifier (y)
+         ||         definition: variable defined at [12, 8], type=int
+         []> [17, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [17, 12] StringLiteral (z=)
+                ||  type: string
+                []> [17, 18] Identifier (z)
+                    definition: variable defined at [13, 8], type=int

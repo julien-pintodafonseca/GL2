@@ -173,7 +173,7 @@ public class Identifier extends AbstractIdentifier {
         ExpDefinition expDef = localEnv.get(getName());
 
         if (expDef == null) {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_VAR, getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_VAR + getName(), getLocation());
         } else {
             setDefinition(expDef);
             LOG.debug("verify expr: end ("+getName()+")");

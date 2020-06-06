@@ -10,8 +10,8 @@
 {
     float u = 1.2;
     int t = 3;
-    float x;
+    float z;
     println("y=", 7.2 * u); // multiplication de deux nombres flottants
-    println("z=", 1 * -3.2); // multiplication d'un nombre entier et d'un nombre flottant négatif
-    println("x=", x = t * (-z)); // multiplication d'une variable de type int et de la négation d'une variable flottante
+    println("z=", z = 1 * -3.2); // multiplication d'un nombre entier et d'un nombre flottant négatif
+    println("x=", t * (-z)); // multiplication d'une variable de type int et de la négation d'une variable flottante
 }

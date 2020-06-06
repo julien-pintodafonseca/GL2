@@ -1,0 +1,83 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 5 elements]
+      |  []> [11, 10] DeclVar
+      |  ||  +> [11, 4] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [11, 10] Identifier (u)
+      |  ||  |  definition: variable defined at [11, 10], type=float
+      |  ||  `> [11, 12] Initialization
+      |  ||     `> [11, 14] Float (1.2)
+      |  ||        type: float
+      |  []> [12, 10] DeclVar
+      |  ||  +> [12, 4] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [12, 10] Identifier (y)
+      |  ||  |  definition: variable defined at [12, 10], type=float
+      |  ||  `> [12, 12] Initialization
+      |  ||     `> [12, 18] Multiply
+      |  ||        type: float
+      |  ||        +> [12, 14] Float (7.2)
+      |  ||        |  type: float
+      |  ||        `> [12, 20] Identifier (u)
+      |  ||           definition: variable defined at [11, 10], type=float
+      |  []> [13, 10] DeclVar
+      |  ||  +> [13, 4] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [13, 10] Identifier (z)
+      |  ||  |  definition: variable defined at [13, 10], type=float
+      |  ||  `> [13, 12] Initialization
+      |  ||     `> [13, 16] Multiply
+      |  ||        type: float
+      |  ||        +> ConvFloat
+      |  ||        |  type: float
+      |  ||        |  `> [13, 14] Int (1)
+      |  ||        |     type: int
+      |  ||        `> [13, 18] UnaryMinus
+      |  ||           type: float
+      |  ||           `> [13, 19] Float (3.2)
+      |  ||              type: float
+      |  []> [14, 8] DeclVar
+      |  ||  +> [14, 4] Identifier (int)
+      |  ||  |  definition: type (builtin), type=int
+      |  ||  +> [14, 8] Identifier (t)
+      |  ||  |  definition: variable defined at [14, 8], type=int
+      |  ||  `> [14, 10] Initialization
+      |  ||     `> [14, 12] Int (3)
+      |  ||        type: int
+      |  []> [15, 10] DeclVar
+      |      +> [15, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [15, 10] Identifier (x)
+      |      |  definition: variable defined at [15, 10], type=float
+      |      `> [15, 12] Initialization
+      |         `> [15, 16] Multiply
+      |            type: float
+      |            +> ConvFloat
+      |            |  type: float
+      |            |  `> [15, 14] Identifier (t)
+      |            |     definition: variable defined at [14, 8], type=int
+      |            `> [15, 19] UnaryMinus
+      |               type: float
+      |               `> [15, 20] Identifier (z)
+      |                  definition: variable defined at [13, 10], type=float
+      `> ListInst [List with 3 elements]
+         []> [16, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [16, 12] StringLiteral (x=)
+         ||     ||  type: string
+         ||     []> [16, 18] Identifier (x)
+         ||         definition: variable defined at [15, 10], type=float
+         []> [17, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [17, 12] StringLiteral (y=)
+         ||     ||  type: string
+         ||     []> [17, 18] Identifier (y)
+         ||         definition: variable defined at [12, 10], type=float
+         []> [18, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [18, 12] StringLiteral (z=)
+                ||  type: string
+                []> [18, 18] Identifier (z)
+                    definition: variable defined at [13, 10], type=float
