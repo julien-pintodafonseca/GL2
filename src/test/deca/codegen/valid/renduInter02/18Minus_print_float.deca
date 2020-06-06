@@ -1,0 +1,16 @@
+// Description:
+//      Opérateur binaire moins (symbole "-")
+//      => Cas spécifique avec utilisation du moins lors de l'affichage (println) du résultat réel d'une soustraction
+//
+// Resultats:
+//      y=6
+//      z=4.2
+//      x=-7.2
+
+{
+    float u = 1.2;
+    int t = 3;
+    println("y=", 7.2 - u); // soustraction de deux nombres flottants
+    println("z=", 1 - -3.2); // soustraction d'un nombre entier et d'un nombre flottant négatif
+    println("x=", - t - z); // soustraction d'une variable de type int et de la négation d'une variable flottante
+}

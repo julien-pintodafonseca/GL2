@@ -1,0 +1,21 @@
+// Description:
+//      Opérateur binaire plus (symbole "+")
+//      => Cas spécifique avec utilisation du plus lors de l'affectation d'une variable de type int
+//
+// Resultats:
+//      x=11
+//      y=8
+//      z=-3
+
+{
+    int t = 1;
+    int y;
+    int z;
+    int x;
+    y = 7 + t;
+    z = 5 + -8;
+    x = y + (-z);
+    println("x=", x);
+    println("y=", y);
+    println("z=", z);
+}

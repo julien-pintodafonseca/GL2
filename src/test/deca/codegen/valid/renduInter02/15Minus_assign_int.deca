@@ -1,0 +1,21 @@
+// Description:
+//      Opérateur binaire moins (symbole "-")
+//      => Cas spécifique avec utilisation du moins lors de l'affectation d'une variable de type int
+//
+// Resultats:
+//      x=-19
+//      y=6
+//      z=13
+
+{
+    int t = 1;
+    int y;
+    int z;
+    int x;
+    y = 7 - t;
+    z = 5 - -8;
+    x = -y - z;
+    println("x=", x);
+    println("y=", y);
+    println("z=", z);
+}

@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur minus incorrect au niveau du typage
+//      => l'opérateur minus est uniquement applicable sur un entier ou un réel
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : Type string incompatible avec l'opérateur minus
+
+{
+    int x = 7 - "hello";
+    println("x=", x);
+}

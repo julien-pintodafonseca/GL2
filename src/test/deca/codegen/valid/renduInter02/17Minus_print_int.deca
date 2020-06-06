@@ -1,0 +1,15 @@
+// Description:
+//      Opérateur binaire moins (symbole "-")
+//      => Cas spécifique avec utilisation du moins lors de l'affichage (println) du résultat entier d'une soustraction
+//
+// Resultats:
+//      y=6
+//      z=13
+//      x=-19
+
+{
+    int t = 1;
+    println("y=", 7 - t);
+    println("z=", 5 - -8);
+    println("x=", -y - z);
+}

@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur plus incorrect au niveau du typage
+//      => l'opérateur plus est uniquement applicable sur un entier ou un réel
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : Type string incompatible avec l'opérateur plus
+
+{
+    int x = 7 + "hello";
+    println("x=", x);
+}

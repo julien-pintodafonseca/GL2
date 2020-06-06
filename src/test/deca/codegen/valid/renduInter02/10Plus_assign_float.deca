@@ -1,0 +1,22 @@
+// Description:
+//      Opérateur binaire plus (symbole "+")
+//      => Cas spécifique avec utilisation du plus lors de l'affectation d'une variable de type float
+//
+// Resultats:
+//      x=5.2
+//      y=8.4
+//      z=-2.2
+
+{
+    float u = 1.2;
+    float y;
+    float z;
+    int t = 3;
+    float x;
+    y = 7.2 + u; // addition de deux nombres flottants
+    z = 1 + -3.2; // addition d'un nombre entier et d'un nombre flottant négatif
+    x = t + (-z); // addition d'une variable de type int et de la négation d'une variable flottante
+    println("x=", x);
+    println("y=", y);
+    println("z=", z);
+}
