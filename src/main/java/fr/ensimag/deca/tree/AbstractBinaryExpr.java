@@ -1,7 +1,12 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
+
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -40,6 +45,22 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
         Validate.isTrue(leftOperand != rightOperand, "Sharing subtrees is forbidden");
         this.leftOperand = leftOperand;
         this.rightOperand = rightOperand;
+    }
+
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            codeGenInst(compiler, Register.getR(i));
+            compiler.addInstruction(new LOAD(Register.getR(i), Register.R1));
+            super.codeGenPrint(compiler, printHex);
+            compiler.getRegisterManager().free(i);
+        } else {
+            // chargement dans la pile de 1 registres
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration du registre
+        }
     }
 
 

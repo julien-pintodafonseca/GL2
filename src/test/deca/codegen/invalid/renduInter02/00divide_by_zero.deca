@@ -7,6 +7,6 @@
 //      Ligne 10 : division par zero
 
 {
-    int x = y / 0;
+    int x = 25 / 0;
     println("x=", x);
 }

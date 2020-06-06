@@ -6,9 +6,9 @@
       |      +> [10, 4] Identifier (int)
       |      +> [10, 8] Identifier (x)
       |      `> [10, 10] Initialization
-      |         `> [10, 14] Divide
-      |            +> [10, 12] Identifier (y)
-      |            `> [10, 16] Int (0)
+      |         `> [10, 15] Divide
+      |            +> [10, 12] Int (25)
+      |            `> [10, 17] Int (0)
       `> ListInst [List with 1 elements]
          []> [11, 4] Println
              `> ListExpr [List with 2 elements]

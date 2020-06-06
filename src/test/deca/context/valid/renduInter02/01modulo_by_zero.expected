@@ -4,13 +4,20 @@
       +> ListDeclVar [List with 1 elements]
       |  []> [10, 8] DeclVar
       |      +> [10, 4] Identifier (int)
+      |      |  definition: type (builtin), type=int
       |      +> [10, 8] Identifier (x)
+      |      |  definition: variable defined at [10, 8], type=int
       |      `> [10, 10] Initialization
       |         `> [10, 15] Modulo
+      |            type: int
       |            +> [10, 12] Int (25)
+      |            |  type: int
       |            `> [10, 17] Int (0)
+      |               type: int
       `> ListInst [List with 1 elements]
          []> [11, 4] Println
              `> ListExpr [List with 2 elements]
                 []> [11, 12] StringLiteral (x=)
+                ||  type: string
                 []> [11, 18] Identifier (x)
+                    definition: variable defined at [10, 8], type=int
