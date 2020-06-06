@@ -9,7 +9,8 @@
 
 {
     int t = 1;
+    int x;
     println("y=", 7 + t);
     println("z=", 5 + -8);
-    println("x=", y + (-z));
+    println("x=", x = y + (-z));
 }

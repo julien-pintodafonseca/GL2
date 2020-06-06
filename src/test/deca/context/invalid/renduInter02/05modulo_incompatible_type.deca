@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur modulo incorrect au niveau du typage
+//      => l'opérateur modulo est uniquement applicable sur un entier
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : Type float incompatible avec l'opérateur modulo
+
+{
+    float x = 7.2 % 1;
+    println("x=", x);
+}

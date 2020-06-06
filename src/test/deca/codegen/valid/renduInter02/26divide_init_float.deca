@@ -1,0 +1,19 @@
+// Description:
+//      Opérateur binaire de division (symbole "/")
+//      => Cas spécifique avec utilisation du divisé lors de l'initialisation d'une variable de type float
+//
+// Resultats:
+//      x=9.6
+//      y=8.64
+//      z=-3.2
+
+{
+    float u = 1.2;
+    float y = 7.2 / u; // division de deux nombres flottants
+    float z = 1 / -3.2; // division d'un nombre entier et d'un nombre flottant négatif
+    int t = 3;
+    float x = t / (-z); // division d'une variable de type int et de la négation d'une variable flottante
+    println("x=", x);
+    println("y=", y);
+    println("z=", z);
+}

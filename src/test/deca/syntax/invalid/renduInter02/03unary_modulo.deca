@@ -1,0 +1,12 @@
+// Description:
+//      Programme lexicalement incorrect
+//      => l'opérateur "%" est un opérateur binaire
+//
+// Resultats:
+//      Erreur syntaxique
+//      Ligne 10 : token '%' inattendu
+
+{
+    int x = %7;
+    println("x=", x);
+}

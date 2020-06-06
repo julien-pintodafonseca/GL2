@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur binaire de division incorrecte au niveau des valeurs utilisées
+//      => L'opérateur de division ne peut pas diviser un nombre par 0
+//
+// Resultats:
+//      Erreur à l'exécution
+//      Ligne 10 : division par zero
+
+{
+    int x = y / 0;
+    println("x=", x);
+}

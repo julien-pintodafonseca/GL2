@@ -1,0 +1,21 @@
+// Description:
+//      Opérateur binaire de division (symbole "/")
+//      => Cas spécifique avec utilisation du divisé lors de l'affectation d'une variable de type int
+//
+// Resultats:
+//      x=3
+//      y=7
+//      z=-2
+
+{
+    int t = 1;
+    int y;
+    int z;
+    int x;
+    y = 7 / t;
+    z = 10 / -5;
+    x = y / (-z);
+    println("x=", x);
+    println("y=", y);
+    println("z=", z);
+}

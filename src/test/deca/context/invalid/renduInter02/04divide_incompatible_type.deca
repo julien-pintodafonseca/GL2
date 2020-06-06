@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur de division incorrect au niveau du typage
+//      => l'opérateur de division est uniquement applicable sur un entier ou un réel
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : Type string incompatible avec l'opérateur de division
+
+{
+    int x = 7 / "hello";
+    println("x=", x);
+}

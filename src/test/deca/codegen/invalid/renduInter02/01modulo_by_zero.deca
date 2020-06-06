@@ -1,0 +1,12 @@
+// Description:
+//      Opérateur binaire % incorrecte au niveau des valeurs utilisées
+//      => L'opérateur % ne peut pas donner le reste d'une division par 0
+//
+// Resultats:
+//      Erreur à l'exécution
+//      Ligne 10 : reste d'une division par zero
+
+{
+    int x = y % 0;
+    println("x=", x);
+}
