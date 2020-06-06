@@ -1,5 +1,6 @@
 package fr.ensimag.deca;
 
+import fr.ensimag.deca.codegen.ErrorLabelManager;
 import fr.ensimag.deca.codegen.LabelManager;
 import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.deca.codegen.StackManager;
@@ -77,6 +78,13 @@ public class DecacCompiler {
     private LabelManager labelManager;
     public LabelManager getLabelManager() { return labelManager; }
     public void setLabelManager() { labelManager = new LabelManager(); }
+
+    /**
+     * Error Label manager
+     */
+    private ErrorLabelManager errorLabelManager;
+    public ErrorLabelManager getErrorLabelManager() { return errorLabelManager; }
+    public void setErrorLabelManager() { errorLabelManager = new ErrorLabelManager(); }
 
     /**
      * Source file associated with this compiler instance.
