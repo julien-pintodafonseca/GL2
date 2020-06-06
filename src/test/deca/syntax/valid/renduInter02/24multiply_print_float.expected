@@ -1,0 +1,41 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [11, 10] DeclVar
+      |  ||  +> [11, 4] Identifier (float)
+      |  ||  +> [11, 10] Identifier (u)
+      |  ||  `> [11, 12] Initialization
+      |  ||     `> [11, 14] Float (1.2)
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  +> [12, 8] Identifier (t)
+      |  ||  `> [12, 10] Initialization
+      |  ||     `> [12, 12] Int (3)
+      |  []> [13, 10] DeclVar
+      |      +> [13, 4] Identifier (float)
+      |      +> [13, 10] Identifier (x)
+      |      `> NoInitialization
+      `> ListInst [List with 3 elements]
+         []> [14, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [14, 12] StringLiteral (y=)
+         ||     []> [14, 22] Multiply
+         ||         +> [14, 18] Float (7.2)
+         ||         `> [14, 24] Identifier (u)
+         []> [15, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [15, 12] StringLiteral (z=)
+         ||     []> [15, 20] Multiply
+         ||         +> [15, 18] Int (1)
+         ||         `> [15, 22] UnaryMinus
+         ||            `> [15, 23] Float (3.2)
+         []> [16, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [16, 12] StringLiteral (x=)
+                []> [16, 20] Assign
+                    +> [16, 18] Identifier (x)
+                    `> [16, 24] Multiply
+                       +> [16, 22] Identifier (t)
+                       `> [16, 27] UnaryMinus
+                          `> [16, 28] Identifier (z)

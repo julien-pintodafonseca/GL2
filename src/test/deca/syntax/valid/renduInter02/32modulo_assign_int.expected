@@ -1,0 +1,51 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [11, 8] DeclVar
+      |  ||  +> [11, 4] Identifier (int)
+      |  ||  +> [11, 8] Identifier (t)
+      |  ||  `> [11, 10] Initialization
+      |  ||     `> [11, 12] Int (1)
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  +> [12, 8] Identifier (y)
+      |  ||  `> NoInitialization
+      |  []> [13, 8] DeclVar
+      |  ||  +> [13, 4] Identifier (int)
+      |  ||  +> [13, 8] Identifier (z)
+      |  ||  `> NoInitialization
+      |  []> [14, 8] DeclVar
+      |      +> [14, 4] Identifier (int)
+      |      +> [14, 8] Identifier (x)
+      |      `> NoInitialization
+      `> ListInst [List with 6 elements]
+         []> [15, 6] Assign
+         ||  +> [15, 4] Identifier (y)
+         ||  `> [15, 10] Modulo
+         ||     +> [15, 8] Int (7)
+         ||     `> [15, 12] Identifier (t)
+         []> [16, 6] Assign
+         ||  +> [16, 4] Identifier (z)
+         ||  `> [16, 11] Modulo
+         ||     +> [16, 8] Int (10)
+         ||     `> [16, 13] UnaryMinus
+         ||        `> [16, 14] Int (5)
+         []> [17, 6] Assign
+         ||  +> [17, 4] Identifier (x)
+         ||  `> [17, 10] Modulo
+         ||     +> [17, 8] Identifier (y)
+         ||     `> [17, 13] UnaryMinus
+         ||        `> [17, 14] Identifier (z)
+         []> [18, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [18, 12] StringLiteral (x=)
+         ||     []> [18, 18] Identifier (x)
+         []> [19, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [19, 12] StringLiteral (y=)
+         ||     []> [19, 18] Identifier (y)
+         []> [20, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [20, 12] StringLiteral (z=)
+                []> [20, 18] Identifier (z)

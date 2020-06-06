@@ -1,0 +1,50 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 5 elements]
+      |  []> [11, 10] DeclVar
+      |  ||  +> [11, 4] Identifier (float)
+      |  ||  +> [11, 10] Identifier (u)
+      |  ||  `> [11, 12] Initialization
+      |  ||     `> [11, 14] Float (1.2)
+      |  []> [12, 10] DeclVar
+      |  ||  +> [12, 4] Identifier (float)
+      |  ||  +> [12, 10] Identifier (y)
+      |  ||  `> [12, 12] Initialization
+      |  ||     `> [12, 18] Minus
+      |  ||        +> [12, 14] Float (7.2)
+      |  ||        `> [12, 20] Identifier (u)
+      |  []> [13, 10] DeclVar
+      |  ||  +> [13, 4] Identifier (float)
+      |  ||  +> [13, 10] Identifier (z)
+      |  ||  `> [13, 12] Initialization
+      |  ||     `> [13, 16] Minus
+      |  ||        +> [13, 14] Int (1)
+      |  ||        `> [13, 18] UnaryMinus
+      |  ||           `> [13, 19] Float (3.2)
+      |  []> [14, 8] DeclVar
+      |  ||  +> [14, 4] Identifier (int)
+      |  ||  +> [14, 8] Identifier (t)
+      |  ||  `> [14, 10] Initialization
+      |  ||     `> [14, 12] Int (3)
+      |  []> [15, 10] DeclVar
+      |      +> [15, 4] Identifier (float)
+      |      +> [15, 10] Identifier (x)
+      |      `> [15, 12] Initialization
+      |         `> [15, 18] Minus
+      |            +> [15, 14] UnaryMinus
+      |            |  `> [15, 16] Identifier (t)
+      |            `> [15, 20] Identifier (z)
+      `> ListInst [List with 3 elements]
+         []> [16, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [16, 12] StringLiteral (x=)
+         ||     []> [16, 18] Identifier (x)
+         []> [17, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [17, 12] StringLiteral (y=)
+         ||     []> [17, 18] Identifier (y)
+         []> [18, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [18, 12] StringLiteral (z=)
+                []> [18, 18] Identifier (z)

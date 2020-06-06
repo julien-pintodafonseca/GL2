@@ -1,0 +1,56 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 5 elements]
+      |  []> [11, 10] DeclVar
+      |  ||  +> [11, 4] Identifier (float)
+      |  ||  +> [11, 10] Identifier (u)
+      |  ||  `> [11, 12] Initialization
+      |  ||     `> [11, 14] Float (1.2)
+      |  []> [12, 10] DeclVar
+      |  ||  +> [12, 4] Identifier (float)
+      |  ||  +> [12, 10] Identifier (y)
+      |  ||  `> NoInitialization
+      |  []> [13, 10] DeclVar
+      |  ||  +> [13, 4] Identifier (float)
+      |  ||  +> [13, 10] Identifier (z)
+      |  ||  `> NoInitialization
+      |  []> [14, 8] DeclVar
+      |  ||  +> [14, 4] Identifier (int)
+      |  ||  +> [14, 8] Identifier (t)
+      |  ||  `> [14, 10] Initialization
+      |  ||     `> [14, 12] Int (3)
+      |  []> [15, 10] DeclVar
+      |      +> [15, 4] Identifier (float)
+      |      +> [15, 10] Identifier (x)
+      |      `> NoInitialization
+      `> ListInst [List with 6 elements]
+         []> [16, 6] Assign
+         ||  +> [16, 4] Identifier (y)
+         ||  `> [16, 12] Multiply
+         ||     +> [16, 8] Float (7.2)
+         ||     `> [16, 14] Identifier (u)
+         []> [17, 6] Assign
+         ||  +> [17, 4] Identifier (z)
+         ||  `> [17, 10] Multiply
+         ||     +> [17, 8] Int (1)
+         ||     `> [17, 12] UnaryMinus
+         ||        `> [17, 13] Float (3.2)
+         []> [18, 6] Assign
+         ||  +> [18, 4] Identifier (x)
+         ||  `> [18, 10] Multiply
+         ||     +> [18, 8] Identifier (t)
+         ||     `> [18, 13] UnaryMinus
+         ||        `> [18, 14] Identifier (z)
+         []> [19, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [19, 12] StringLiteral (x=)
+         ||     []> [19, 18] Identifier (x)
+         []> [20, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [20, 12] StringLiteral (y=)
+         ||     []> [20, 18] Identifier (y)
+         []> [21, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [21, 12] StringLiteral (z=)
+                []> [21, 18] Identifier (z)

@@ -37,7 +37,11 @@ PRINT: 'print';
 PRINTLN: 'println';
 READINT: 'readInt';
 READFLOAT: 'readFloat';
+PLUS: '+';
 MINUS: '-';
+TIMES: '*';
+SLASH: '/';
+PERCENT: '%';
 
 fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
 fragment DIGIT: '0' .. '9';

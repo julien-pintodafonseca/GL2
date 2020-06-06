@@ -1,0 +1,37 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [9, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [10, 8] DeclVar
+      |  ||  +> [10, 4] Identifier (int)
+      |  ||  +> [10, 8] Identifier (x)
+      |  ||  `> [10, 10] Initialization
+      |  ||     `> [10, 12] Int (500000001)
+      |  []> [11, 8] DeclVar
+      |  ||  +> [11, 4] Identifier (int)
+      |  ||  +> [11, 8] Identifier (y)
+      |  ||  `> [11, 10] Initialization
+      |  ||     `> [11, 12] Int (531486315)
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  +> [12, 8] Identifier (z)
+      |  ||  `> [12, 10] Initialization
+      |  ||     `> [12, 12] Int (214656135)
+      |  []> [13, 8] DeclVar
+      |      +> [13, 4] Identifier (int)
+      |      +> [13, 8] Identifier (t)
+      |      `> [13, 10] Initialization
+      |         `> [13, 26] Multiply
+      |            +> [13, 22] Multiply
+      |            |  +> [13, 18] Multiply
+      |            |  |  +> [13, 14] Plus
+      |            |  |  |  +> [13, 13] Identifier (z)
+      |            |  |  |  `> [13, 15] Identifier (y)
+      |            |  |  `> [13, 20] Identifier (y)
+      |            |  `> [13, 24] Identifier (x)
+      |            `> [13, 28] Identifier (y)
+      `> ListInst [List with 1 elements]
+         []> [14, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [14, 12] StringLiteral (t=)
+                []> [14, 18] Identifier (t)

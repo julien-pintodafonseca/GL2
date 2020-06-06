@@ -7,9 +7,9 @@
 //      Ligne 10 : dépassement arithmétique
 
 {
-    int x = 50000000000000000000;
-    int y = 52892861549631486315;
-    int z = 21465435486135;
+    int x = 500000001;
+    int y = 531486315;
+    int z = 214656135;
     int t = (z+y) * y * x * y;
     println("t=", t);
 }

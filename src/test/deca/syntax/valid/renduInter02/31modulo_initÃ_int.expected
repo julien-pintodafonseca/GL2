@@ -1,0 +1,45 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 4 elements]
+      |  []> [11, 8] DeclVar
+      |  ||  +> [11, 4] Identifier (int)
+      |  ||  +> [11, 8] Identifier (t)
+      |  ||  `> [11, 10] Initialization
+      |  ||     `> [11, 12] Int (1)
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  +> [12, 8] Identifier (y)
+      |  ||  `> [12, 10] Initialization
+      |  ||     `> [12, 14] Modulo
+      |  ||        +> [12, 12] Int (7)
+      |  ||        `> [12, 16] Identifier (t)
+      |  []> [13, 8] DeclVar
+      |  ||  +> [13, 4] Identifier (int)
+      |  ||  +> [13, 8] Identifier (z)
+      |  ||  `> [13, 10] Initialization
+      |  ||     `> [13, 15] Modulo
+      |  ||        +> [13, 12] Int (10)
+      |  ||        `> [13, 17] UnaryMinus
+      |  ||           `> [13, 18] Int (5)
+      |  []> [14, 8] DeclVar
+      |      +> [14, 4] Identifier (int)
+      |      +> [14, 8] Identifier (x)
+      |      `> [14, 10] Initialization
+      |         `> [14, 14] Modulo
+      |            +> [14, 12] Identifier (y)
+      |            `> [14, 17] UnaryMinus
+      |               `> [14, 18] Identifier (z)
+      `> ListInst [List with 3 elements]
+         []> [15, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [15, 12] StringLiteral (x=)
+         ||     []> [15, 18] Identifier (x)
+         []> [16, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [16, 12] StringLiteral (y=)
+         ||     []> [16, 18] Identifier (y)
+         []> [17, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [17, 12] StringLiteral (z=)
+                []> [17, 18] Identifier (z)
