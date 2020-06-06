@@ -6,7 +6,7 @@
       |  ||  +> [11, 4] Identifier (int)
       |  ||  +> [11, 8] Identifier (t)
       |  ||  `> [11, 10] Initialization
-      |  ||     `> [11, 12] Int (1)
+      |  ||     `> [11, 12] Int (3)
       |  []> [12, 8] DeclVar
       |  ||  +> [12, 4] Identifier (int)
       |  ||  +> [12, 8] Identifier (y)
@@ -30,7 +30,7 @@
          ||  `> [16, 11] Modulo
          ||     +> [16, 8] Int (10)
          ||     `> [16, 13] UnaryMinus
-         ||        `> [16, 14] Int (5)
+         ||        `> [16, 14] Int (7)
          []> [17, 6] Assign
          ||  +> [17, 4] Identifier (x)
          ||  `> [17, 10] Modulo

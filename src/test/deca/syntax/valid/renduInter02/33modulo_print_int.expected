@@ -6,7 +6,7 @@
       |  ||  +> [11, 4] Identifier (int)
       |  ||  +> [11, 8] Identifier (t)
       |  ||  `> [11, 10] Initialization
-      |  ||     `> [11, 12] Int (1)
+      |  ||     `> [11, 12] Int (3)
       |  []> [12, 8] DeclVar
       |  ||  +> [12, 4] Identifier (int)
       |  ||  +> [12, 8] Identifier (y)
@@ -32,7 +32,7 @@
          ||         `> [15, 25] Modulo
          ||            +> [15, 22] Int (10)
          ||            `> [15, 27] UnaryMinus
-         ||               `> [15, 28] Int (5)
+         ||               `> [15, 28] Int (7)
          []> [16, 4] Println
              `> ListExpr [List with 2 elements]
                 []> [16, 12] StringLiteral (x=)

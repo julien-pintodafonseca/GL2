@@ -8,7 +8,7 @@
       |  ||  +> [11, 8] Identifier (t)
       |  ||  |  definition: variable defined at [11, 8], type=int
       |  ||  `> [11, 10] Initialization
-      |  ||     `> [11, 12] Int (1)
+      |  ||     `> [11, 12] Int (3)
       |  ||        type: int
       |  []> [12, 8] DeclVar
       |  ||  +> [12, 4] Identifier (int)
@@ -51,7 +51,7 @@
          ||            |  type: int
          ||            `> [15, 27] UnaryMinus
          ||               type: int
-         ||               `> [15, 28] Int (5)
+         ||               `> [15, 28] Int (7)
          ||                  type: int
          []> [16, 4] Println
              `> ListExpr [List with 2 elements]

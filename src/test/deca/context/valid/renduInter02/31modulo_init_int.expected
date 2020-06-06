@@ -8,7 +8,7 @@
       |  ||  +> [11, 8] Identifier (t)
       |  ||  |  definition: variable defined at [11, 8], type=int
       |  ||  `> [11, 10] Initialization
-      |  ||     `> [11, 12] Int (1)
+      |  ||     `> [11, 12] Int (3)
       |  ||        type: int
       |  []> [12, 8] DeclVar
       |  ||  +> [12, 4] Identifier (int)
@@ -34,7 +34,7 @@
       |  ||        |  type: int
       |  ||        `> [13, 17] UnaryMinus
       |  ||           type: int
-      |  ||           `> [13, 18] Int (5)
+      |  ||           `> [13, 18] Int (7)
       |  ||              type: int
       |  []> [14, 8] DeclVar
       |      +> [14, 4] Identifier (int)
