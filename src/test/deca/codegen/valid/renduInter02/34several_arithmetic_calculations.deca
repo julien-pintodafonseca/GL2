@@ -3,7 +3,7 @@
 //      Test d'un calcul arithmétique avec les opérateurs "+", "-", "*", "/" et "%"
 //
 // Resultats:
-//      Résultat=-57.5
+//      Résultat=-7.5
 
 {
     int x = 8;
