@@ -205,7 +205,7 @@ public class Identifier extends AbstractIdentifier {
     private Definition definition;
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) {
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
         VariableDefinition varDef = getVariableDefinition();
         DAddr addr = varDef.getOperand();
         compiler.addInstruction(new LOAD(addr, Register.R1));

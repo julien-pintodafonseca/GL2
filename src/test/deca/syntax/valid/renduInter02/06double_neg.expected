@@ -1,43 +1,43 @@
-`> [9, 0] Program
+`> [10, 0] Program
    +> ListDeclClass [List with 0 elements]
-   `> [9, 0] Main
+   `> [10, 0] Main
       +> ListDeclVar [List with 3 elements]
-      |  []> [10, 10] DeclVar
-      |  ||  +> [10, 4] Identifier (float)
-      |  ||  +> [10, 10] Identifier (x)
-      |  ||  `> NoInitialization
       |  []> [11, 10] DeclVar
       |  ||  +> [11, 4] Identifier (float)
-      |  ||  +> [11, 10] Identifier (y)
-      |  ||  `> [11, 12] Initialization
-      |  ||     `> [11, 15] UnaryMinus
-      |  ||        `> [11, 16] Float (7.2)
-      |  []> [12, 8] DeclVar
-      |      +> [12, 4] Identifier (int)
-      |      +> [12, 8] Identifier (z)
-      |      `> [12, 10] Initialization
-      |         `> [12, 12] UnaryMinus
-      |            `> [12, 14] UnaryMinus
-      |               `> [12, 15] Int (5)
+      |  ||  +> [11, 10] Identifier (x)
+      |  ||  `> NoInitialization
+      |  []> [12, 10] DeclVar
+      |  ||  +> [12, 4] Identifier (float)
+      |  ||  +> [12, 10] Identifier (y)
+      |  ||  `> [12, 12] Initialization
+      |  ||     `> [12, 15] UnaryMinus
+      |  ||        `> [12, 16] Float (7.2)
+      |  []> [13, 8] DeclVar
+      |      +> [13, 4] Identifier (int)
+      |      +> [13, 8] Identifier (z)
+      |      `> [13, 10] Initialization
+      |         `> [13, 12] UnaryMinus
+      |            `> [13, 14] UnaryMinus
+      |               `> [13, 15] Int (5)
       `> ListInst [List with 4 elements]
-         []> [13, 6] Assign
-         ||  +> [13, 4] Identifier (x)
-         ||  `> [13, 8] UnaryMinus
-         ||     `> [13, 9] UnaryMinus
-         ||        `> [13, 10] Int (1)
-         []> [14, 4] Print
+         []> [14, 6] Assign
+         ||  +> [14, 4] Identifier (x)
+         ||  `> [14, 8] UnaryMinus
+         ||     `> [14, 9] UnaryMinus
+         ||        `> [14, 10] Int (1)
+         []> [15, 4] Println
          ||  `> ListExpr [List with 2 elements]
-         ||     []> [14, 10] StringLiteral (x=)
-         ||     []> [14, 16] UnaryMinus
-         ||         `> [14, 18] UnaryMinus
-         ||            `> [14, 19] Identifier (x)
-         []> [15, 4] Print
+         ||     []> [15, 12] StringLiteral (x=)
+         ||     []> [15, 18] UnaryMinus
+         ||         `> [15, 20] UnaryMinus
+         ||            `> [15, 21] Identifier (x)
+         []> [16, 4] Println
          ||  `> ListExpr [List with 2 elements]
-         ||     []> [15, 10] StringLiteral (y=)
-         ||     []> [15, 16] UnaryMinus
-         ||         `> [15, 17] UnaryMinus
-         ||            `> [15, 18] Identifier (y)
-         []> [16, 4] Print
+         ||     []> [16, 12] StringLiteral (y=)
+         ||     []> [16, 18] UnaryMinus
+         ||         `> [16, 19] UnaryMinus
+         ||            `> [16, 20] Identifier (y)
+         []> [17, 4] Println
              `> ListExpr [List with 2 elements]
-                []> [16, 10] StringLiteral (z=)
-                []> [16, 16] Identifier (z)
+                []> [17, 12] StringLiteral (z=)
+                []> [17, 18] Identifier (z)

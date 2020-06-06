@@ -1,5 +1,6 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -31,7 +32,7 @@ public class ReadInt extends AbstractReadExpr {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) {
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
         compiler.addInstruction(new RINT()); // load the read value in the register R1
         super.codeGenPrint(compiler, printHex);
     }

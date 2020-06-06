@@ -1,11 +1,16 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
+import fr.ensimag.ima.pseudocode.GPRegister;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.OPP;
 
 /**
  * @author Equipe GL2
@@ -31,6 +36,28 @@ public class UnaryMinus extends AbstractUnaryExpr {
         }
     }
 
+    @Override
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        getOperand().codeGenInst(compiler, register);
+        compiler.addInstruction(new OPP(register, Register.R1));
+        compiler.addInstruction(new LOAD(Register.R1, register));
+    }
+
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            getOperand().codeGenInst(compiler, Register.getR(i));
+            compiler.addInstruction(new OPP(Register.getR(i), Register.R1));
+            super.codeGenPrint(compiler, printHex);
+            compiler.getRegisterManager().free(i);
+        } else {
+            // chargement dans la pile de 1 registre
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration dans le registre
+        }
+    }
 
     @Override
     protected String getOperatorName() {
