@@ -1,6 +1,6 @@
 // Description:
 //      Opérateur unaire neg
-//      => Cas spécifique avec utilisation de neg lors de l'affectation d'une variable de type FLOAT
+//      => Cas spécifique avec utilisation de neg lors de l'affectation d'une variable de type float
 //
 // Resultats:
 //      x=-1
@@ -11,6 +11,6 @@
     float y;
     x = -1;
     y = -7.2;
-    print("x=", x);
-    print("y=", y);
+    println("x=", x);
+    println("y=", y);
 }

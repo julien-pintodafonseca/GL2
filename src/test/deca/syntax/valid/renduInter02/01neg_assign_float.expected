@@ -19,11 +19,11 @@
          ||  +> [13, 4] Identifier (y)
          ||  `> [13, 8] UnaryMinus
          ||     `> [13, 9] Float (7.2)
-         []> [14, 4] Print
+         []> [14, 4] Println
          ||  `> ListExpr [List with 2 elements]
-         ||     []> [14, 10] StringLiteral (x=)
-         ||     []> [14, 16] Identifier (x)
-         []> [15, 4] Print
+         ||     []> [14, 12] StringLiteral (x=)
+         ||     []> [14, 18] Identifier (x)
+         []> [15, 4] Println
              `> ListExpr [List with 2 elements]
-                []> [15, 10] StringLiteral (y=)
-                []> [15, 16] Identifier (y)
+                []> [15, 12] StringLiteral (y=)
+                []> [15, 18] Identifier (y)

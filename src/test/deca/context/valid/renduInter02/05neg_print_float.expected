@@ -23,19 +23,19 @@
       |            `> [11, 16] Float (7.2)
       |               type: float
       `> ListInst [List with 2 elements]
-         []> [12, 4] Print
+         []> [12, 4] Println
          ||  `> ListExpr [List with 2 elements]
-         ||     []> [12, 10] StringLiteral (x=)
+         ||     []> [12, 12] StringLiteral (x=)
          ||     ||  type: string
-         ||     []> [12, 16] UnaryMinus
+         ||     []> [12, 18] UnaryMinus
          ||         type: float
-         ||         `> [12, 17] Identifier (x)
+         ||         `> [12, 19] Identifier (x)
          ||            definition: variable defined at [10, 10], type=float
-         []> [13, 4] Print
+         []> [13, 4] Println
              `> ListExpr [List with 2 elements]
-                []> [13, 10] StringLiteral (y=)
+                []> [13, 12] StringLiteral (y=)
                 ||  type: string
-                []> [13, 16] UnaryMinus
+                []> [13, 18] UnaryMinus
                     type: float
-                    `> [13, 17] Identifier (y)
+                    `> [13, 19] Identifier (y)
                        definition: variable defined at [11, 10], type=float

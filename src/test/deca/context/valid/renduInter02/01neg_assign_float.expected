@@ -33,15 +33,15 @@
          ||     type: float
          ||     `> [13, 9] Float (7.2)
          ||        type: float
-         []> [14, 4] Print
+         []> [14, 4] Println
          ||  `> ListExpr [List with 2 elements]
-         ||     []> [14, 10] StringLiteral (x=)
+         ||     []> [14, 12] StringLiteral (x=)
          ||     ||  type: string
-         ||     []> [14, 16] Identifier (x)
+         ||     []> [14, 18] Identifier (x)
          ||         definition: variable defined at [10, 10], type=float
-         []> [15, 4] Print
+         []> [15, 4] Println
              `> ListExpr [List with 2 elements]
-                []> [15, 10] StringLiteral (y=)
+                []> [15, 12] StringLiteral (y=)
                 ||  type: string
-                []> [15, 16] Identifier (y)
+                []> [15, 18] Identifier (y)
                     definition: variable defined at [11, 10], type=float

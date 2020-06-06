@@ -15,11 +15,11 @@
       |         `> [11, 14] UnaryMinus
       |            `> [11, 15] Float (7.2)
       `> ListInst [List with 2 elements]
-         []> [12, 4] Print
+         []> [12, 4] Println
          ||  `> ListExpr [List with 2 elements]
-         ||     []> [12, 10] StringLiteral (x=)
-         ||     []> [12, 16] Identifier (x)
-         []> [13, 4] Print
+         ||     []> [12, 12] StringLiteral (x=)
+         ||     []> [12, 18] Identifier (x)
+         []> [13, 4] Println
              `> ListExpr [List with 2 elements]
-                []> [13, 10] StringLiteral (y=)
-                []> [13, 16] Identifier (y)
+                []> [13, 12] StringLiteral (y=)
+                []> [13, 18] Identifier (y)
