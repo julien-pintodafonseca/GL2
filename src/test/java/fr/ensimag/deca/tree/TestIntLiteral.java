@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
@@ -39,7 +40,7 @@ public class TestIntLiteral extends TestCase {
     }
 
     @Test
-    public void testCodeGenPrint() {
+    public void testCodeGenPrint() throws DecacFatalError {
         // Cas d'une valeur nulle
         IntLiteral int1 = new IntLiteral(0);
         int1.verifyExpr(compiler, null, null);

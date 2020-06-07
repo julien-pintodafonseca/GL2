@@ -2,14 +2,14 @@
    +> ListDeclClass [List with 0 elements]
    `> [12, 0] Main
       +> ListDeclVar [List with 1 elements]
-      |  []> [13, 8] DeclVar
-      |      +> [13, 4] Identifier (int)
-      |      +> [13, 8] Identifier (x)
+      |  []> [13, 10] DeclVar
+      |      +> [13, 4] Identifier (float)
+      |      +> [13, 10] Identifier (x)
       |      `> NoInitialization
       `> ListInst [List with 3 elements]
          []> [14, 4] Println
          ||  `> ListExpr [List with 1 elements]
-         ||     []> [14, 12] StringLiteral (Veuillez entrer un nombre réel : )
+         ||     []> [14, 12] StringLiteral (Veuillez entrer un nombre rÃ©el : )
          []> [15, 6] Assign
          ||  +> [15, 4] Identifier (x)
          ||  `> [15, 8] ReadFloat

@@ -31,6 +31,8 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_MODULO_INCOMPATIBLE_TYPE = "L'opérateur % n'est utilisable qu'avec deux expressions de type int. Or, il est actuellement utilisé avec des expressions de type : ";
 
     // CodegenError messages
-    public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique ou division par zéro";
+    public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique ou division par zéro.";
+    public static final String CODEGEN_ERROR_READINT_ERROR = "Saisie incorrecte : la saisie est soit incorrecte (nombre entier attendu), soit celle d'une nombre trop grand (dépassement).";
+    public static final String CODEGEN_ERROR_READFLOAT_ERROR = "Saisie incorrecte : la saisie est soit incorrecte (nombre réel attendu), soit celle d'une nombre trop grand (dépassement)";
 
 }

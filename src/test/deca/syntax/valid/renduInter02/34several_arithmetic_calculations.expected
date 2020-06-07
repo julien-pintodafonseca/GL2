@@ -21,7 +21,7 @@
       `> ListInst [List with 1 elements]
          []> [12, 4] Println
              `> ListExpr [List with 2 elements]
-                []> [12, 12] StringLiteral (Résultat=)
+                []> [12, 12] StringLiteral (RÃ©sultat=)
                 []> [12, 39] Multiply
                     +> [12, 33] Modulo
                     |  +> [12, 29] Minus

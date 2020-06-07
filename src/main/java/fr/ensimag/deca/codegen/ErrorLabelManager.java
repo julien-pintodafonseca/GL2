@@ -35,7 +35,7 @@ public class ErrorLabelManager {
         if (lt == ErrorLabelType.LB_ARITHMETIC_OVERFLOW) {
             return "arithmetic_overflow";
         } else {
-            return "";
+            return "read_error";
         }
     }
 
@@ -56,6 +56,28 @@ public class ErrorLabelManager {
                 compiler.addComment("--------------------------------------------------");
                 compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW)));
                 compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_READINT_BAD_ENTRY:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("    Message d’erreur : dépassement ou erreur de   ");
+                compiler.addComment("         syntaxe lors de la lecture de la         ");
+                compiler.addComment("               saisie de l'utilisateur            ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_READINT_BAD_ENTRY)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_READINT_ERROR));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_READFLOAT_BAD_ENTRY:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("    Message d’erreur : dépassement ou erreur de   ");
+                compiler.addComment("         syntaxe lors de la lecture de la         ");
+                compiler.addComment("               saisie de l'utilisateur            ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_READFLOAT_BAD_ENTRY)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_READFLOAT_ERROR));
                 compiler.addInstruction(new WNL());
                 compiler.addInstruction(new ERROR());
                 break;

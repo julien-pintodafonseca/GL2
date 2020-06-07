@@ -3,15 +3,15 @@
 //      => Cas spécifique avec utilisation du modulo lors de l'affichage (println) du reste réel d'une division entière
 //
 // Resultats:
-//      y=7
-//      z=-2
-//      x=3
+//      y=1
+//      z=3
+//      x=1
 
 {
-    int t = 1;
+    int t = 3;
     int y;
     int z;
     println("y=", y = 7 % t);
-    println("z=", z = 10 % -5);
+    println("z=", z = 10 % -7);
     println("x=", y % (-z));
 }

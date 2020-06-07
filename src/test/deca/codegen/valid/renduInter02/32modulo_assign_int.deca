@@ -3,17 +3,17 @@
 //      => Cas spécifique avec utilisation du modulo lors de l'affectation d'une variable de type int
 //
 // Resultats:
-//      x=3
-//      y=7
-//      z=-2
+//      x=1
+//      y=1
+//      z=3
 
 {
-    int t = 1;
+    int t = 3;
     int y;
     int z;
     int x;
     y = 7 % t;
-    z = 10 % -5;
+    z = 10 % -7;
     x = y % (-z);
     println("x=", x);
     println("y=", y);

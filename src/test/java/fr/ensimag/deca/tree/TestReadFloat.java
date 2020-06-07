@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import static org.mockito.Mockito.mock;
 
 public class TestReadFloat extends TestCase {
 
-    private DecacCompiler compiler = compiler = new DecacCompiler(null, null);
+    private DecacCompiler compiler = new DecacCompiler(null, null);
 
     @Test
     public void testVerifyExpr() {
@@ -23,7 +24,7 @@ public class TestReadFloat extends TestCase {
     }
 
     @Test
-    public void testCodeGenPrint() {
+    public void testCodeGenPrint() throws DecacFatalError {
         ReadFloat read = new ReadFloat();
         read.verifyExpr(compiler, null, null);
         ReadFloat readCodeGenPrint = new ReadFloat();
@@ -35,7 +36,7 @@ public class TestReadFloat extends TestCase {
     }
 
     @Test
-    public void testCodeGenInst() {
+    public void testCodeGenInst() throws DecacFatalError {
         ReadFloat read = new ReadFloat();
         read.verifyExpr(compiler, null, null);
         ReadFloat readCodeGenPrint = new ReadFloat();
