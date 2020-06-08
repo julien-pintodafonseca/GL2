@@ -6,18 +6,20 @@
 //	OK
 //	OK
 
-boolean y;
-boolean x;
-x=true;
-y=false;
-if(x){
-	print("OK");
-}else{
-	print("NOK");
-}
-if(!(y)){
-	print("OK");
-}else{
-	print("NOK");
+{
+	boolean y;
+	boolean x;
+	x=true;
+	y=false;
+	if(x){
+		print("OK");
+	}else{
+		print("NOK");
+	}
+	if(!(y)){
+		print("OK");
+	}else{
+		print("NOK");
+	}
 }
 

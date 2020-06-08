@@ -35,6 +35,8 @@ SPACES: (' ' | '\t' | '\n' | '\r') { skip(); };
 
 PRINT: 'print';
 PRINTLN: 'println';
+PRINTX: 'printx';
+PRINTLNX: 'printlnx';
 READINT: 'readInt';
 READFLOAT: 'readFloat';
 PLUS: '+';
@@ -42,6 +44,8 @@ MINUS: '-';
 TIMES: '*';
 SLASH: '/';
 PERCENT: '%';
+TRUE: 'true';
+FALSE: 'false';
 
 fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
 fragment DIGIT: '0' .. '9';

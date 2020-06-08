@@ -453,8 +453,10 @@ literal returns[AbstractExpr tree]
             $tree = new StringLiteral($STRING.text.substring(1, $STRING.text.length()-1));
         }
     | TRUE {
+    		$tree = new BooleanLiteral(true);
         }
     | FALSE {
+    		$tree = new BooleanLiteral(false);
         }
     | THIS {
         }

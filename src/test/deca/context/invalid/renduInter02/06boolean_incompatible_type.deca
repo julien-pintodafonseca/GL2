@@ -6,6 +6,8 @@
 //	Erreur contextuelle
 //	Ligne 10 : impossible d'affecter une string à un booléen
 
-boolean x;
-x="test";
+{
+	boolean x;
+	x="test";
+}
 
