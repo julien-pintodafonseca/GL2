@@ -1,0 +1,21 @@
+// Description :
+//      variable de type booléen. 
+// 	=> Cas spécifique : affectation d'une variable booléenne lors de sa déclaration.
+//
+// résultat  :
+//	OK
+//	OK
+
+boolean y=false;
+boolean x=true;
+if(x==true){
+	print("OK");
+}else{
+	print("NOK");
+}
+if(y==false){
+	print("OK");
+}else{
+	print("NOK");
+}
+
