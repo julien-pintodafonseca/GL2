@@ -82,7 +82,8 @@ public class CompilerOptions {
                         debug++;
                         break;
                     case "-P":
-                        throw new UnsupportedOperationException("not yet implemented");
+                        parallel = true;
+                        break;
                     default:
                         throw new CLIException(ErrorMessages.DECAC_COMPILER_WRONG_OPTION + arg);
                 }

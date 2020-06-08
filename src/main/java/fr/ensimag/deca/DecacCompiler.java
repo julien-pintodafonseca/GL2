@@ -21,6 +21,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.concurrent.Callable;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.log4j.Logger;
@@ -40,7 +42,7 @@ import org.apache.log4j.Logger;
  * @author Equipe GL2
  * @date 2020
  */
-public class DecacCompiler {
+public class DecacCompiler implements Callable<Boolean> {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
     
     /**
@@ -278,4 +280,8 @@ public class DecacCompiler {
         return parser.parseProgramAndManageErrors(err);
     }
 
+
+    public Boolean call() throws Exception{
+        return compile();
+    }
 }
