@@ -1,0 +1,1 @@
+06boolean_incompatible_type.deca:11:3: Le type de variable suivant est incompatible pour l'affectation : string ( type attendue : boolean )

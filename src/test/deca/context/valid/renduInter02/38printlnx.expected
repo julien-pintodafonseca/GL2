@@ -1,0 +1,39 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [9, 7] DeclVar
+      |  ||  +> [9, 1] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [9, 7] Identifier (x)
+      |  ||  |  definition: variable defined at [9, 7], type=float
+      |  ||  `> NoInitialization
+      |  []> [10, 5] DeclVar
+      |      +> [10, 1] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [10, 5] Identifier (y)
+      |      |  definition: variable defined at [10, 5], type=int
+      |      `> NoInitialization
+      `> ListInst [List with 3 elements]
+         []> [11, 2] Assign
+         ||  type: float
+         ||  +> [11, 1] Identifier (x)
+         ||  |  definition: variable defined at [9, 7], type=float
+         ||  `> [11, 3] Float (16.0)
+         ||     type: float
+         []> [12, 2] Assign
+         ||  type: int
+         ||  +> [12, 1] Identifier (y)
+         ||  |  definition: variable defined at [10, 5], type=int
+         ||  `> [12, 3] Int (5)
+         ||     type: int
+         []> [13, 1] Println
+             `> ListExpr [List with 4 elements]
+                []> [13, 10] StringLiteral (Le réel x en hexadécimal : )
+                ||  type: string
+                []> [13, 40] Identifier (x)
+                ||  definition: variable defined at [9, 7], type=float
+                []> [13, 42] StringLiteral (. L'entier y en décimal : )
+                ||  type: string
+                []> [13, 71] Identifier (y)
+                    definition: variable defined at [10, 5], type=int
