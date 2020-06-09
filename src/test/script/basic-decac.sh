@@ -31,7 +31,7 @@ echo "Pas de probleme detecte avec decac -b."
 
 
 
-var=`ls ./src/test/deca/codegen/valid/renduInter01/2*.deca`
+var=`ls ./src/test/deca/codegen/valid/renduInter01/*.deca`
 
 start=`date +%s%N`
 decac_moins_P=$(decac -P $var)
