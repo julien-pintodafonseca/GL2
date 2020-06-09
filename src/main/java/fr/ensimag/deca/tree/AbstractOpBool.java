@@ -20,7 +20,7 @@ public abstract class AbstractOpBool extends AbstractBinaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
-        // Syntaxe contextuelle : règle (3.29)
+        // Syntaxe contextuelle : règles (3.29), (3.33)
         getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         getLeftOperand().verifyCondition(compiler, localEnv, currentClass);
         getRightOperand().verifyExpr(compiler, localEnv, currentClass);

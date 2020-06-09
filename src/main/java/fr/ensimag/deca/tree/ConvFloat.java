@@ -22,6 +22,7 @@ public class ConvFloat extends AbstractUnaryExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) {
+    	  // Règle syntaxe contextuelle : (3.37)
         throw new UnsupportedOperationException("not yet implemented");
     }
 

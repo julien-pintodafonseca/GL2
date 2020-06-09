@@ -1,0 +1,31 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [9, 0] Main
+      +> ListDeclVar [List with 0 elements]
+      `> ListInst [List with 2 elements]
+         []> [10, 1] IfThenElse
+         ||  +> [10, 4] BooleanLiteral (true)
+         ||  |  type: boolean
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [11, 2] Println
+         ||  |      `> ListExpr [List with 1 elements]
+         ||  |         []> [11, 10] StringLiteral (OK)
+         ||  |             type: string
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [13, 2] Println
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [13, 10] StringLiteral (NOK)
+         ||                type: string
+         []> [15, 1] IfThenElse
+             +> [15, 4] BooleanLiteral (false)
+             |  type: boolean
+             +> ListInst [List with 1 elements]
+             |  []> [16, 2] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [16, 10] StringLiteral (NOK)
+             |             type: string
+             `> ListInst [List with 1 elements]
+                []> [18, 2] Println
+                    `> ListExpr [List with 1 elements]
+                       []> [18, 10] StringLiteral (OK)
+                           type: string
