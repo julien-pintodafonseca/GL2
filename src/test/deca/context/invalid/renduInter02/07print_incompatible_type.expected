@@ -1,0 +1,1 @@
+src/test/deca/context/invalid/renduInter02/07print_incompatible_type.deca:11:1: La fonction print n'affiche que des expressions de type int, float et string. Or vous essayez d'afficher une expression de type : boolean

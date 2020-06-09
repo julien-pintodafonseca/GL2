@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.FloatType;
 import fr.ensimag.deca.context.IntType;
@@ -46,6 +47,10 @@ public abstract class AbstractPrint extends AbstractInst {
         LOG.debug("verify inst: start (abstractPrint)");
         for (AbstractExpr expr : getArguments().getList()) {
             expr.verifyExpr(compiler, localEnv, currentClass);
+            if (!expr.getType().isInt() && !expr.getType().isFloat() && !expr.getType().isString()) {
+            	throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_PRINT_INCOMPATIBLE_TYPE + expr.getType(), getLocation());
+            	
+            }
         }
         LOG.debug("verify inst: end (abstractPrint)");
     }
