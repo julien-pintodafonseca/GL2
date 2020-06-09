@@ -1,0 +1,29 @@
+AFLEX port for gnat3.04a 
+Martin C. Carlisle
+Department of Computer Science
+US Air Force Academy
+mcc@cs.usafa.af.mil
+Nov. 20, 1996
+
+Generates output files for use by GNAT.
+
+Summary of changes from beta version:
+
+COMPILE -- changed to read "gnatmake aflex"
+
+command_line_interface.adb : 
+   argv(0) is filled in
+
+external_file_manager.ad[bs] :
+   changed so that .ads and .adb files are generated for IO, DFA
+
+   Procedure YYLex is put in yylex.ada and a spec file (two lines below)
+   yylex.ads is generated automatically for use with ayacc:
+
+   with BASENAME_Tokens.ads; use BASENAME_Tokens.ads;
+   function YYLex return Token;  
+
+   where BASENAME is the name of the input file to aflex.
+
+template_manager.adb :
+   changed to generate .ads and .adb files

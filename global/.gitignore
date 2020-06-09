@@ -1,0 +1,24 @@
+# .gitignore pour global/.
+
+# Ce fichier est utilisé dans le dépôt des enseignants, et dans
+# /matieres/4MMPGL/GL/global/ installé chez les étudiants.
+
+*.[oa]
+*.ali
+b~*.ad[bs]
+*~
+*.gcov
+*.gcno
+*.gcda
+# not always generated => don't ignore them
+# *_dfa.adb
+# *_dfa.ads
+# *_io.ads
+# *_io.adb
+# *_shift_reduce.ads
+*syntaxe_goto.ads
+*syntaxe_tokens.ads
+*.log
+*.toc
+*.dvi
+*.aux

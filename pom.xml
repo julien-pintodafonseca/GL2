@@ -11,6 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <compileSource>1.8</compileSource>
+    <skipSystemTests>false</skipSystemTests>
   </properties>
 
   <dependencies>
@@ -158,6 +159,7 @@
                 <id>basic-lex</id>
                 <configuration>
                   <executable>./src/test/script/basic-lex.sh</executable>
+                  <skip>${skipSystemTests}</skip>
                   <!-- If we need to pass arguments :
                        <arguments>
                        <argument>...</argument>
@@ -169,7 +171,10 @@
               </execution>
               <execution>
                 <id>basic-synt</id>
-                <configuration><executable>./src/test/script/basic-synt.sh</executable></configuration>
+                <configuration>
+                  <executable>./src/test/script/basic-synt.sh</executable>
+                  <skip>${skipSystemTests}</skip>
+                </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
               </execution>
@@ -187,25 +192,36 @@
               </execution>
               <execution>
                 <id>basic-context</id>
-                <configuration><executable>./src/test/script/basic-context.sh</executable></configuration>
+                <configuration>
+                  <executable>./src/test/script/basic-context.sh</executable>
+                  <skip>${skipSystemTests}</skip>
+                </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
               </execution>
               <execution>
                 <id>basic-gencode</id>
-                <configuration><executable>./src/test/script/basic-gencode.sh</executable></configuration>
+                <configuration>
+                  <executable>./src/test/script/basic-gencode.sh</executable>
+                  <skip>${skipSystemTests}</skip>
+                </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
               </execution>
               <execution>
                 <id>basic-decac</id>
-                <configuration><executable>./src/test/script/basic-decac.sh</executable></configuration>
+                <configuration>
+                  <executable>./src/test/script/basic-decac.sh</executable>
+                  <skip>${skipSystemTests}</skip>
+                </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
               </execution>
               <execution>
                 <id>common-tests</id>
-                <configuration><executable>./src/test/script/common-tests.sh</executable></configuration>
+                <configuration>
+                  <executable>./src/test/script/common-tests.sh</executable>
+                </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
               </execution>
@@ -486,6 +502,7 @@
                   <arguments>
                     <argument>./src/test/script/basic-lex.sh</argument>
                   </arguments>
+                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -497,6 +514,7 @@
                   <arguments>
                     <argument>./src/test/script/basic-synt.sh</argument>
                   </arguments>
+                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -520,6 +538,7 @@
                   <arguments>
                     <argument>./src/test/script/basic-context.sh</argument>
                   </arguments>
+                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -531,6 +550,7 @@
                   <arguments>
                     <argument>./src/test/script/basic-gencode.sh</argument>
                   </arguments>
+                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -542,6 +562,7 @@
                   <arguments>
                     <argument>./src/test/script/basic-decac.sh</argument>
                   </arguments>
+                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>

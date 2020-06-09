@@ -65,6 +65,26 @@ public class DeclClass extends AbstractDeclClass {
         }
 
         throw new UnsupportedOperationException("not yet implemented");
+        // On vérifie que la superclasse existe bien
+        superClass.verifyClass(compiler);
+        // On récupère la définition de la superClass dans ce contexte également (nécessaire pour la déclaration du type)
+        ClassDefinition superClassDef = compiler.getEnvTypes().getClassDef(superClass.getName());
+        ClassType classType = new ClassType(name.getName(), getLocation(), superClassDef);
+        this.name.setType(classType);
+
+        ClassDefinition classDef = classType.getDefinition();
+        name.setDefinition(classDef);
+
+        // On déclare la class dans l'envRoot
+        // Erreur si déjà existante
+        try {
+            compiler.getEnvTypes().declare(name.getName(), name.getClassDefinition());
+        } catch (EnvironmentExp.DoubleDefException $e) {
+            throw new ContextualError("Class " + name.getName().getName() + " twice declared.", getLocation());
+        }
+
+        // On met en place les définitions
+        name.verifyClass(compiler);
     }
 
     @Override

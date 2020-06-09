@@ -1,0 +1,40 @@
+# Gitlab ci/cd file configuration
+
+default:
+  image: "maven:3-openjdk-8"
+
+variables:
+  MAVEN_OPT_1: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_OPT_2: "-DskipSystemTests=true"
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+before_script:
+  - export PATH=$PATH:"$CI_PROJECT_DIR/global/bin"
+  - export PATH=$PATH:"$CI_PROJECT_DIR/src/main/bin"
+  - export PATH=$PATH:"$CI_PROJECT_DIR/src/test/script"
+  - export PATH=$PATH:"$CI_PROJECT_DIR/src/test/script/launchers"
+
+stages:
+  - build
+  - simple-test
+  - complete-test
+
+
+build:
+  stage: build
+  script:
+    - mvn clean compile $MAVEN_OPT_1
+
+simple-test:
+  stage: simple-test
+  script:
+    - mvn test $MAVEN_OPT_1 $MAVEN_OPT_2
+
+complete-test:
+  stage: complete-test
+  script:
+    - mvn test $MAVEN_OPT_1

@@ -1,0 +1,26 @@
+AYACC port for gnat3.04a
+Martin C. Carlisle
+Department of Computer Science
+US Air Force Academy
+mcc@cs.usafa.af.mil
+Nov. 19, 1996
+
+Summary of changes from beta version:
+
+all files have been split into .adb and .ads appropriately named
+
+ayacc_file_names.adb :
+   changed Get_Out_File_Name to return "yyparse"
+   changed Get_Error_Report_File_Name to return name w/o extension
+
+command_line_interface.adb :
+   changed default extension from ".adb" to ".ads"
+
+error_report_file.adb :
+   changed to generate error_report_file.ads and .adb
+
+output_file.adb :
+   changed to generate yyparse.ads consisting of the single line:
+
+   procedure yyparse;
+
