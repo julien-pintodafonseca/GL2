@@ -54,7 +54,7 @@ if [ $runtime -gt $runtime_without_P ]; then
     exit 1
 fi
 
-echo "The time of exexcution with p is $runtime"
+echo "The time of execution with p is $runtime"
 echo "The time of execution without p is $runtime_without_P"
 
 echo "Pas de probleme detecte avec decac -P."
