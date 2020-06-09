@@ -3,6 +3,15 @@
 default:
   image: "maven:3-openjdk-8"
 
+variables:
+  MAVEN_DEFAULT_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_SIMPLE_TEST_OPTS: "-Dmaven.repo.local=.m2/repository -DskipSystemTests=true"
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
 before_script:
   - export PATH=$PATH:"$CI_PROJECT_DIR/global/bin"
   - export PATH=$PATH:"$CI_PROJECT_DIR/src/main/bin"
@@ -10,34 +19,22 @@ before_script:
   - export PATH=$PATH:"$CI_PROJECT_DIR/src/test/script/launchers"
 
 stages:
-  - clean
-  - compile
+  - build
   - simple-test
   - complete-test
-  - deploy
 
 
-clean:
-  stage: clean
+build:
+  stage: build
   script:
-    - mvn clean
-
-compile:
-  stage: compile
-  script:
-    - mvn compile
+    - mvn clean compile $MAVEN_DEFAULT_OPTS
 
 simple-test:
   stage: simple-test
   script:
-    - mvn test
+    - mvn test $MAVEN_SIMPLE_TEST_OPTS
 
 complete-test:
   stage: complete-test
   script:
-    - mvn test -DskipSystemTests=false
-
-deploy:
-  stage: deploy
-  script:
-    - mvn deploy
+    - mvn test $MAVEN_DEFAULT_OPTS
