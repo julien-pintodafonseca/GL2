@@ -45,6 +45,29 @@ public class EnvironmentType {
         return envTypes.get(s);
     }
 
+    public void declareClass(DecacCompiler compiler, String newClass, TypeDefinition typeDefClass) {
+        Symbol classSymb = compiler.createSymbol(newClass);
+        envTypes.put(classSymb, typeDefClass);
+    }
+
+    public boolean isDeclare(Symbol symbol) {
+        return envTypes.containsKey(symbol);
+    }
+
+    public ClassDefinition getClassDefinition(Symbol symbol) {
+        if (isDeclare(symbol)) {
+            if (envTypes.get(symbol) instanceof ClassDefinition) {
+                return (ClassDefinition) envTypes.get(symbol);
+            } else {
+                // erreur à créer
+                return null;
+            }
+        } else {
+            // erreur à créer
+            return null;
+        }
+    }
+
     public final VoidType    VOID;
     public final IntType     INT;
     public final FloatType   FLOAT;

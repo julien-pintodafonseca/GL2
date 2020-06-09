@@ -11,6 +11,7 @@ options {
 @members {
 }
 
+DOT: '.';
 OBRACE: '{';
 CBRACE: '}';
 SEMI: ';';
@@ -46,6 +47,11 @@ SLASH: '/';
 PERCENT: '%';
 TRUE: 'true';
 FALSE: 'false';
+CLASS: 'class';
+THIS: 'this';
+PROTECTED: 'protected';
+RETURN: 'return';
+NEW: 'new';
 
 fragment LETTER: 'a' .. 'z' | 'A' .. 'Z';
 fragment DIGIT: '0' .. '9';
@@ -73,7 +79,3 @@ STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
 fragment MONOCOMMENT: '//' (~('\n'| '\r'))*;
 fragment MULTICOMMENT:'/*' .*? '*/';
 COMMENT:  (MONOCOMMENT | MULTICOMMENT) { skip(); };
-
-// Deca lexer rules.
-DUMMY_TOKEN: .; // A FAIRE : Règle bidon qui reconnait tous les caractères.
-                // A FAIRE : Il faut la supprimer et la remplacer par les vraies règles.

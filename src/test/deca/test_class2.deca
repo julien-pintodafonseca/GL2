@@ -1,0 +1,39 @@
+// programme TD intro objects
+classA {
+    float x = 3.5;
+    boolean equalsA (A a) {
+        print("A:", x, ";");
+        return a !=null && a.x==x;
+    }
+    boolean equals (Object o) {
+        return o instanceof A &&  equalsA((A)(o));
+    }
+
+    void test (Object o) {
+        if (equals(o)) {
+            println("Eq");
+        } else {
+            println("Diff");
+        }
+    }
+}
+
+class B extends A {
+    int x = 11;
+
+    boolean equalsB (B b) {
+        print("B:", x, ";");
+        return equals A(b) && b.x == x;
+    }
+
+    boolean equals (Object o) {
+        return o instanceof B &&  equalsB((B)(o));
+    }
+}
+
+{
+    A oB = new B(), oA = new A();
+    oA.test(oB);
+    oB.test(oA);
+    oB.test(new B());
+}
