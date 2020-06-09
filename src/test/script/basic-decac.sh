@@ -31,7 +31,7 @@ echo "Pas de probleme detecte avec decac -b."
 
 
 
-var=`ls ./src/test/deca/codegen/valid/renduInter01/*.deca`
+var=`ls ./src/test/deca/codegen/valid/renduInter01/2*.deca`
 
 start=`date +%s%N`
 decac_moins_P=$(decac -P $var)
@@ -54,8 +54,8 @@ if [ $runtime -gt $runtime_without_P ]; then
     exit 1
 fi
 
-#echo "The time of exexcution with p is $runtime"
-#echo "The time of execution without p is $runtime_without_P"
+echo "The time of exexcution with p is $runtime"
+echo "The time of execution without p is $runtime_without_P"
 
 echo "Pas de probleme detecte avec decac -P."
 
