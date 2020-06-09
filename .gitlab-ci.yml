@@ -4,8 +4,8 @@ default:
   image: "maven:3-openjdk-8"
 
 variables:
-  MAVEN_DEFAULT_OPTS: "-Dmaven.repo.local=.m2/repository"
-  MAVEN_SIMPLE_TEST_OPTS: "-Dmaven.repo.local=.m2/repository -DskipSystemTests=true"
+  MAVEN_OPT_1: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_OPT_2: "-DskipSystemTests=true"
 
 cache:
   paths:
@@ -27,14 +27,14 @@ stages:
 build:
   stage: build
   script:
-    - mvn clean compile $MAVEN_DEFAULT_OPTS
+    - mvn clean compile $MAVEN_OPT_1
 
 simple-test:
   stage: simple-test
   script:
-    - mvn test $MAVEN_SIMPLE_TEST_OPTS
+    - mvn test $MAVEN_OPT_1 $MAVEN_OPT_2
 
 complete-test:
   stage: complete-test
   script:
-    - mvn test $MAVEN_DEFAULT_OPTS
+    - mvn test $MAVEN_OPT_1
