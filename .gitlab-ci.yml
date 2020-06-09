@@ -3,8 +3,11 @@
 default:
   image: "maven:3-openjdk-8"
 
-variables:
-  TEAM: "GL2"
+before_script:
+  - export PATH=$PATH:"$CI_PROJECT_PATH/global/bin"
+  - export PATH=$PATH:"$CI_PROJECT_PATH/src/main/bin"
+  - export PATH=$PATH:"$CI_PROJECT_PATH/src/test/script"
+  - export PATH=$PATH:"$CI_PROJECT_PATH/src/test/script/launchers"
 
 stages:
   - clean
