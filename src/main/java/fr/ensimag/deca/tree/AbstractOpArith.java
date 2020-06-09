@@ -73,7 +73,7 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             codeGenInstArith(compiler, Register.getR(i), register);
             // test débordement arithmétique ou division par zéro
             compiler.getErrorLabelManager().addError(ErrorLabelType.LB_ARITHMETIC_OVERFLOW);
-            compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW))));
+            compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW))), "Overflow check for previous operation");
 
             compiler.getRegisterManager().free(i);
         } else {

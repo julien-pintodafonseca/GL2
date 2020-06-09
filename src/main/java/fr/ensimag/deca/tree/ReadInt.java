@@ -52,7 +52,7 @@ public class ReadInt extends AbstractReadExpr {
     public void codeGenError(DecacCompiler compiler) throws DecacFatalError {
         // test de l'entrée saisie par l'utilisateur : dépassement ou erreur de syntaxe
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_READINT_BAD_ENTRY);
-        compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_READINT_BAD_ENTRY))));
+        compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_READINT_BAD_ENTRY))), "Overflow check for previous operation");
     }
 
     @Override
