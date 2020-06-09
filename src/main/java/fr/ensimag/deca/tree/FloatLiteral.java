@@ -44,7 +44,7 @@ public class FloatLiteral extends AbstractExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) {
         LOG.debug("verify expr: start (FloatLiteral)");
-        // Règle syntaxe contextuelle : (3.45)
+        // Règles syntaxe contextuelle :(3.38), (3.45)
         Type type = compiler.environmentType.FLOAT;
         setType(type);
         LOG.debug("verify expr: end (FloatLiteral)");

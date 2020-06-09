@@ -1,0 +1,57 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [9, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [10, 9] DeclVar
+      |  ||  +> [10, 1] Identifier (boolean)
+      |  ||  |  definition: type (builtin), type=boolean
+      |  ||  +> [10, 9] Identifier (y)
+      |  ||  |  definition: variable defined at [10, 9], type=boolean
+      |  ||  `> NoInitialization
+      |  []> [11, 9] DeclVar
+      |      +> [11, 1] Identifier (boolean)
+      |      |  definition: type (builtin), type=boolean
+      |      +> [11, 9] Identifier (x)
+      |      |  definition: variable defined at [11, 9], type=boolean
+      |      `> NoInitialization
+      `> ListInst [List with 4 elements]
+         []> [12, 2] Assign
+         ||  type: boolean
+         ||  +> [12, 1] Identifier (x)
+         ||  |  definition: variable defined at [11, 9], type=boolean
+         ||  `> [12, 3] BooleanLiteral (true)
+         ||     type: boolean
+         []> [13, 2] Assign
+         ||  type: boolean
+         ||  +> [13, 1] Identifier (y)
+         ||  |  definition: variable defined at [10, 9], type=boolean
+         ||  `> [13, 3] BooleanLiteral (false)
+         ||     type: boolean
+         []> [14, 1] IfThenElse
+         ||  +> [14, 4] Identifier (x)
+         ||  |  definition: variable defined at [11, 9], type=boolean
+         ||  +> ListInst [List with 1 elements]
+         ||  |  []> [15, 2] Print
+         ||  |      `> ListExpr [List with 1 elements]
+         ||  |         []> [15, 8] StringLiteral (OK)
+         ||  |             type: string
+         ||  `> ListInst [List with 1 elements]
+         ||     []> [17, 2] Print
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [17, 8] StringLiteral (NOK)
+         ||                type: string
+         []> [19, 1] IfThenElse
+             +> [19, 4] Not
+             |  type: boolean
+             |  `> [19, 6] Identifier (y)
+             |     definition: variable defined at [10, 9], type=boolean
+             +> ListInst [List with 1 elements]
+             |  []> [20, 2] Print
+             |      `> ListExpr [List with 1 elements]
+             |         []> [20, 8] StringLiteral (OK)
+             |             type: string
+             `> ListInst [List with 1 elements]
+                []> [22, 2] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [22, 8] StringLiteral (NOK)
+                           type: string

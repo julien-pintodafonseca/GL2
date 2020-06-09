@@ -42,7 +42,7 @@ public class StringLiteral extends AbstractStringLiteral {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) {
         LOG.debug("verify expr: start (stringLiteral)");
-        // Règle syntaxe contextuelle : (3.47)
+        // Règles syntaxe contextuelle : (3.38), (3.46)
         Type type = compiler.environmentType.STRING;
         setType(type);
         LOG.debug("verify expr: end (stringLiteral)");

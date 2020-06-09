@@ -1,0 +1,7 @@
+ma_lexico.adb
+ma_syntax.adb
+ma_syntax_goto.ads
+ma_syntax_tokens.ads
+ma_lexico_io.ad[bs]
+ma_lexico_dfa.ad[bs]
+ma_syntax_shift_reduce.ads

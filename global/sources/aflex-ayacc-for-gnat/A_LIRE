@@ -1,0 +1,10 @@
+Aflex et Ayacc patches pour etre utilises avec gnat.
+
+1) Compilation :
+
+"make", simplement.
+
+2) Installation des executables (a faire en root) :
+
+Recopier les binaires gnaflex et gnayacc dans le $PATH (/usr/local/bin
+par exemple).

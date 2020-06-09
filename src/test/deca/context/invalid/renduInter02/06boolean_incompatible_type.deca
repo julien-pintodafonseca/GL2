@@ -1,0 +1,13 @@
+// Description :
+//      affectation d'un booléen : incompatibilité au niveau du typage 
+// 	=> Un booléen ne peut prendre que les valeurs true et false.
+//
+// résultat  :
+//	Erreur contextuelle
+//	Ligne 10 : impossible d'affecter une string à un booléen
+
+{
+	boolean x;
+	x="test";
+}
+

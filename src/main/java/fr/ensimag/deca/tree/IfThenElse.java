@@ -40,6 +40,7 @@ public class IfThenElse extends AbstractInst {
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
+    	  // Règle syntaxe contextuelle : (3.22)
         condition.verifyExpr(compiler, localEnv, currentClass);
         if (condition.getType().isBoolean()) {
             thenBranch.verifyListInst(compiler, localEnv, currentClass, returnType);

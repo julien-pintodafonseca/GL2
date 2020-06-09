@@ -1,0 +1,14 @@
+// Description :
+//      affichage d'un booléen : incompatibilité au niveau du typage 
+// 	=> La fonction print ne peut afficher que des expressions de type int, string et float.
+//
+// résultat  :
+//	Erreur contextuelle
+//	Ligne 11 : La fonction print ne peut pas afficher un booléen
+
+{
+	boolean x=true;
+	print(x);
+	
+}
+

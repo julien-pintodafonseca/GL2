@@ -1,0 +1,25 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [9, 7] DeclVar
+      |  ||  +> [9, 1] Identifier (float)
+      |  ||  +> [9, 7] Identifier (x)
+      |  ||  `> NoInitialization
+      |  []> [10, 5] DeclVar
+      |      +> [10, 1] Identifier (int)
+      |      +> [10, 5] Identifier (y)
+      |      `> NoInitialization
+      `> ListInst [List with 3 elements]
+         []> [11, 2] Assign
+         ||  +> [11, 1] Identifier (x)
+         ||  `> [11, 3] Float (16.0)
+         []> [12, 2] Assign
+         ||  +> [12, 1] Identifier (y)
+         ||  `> [12, 3] Int (5)
+         []> [13, 1] Print
+             `> ListExpr [List with 4 elements]
+                []> [13, 8] StringLiteral (Le réel x en hexadécimal : )
+                []> [13, 38] Identifier (x)
+                []> [13, 40] StringLiteral (. L'entier y en décimal : )
+                []> [13, 69] Identifier (y)

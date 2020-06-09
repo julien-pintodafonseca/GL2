@@ -29,7 +29,7 @@ public class Main extends AbstractMain {
 
     @Override
     protected void verifyMain(DecacCompiler compiler) throws ContextualError {
-        // Règles syntaxe contextuelle : (3.3), (3.4) -> (3.18)
+        // Règles syntaxe contextuelle : (3.4) -> (3.18)
         LOG.debug("verify Main: start");
         EnvironmentExp env = new EnvironmentExp(null);
         declVariables.verifyListDeclVariable(compiler, env, null);

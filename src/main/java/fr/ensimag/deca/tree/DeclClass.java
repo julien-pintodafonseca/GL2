@@ -32,6 +32,7 @@ public class DeclClass extends AbstractDeclClass {
     
     @Override
     protected void verifyClassBody(DecacCompiler compiler) throws ContextualError {
+    	  // Règle syntaxe contextuelle : (3.5)
         throw new UnsupportedOperationException("not yet implemented");
     }
 

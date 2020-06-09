@@ -1,0 +1,21 @@
+// Description :
+//      boolean literal
+// 	=> Cas spécifique : utilisation des valeurs true et false
+//
+// résultat  :
+//	OK
+//	OK
+
+{
+	if(true){
+		println("OK");
+	}else{
+		println("NOK");
+	}
+	if(false){
+		println("NOK");
+	}else{
+		println("OK");
+	}
+}
+

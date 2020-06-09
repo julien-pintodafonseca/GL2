@@ -126,6 +126,7 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
+    	  // Règle syntaxe contextuelle : (3.29)
         if (!type.isBoolean()) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + type + ".", getLocation());
         }

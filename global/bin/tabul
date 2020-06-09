@@ -1,0 +1,20 @@
+#! /bin/sh
+
+tabs=$1
+shift
+
+for file in "$@"; do
+    if [ ! -f "${file}" ]; then
+        echo "Fichier ${file} introuvable"
+    else
+        if expand --tabs="$tabs" "${file}" > "${file}".tmp.$$
+        then
+            if ! diff "${file}".tmp.$$ "${file}" > /dev/null; then
+                mv -f "${file}".tmp.$$ "${file}"
+            fi
+        else
+            echo "Erreur en lancant expand."
+            exit 1
+        fi
+    fi
+done

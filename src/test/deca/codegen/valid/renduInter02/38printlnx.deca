@@ -1,0 +1,15 @@
+// Description :
+//      Fonction printlnx
+// 	=> Cas spécifique : affichage d'une nombre en héxadécimal
+//
+// résultat  :
+//	Le réel x en hexadécimal : 16. L'entier y en décimal : 5
+
+{
+	float x;
+	int y;
+	x=16.00;
+	y=5;
+	printlnx("Le réel x en hexadécimal : ",x,". L'entier y en décimal : ",y);
+}
+

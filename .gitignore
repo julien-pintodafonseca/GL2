@@ -6,6 +6,9 @@
 # ANTLR 4 default generated files directory
 /gen
 
+# Maven #
+.m2/
+
 # IDEA IntelliJ #
 .idea/
 *.iml
