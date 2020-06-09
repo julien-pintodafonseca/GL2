@@ -1,0 +1,3 @@
+# compilation instructions for gnat
+
+gnatmake ayacc

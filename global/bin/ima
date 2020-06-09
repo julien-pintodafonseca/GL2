@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# A little faster than dirname
+DIR=${0%/*}
+ARCH="$(uname -m | sed 's/i.86/iX86/')-$(uname -s)"
+
+if [ -x "$DIR"/ima-"$ARCH" ]; then
+    exec "$DIR"/ima-"$ARCH" "$@"
+else
+    echo "ERROR: could not execute ima for your platform ($ARCH), sorry."
+    echo "Try recompiling ima from the sources/ directory."
+    exit 1
+fi
+
