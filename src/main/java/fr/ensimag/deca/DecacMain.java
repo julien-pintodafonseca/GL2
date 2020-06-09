@@ -3,10 +3,8 @@ package fr.ensimag.deca;
 import org.apache.log4j.Logger;
 
 import java.io.File;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.Runtime;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,7 +19,7 @@ import java.util.concurrent.Future;
 public class DecacMain {
     private static Logger LOG = Logger.getLogger(DecacMain.class);
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         // example log4j message.
         LOG.info("Decac compiler started");
         boolean error = false;
@@ -54,11 +52,6 @@ public class DecacMain {
             options.displayUsage();
         }
         if (options.getParallel()) {
-            // A FAIRE : instancier DecacCompiler pour chaque fichier à
-            // compiler, et lancer l'exécution des méthodes compile() de chaque
-            // instance en parallèle. Il est conseillé d'utiliser
-            // java.util.concurrent de la bibliothèque standard Java.
-            // throw new UnsupportedOperationException("Parallel build not yet implemented");
             List<Future<Boolean>> resultList = new ArrayList<Future<Boolean>>();
             int nbProcessors = Runtime.getRuntime().availableProcessors();
             ExecutorService executorService = Executors.newFixedThreadPool(nbProcessors);
@@ -68,7 +61,9 @@ public class DecacMain {
             }
             for (Future<Boolean> fb: resultList){
                 try{
-                    fb.get();
+                    if (fb.get()) {
+                        error = true ;
+                    }
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }catch (ExecutionException e){
@@ -81,9 +76,11 @@ public class DecacMain {
         } else {
             for (File source : options.getSourceFiles()) {
                 DecacCompiler compiler = new DecacCompiler(options, source);
+                LOG.debug("Begin of a task");
                 if (compiler.compile()) {
                     error = true;
                 }
+                LOG.debug("End of a task");
             }
         }
         System.exit(error ? 1 : 0);

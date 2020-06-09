@@ -16,16 +16,12 @@ import fr.ensimag.ima.pseudocode.AbstractLine;
 import fr.ensimag.ima.pseudocode.IMAProgram;
 import fr.ensimag.ima.pseudocode.Instruction;
 import fr.ensimag.ima.pseudocode.Label;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.concurrent.Callable;
-
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.apache.log4j.Logger;
+
+import java.io.*;
+import java.util.concurrent.Callable;
 
 /**
  * Decac compiler instance.
@@ -280,8 +276,11 @@ public class DecacCompiler implements Callable<Boolean> {
         return parser.parseProgramAndManageErrors(err);
     }
 
-
-    public Boolean call() throws Exception{
-        return compile();
+    @Override
+    public Boolean call() throws Exception {
+        LOG.debug("Begin of a task");
+        boolean b = this.compile();
+        LOG.debug("End of a task");
+        return b;
     }
 }

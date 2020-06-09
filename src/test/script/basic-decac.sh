@@ -10,6 +10,7 @@ PATH=./src/main/bin:"$PATH"
 
 decac_moins_b=$(decac -b)
 
+# ----------- Option -b -------------
 if [ "$?" -ne 0 ]; then
     echo "ERREUR: decac -b a termine avec un status different de zero."
     exit 1
@@ -27,10 +28,8 @@ fi
 
 echo "Pas de probleme detecte avec decac -b."
 
-# ... et ainsi de suite.
 
-
-
+# ----------- Option -P -------------
 var=`ls ./src/test/deca/codegen/valid/renduInter01/*.deca`
 
 start=`date +%s%N`
