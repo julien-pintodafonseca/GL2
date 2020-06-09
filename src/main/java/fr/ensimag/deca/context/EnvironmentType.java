@@ -40,7 +40,7 @@ public class EnvironmentType {
         STRING = new StringType(stringSymb);
         // not added to envTypes, it's not visible for the user.
 
-        Symbol nullSymb = compiler.createSymbol("int");
+        Symbol nullSymb = compiler.createSymbol("null");
         NULL = new NullType(nullSymb);
         envTypes.put(nullSymb, new TypeDefinition(NULL, Location.BUILTIN));
     }
