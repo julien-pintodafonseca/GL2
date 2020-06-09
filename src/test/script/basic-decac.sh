@@ -30,12 +30,12 @@ echo "Pas de probleme detecte avec decac -b."
 
 
 # ----------- Option -P -------------
-var=`ls ./src/test/deca/codegen/valid/renduInter01/*.deca`
+var=`ls ./src/test/deca/codegen/valid/renduInter02/*.deca`
 
-start=`date +%s%N`
-decac_moins_P=$(decac -P $var)
-end=`date +%s%N`
-runtime=`expr $end - $start`
+#start=`date +%s%N`
+#decac_moins_P=$(decac -P $var)
+#end=`date +%s%N`
+#runtime=`expr $end - $start`
 
 decac_moins_P=$(decac -P $var)
 if [ "$?" -ne 0 ]; then
@@ -43,18 +43,18 @@ if [ "$?" -ne 0 ]; then
     exit 1
 fi
 
-start_1=`date +%s%N`
-decac_without_P=$(decac $var)
-end_1=`date +%s%N`
-runtime_without_P=`expr $end_1 - $start_1`
+#start_1=`date +%s%N`
+#decac_without_P=$(decac $var)
+#end_1=`date +%s%N`
+#runtime_without_P=`expr $end_1 - $start_1`
 
-if [ $runtime -gt $runtime_without_P ]; then
-    echo "Maybe Something wrong: decac -P take more time than decac"
-    exit 1
-fi
+#if [ $runtime -gt $runtime_without_P ]; then
+#    echo "Maybe Something wrong: decac -P take more time than decac"
+#    exit 1
+#fi
 
-echo "The time of execution with p is $runtime"
-echo "The time of execution without p is $runtime_without_P"
+#echo "The time of execution with p is $runtime"
+#echo "The time of execution without p is $runtime_without_P"
 
 echo "Pas de probleme detecte avec decac -P."
 
