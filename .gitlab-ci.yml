@@ -1,0 +1,34 @@
+# Gitlab ci/cd file configuration
+
+default:
+  image: "maven:3-openjdk-8"
+
+variables:
+  TEAM: "GL2"
+
+stages:
+  - clean
+  - compile
+  - test
+  - deploy
+
+
+clean:
+  stage: clean
+  script:
+    - mvn clean
+
+compile:
+  stage: compile
+  script:
+    - mvn compile
+
+test:
+  stage: test
+  script:
+    - mvn test
+
+deploy:
+  stage: deploy
+  script:
+    - mvn deploy
