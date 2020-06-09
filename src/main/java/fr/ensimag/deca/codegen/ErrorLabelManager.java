@@ -52,7 +52,7 @@ public class ErrorLabelManager {
             case LB_ARITHMETIC_OVERFLOW:
                 compiler.addComment("--------------------------------------------------");
                 compiler.addComment("    Message d’erreur : dépassement arithmétique   ");
-                compiler.addComment("               ou division par zéro               ");
+                compiler.addComment("        sur les \"float\" ou division par zéro      ");
                 compiler.addComment("--------------------------------------------------");
                 compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW)));
                 compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO));

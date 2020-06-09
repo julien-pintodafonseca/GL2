@@ -57,7 +57,7 @@ public class DeclClass extends AbstractDeclClass {
 
             } else {
                 // erreur à créer
-                // class déjà déclarée
+                // classe déjà déclarée
             }
         } else {
             // erreur à créer

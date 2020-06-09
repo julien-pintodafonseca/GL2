@@ -71,10 +71,6 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             getRightOperand().codeGenInst(compiler, Register.getR(i));
 
             codeGenInstArith(compiler, Register.getR(i), register);
-            // test débordement arithmétique ou division par zéro
-            compiler.getErrorLabelManager().addError(ErrorLabelType.LB_ARITHMETIC_OVERFLOW);
-            compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW))), "Overflow check for previous operation");
-
             compiler.getRegisterManager().free(i);
         } else {
             // chargement dans la pile de 1 registres
@@ -83,5 +79,11 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         }
     }
 
-    public abstract void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2);
+    public void codeGenError(DecacCompiler compiler) throws DecacFatalError {
+        // test débordement arithmétique sur les flottants ou division par zéro
+        compiler.getErrorLabelManager().addError(ErrorLabelType.LB_ARITHMETIC_OVERFLOW);
+        compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW))), "Overflow : check for previous operation");
+    }
+
+    public abstract void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError;
 }

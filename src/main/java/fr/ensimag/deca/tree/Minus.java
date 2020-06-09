@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.instructions.SUB;
 
@@ -14,8 +15,11 @@ public class Minus extends AbstractOpArith {
     }
 
     @Override
-    public void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) {
+    public void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
         compiler.addInstruction(new SUB(register1, register2));
+        if (getLeftOperand().getType().isFloat() || getRightOperand().getType().isFloat()) {
+            codeGenError(compiler);
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
@@ -41,8 +42,9 @@ public class Modulo extends AbstractOpArith {
     }
 
     @Override
-    public void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) {
+    public void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
         compiler.addInstruction(new REM(register1, register2));
+        codeGenError(compiler);
     }
 
     @Override

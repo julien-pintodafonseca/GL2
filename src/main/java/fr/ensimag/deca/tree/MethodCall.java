@@ -49,14 +49,18 @@ public class MethodCall extends AbstractExpr {
 
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
-        obj.prettyPrint(s, prefix, false);
+        if (obj != null) {
+            obj.prettyPrint(s, prefix, false);
+        }
         meth.prettyPrint(s, prefix, false);
         params.prettyPrint(s, prefix, true);
     }
 
     @Override
     protected void iterChildren(TreeFunction f) {
-        obj.iter(f);
+        if (obj != null) {
+            obj.iter(f);
+        }
         meth.iter(f);
         params.iter(f);
     }
