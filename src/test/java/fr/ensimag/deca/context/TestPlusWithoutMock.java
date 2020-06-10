@@ -5,9 +5,11 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.Plus;
 import fr.ensimag.deca.tree.TreeFunction;
-import java.io.PrintStream;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.io.PrintStream;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test for the Plus node in a manual way. The same test would be much easier to
@@ -66,9 +68,9 @@ public class TestPlusWithoutMock {
         DecacCompiler compiler = new DecacCompiler(null, null);
         DummyIntExpression left = new DummyIntExpression();
         DummyIntExpression right = new DummyIntExpression();
-        Plus t = new Plus(left, right);
+        Plus plus = new Plus(left, right);
         // check the result
-        assertTrue(t.verifyExpr(compiler, null, null).isInt());
+        assertTrue(plus.verifyExpr(compiler, null, null).isInt());
         // check that the dummy expression have been called properly.
         left.checkProperUse();
         right.checkProperUse();

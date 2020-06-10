@@ -1,8 +1,9 @@
 package fr.ensimag.deca.tools;
 
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
-import static org.junit.Assert.*;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Example JUnit class. A JUnit class must be named TestXXX or YYYTest. JUnit
