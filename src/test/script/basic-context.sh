@@ -36,7 +36,7 @@ test_context_invalid () {
 
         if [ -f $2 ]; then
             if grep "$(cat $2)" "$file.res" > /dev/null ; then
-                echo "$1 : PASSED."
+                # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
                 echo "$1 : FAILED."
@@ -66,7 +66,7 @@ test_context_valid () {
 
         if [ -f $2 ]; then
             if grep "$(cat $2)" "$file.res" > /dev/null ; then
-                echo "$1 : PASSED."
+                # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
                 echo "$1 : FAILED."

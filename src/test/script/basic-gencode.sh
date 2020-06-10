@@ -37,8 +37,8 @@ test_codegen_invalid () {
         else
             # si le test s'est exécuté avec une erreur, on regarde si le résultat obtenu correspond à celui attendu
             if [ "$resultat" = "$(cat $2)" ]; then
+                # echo "$1 : PASSED"
                 nbpassed=$((nbpassed+1))
-                echo "$1 : PASSED"
             else
                 echo "$1 : FAILED"
                 echo "Résultat inattendu de ima:"
@@ -74,8 +74,8 @@ test_codegen_valid () {
         else
             # On regarde si le résultat obtenu correspond à celui attendu
             if [ "$resultat" = "$(cat $2)" ]; then
+                # echo "$1 : PASSED"
                 nbpassed=$((nbpassed+1))
-                echo "$1 : PASSED"
             else
                 echo "$1 : FAILED"
                 echo "Résultat inattendu de ima:"

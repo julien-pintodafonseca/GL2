@@ -38,7 +38,7 @@ test_synt_invalid () {
             test_synt "$path" 2>&1 | grep ".deca" > "$file.res"
 
             if grep "$(cat $2)" "$file.res" > /dev/null ; then
-                echo "$1 : PASSED."
+                # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
                 echo "$1 : FAILED."
@@ -67,7 +67,7 @@ test_synt_valid () {
             test_synt "$path" > "$file.res"
 
             if diff -q "$file.res" "$2" > /dev/null ; then
-                echo "$1 : PASSED."
+                # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
                 echo "$1 : FAILED."
