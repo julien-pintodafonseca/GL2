@@ -61,23 +61,23 @@ test_codegen_valid () {
     decac $1 # On génère le fichier assembleur .ass
 
     if [ $? -ne 0 ] ; then
-        echo "$1 : KO (pour la génération de code)"
+        echo "[FAILED] $1 : KO (pour la génération de code)"
     elif [ ! -f $ass_file ]; then
         echo "Fichier cond0.ass non généré."
     else
         resultat=$(ima $ass_file) # On exécute le fichier assembleur
 
         if [ $? -ne 0 ] ; then
-            echo "$1 : KO (fichier assembleur inexécutable)"
+            echo "[FAILED] $1 : KO (fichier assembleur inexécutable)"
         elif [ ! -f $2 ]; then
-            echo "$1 : Fichier .expected inexistant"
+            echo "[FAILED] $1 : Fichier .expected inexistant"
         else
             # On regarde si le résultat obtenu correspond à celui attendu
             if [ "$resultat" = "$(cat $2)" ]; then
                 # echo "$1 : PASSED"
                 nbpassed=$((nbpassed+1))
             else
-                echo "$1 : FAILED"
+                echo "[FAILED] $1 : FAILED"
                 echo "Résultat inattendu de ima:"
                 echo "$resultat"
             fi
@@ -94,14 +94,14 @@ test_step_provided() {
 
   # no src/test/deca/context/interactive/provided/
 
-  echo "### TEST: src/test/deca/codegen/valid/provided/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/provided/ ---"
   for cas_de_test in src/test/deca/codegen/valid/provided/*.deca
   do
       nbtests=$((nbtests+1))
       expected=${cas_de_test%.deca}
       test_codegen_valid "$cas_de_test" "$expected.expected"
   done
-  echo
+  # echo
 
   # no src/test/deca/codegen/invalid/provided/
 }
@@ -115,14 +115,14 @@ test_step_renduInitial() {
 
   # no src/test/deca/context/interactive/renduInitial/
 
-  echo "### TEST: src/test/deca/codegen/valid/renduInitial/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/renduInitial/ ---"
   for cas_de_test in src/test/deca/codegen/valid/renduInitial/*.deca
   do
       nbtests=$((nbtests+1))
       expected=${cas_de_test%.deca}
       test_codegen_valid "$cas_de_test" "$expected.expected"
   done
-  echo
+  # echo
 
   # no src/test/deca/codegen/invalid/renduInitial/
 }
@@ -134,14 +134,14 @@ test_step_renduInter01() {
 
   # Le contenu de src/test/deca/context/interactive/renduInter01/ doit être testé manuellement
 
-  echo "### TEST: src/test/deca/codegen/valid/renduInter01/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/renduInter01/ ---"
   for cas_de_test in src/test/deca/codegen/valid/renduInter01/*.deca
   do
       nbtests=$((nbtests+1))
       expected=${cas_de_test%.deca}
       test_codegen_valid "$cas_de_test" "$expected.expected"
   done
-  echo
+  #echo
 
   # no src/test/deca/codegen/invalid/renduInter01/
 }
@@ -153,23 +153,23 @@ test_step_renduInter02() {
 
   # Le contenu de src/test/deca/context/interactive/renduInter02/ doit être testé manuellement
 
-  echo "### TEST: src/test/deca/codegen/valid/renduInter02/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/renduInter02/ ---"
   for cas_de_test in src/test/deca/codegen/valid/renduInter02/*.deca
   do
       nbtests=$((nbtests+1))
       expected=${cas_de_test%.deca}
       test_codegen_valid "$cas_de_test" "$expected.expected"
   done
-  echo
+  # echo
 
-  echo "### TEST: src/test/deca/codegen/invalid/renduInter02/ ###"
+  # echo "--- TEST: src/test/deca/codegen/invalid/renduInter02/ ---"
   for cas_de_test in src/test/deca/codegen/invalid/renduInter02/*.deca
   do
       nbtests=$((nbtests+1))
       expected=${cas_de_test%.deca}
       test_codegen_invalid "$cas_de_test" "$expected.expected"
   done
-  echo
+  # echo
 }
 
 # ----------------------------------------------------------------------------------------------------

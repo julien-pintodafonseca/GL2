@@ -69,14 +69,14 @@ test_context_valid () {
                 # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
-                echo "$1 : FAILED."
+                echo "[FAILED] $1 : FAILED."
                 diff "$2" "${file}.res"
             fi
         else
-            echo "$1 : Fichier .expected inexistant"
+            echo "[FAILED] $1 : Fichier .expected inexistant"
         fi
     else
-        echo "$1 : KO"
+        echo "[FAILED] $1 : KO"
     fi
 }
 
@@ -89,7 +89,7 @@ test_step_provided() {
 
   # no src/test/deca/codegen/invalid/provided/
 
-  echo "### TEST: src/test/deca/codegen/valid/provided/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/provided/ ---"
   for cas_de_test in src/test/deca/codegen/valid/provided/*.deca
   do
       nbtests=$((nbtests+1))
@@ -97,9 +97,9 @@ test_step_provided() {
       file="src/test/deca/context/valid/provided/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
-  echo "### TEST: src/test/deca/context/valid/provided/ ###"
+  # echo "--- TEST: src/test/deca/context/valid/provided/ ---"
   for cas_de_test in src/test/deca/context/valid/provided/*.deca
   do
       nbtests=$((nbtests+1))
@@ -107,9 +107,9 @@ test_step_provided() {
       file="src/test/deca/context/valid/provided/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
-  echo "### TEST: src/test/deca/context/invalid/provided/ ###"
+  # echo "--- TEST: src/test/deca/context/invalid/provided/ ---"
   for cas_de_test in src/test/deca/context/invalid/provided/*.deca
   do
       nbtests=$((nbtests+1))
@@ -117,7 +117,7 @@ test_step_provided() {
       file="src/test/deca/context/invalid/provided/$expected.expected"
       test_context_invalid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ test_step_renduInitial() {
 
   # no src/test/deca/codegen/invalid/renduInitial/
 
-  echo "### TEST: src/test/deca/codegen/valid/renduInitial/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/renduInitial/ ---"
   for cas_de_test in src/test/deca/codegen/valid/renduInitial/*.deca
   do
       nbtests=$((nbtests+1))
@@ -137,11 +137,11 @@ test_step_renduInitial() {
       file="src/test/deca/context/valid/renduInitial/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
   # no src/test/deca/context/valid/renduInitial/
 
-  echo "### TEST: src/test/deca/context/invalid/renduInitial/ ###"
+  # echo "--- TEST: src/test/deca/context/invalid/renduInitial/ ---"
   for cas_de_test in src/test/deca/context/invalid/renduInitial/*.deca
   do
       nbtests=$((nbtests+1))
@@ -149,7 +149,7 @@ test_step_renduInitial() {
       file="src/test/deca/context/invalid/renduInitial/$expected.expected"
       test_context_invalid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -157,7 +157,7 @@ test_step_renduInitial() {
 test_step_renduInter01() {
   echo "=== STEP: RENDU_INTER01 ==="
 
-  echo "### TEST: src/test/deca/codegen/interactive/renduInter01/ ###"
+  # echo "--- TEST: src/test/deca/codegen/interactive/renduInter01/ ---"
   for cas_de_test in src/test/deca/codegen/interactive/renduInter01/*.deca
   do
       nbtests=$((nbtests+1))
@@ -165,11 +165,11 @@ test_step_renduInter01() {
       file="src/test/deca/context/valid/renduInter01/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
   # no src/test/deca/codegen/invalid/renduInter01/
 
-  echo "### TEST: src/test/deca/codegen/valid/renduInter01/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/renduInter01/ ---"
   for cas_de_test in src/test/deca/codegen/valid/renduInter01/*.deca
   do
       nbtests=$((nbtests+1))
@@ -177,11 +177,11 @@ test_step_renduInter01() {
       file="src/test/deca/context/valid/renduInter01/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
   # no src/test/deca/context/valid/renduInter01/
 
-  echo "### TEST: src/test/deca/context/invalid/renduInter01/ ###"
+  # echo "--- TEST: src/test/deca/context/invalid/renduInter01/ ---"
   for cas_de_test in src/test/deca/context/invalid/renduInter01/*.deca
   do
       nbtests=$((nbtests+1))
@@ -189,7 +189,7 @@ test_step_renduInter01() {
       file="src/test/deca/context/invalid/renduInter01/$expected"
       test_context_invalid "$cas_de_test" "$file.expected"
   done
-  echo
+  # echo
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -197,7 +197,7 @@ test_step_renduInter01() {
 test_step_renduInter02() {
   echo "=== STEP: RENDU_INTER02 ==="
 
-  echo "### TEST: src/test/deca/codegen/interactive/renduInter02/ ###"
+  # echo "--- TEST: src/test/deca/codegen/interactive/renduInter02/ ---"
   for cas_de_test in src/test/deca/codegen/interactive/renduInter02/*.deca
   do
       nbtests=$((nbtests+1))
@@ -205,9 +205,9 @@ test_step_renduInter02() {
       file="src/test/deca/context/valid/renduInter02/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
-  echo "### TEST: src/test/deca/codegen/invalid/renduInter02/ ###"
+  # echo "--- TEST: src/test/deca/codegen/invalid/renduInter02/ ---"
   for cas_de_test in src/test/deca/codegen/invalid/renduInter02/*.deca
   do
       nbtests=$((nbtests+1))
@@ -215,9 +215,9 @@ test_step_renduInter02() {
       file="src/test/deca/context/valid/renduInter02/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
-  echo "### TEST: src/test/deca/codegen/valid/renduInter02/ ###"
+  # echo "--- TEST: src/test/deca/codegen/valid/renduInter02/ ---"
   for cas_de_test in src/test/deca/codegen/valid/renduInter02/*.deca
   do
       nbtests=$((nbtests+1))
@@ -225,11 +225,11 @@ test_step_renduInter02() {
       file="src/test/deca/context/valid/renduInter02/$expected.expected"
       test_context_valid "$cas_de_test" "$file"
   done
-  echo
+  # echo
 
   # no src/test/deca/context/valid/renduInter02/
 
-  echo "### TEST: src/test/deca/context/invalid/renduInter02/ ###"
+  # echo "--- TEST: src/test/deca/context/invalid/renduInter02/ ---"
   for cas_de_test in src/test/deca/context/invalid/renduInter02/*.deca
   do
       nbtests=$((nbtests+1))
@@ -237,7 +237,7 @@ test_step_renduInter02() {
       file="src/test/deca/context/invalid/renduInter02/$expected"
       test_context_invalid "$cas_de_test" "$file.expected"
   done
-  echo
+  # echo
 }
 
 # ----------------------------------------------------------------------------------------------------
