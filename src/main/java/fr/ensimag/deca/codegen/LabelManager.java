@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2020
  */
 public class LabelManager {
-    Map<LabelType, Integer> myLabels;
+    public Map<LabelType, Integer> myLabels;
 
     public LabelManager() {
         myLabels = new HashMap<>();

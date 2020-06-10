@@ -17,7 +17,7 @@ import java.util.Map;
  * @date 2020
  */
 public class ErrorLabelManager {
-    Map<ErrorLabelType, Boolean> myLabels;
+    public Map<ErrorLabelType, Boolean> myLabels;
 
     public ErrorLabelManager() {
         myLabels = new HashMap<>();
@@ -47,7 +47,7 @@ public class ErrorLabelManager {
         }
     }
 
-    public void printError(DecacCompiler compiler, ErrorLabelType lt){
+    private void printError(DecacCompiler compiler, ErrorLabelType lt){
         switch(lt) {
             case LB_ARITHMETIC_OVERFLOW:
                 compiler.addComment("--------------------------------------------------");

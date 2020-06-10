@@ -21,7 +21,7 @@ public class TestLabelManager extends TestCase {
     }
 
     @Test
-    public void testGetLabelValue() throws DecacFatalError {
+    public void testGetLabelValueAndVerifyLabelType() throws DecacFatalError {
         LabelManager lm = new LabelManager();
 
         // Les différents labelTypes sont présents dans l'attribut "myLabels"
