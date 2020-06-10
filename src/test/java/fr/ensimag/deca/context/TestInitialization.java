@@ -1,8 +1,12 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.FloatLiteral;
+import fr.ensimag.deca.tree.Initialization;
+import fr.ensimag.deca.tree.IntLiteral;
 import fr.ensimag.ima.pseudocode.DAddr;
 import junit.framework.TestCase;
 import org.junit.Before;

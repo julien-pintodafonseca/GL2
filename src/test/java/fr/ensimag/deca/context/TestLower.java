@@ -1,8 +1,10 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.codegen.RegisterManager;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.Lower;
 import fr.ensimag.ima.pseudocode.Label;
 import junit.framework.TestCase;
 import org.junit.Before;
@@ -19,7 +21,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-public class TestEquals extends TestCase {
+public class TestLower extends TestCase {
     @Mock private AbstractExpr sonL;
     @Mock private AbstractExpr sonR;
     @Mock private Label lb;
@@ -33,27 +35,27 @@ public class TestEquals extends TestCase {
 
     @Test
     public void testCodeGenCMPReverseTrue() throws DecacFatalError { // Cas où le paramètre reverse=true
-        Equals equals = new Equals(sonL, sonR);
+        Lower lower = new Lower(sonL, sonR);
 
-        equals.codeGenCMP(compiler, lb, true);
+        lower.codeGenCMP(compiler, lb, true);
 
         // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), equals.getLeftOperand().getType());
-        assertThat(equals.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), equals.getRightOperand().getType());
-        assertThat(equals.getRightOperand(), is(sonR));
+        assertEquals(sonL.getType(), lower.getLeftOperand().getType());
+        assertThat(lower.getLeftOperand(), is(sonL));
+        assertEquals(sonR.getType(), lower.getRightOperand().getType());
+        assertThat(lower.getRightOperand(), is(sonR));
     }
 
     @Test
     public void testCodeGenCMPReverseFalse() throws DecacFatalError { // Cas où le paramètre reverse=true
-        Equals equals = new Equals(sonL, sonR);
+        Lower lower = new Lower(sonL, sonR);
 
-        equals.codeGenCMP(compiler, lb, false);
+        lower.codeGenCMP(compiler, lb, false);
 
         // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), equals.getLeftOperand().getType());
-        assertThat(equals.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), equals.getRightOperand().getType());
-        assertThat(equals.getRightOperand(), is(sonR));
+        assertEquals(sonL.getType(), lower.getLeftOperand().getType());
+        assertThat(lower.getLeftOperand(), is(sonL));
+        assertEquals(sonR.getType(), lower.getRightOperand().getType());
+        assertThat(lower.getRightOperand(), is(sonR));
     }
 }

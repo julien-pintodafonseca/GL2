@@ -1,7 +1,8 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.tree.FloatLiteral;
 import fr.ensimag.ima.pseudocode.Register;
 import junit.framework.TestCase;
 import org.junit.Test;

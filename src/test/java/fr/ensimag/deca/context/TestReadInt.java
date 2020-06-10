@@ -1,7 +1,8 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.tree.ReadInt;
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -10,25 +11,25 @@ import org.junit.Test;
  * @author Equipe GL2
  * @date 2020
  */
-public class TestReadFloat extends TestCase {
+public class TestReadInt extends TestCase {
     private DecacCompiler compiler = new DecacCompiler(null, null);
 
     @Test
     public void testVerifyExpr() {
-        ReadFloat read = new ReadFloat();
+        ReadInt read = new ReadInt();
 
-        // Le type renvoyé est bien FLOAT
-        assertEquals(read.verifyExpr(compiler, null, null), compiler.environmentType.FLOAT);
+        // Le type renvoyé est bien INT
+        assertEquals(read.verifyExpr(compiler, null, null), compiler.environmentType.INT);
 
-        // Le type de l'expression est bien FLOAT
-        assertEquals(read.getType(), compiler.environmentType.FLOAT);
+        // Le type de l'expression est bien INT
+        assertEquals(read.getType(), compiler.environmentType.INT);
     }
 
     @Test
     public void testCodeGenPrint() throws DecacFatalError {
-        ReadFloat read = new ReadFloat();
+        ReadInt read = new ReadInt();
         read.verifyExpr(compiler, null, null);
-        ReadFloat readCodeGenPrint = new ReadFloat();
+        ReadInt readCodeGenPrint = new ReadInt();
         readCodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
@@ -39,9 +40,9 @@ public class TestReadFloat extends TestCase {
 
     @Test
     public void testCodeGenInst() throws DecacFatalError {
-        ReadFloat read = new ReadFloat();
+        ReadInt read = new ReadInt();
         read.verifyExpr(compiler, null, null);
-        ReadFloat readCodeGenPrint = new ReadFloat();
+        ReadInt readCodeGenPrint = new ReadInt();
         readCodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
