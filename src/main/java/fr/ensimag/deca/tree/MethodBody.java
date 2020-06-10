@@ -3,7 +3,10 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import org.apache.commons.lang.Validate;
 
@@ -27,12 +30,14 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     @Override
-    protected void codeGenMethodBody(DecacCompiler compiler) throws DecacFatalError {
-        throw new UnsupportedOperationException("not yet implemented");
+    protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError {
+        // Règle syntaxe contextuelle : (3.14) -> (3.18)
+        declVariables.verifyListDeclVariable(compiler, localEnv, currentClass);
+        insts.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
 
     @Override
-    protected void verifyMethodBody(DecacCompiler compiler) throws ContextualError {
+    protected void codeGenMethodBody(DecacCompiler compiler) throws DecacFatalError {
         throw new UnsupportedOperationException("not yet implemented");
     }
 

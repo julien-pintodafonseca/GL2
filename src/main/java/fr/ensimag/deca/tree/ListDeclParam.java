@@ -3,6 +3,7 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Signature;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import org.apache.log4j.Logger;
@@ -15,16 +16,28 @@ import org.apache.log4j.Logger;
 public class ListDeclParam extends TreeList<AbstractDeclParam> {
     private static final Logger LOG = Logger.getLogger(ListInst.class);
 
-    public Signature verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
+    public Signature verifyListParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
         LOG.debug("verify listClassParams : start");
         // Règle syntaxe contextuelle : (2.8)
         Signature s=new Signature();
         for (AbstractDeclParam declParam : getList()) {
-            s.add(declParam.verifyClassMembers(compiler, currentClass, currentMethod));
+            s.add(declParam.verifyParamMembers(compiler, currentClass, currentMethod));
         }
 
         LOG.debug("verify listClassParams : end");
         return s;
+    }
+
+    public EnvironmentExp verifyListParamBody(DecacCompiler compiler) {
+        LOG.debug("verify listClassParams : start");
+        // Règle syntaxe contextuelle : (3.12)
+        EnvironmentExp envExpParams = new EnvironmentExp(null);
+        for (AbstractDeclParam declParam : getList()) {
+            declParam.verifyParamBody(compiler, envExpParams);
+        }
+
+        LOG.debug("verify listClassParams : end");
+        return envExpParams;
     }
 
     @Override

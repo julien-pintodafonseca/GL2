@@ -20,7 +20,9 @@ public abstract class AbstractDeclField extends Tree {
     protected abstract void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass)
             throws ContextualError;
 
-    protected abstract void verifyClassBody(DecacCompiler compiler,
-                                          EnvironmentExp localEnv, ClassDefinition currentClass)
+    /**
+     * Pass 3 of [SyntaxeContextuelle]. Look at field initialization.
+     */
+    protected abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError;
 }

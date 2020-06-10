@@ -31,6 +31,9 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
         LOG.debug("verify listClassFields: end");
     }
 
+    /**
+     * Pass 3 of [SyntaxeContextuelle]
+     */
     protected void verifyListClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.6)

@@ -31,11 +31,16 @@ public class Return extends AbstractInst {
 
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError {
-        // Règle syntaxe contextuelle : (3.24)
-        argument.verifyExpr(compiler, localEnv, currentClass);
-        if (argument.getType() != returnType) {
+        // Règle syntaxe contextuelle : (3.24) -> (3.28)
+        if (!returnType.isVoid()) {
+            argument.verifyExpr(compiler, localEnv, currentClass);
+            if (argument.getType() != returnType) {
+                // erreur à créer
+                // règle (3.28) à implémenter
+                // faire les cas de cast
+            }
+        } else {
             // erreur à créer
-            // faire les cas de cast
         }
     }
 

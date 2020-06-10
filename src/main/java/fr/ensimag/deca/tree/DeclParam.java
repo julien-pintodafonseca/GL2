@@ -4,6 +4,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 
@@ -25,7 +26,7 @@ public class DeclParam extends AbstractDeclParam {
     }
 
     @Override
-    public Type verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
+    public Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
         // Règle syntaxe contextuelle : (2.9)
         Type t = varType.verifyType(compiler);
         varType.setType(t);
@@ -34,6 +35,12 @@ public class DeclParam extends AbstractDeclParam {
         } else {
             return t;
         }
+    }
+
+    @Override
+    public void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) {
+        // Règle syntaxe contextuelle : (3.13)
+        throw new UnsupportedOperationException("not yet implemented");
     }
 
     @Override
