@@ -32,10 +32,12 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         // Syntaxe contextuelle : règle (3.33)
-        getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
-        getRightOperand().verifyExpr(compiler, localEnv, currentClass);
-        Type t1 = getLeftOperand().getType();
-        Type t2 = getRightOperand().getType();
+        //getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        //getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type t1 = getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type t2 = getRightOperand().verifyExpr(compiler, localEnv, currentClass);
+        //Type t1 = getLeftOperand().getType();
+        //Type t2 = getRightOperand().getType();
 
         // Syntaxe contextuelle : signature des opérateurs
         if (t1.isInt() && t2.isInt()){
