@@ -5,6 +5,10 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Main class for the command-line Deca compiler.
@@ -15,7 +19,7 @@ import java.util.List;
 public class DecacMain {
     private static Logger LOG = Logger.getLogger(DecacMain.class);
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         // example log4j message.
         LOG.info("Decac compiler started");
         boolean error = false;
@@ -48,19 +52,39 @@ public class DecacMain {
             options.displayUsage();
         }
         if (options.getParallel()) {
-            // A FAIRE : instancier DecacCompiler pour chaque fichier à
-            // compiler, et lancer l'exécution des méthodes compile() de chaque
-            // instance en parallèle. Il est conseillé d'utiliser
-            // java.util.concurrent de la bibliothèque standard Java.
-            throw new UnsupportedOperationException("Parallel build not yet implemented");
+            List<Future<Boolean>> resultList = new ArrayList<Future<Boolean>>();
+            int nbProcessors = Runtime.getRuntime().availableProcessors();
+            ExecutorService executorService = Executors.newFixedThreadPool(nbProcessors);
+            for (File source : options.getSourceFiles()){
+                Future<Boolean> future = executorService.submit(new DecacCompiler(options,source));
+                resultList.add(future);
+            }
+            for (Future<Boolean> fb: resultList){
+                try{
+                    if (fb.get()) {
+                        error = true ;
+                    }
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }catch (ExecutionException e){
+                    e.printStackTrace();
+                }finally {
+                    executorService.shutdown();
+                }
+            }
+
         } else {
             for (File source : options.getSourceFiles()) {
                 DecacCompiler compiler = new DecacCompiler(options, source);
+                LOG.debug("Begin of a task");
                 if (compiler.compile()) {
                     error = true;
                 }
+                LOG.debug("End of a task");
             }
         }
         System.exit(error ? 1 : 0);
     }
 }
+
+
