@@ -25,14 +25,14 @@ import static org.mockito.Mockito.when;
  * @date 2020
  */
 public class TestNot extends TestCase {
+    private final UnsupportedOperationException expectedNoMoreRegister =
+            new UnsupportedOperationException("no more available registers : policy not yet implemented");
+
     @Mock private BooleanLiteral exprBoolean;
     @Mock private AbstractExpr expr;
     @Mock private Label lb;
     private DecacCompiler compiler;
     private DecacCompiler compilerWithoutAvailableRegisters;
-
-    private final UnsupportedOperationException expectedNoMoreRegister =
-            new UnsupportedOperationException("no more available registers : policy not yet implemented");
 
     @Before
     public void setUp() throws ContextualError, DecacFatalError {

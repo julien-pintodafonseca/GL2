@@ -15,7 +15,8 @@ import static org.junit.Assert.assertThrows;
  * @date 2020
  */
 public class TestErrorLabelManager extends TestCase {
-    private final DecacFatalError expectedLabelTypeEx = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
+    private final DecacFatalError expectedLabelTypeEx =
+            new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
     private final String expectedErrorLabelName1 = "arithmetic_overflow";
     private final String expectedErrorLabelName2 = "read_error";
 

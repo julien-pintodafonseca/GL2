@@ -15,7 +15,8 @@ import static org.junit.Assert.assertThrows;
  * @date 2020
  */
 public class TestLabelManager extends TestCase {
-    private final DecacFatalError expectedLabelTypeEx = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
+    private final DecacFatalError expectedLabelTypeEx =
+            new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
 
     @Test
     public void testLabelType() {

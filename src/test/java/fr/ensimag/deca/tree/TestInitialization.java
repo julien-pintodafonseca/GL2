@@ -21,16 +21,17 @@ import static org.mockito.Mockito.when;
  * @date 2020
  */
 public class TestInitialization extends TestCase {
+    private final IntLiteral expectedIntLiteral = new IntLiteral(5);
+    private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);
+    private final UnsupportedOperationException expectedNoMoreRegister =
+            new UnsupportedOperationException("no more available registers : policy not yet implemented");
+
     @Mock private AbstractExpr exprInt;
     @Mock private AbstractExpr exprFloat;
     @Mock private AbstractExpr expr;
     @Mock private DAddr address;
     private DecacCompiler compiler;
     private DecacCompiler compilerWithoutAvailableRegisters;
-
-    private final IntLiteral expectedIntLiteral = new IntLiteral(5);
-    private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);
-    private final UnsupportedOperationException expectedNoMoreRegister = new UnsupportedOperationException("no more available registers : policy not yet implemented");
 
     @Before
     public void setUp() throws ContextualError, DecacFatalError {
