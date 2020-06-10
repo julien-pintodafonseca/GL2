@@ -40,7 +40,7 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             Type t = compiler.environmentType.INT;
             setType(t);
             return t;
-        } else {
+        } else if ((t1.isInt() || t1.isFloat()) && (t2.isInt() || t2.isFloat())) {
             if (t1.isInt() && t2.isFloat()) {
                 ConvFloat conv = new ConvFloat(getLeftOperand());
                 conv.setType(t2);
@@ -49,14 +49,13 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
                 ConvFloat conv = new ConvFloat(getRightOperand());
                 conv.setType(t1);
                 setRightOperand(conv);
-            } else {
-                throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ARITHMETIC_OPERATION_INCOMPATIBLE_TYPE + t1 + " (pour " +
-                        getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
             }
-
             Type t = compiler.environmentType.FLOAT;
             setType(t);
             return t;
+        } else {
+            throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_ARITHMETIC_OPERATION_INCOMPATIBLE_TYPE + t1 + " (pour " +
+                    getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
         }
     }
 

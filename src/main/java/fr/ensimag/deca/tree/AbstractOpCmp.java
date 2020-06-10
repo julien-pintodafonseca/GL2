@@ -34,23 +34,22 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             Type t = compiler.environmentType.BOOLEAN;
             setType(t);
             return t;
-        } else {
-        	if (t1.isInt() && t2.isFloat()) {
-        		ConvFloat conv = new ConvFloat(getLeftOperand());
-        		conv.setType(t2);
-        		setLeftOperand(conv);
-        	} else if (t1.isFloat() && t2.isInt()) {
-        		ConvFloat conv = new ConvFloat(getRightOperand());
-        		conv.setType(t1);
-        		setRightOperand(conv);
-        	} else {
-                throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE + t1 + " (pour " +
-                        getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
+        } else if ((t1.isInt() || t1.isFloat()) && (t2.isInt() || t2.isFloat())) {
+            if (t1.isInt() && t2.isFloat()) {
+                ConvFloat conv = new ConvFloat(getLeftOperand());
+                conv.setType(t2);
+                setLeftOperand(conv);
+            } else if (t1.isFloat() && t2.isInt()) {
+                ConvFloat conv = new ConvFloat(getRightOperand());
+                conv.setType(t1);
+                setRightOperand(conv);
             }
-
             Type t = compiler.environmentType.BOOLEAN;
             setType(t);
             return t;
+        } else {
+            throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE + t1 + " (pour " +
+                    getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
         }
     }
 
