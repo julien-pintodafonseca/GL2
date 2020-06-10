@@ -30,6 +30,9 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_ARITHMETIC_OPERATION_INCOMPATIBLE_TYPE = "Deux expressions ne peuvent pas être additionnées, soustraites, divisées ou multipliées si elles ne sont pas de type int ou float. Or, leurs types sont les suivants : ";
     public static final String CONTEXTUAL_ERROR_MODULO_INCOMPATIBLE_TYPE = "L'opérateur % n'est utilisable qu'avec deux expressions de type int. Or, il est actuellement utilisé avec des expressions de type : ";
     public static final String CONTEXTUAL_ERROR_PRINT_INCOMPATIBLE_TYPE = "La fonction print n'affiche que des expressions de type int, float et string. Or vous essayez d'afficher une expression de type : ";
+    public static final String CONTEXTUAL_ERROR_DECLCLASS_DUPE = "La classe suivante a déjà été déclarée précédemment : ";
+    public static final String CONTEXTUAL_ERROR_UNREGISTRED_CLASS = "La classe suivante n'est pas définie : ";
+    public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_TYPE_FOR_NEW = "L'opérateur new instancie une variable de type classe. Or, vous essayez instancier une variable de type : ";
 
     // CodegenError messages
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les floattants ou division par zéro.";

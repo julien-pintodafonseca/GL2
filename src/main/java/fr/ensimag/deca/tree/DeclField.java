@@ -1,5 +1,7 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tree.AbstractDeclMethod;
 import org.apache.commons.lang.Validate;
@@ -30,6 +32,25 @@ public class DeclField extends AbstractDeclField {
     }
 
     @Override
+    protected void verifyClassMembers(DecacCompiler compiler, EnvironmentExp superClass, ClassDefinition currentClass) throws ContextualError{
+        // Règle syntaxe contextuelle : (2.5)
+        Type t = type.verifyType(compiler);
+        type.setType(t);
+        if (t.isVoid()) {
+            //erreur à créer
+        } else {
+            currentClass.incNumberOfFields();
+            FieldDefinition fieldDef = new FieldDefinition(t, getLocation(), visibility, currentClass, currentClass.getNumberOfFields());
+            try {
+                currentClass.getMembers().declare(varName.getName(), fieldDef);
+            } catch (EnvironmentExp.DoubleDefException e) {
+                // erreur à créer
+            }
+
+        }
+    }
+
+    @Override
     public void decompile(IndentPrintStream s) {
         if (visibility == Visibility.PROTECTED) {
             s.print("protected ");
@@ -54,4 +75,5 @@ public class DeclField extends AbstractDeclField {
         varName.iterChildren(f);
         initialization.iterChildren(f);
     }
+
 }

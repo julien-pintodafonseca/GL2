@@ -1,0 +1,16 @@
+// Description:
+//      Double déclaration d'un attribut dans une classe
+//      => Le nom d'un attibut dans une classe doit être unique
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 11 : Attribut x déjà déclarée précédemment
+
+class B {
+    int x=2;
+    int x;
+}
+
+{
+    B b = new B();
+}

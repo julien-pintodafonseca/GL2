@@ -1,5 +1,6 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.DecacCompiler;
@@ -8,6 +9,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
 import org.apache.commons.lang.Validate;
+import sun.security.krb5.internal.ccache.CCacheInputStream;
 
 import java.io.PrintStream;
 
@@ -25,10 +27,50 @@ public class DeclClass extends AbstractDeclClass {
 
     public DeclClass(AbstractIdentifier className, AbstractIdentifier classExtension, ListDeclField fields, ListDeclMethod methods) {
         Validate.notNull(className);
+        Validate.notNull(classExtension);
         this.className = className;
         this.classExtension = classExtension;
         this.fields = fields;
         this.methods = methods;
+    }
+
+    @Override
+    protected void verifyClass(DecacCompiler compiler) throws ContextualError {
+        // Règles syntaxe contextuelle : (1.3) et (2.3)
+        if (compiler.environmentType.isDeclare(classExtension.getName())) {
+            if (!compiler.environmentType.isDeclare(className.getName())) {
+                ClassDefinition superClassDef = compiler.environmentType.getClassDefinition(classExtension.getName());
+                classExtension.setDefinition(superClassDef);
+                classExtension.setType(superClassDef.getType());
+
+                ClassType classType = new ClassType(className.getName(), getLocation(), superClassDef);
+                className.setType(classType);
+                className.setDefinition(classType.getDefinition());
+                compiler.environmentType.declareClass(className.getName(), className.getClassDefinition());
+            } else {
+                throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLCLASS_DUPE + className.getName(), getLocation());
+            }
+        } else {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_UNREGISTRED_CLASS + classExtension.getName(), getLocation());
+        }
+    }
+
+    @Override
+    protected void verifyClassMembers(DecacCompiler compiler)
+            throws ContextualError {
+        ClassDefinition superClassDef = classExtension.getClassDefinition();
+        className.getClassDefinition().setNumberOfFields(superClassDef.getNumberOfFields());
+        className.getClassDefinition().setNumberOfMethods(superClassDef.getNumberOfMethods());
+
+        fields.verifyListClassMembers(compiler, superClassDef.getMembers(), className.getClassDefinition());
+        //method.verifyListClassMembers();
+        //throw new UnsupportedOperationException("not yet implemented");
+    }
+    
+    @Override
+    protected void verifyClassBody(DecacCompiler compiler) throws ContextualError {
+    	  // Règle syntaxe contextuelle : (3.5)
+        throw new UnsupportedOperationException("not yet implemented");
     }
 
     @Override
@@ -45,40 +87,6 @@ public class DeclClass extends AbstractDeclClass {
         s.unindent();
         s.println("}");
     }
-
-    @Override
-    protected void verifyClass(DecacCompiler compiler) throws ContextualError {
-        // Règle syntaxe contextuelle : (1.3)
-        if (compiler.environmentType.isDeclare(classExtension.getName())) {
-            if (!compiler.environmentType.isDeclare(className.getName())) {
-                compiler.environmentType.declareClass(compiler, className.getName().getName(), className.getClassDefinition());
-                ClassDefinition superClassDef = compiler.environmentType.getClassDefinition(classExtension.getName());
-                ClassType classType = new ClassType(className.getName(), getLocation(), superClassDef);
-
-            } else {
-                // erreur à créer
-                // classe déjà déclarée
-            }
-        } else {
-            // erreur à créer
-            // classExtension is not declared
-        }
-
-        throw new UnsupportedOperationException("not yet implemented");
-    }
-
-    @Override
-    protected void verifyClassMembers(DecacCompiler compiler)
-            throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
-    }
-    
-    @Override
-    protected void verifyClassBody(DecacCompiler compiler) throws ContextualError {
-    	  // Règle syntaxe contextuelle : (3.5)
-        throw new UnsupportedOperationException("not yet implemented");
-    }
-
 
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {

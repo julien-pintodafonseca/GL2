@@ -1,0 +1,19 @@
+// Description:
+//      Héritage de classe
+//      => Cas spécifique avec héritage d'une classe qui étend implicitement la classe Object
+//
+// Resultats:
+//
+
+class B {
+
+}
+
+class A extends B {
+
+}
+
+{
+    A a = new A();
+    B b = new B();
+}

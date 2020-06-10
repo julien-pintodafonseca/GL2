@@ -1,0 +1,19 @@
+// Description:
+//      Double déclaration d'une classe
+//      => Le nom d'une classe doit être unique
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 13 : Classe B déjà déclarée précédemment
+
+class B {
+
+}
+
+class B {
+
+}
+
+{
+    B b = new B();
+}

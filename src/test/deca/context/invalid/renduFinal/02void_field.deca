@@ -1,0 +1,15 @@
+// Description:
+//      Déclaration d'un attribut
+//      => Un attribut ne peut pas être de type void
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : L'attribut x est de type void
+
+class B {
+    void x;
+}
+
+{
+    B b = new B();
+}

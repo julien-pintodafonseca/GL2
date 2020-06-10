@@ -2,6 +2,7 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -39,7 +40,13 @@ public class New extends AbstractExpr {
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
         // Règle syntaxe contextuelle : (3.42)
-        throw new UnsupportedOperationException("not yet implemented");
+        Type temp=ident.verifyType(compiler);
+        if(temp.isClass()){
+            setType(temp);
+            return temp;
+        } else {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_TYPE_FOR_NEW + temp + "( " + ident.getName() +" ).", getLocation());
+        }
     }
 
     @Override

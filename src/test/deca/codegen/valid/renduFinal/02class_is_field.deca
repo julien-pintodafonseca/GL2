@@ -1,0 +1,19 @@
+// Description:
+//      Définition d'un attribut pour une classe A
+//      => Cas spécifique où l'attribut est de type B, avec B étant une classe définie précédemment
+//
+// Resultats:
+//
+
+class B {
+
+}
+
+class A {
+    B b = new B();
+
+}
+
+{
+    A a = new A();
+}

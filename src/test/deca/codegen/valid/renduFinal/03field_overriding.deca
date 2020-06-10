@@ -1,0 +1,25 @@
+// Description:
+//      Définition d'un attribut pour une classe A qui étend une classe B
+//      => Cas spécifique où l'attribut de la classe A a le même nom que l'attribut de la classe B
+//
+// Resultats:
+//      xA=3
+//      xB=2
+//      xBA=2
+
+class B {
+    int x=2;
+}
+
+class A extends B {
+    int x=3;
+}
+
+{
+    A a = new A();
+    B b = new B();
+    B ba = new A();
+    println("xA=", a.x);
+    println("xB=", b.x);
+    println("xBA=", ba.x);
+}

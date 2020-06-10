@@ -1,0 +1,39 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 2 elements]
+   |  []> [8, 0] DeclClass
+   |  ||  +> [8, 6] Identifier (B)
+   |  ||  |  definition: type defined at [8, 0], type=B
+   |  ||  +> Identifier (Object)
+   |  ||  |  definition: type (builtin), type=Object
+   |  ||  +> ListDeclField [List with 0 elements]
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [12, 0] DeclClass
+   |      +> [12, 6] Identifier (A)
+   |      |  definition: type defined at [12, 0], type=A
+   |      +> [12, 16] Identifier (B)
+   |      |  definition: type defined at [8, 0], type=B
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [16, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [17, 6] DeclVar
+      |  ||  +> [17, 4] Identifier (A)
+      |  ||  |  definition: type defined at [12, 0], type=A
+      |  ||  +> [17, 6] Identifier (a)
+      |  ||  |  definition: variable defined at [17, 6], type=A
+      |  ||  `> [17, 8] Initialization
+      |  ||     `> [17, 10] New
+      |  ||        type: A
+      |  ||        `> [17, 14] Identifier (A)
+      |  ||           definition: type defined at [12, 0], type=A
+      |  []> [18, 6] DeclVar
+      |      +> [18, 4] Identifier (B)
+      |      |  definition: type defined at [8, 0], type=B
+      |      +> [18, 6] Identifier (b)
+      |      |  definition: variable defined at [18, 6], type=B
+      |      `> [18, 8] Initialization
+      |         `> [18, 10] New
+      |            type: B
+      |            `> [18, 14] Identifier (B)
+      |               definition: type defined at [8, 0], type=B
+      `> ListInst [List with 0 elements]

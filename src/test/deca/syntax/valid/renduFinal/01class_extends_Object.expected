@@ -1,0 +1,16 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [8, 0] DeclClass
+   |      +> [8, 6] Identifier (B)
+   |      +> [8, 16] Identifier (Object)
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [12, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [13, 6] DeclVar
+      |      +> [13, 4] Identifier (B)
+      |      +> [13, 6] Identifier (b)
+      |      `> [13, 8] Initialization
+      |         `> [13, 10] New
+      |            `> [13, 14] Identifier (B)
+      `> ListInst [List with 0 elements]

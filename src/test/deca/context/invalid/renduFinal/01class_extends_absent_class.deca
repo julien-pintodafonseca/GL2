@@ -1,0 +1,15 @@
+// Description:
+//      Héritage d'une classe inexistante
+//      => Une classe doit hériter d'une classe existante
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 9 : la classe B n'a pas été déclarée
+
+class A extends B {
+
+}
+
+{
+    A a = new A();
+}

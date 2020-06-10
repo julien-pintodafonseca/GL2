@@ -43,14 +43,17 @@ public class EnvironmentType {
         Symbol nullSymb = compiler.createSymbol("null");
         NULL = new NullType(nullSymb);
         envTypes.put(nullSymb, new TypeDefinition(NULL, Location.BUILTIN));
+
+        Symbol objectSymb = compiler.createSymbol("Object");
+        OBJECT = new ClassType(objectSymb);
+        envTypes.put(objectSymb, new ClassDefinition(OBJECT, Location.BUILTIN, null));
     }
 
     public TypeDefinition defOfType(Symbol s) {
         return envTypes.get(s);
     }
 
-    public void declareClass(DecacCompiler compiler, String newClass, TypeDefinition typeDefClass) {
-        Symbol classSymb = compiler.createSymbol(newClass);
+    public void declareClass(Symbol classSymb, TypeDefinition typeDefClass) {
         envTypes.put(classSymb, typeDefClass);
     }
 
@@ -78,4 +81,5 @@ public class EnvironmentType {
     public final StringType  STRING;
     public final BooleanType BOOLEAN;
     public final NullType NULL;
+    public final ClassType OBJECT;
 }

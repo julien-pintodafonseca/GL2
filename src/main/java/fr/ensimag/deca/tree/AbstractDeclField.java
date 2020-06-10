@@ -1,5 +1,10 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+
 /**
  * Field declaration.
  *
@@ -8,4 +13,10 @@ package fr.ensimag.deca.tree;
  */
 public abstract class AbstractDeclField extends Tree {
 
+    /**
+     * Pass 2 of [SyntaxeContextuelle]. Verify that the fields members
+     * are OK, without looking at field initialization.
+     */
+    protected abstract void verifyClassMembers(DecacCompiler compiler, EnvironmentExp superClass, ClassDefinition currentClass)
+            throws ContextualError;
 }
