@@ -2,34 +2,27 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.codegen.LabelType;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.ima.pseudocode.Label;
 import junit.framework.TestCase;
-import org.apache.commons.lang.Validate;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.progress.ArgumentMatcherStorage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestAnd extends TestCase {
-
-    @Mock
-    AbstractExpr sonL;
-
-    @Mock
-    AbstractExpr sonR;
-
-    @Mock
-    Label lb;
-
+    @Mock private AbstractExpr sonL;
+    @Mock private AbstractExpr sonR;
+    @Mock private Label lb;
     private DecacCompiler compiler;
 
     @Before
@@ -60,5 +53,4 @@ public class TestAnd extends TestCase {
         assertEquals(sonR.getType(), and.getRightOperand().getType());
         assertThat(and.getRightOperand(), is(sonR));
     }
-
 }

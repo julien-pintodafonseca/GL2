@@ -15,25 +15,22 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestInitialization extends TestCase {
-    @Mock
-    AbstractExpr exprInt;
-
-    @Mock
-    AbstractExpr exprFloat;
-
-    @Mock
-    AbstractExpr expr;
-
-    @Mock
-    DAddr address;
-
+    @Mock private AbstractExpr exprInt;
+    @Mock private AbstractExpr exprFloat;
+    @Mock private AbstractExpr expr;
+    @Mock private DAddr address;
     private DecacCompiler compiler;
     private DecacCompiler compilerWithoutAvailableRegisters;
+
     private final IntLiteral expectedIntLiteral = new IntLiteral(5);
     private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);
-
-    final UnsupportedOperationException expectedNoMoreRegister = new UnsupportedOperationException("no more available registers : policy not yet implemented");
+    private final UnsupportedOperationException expectedNoMoreRegister = new UnsupportedOperationException("no more available registers : policy not yet implemented");
 
     @Before
     public void setUp() throws ContextualError, DecacFatalError {

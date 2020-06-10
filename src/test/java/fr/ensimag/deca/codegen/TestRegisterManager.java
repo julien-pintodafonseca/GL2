@@ -15,9 +15,9 @@ import static org.junit.Assert.assertThrows;
  * @date 2020
  */
 public class TestRegisterManager extends TestCase {
-    final IllegalArgumentException expectedIllegalArgEx = new IllegalArgumentException("The validated expression is false");
-    final DecacFatalError expectedWrongReg8Ex = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+8);
-    final DecacFatalError expectedWrongReg1Ex = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+1);
+    private final IllegalArgumentException expectedIllegalArgEx = new IllegalArgumentException("The validated expression is false");
+    private final DecacFatalError expectedWrongReg8Ex = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+8);
+    private final DecacFatalError expectedWrongReg1Ex = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+1);
 
     @Test
     public void testRegisterManager() {

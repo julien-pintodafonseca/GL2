@@ -18,8 +18,8 @@ import static org.mockito.Mockito.*;
  * @date 2020
  */
 public class TestPlusPlain {
-    final Type INT = new IntType(null);
-    final Type FLOAT = new FloatType(null);
+    private final Type INT = new IntType(null);
+    private final Type FLOAT = new FloatType(null);
 
     @Test
     public void testType() throws ContextualError {

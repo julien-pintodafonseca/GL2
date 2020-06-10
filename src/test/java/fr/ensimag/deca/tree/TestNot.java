@@ -3,7 +3,6 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import junit.framework.TestCase;
@@ -14,26 +13,26 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.*;
+import static org.junit.Assert.assertThrows;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestNot extends TestCase {
-
-    @Mock
-    BooleanLiteral exprBoolean;
-
-    @Mock
-    AbstractExpr expr;
-
-    @Mock
-    Label lb;
-
+    @Mock private BooleanLiteral exprBoolean;
+    @Mock private AbstractExpr expr;
+    @Mock private Label lb;
     private DecacCompiler compiler;
     private DecacCompiler compilerWithoutAvailableRegisters;
 
-    final UnsupportedOperationException expectedNoMoreRegister = new UnsupportedOperationException("no more available registers : policy not yet implemented");
+    private final UnsupportedOperationException expectedNoMoreRegister =
+            new UnsupportedOperationException("no more available registers : policy not yet implemented");
 
     @Before
     public void setUp() throws ContextualError, DecacFatalError {

@@ -9,7 +9,6 @@ import org.junit.Test;
  * @date 2020
  */
 public class TestStackManager extends TestCase {
-
     @Test
     public void testGetGB() {
         StackManager sm = new StackManager(new RegisterManager(7));

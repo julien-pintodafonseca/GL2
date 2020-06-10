@@ -14,18 +14,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestLowerOrEqual extends TestCase {
-    @Mock
-    AbstractExpr sonL;
-
-    @Mock
-    AbstractExpr sonR;
-
-    @Mock
-    Label lb;
-
-    @Mock
-    DecacCompiler compiler;
+    @Mock private AbstractExpr sonL;
+    @Mock private AbstractExpr sonR;
+    @Mock private Label lb;
+    @Mock private DecacCompiler compiler;
 
     @Before
     public void setUp() {
@@ -58,5 +56,4 @@ public class TestLowerOrEqual extends TestCase {
         assertEquals(sonR.getType(), lowerOrEqual.getRightOperand().getType());
         assertThat(lowerOrEqual.getRightOperand(), is(sonR));
     }
-
 }

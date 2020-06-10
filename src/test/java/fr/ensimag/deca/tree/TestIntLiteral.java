@@ -2,17 +2,16 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.RegisterOffset;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestIntLiteral extends TestCase {
-
     private DecacCompiler compiler = new DecacCompiler(null, null);
 
     @Test

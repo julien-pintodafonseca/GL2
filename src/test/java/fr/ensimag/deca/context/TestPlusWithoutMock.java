@@ -20,8 +20,8 @@ import static org.junit.Assert.*;
  * @date 2020
  */
 public class TestPlusWithoutMock {
-    static final Type INT = new IntType(null);
-    static final Type FLOAT = new FloatType(null);
+    private static final Type INT = new IntType(null);
+    private static final Type FLOAT = new FloatType(null);
 
     /**
      * Stub usable as a replacement for a real class deriving from AbstractExpr.

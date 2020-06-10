@@ -18,20 +18,14 @@ import org.mockito.MockitoAnnotations;
  * @date 2020
  */
 public class TestPlusAdvanced {
+    private final Type INT = new IntType(null);
+    private final Type FLOAT = new FloatType(null);
 
-    final Type INT = new IntType(null);
-    final Type FLOAT = new FloatType(null);
-
-    @Mock
-    AbstractExpr intexpr1;
-    @Mock
-    AbstractExpr intexpr2;
-    @Mock
-    AbstractExpr floatexpr1;
-    @Mock
-    AbstractExpr floatexpr2;
-
-    DecacCompiler compiler;
+    @Mock private AbstractExpr intexpr1;
+    @Mock private AbstractExpr intexpr2;
+    @Mock private AbstractExpr floatexpr1;
+    @Mock private AbstractExpr floatexpr2;
+    private DecacCompiler compiler;
     
     @Before
     public void setup() throws ContextualError {

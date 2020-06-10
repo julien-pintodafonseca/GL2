@@ -2,14 +2,15 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.ima.pseudocode.GPRegister;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestReadFloat extends TestCase {
-
     private DecacCompiler compiler = new DecacCompiler(null, null);
 
     @Test
@@ -48,6 +49,5 @@ public class TestReadFloat extends TestCase {
         //GPRegister register = mock(GPRegister.class);
         //readCodeGenPrint.codeGenInst(compiler, register);
         //assertEquals(read.getType(), readCodeGenPrint.getType());
-
     }
 }
