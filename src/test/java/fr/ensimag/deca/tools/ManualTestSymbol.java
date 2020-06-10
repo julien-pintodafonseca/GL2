@@ -6,6 +6,9 @@ import fr.ensimag.deca.tools.SymbolTable.Symbol;
  * Manual unit-test. We call the functions we want to tests and check that they
  * produce the expected output. The same can be achieved more efficiently with
  * JUnit, see SymbolTest.java for an example
+ *
+ * @author Equipe GL2
+ * @date 2020
  */
 public class ManualTestSymbol {
     /**

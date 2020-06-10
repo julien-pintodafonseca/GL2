@@ -3,6 +3,11 @@ package fr.ensimag.deca.codegen;
 import junit.framework.TestCase;
 import org.junit.Test;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestStackManager extends TestCase {
 
     @Test

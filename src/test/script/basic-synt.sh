@@ -305,4 +305,4 @@ test_step_renduInitial
 test_step_renduInter01
 test_step_renduInter02
 
-echo "### RESULTS: $nbpassed/$nbtests"
+echo "##### RESULTS: $nbpassed/$nbtests #####"

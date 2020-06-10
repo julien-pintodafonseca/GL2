@@ -7,8 +7,13 @@ import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThrows;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestRegisterManager extends TestCase {
     final IllegalArgumentException expectedIllegalArgEx = new IllegalArgumentException("The validated expression is false");
     final DecacFatalError expectedWrongReg8Ex = new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+8);

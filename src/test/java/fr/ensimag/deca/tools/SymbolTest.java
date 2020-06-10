@@ -7,6 +7,9 @@ import org.junit.Test;
 /**
  * Example JUnit class. A JUnit class must be named TestXXX or YYYTest. JUnit
  * will run each methods annotated with @Test.
+ *
+ * @author Equipe GL2
+ * @date 2020
  */
 public class SymbolTest {
     @Test
