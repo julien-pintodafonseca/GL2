@@ -3,13 +3,12 @@
 # Auteur : Equipe GL2
 # Date : 2020
 
-# Base pour un script de test de la lexicographie.
-# On teste un fichier valide et un fichier invalide.
-# Il est conseillé de garder ce fichier tel quel, et de créer de
-# nouveaux scripts (en s'inspirant si besoin de ceux fournis).
+# On lance test_lex_valid sur les fichier .deca valides ou invalides
+#
+# Dans le cas d'un fichier valide, on teste qu'il n'y a pas d'erreur.
+#
+# Dans le cas d'un fichier invalide, on teste que la commande test_synt retourne bien une erreur (code de retour != 0).
 
-# Il faudrait améliorer ce script pour qu'il puisse lancer test_lex
-# sur un grand nombre de fichiers à la suite.
 
 # On se place dans le répertoire du projet (quel que soit le
 # répertoire d'où est lancé le script) :
@@ -17,27 +16,234 @@ cd "$(dirname "$0")"/../../.. || exit 1
 
 PATH=./src/test/script/launchers:"$PATH"
 
-echo "===== TODO ====="
 
-# /!\ test valide lexicalement, mais invalide pour l'étape A.
-# test_lex peut au choix afficher les messages sur la sortie standard
-# (1) ou sortie d'erreur (2). On redirige la sortie d'erreur sur la
-# sortie standard pour accepter les deux (2>&1)
-#if test_lex src/test/deca/syntax/invalid/provided/simple_lex.deca 2>&1 \
-#    | head -n 1 | grep -q 'simple_lex.deca:[0-9]'
-#then
-#    echo "Echec inattendu de test_lex"
-#    exit 1
-#else
-#    echo "OK"
-#fi
 
-# Ligne 10 codée en dur. Il faudrait stocker ça quelque part ...
-#if test_lex src/test/deca/syntax/invalid/provided/chaine_incomplete.deca 2>&1 \
-#    | grep -q -e 'chaine_incomplete.deca:10:'
-#then
-#    echo "Echec attendu pour test_lex"
-#else
-#    echo "Erreur non detectee par test_lex pour chaine_incomplete.deca"
-#    exit 1
-#fi
+cd "$(dirname "$0")"/../../.. || exit 1
+
+PATH=./src/test/script/launchers:"$PATH"
+
+# Fonction vérifiant les tests valides lexicalement
+test_lex_valid () {
+    # $1 = fichier .deca
+
+    path=$(echo $1 | tr '\\' '/')
+    file=$(basename $path)
+
+    if test_lex "$path" 2>&1 | tail -n 1 | grep -q "$file:[0-9]"
+    then
+        echo "$1 : FAILED"
+    else
+        nbpassed=$((nbpassed+1))
+        echo "$1 : OK"
+    fi
+}
+
+# Fonction vérifiant les test invalides lexicalement
+test_lex_invalid () {
+    # $1 = fichier .deca
+
+    path=$(echo $1 | tr '\\' '/')
+    file=$(basename $path)
+
+    if test_lex "$path" 2>&1 | tail -n 1 | grep -q "$file:[0-9]"
+    then
+        nbpassed=$((nbpassed+1))
+        echo "$1 : OK"
+    else
+        echo "$1 : FAILED"
+    fi
+}
+
+# ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "provided"
+test_step_provided() {
+  echo "=== STEP: PROVIDED ==="
+
+  # no src/test/deca/codegen/interactive/provided/
+
+  # no src/test/deca/codegen/invalid/provided/
+
+  echo "### TEST: src/test/deca/codegen/valid/provided/ ###"
+  for cas_de_test in src/test/deca/codegen/valid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/invalid/provided/ ###"
+  for cas_de_test in src/test/deca/context/invalid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/valid/provided/ ###"
+  for cas_de_test in src/test/deca/context/valid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/syntax/valid/provided/ ###"
+  for cas_de_test in src/test/deca/syntax/valid/provided/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/syntax/invalid/provided/ ###"
+  nbtests=$((nbtests+1))
+  test_lex_valid "src/test/deca/syntax/valid/provided/simple_lex.deca"
+  nbtests=$((nbtests+1))
+  test_lex_invalid "src/test/deca/syntax/invalid/provided/chaine_incomplete.deca"
+}
+
+# ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "renduInitial"
+test_step_renduInitial() {
+  echo "=== STEP: RENDU_INITIAL ==="
+
+  # no src/test/deca/codegen/interactive/renduInitial/
+
+  # no src/test/deca/codegen/invalid/renduInitial/
+
+  echo "### TEST: src/test/deca/codegen/valid/renduInitial/ ###"
+  for cas_de_test in src/test/deca/codegen/valid/renduInitial/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/invalid/renduInitial/ ###"
+  for cas_de_test in src/test/deca/context/invalid/renduInitial/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  # no src/test/deca/context/valid/renduInitial/
+
+  echo "### TEST: src/test/deca/syntax/valid/renduInitial/ ###"
+  for cas_de_test in src/test/deca/syntax/valid/renduInitial/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  # no src/test/deca/syntax/invalid/renduInitial/
+}
+
+# ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "renduInter01"
+test_step_renduInter01() {
+  echo "=== STEP: RENDU_INTER01 ==="
+
+  echo "### TEST: src/test/deca/codegen/interactive/renduInter01/ ###"
+  for cas_de_test in src/test/deca/codegen/interactive/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  # no src/test/deca/codegen/invalid/renduInter01/
+
+  echo "### TEST: src/test/deca/codegen/valid/renduInter01/ ###"
+  for cas_de_test in src/test/deca/codegen/valid/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/invalid/renduInter01/ ###"
+  for cas_de_test in src/test/deca/context/invalid/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  # no src/test/deca/context/valid/renduInter01/
+
+  # no src/test/deca/syntax/valid/renduInter01/
+
+  echo "### TEST: src/test/deca/syntax/invalid/renduInter01/ ###"
+  for cas_de_test in src/test/deca/syntax/invalid/renduInter01/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+}
+
+# ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "renduInter02"
+test_step_renduInter02() {
+  echo "=== STEP: RENDU_INTER02 ==="
+
+  echo "### TEST: src/test/deca/codegen/interactive/renduInter02/ ###"
+  for cas_de_test in src/test/deca/codegen/interactive/renduInter02/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/codegen/invalid/renduInter02/ ###"
+  for cas_de_test in src/test/deca/codegen/invalid/renduInter02/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/codegen/valid/renduInter02/ ###"
+  for cas_de_test in src/test/deca/codegen/valid/renduInter02/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  echo "### TEST: src/test/deca/context/invalid/renduInter02/ ###"
+  for cas_de_test in src/test/deca/context/invalid/renduInter02/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+
+  # no src/test/deca/context/valid/renduInter01/
+
+  # no src/test/deca/syntax/valid/renduInter01/
+
+  echo "### TEST: src/test/deca/syntax/invalid/renduInter02/ ###"
+  for cas_de_test in src/test/deca/syntax/invalid/renduInter02/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  echo
+}
+
+# ----------------------------------------------------------------------------------------------------
+# Main
+
+nbtests=0
+nbpassed=0
+
+test_step_provided
+test_step_renduInitial
+test_step_renduInter01
+test_step_renduInter02
+
+
+echo "### RESULTS: $nbpassed/$nbtests"
