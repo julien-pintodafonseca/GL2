@@ -26,8 +26,7 @@ test_context_invalid () {
     cmd=$(test_context "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
 
-    if [ $code -eq 0 ]
-    then
+    if [ $code -eq 0 ]; then
         echo "$1 : KO"
     else
         # si le test s'est exécuté avec une erreur, on regarde si l'erreur générée correspond à celle attendue
@@ -58,8 +57,7 @@ test_context_valid () {
     cmd=$(test_context "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
 
-    if [ $code -eq 0 ]
-    then
+    if [ $code -eq 0 ]; then
         # si le test s'est exécuté sans erreur, on regarde si le résultat généré correspond à celui attendu
         file=${2%*.expected}
         test_context "$path" > "$file.res"

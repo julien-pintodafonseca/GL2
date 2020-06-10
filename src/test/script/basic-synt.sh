@@ -26,8 +26,7 @@ test_synt_invalid () {
     cmd=$(test_synt "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
 
-    if [ $code -eq 0 ]
-    then
+    if [ $code -eq 0 ]; then
         echo "$1 : KO"
     else
         if [ ! -f $2 ]; then
@@ -57,8 +56,7 @@ test_synt_valid () {
     cmd=$(test_synt "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
 
-    if [ $code -eq 0 ]
-    then
+    if [ $code -eq 0 ]; then
         if [ ! -f $2 ]; then
             echo "[FAILED] $1 : Fichier .expected inexistant"
         else

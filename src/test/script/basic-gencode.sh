@@ -23,14 +23,14 @@ test_codegen_invalid () {
 
     decac $1 # On génère le fichier assembleur .ass
 
-    if [ $? -ne 0 ] ; then
+    if [ $? -ne 0 ]; then
         echo "$1 : KO (pour la génération de code)"
     elif [ ! -f $ass_file ]; then
         echo "Fichier cond0.ass non généré."
     else
         resultat=$(ima $ass_file) # On exécute le fichier assembleur
 
-        if [ $? -eq 0 ] ; then
+        if [ $? -eq 0 ]; then
             echo "$1 : KO"
         elif [ ! -f $2 ]; then
             echo "$1 : Fichier .expected inexistant"
@@ -60,14 +60,14 @@ test_codegen_valid () {
 
     decac $1 # On génère le fichier assembleur .ass
 
-    if [ $? -ne 0 ] ; then
+    if [ $? -ne 0 ]; then
         echo "[FAILED] $1 : KO (pour la génération de code)"
     elif [ ! -f $ass_file ]; then
         echo "Fichier cond0.ass non généré."
     else
         resultat=$(ima $ass_file) # On exécute le fichier assembleur
 
-        if [ $? -ne 0 ] ; then
+        if [ $? -ne 0 ]; then
             echo "[FAILED] $1 : KO (fichier assembleur inexécutable)"
         elif [ ! -f $2 ]; then
             echo "[FAILED] $1 : Fichier .expected inexistant"
