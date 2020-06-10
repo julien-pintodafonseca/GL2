@@ -1,0 +1,32 @@
+package fr.ensimag.deca.context;
+
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.Minus;
+import fr.ensimag.deca.tree.Plus;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+public class TestMinusPlain {
+    private final Type INT = new IntType(null);
+    private final Type FLOAT = new FloatType(null);
+
+    @Test
+    public void testType() throws ContextualError {
+        DecacCompiler compiler = new DecacCompiler(null, null);
+        AbstractExpr left = Mockito.mock(AbstractExpr.class);
+        when(left.verifyExpr(compiler, null, null)).thenReturn(INT);
+        AbstractExpr right = Mockito.mock(AbstractExpr.class);
+        when(right.verifyExpr(compiler, null, null)).thenReturn(INT);
+        Minus t = new Minus(left, right);
+        // check the result
+        assertTrue(t.verifyExpr(compiler, null, null).isInt());
+        // check that the mocks have been called properly.
+        verify(left).verifyExpr(compiler, null, null);
+        verify(right).verifyExpr(compiler, null, null);
+    }
+}
