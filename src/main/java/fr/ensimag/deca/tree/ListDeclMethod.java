@@ -23,11 +23,11 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
         }
     }
 
-    public void verifyListClassMembers(DecacCompiler compiler, EnvironmentExp superClass, ClassDefinition currentClass) throws ContextualError {
+    public void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         LOG.debug("verify listClassMethods : start");
         // Règle syntaxe contextuelle : (2.6)
         for (AbstractDeclMethod declMethod : getList()) {
-            declMethod.verifyClassMembers(compiler, superClass, currentClass);
+            declMethod.verifyClassMembers(compiler, currentClass);
         }
         LOG.debug("verify listClassMethods: end");
     }

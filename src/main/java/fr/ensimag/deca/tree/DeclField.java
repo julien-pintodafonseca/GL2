@@ -34,16 +34,17 @@ public class DeclField extends AbstractDeclField {
     }
 
     @Override
-    protected void verifyClassMembers(DecacCompiler compiler, EnvironmentExp superClass, ClassDefinition currentClass) throws ContextualError{
+    protected void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError{
         // Règle syntaxe contextuelle : (2.5)
         Type t = type.verifyType(compiler);
         type.setType(t);
+
         if (t.isVoid()) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_VOID_TYPE_FIELD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
         } else {
             // on vérifie que, si la variable est déjà définie dans l'environnement des expressions de la superClass,
             // il s'agit bien d'un identificateur de champ.
-            Definition superVarName = superClass.get(varName.getName());
+            Definition superVarName = currentClass.getSuperClass().getMembers().get(varName.getName());
             if (superVarName != null) {
                 if (!superVarName.isField()) {
                     throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHOD_OVERRIDING_FIELD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());

@@ -41,7 +41,12 @@ public class EnvironmentExp {
      */
     public ExpDefinition get(Symbol key) {
         if (key != null) {
-            return dictionary.get(key);
+            ExpDefinition def = dictionary.get(key);
+            if (def == null && parentEnvironment != null) {
+                return parentEnvironment.get(key);
+            } else {
+                return def;
+            }
         } else {
             return null;
         }

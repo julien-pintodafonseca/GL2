@@ -28,14 +28,14 @@ public class DeclMethod extends AbstractDeclMethod {
     }
 
     @Override
-    public void verifyClassMembers(DecacCompiler compiler, EnvironmentExp superClass, ClassDefinition currentClass) throws ContextualError {
+    public void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         // Règle syntaxe contextuelle : (2.7)
         Type t = type.verifyType(compiler);
         type.setType(t);
 
         Signature s = params.verifyListClassMembers(compiler, currentClass,this);
             // on vérifie que, si la méthode est déjà définie dans l'environnement des expressions de la superClass,
-            Definition superMethName = superClass.get(methodName.getName());
+            Definition superMethName = currentClass.getSuperClass().getMembers().get(methodName.getName());
             if (superMethName != null) {
 
                 if (superMethName instanceof MethodDefinition) {

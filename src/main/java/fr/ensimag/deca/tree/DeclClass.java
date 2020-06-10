@@ -59,8 +59,8 @@ public class DeclClass extends AbstractDeclClass {
         className.getClassDefinition().setNumberOfFields(superClassDef.getNumberOfFields());
         className.getClassDefinition().setNumberOfMethods(superClassDef.getNumberOfMethods());
 
-        fields.verifyListClassMembers(compiler, superClassDef.getMembers(), className.getClassDefinition());
-        methods.verifyListClassMembers(compiler, superClassDef.getMembers(), className.getClassDefinition());
+        fields.verifyListClassMembers(compiler, className.getClassDefinition());
+        methods.verifyListClassMembers(compiler, className.getClassDefinition());
 
 
     }

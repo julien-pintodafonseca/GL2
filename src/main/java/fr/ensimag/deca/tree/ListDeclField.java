@@ -22,11 +22,11 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
-    public void verifyListClassMembers(DecacCompiler compiler, EnvironmentExp superClass, ClassDefinition currentClass) throws ContextualError {
+    public void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         LOG.debug("verify listClassFields : start");
         // Règle syntaxe contextuelle : (2.4)
         for (AbstractDeclField declField : getList()) {
-            declField.verifyClassMembers(compiler, superClass, currentClass);
+            declField.verifyClassMembers(compiler, currentClass);
         }
         LOG.debug("verify listClassFields: end");
     }

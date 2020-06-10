@@ -14,5 +14,5 @@ import fr.ensimag.deca.context.EnvironmentExp;
 public abstract class AbstractDeclMethod extends Tree {
 
 
-    public abstract void verifyClassMembers(DecacCompiler compiler, EnvironmentExp superClass, ClassDefinition currentClass) throws ContextualError;
+    public abstract void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError;
 }
