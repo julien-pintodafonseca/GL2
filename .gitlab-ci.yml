@@ -38,3 +38,4 @@ complete-test:
   stage: complete-test
   script:
     - mvn test $MAVEN_OPT_1
+    - cobertura-dump.sh
