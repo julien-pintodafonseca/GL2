@@ -26,34 +26,32 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         // Syntaxe contextuelle : règle (3.33)
-        getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
-        getRightOperand().verifyExpr(compiler, localEnv, currentClass);
-        Type t1 = getLeftOperand().getType();
-        Type t2 = getRightOperand().getType();
+        Type t1 = getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
+        Type t2 = getRightOperand().verifyExpr(compiler, localEnv, currentClass);
 
         // Syntaxe contextuelle : signature des opérateurs
-        if ( this instanceof AbstractOpExactCmp ) {
-            Type t = compiler.environmentType.BOOLEAN;
-            setType(t);
-            return t;
-        } else if ( (t1.isInt() || t1.isFloat()) && (t2.isInt() || t2.isFloat()) ) {
-        	if(t1.isInt() && t2.isFloat()) {
-        		ConvFloat conv = new ConvFloat(getLeftOperand());
-        		conv.setType(t2);
-        		setLeftOperand(conv);
-        	}else if(t1.isFloat() && t2.isInt()) {
-        		ConvFloat conv = new ConvFloat(getRightOperand());
-        		conv.setType(t1);
-        		setRightOperand(conv);
-        	}
+        if (this instanceof AbstractOpExactCmp) {
             Type t = compiler.environmentType.BOOLEAN;
             setType(t);
             return t;
         } else {
-            throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE + t1 + " (pour " +
-                    getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
-        }
+        	if (t1.isInt() && t2.isFloat()) {
+        		ConvFloat conv = new ConvFloat(getLeftOperand());
+        		conv.setType(t2);
+        		setLeftOperand(conv);
+        	} else if (t1.isFloat() && t2.isInt()) {
+        		ConvFloat conv = new ConvFloat(getRightOperand());
+        		conv.setType(t1);
+        		setRightOperand(conv);
+        	} else {
+                throw new ContextualError( ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_COMPARISON_TYPE + t1 + " (pour " +
+                        getLeftOperand().decompile() + ") et " + t2 + " (pour " + getRightOperand().decompile() + ").", getLocation());
+            }
 
+            Type t = compiler.environmentType.BOOLEAN;
+            setType(t);
+            return t;
+        }
     }
 
     @Override
