@@ -1,0 +1,61 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 2 elements]
+   |  []> [10, 0] DeclClass
+   |  ||  +> [10, 6] Identifier (B)
+   |  ||  +> Identifier (Object)
+   |  ||  +> ListDeclField [List with 1 elements]
+   |  ||  |  []> [11, 8] DeclField
+   |  ||  |      +> [11, 4] Identifier (int)
+   |  ||  |      +> [11, 8] Identifier (x)
+   |  ||  |      `> Initialization
+   |  ||  |         `> [11, 10] Int (2)
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [14, 0] DeclClass
+   |      +> [14, 6] Identifier (A)
+   |      +> [14, 16] Identifier (B)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [15, 8] DeclField
+   |      |      +> [15, 4] Identifier (int)
+   |      |      +> [15, 8] Identifier (x)
+   |      |      `> Initialization
+   |      |         `> [15, 10] Int (3)
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [18, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [19, 6] DeclVar
+      |  ||  +> [19, 4] Identifier (A)
+      |  ||  +> [19, 6] Identifier (a)
+      |  ||  `> [19, 8] Initialization
+      |  ||     `> [19, 10] New
+      |  ||        `> [19, 14] Identifier (A)
+      |  []> [20, 6] DeclVar
+      |  ||  +> [20, 4] Identifier (B)
+      |  ||  +> [20, 6] Identifier (b)
+      |  ||  `> [20, 8] Initialization
+      |  ||     `> [20, 10] New
+      |  ||        `> [20, 14] Identifier (B)
+      |  []> [21, 6] DeclVar
+      |      +> [21, 4] Identifier (B)
+      |      +> [21, 6] Identifier (ba)
+      |      `> [21, 9] Initialization
+      |         `> [21, 11] New
+      |            `> [21, 15] Identifier (A)
+      `> ListInst [List with 3 elements]
+         []> [22, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [22, 12] StringLiteral (xA=)
+         ||     []> [22, 20] Selection
+         ||         +> [22, 19] Identifier (a)
+         ||         `> [22, 21] Identifier (x)
+         []> [23, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [23, 12] StringLiteral (xB=)
+         ||     []> [23, 20] Selection
+         ||         +> [23, 19] Identifier (b)
+         ||         `> [23, 21] Identifier (x)
+         []> [24, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [24, 12] StringLiteral (xBA=)
+                []> [24, 22] Selection
+                    +> [24, 20] Identifier (ba)
+                    `> [24, 23] Identifier (x)

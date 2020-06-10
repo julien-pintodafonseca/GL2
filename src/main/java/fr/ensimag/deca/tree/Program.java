@@ -40,7 +40,7 @@ public class Program extends AbstractProgram {
         LOG.debug("verify program: start");
         EnvironmentType envType = new EnvironmentType(compiler);
         getClasses().verifyListClass(compiler); // Passe 1 : vérifie le nom des classes et la hiérarchie de classes
-        //getClasses().verifyListClassMembers(compiler); // Passe 2: vérifie les champs et la signature des méthodes des différentes classes
+        getClasses().verifyListClassMembers(compiler); // Passe 2: vérifie les champs et la signature des méthodes des différentes classes
         //getClasses().verifyListClassBody(compiler); // Passe 3 : vérifie les blocs, les instructions, les expressions et les initialisations
         getMain().verifyMain(compiler);
         LOG.debug("verify program: end");

@@ -33,6 +33,8 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_DECLCLASS_DUPE = "La classe suivante a déjà été déclarée précédemment : ";
     public static final String CONTEXTUAL_ERROR_UNREGISTRED_CLASS = "La classe suivante n'est pas définie : ";
     public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_TYPE_FOR_NEW = "L'opérateur new instancie une variable de type classe. Or, vous essayez instancier une variable de type : ";
+    public static final String CONTEXTUAL_ERROR_DECLFIELD_DUPE = "L'attribut suivant a déjé été déclarée précédemment dans le classe : ";
+    public static final String CONTEXTUAL_ERROR_IDENT_VOID_TYPE_FIELD = "Le type de l'attribut suivant est void : ";
 
     // CodegenError messages
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les floattants ou division par zéro.";

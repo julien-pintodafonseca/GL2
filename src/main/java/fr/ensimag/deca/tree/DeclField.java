@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tree.AbstractDeclMethod;
@@ -37,16 +38,23 @@ public class DeclField extends AbstractDeclField {
         Type t = type.verifyType(compiler);
         type.setType(t);
         if (t.isVoid()) {
-            //erreur à créer
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_VOID_TYPE_FIELD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
         } else {
+            // on vérifie que, si la variable est déjà définie dans l'environnement des expressions de la superClass,
+            // il s'agit bien d'un identificateur de champ.
+            Definition superVarName = superClass.get(varName.getName());
+            if (superVarName != null) {
+                if (!superVarName.isField()) {
+                    // erreur à créer
+                }
+            }
             currentClass.incNumberOfFields();
             FieldDefinition fieldDef = new FieldDefinition(t, getLocation(), visibility, currentClass, currentClass.getNumberOfFields());
             try {
                 currentClass.getMembers().declare(varName.getName(), fieldDef);
             } catch (EnvironmentExp.DoubleDefException e) {
-                // erreur à créer
+                throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLFIELD_DUPE + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
             }
-
         }
     }
 
