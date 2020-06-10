@@ -1,0 +1,30 @@
+// Description:
+//      Définition d'une méthode pour une classe A qui étend une classe B
+//      => Cas spécifique où la méthode de la classe A a le même nom que la méthode de la classe B (overriding)
+//
+// Resultats:
+//      x=9
+//      y=6
+
+class B {
+    int x=2;
+    void plus(int y){
+            x=x+y;
+    }
+}
+
+class A extends B {
+    int y=3;
+    void plus(int x){
+            y=x+y;
+    }
+}
+
+{
+    A a = new A();
+    B b = new B();
+    a.plus(3);
+    b.plus(7);
+    println("x=", b.x);
+    println("y=", a.y);
+}

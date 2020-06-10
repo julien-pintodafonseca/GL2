@@ -1,8 +1,11 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tree.AbstractDeclParam;
-import fr.ensimag.deca.tree.TreeFunction;
 
 import java.io.PrintStream;
 
@@ -19,6 +22,18 @@ public class DeclParam extends AbstractDeclParam {
     public DeclParam(AbstractIdentifier varType, AbstractIdentifier varName) {
         this.varType = varType;
         this.varName = varName;
+    }
+
+    @Override
+    public Type verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
+        // Règle syntaxe contextuelle : (2.9)
+        Type t = varType.verifyType(compiler);
+        varType.setType(t);
+        if (t.isVoid()) {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_VOID_TYPE_PARAM + varName.getName() + " (classe " + currentClass.getType() + ", méthode "+ currentMethod.methodName.getName() + ").", getLocation());
+        } else {
+            return t;
+        }
     }
 
     @Override

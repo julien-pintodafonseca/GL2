@@ -55,6 +55,9 @@ public abstract class Type {
     public boolean isVoid() {
         return false;
     }
+    public boolean isObject() {
+        return false;
+    }
 
     public boolean isString() {
         return false;

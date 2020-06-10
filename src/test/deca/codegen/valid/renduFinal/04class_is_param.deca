@@ -1,0 +1,27 @@
+// Description:
+//      Définition d'une méthode
+//      => Cas spécifique où la méthode prend un paramètre de type B avec B une classe précédemment définie
+//
+// Resultats:
+//      Pour b, x=7
+
+class B {
+    int x=2;
+    void incX(int y){
+        x=x+y;
+    }
+}
+
+class A {
+    int x=5;
+    void aPlusB(B b) {
+        b.incX(x);
+    }
+}
+
+{
+    A a = new A();
+    B b = new B();
+    a.aPlusB(b);
+    println("Pour b, x=", b.x);
+}

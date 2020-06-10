@@ -1,6 +1,6 @@
 // Description:
 //      Définition d'un attribut pour une classe A qui étend une classe B
-//      => Cas spécifique où l'attribut de la classe A a le même nom que l'attribut de la classe B
+//      => Cas spécifique où l'attribut de la classe A a le même nom que l'attribut de la classe B (overriding)
 //
 // Resultats:
 //      xA=3

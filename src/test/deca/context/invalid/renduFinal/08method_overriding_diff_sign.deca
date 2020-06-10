@@ -1,0 +1,27 @@
+// Description:
+//      Overriding d'une méthode : signature invalide
+//      => La méthode doit avoir la même signature que la méthode héritée
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 18 : la méthode plus (classe A) n'a pas la même signature que la méthode superClass (classe C).
+
+class C {
+    int x=2;
+    void plus(int y) {
+            x=x+y;
+    }
+}
+
+class B extends C {
+}
+
+class A extends B {
+    float y=2;
+    void plus(float x) {
+            y=x+y;
+    }
+}
+
+{
+}

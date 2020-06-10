@@ -1,0 +1,19 @@
+// Description:
+//      Définition d'un attribut de type float
+//      => Cas spécifique où on affecte un int à un attribut de type float
+//
+// Resultats:
+//      x=9
+
+class B {
+    float x=2;
+    void plus(int y){
+            x=x+y;
+    }
+}
+
+{
+    B b = new B();
+    b.plus(7);
+    println("x=", b.x);
+}

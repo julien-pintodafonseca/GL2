@@ -45,7 +45,7 @@ public class EnvironmentType {
         envTypes.put(nullSymb, new TypeDefinition(NULL, Location.BUILTIN));
 
         Symbol objectSymb = compiler.createSymbol("Object");
-        OBJECT = new ClassType(objectSymb);
+        OBJECT = new ObjectType(objectSymb);
         envTypes.put(objectSymb, new ClassDefinition(OBJECT, Location.BUILTIN, null));
     }
 
@@ -81,5 +81,23 @@ public class EnvironmentType {
     public final StringType  STRING;
     public final BooleanType BOOLEAN;
     public final NullType NULL;
-    public final ClassType OBJECT;
+    public final ObjectType OBJECT;
+
+    /**
+     *
+     * @param t
+     * @param type
+     * @return true si t est un sous-type de type
+     */
+    public boolean subType(Type t, Type type) {
+        // Règles de sous-typage
+        if (t.isNull() || t == type || type.isObject()) {
+            return true;
+        } else if (t.isObject() || !t.isClass()) {
+            return false;
+        } else {
+            Type typeSuperClass = getClassDefinition(type.getName()).getSuperClass().getType();
+            return subType(typeSuperClass, type);
+        }
+    }
 }

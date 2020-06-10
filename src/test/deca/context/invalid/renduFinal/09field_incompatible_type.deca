@@ -1,0 +1,14 @@
+// Description:
+//      Affectation d'un attribut incorrecte au niveau du typage
+//      => Les type string et int ne sont pas compatibles pour l'affectation
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 10 : On ne peut pas affecter une String à un attribut de type int
+
+class A {
+    int x="hello";
+}
+
+{
+}

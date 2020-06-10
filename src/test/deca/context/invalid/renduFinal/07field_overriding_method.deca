@@ -1,0 +1,19 @@
+// Description:
+//      Déclaration d'un champ : override une méthode
+//      => Un champ ne peut pas avoir le même nom qu'une méthode héritée
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 15 : le champ x (classe A) a le même nom que la méthode héritée (classe B).
+
+class B {
+    void x() {
+    }
+}
+
+class A extends B {
+    int x=2;
+}
+
+{
+}

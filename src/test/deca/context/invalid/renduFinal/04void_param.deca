@@ -1,0 +1,18 @@
+// Description:
+//      Définition d'une méthode prenant des paramètres : typage invalide
+//      => Le paramètre pris par la méthode est de type void
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 11 : le paramètre y de la méthode plus (classe B) est de type void
+
+class B {
+    int x=2;
+    void plus(void y){
+            x=x+y;
+    }
+}
+
+{
+    B b = new B();
+}

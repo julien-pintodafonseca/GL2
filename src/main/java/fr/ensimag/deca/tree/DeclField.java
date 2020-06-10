@@ -4,8 +4,8 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tree.AbstractDeclMethod;
 import org.apache.commons.lang.Validate;
+import org.apache.log4j.Logger;
 
 import java.io.PrintStream;
 
@@ -16,6 +16,7 @@ import java.io.PrintStream;
  * @date 2020
  */
 public class DeclField extends AbstractDeclField {
+    private static final Logger LOG = Logger.getLogger(DeclField.class);
     private Visibility visibility;
     private AbstractIdentifier type;
     private AbstractIdentifier varName;
@@ -38,24 +39,36 @@ public class DeclField extends AbstractDeclField {
         Type t = type.verifyType(compiler);
         type.setType(t);
         if (t.isVoid()) {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_VOID_TYPE_FIELD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_VOID_TYPE_FIELD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
         } else {
             // on vérifie que, si la variable est déjà définie dans l'environnement des expressions de la superClass,
             // il s'agit bien d'un identificateur de champ.
             Definition superVarName = superClass.get(varName.getName());
             if (superVarName != null) {
                 if (!superVarName.isField()) {
-                    // erreur à créer
+                    throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHOD_OVERRIDING_FIELD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
                 }
             }
             currentClass.incNumberOfFields();
             FieldDefinition fieldDef = new FieldDefinition(t, getLocation(), visibility, currentClass, currentClass.getNumberOfFields());
+            varName.setDefinition(fieldDef);
+            varName.setType(t);
             try {
                 currentClass.getMembers().declare(varName.getName(), fieldDef);
             } catch (EnvironmentExp.DoubleDefException e) {
                 throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DECLFIELD_DUPE + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
             }
         }
+    }
+
+    @Override
+    protected void verifyClassBody(DecacCompiler compiler,
+                                 EnvironmentExp localEnv, ClassDefinition currentClass)
+            throws ContextualError {
+        // Règle syntaxe contextuelle : (3.7)
+        LOG.debug("verify declFieldInit: start");
+        initialization.verifyInitialization(compiler, type.getType(), localEnv, currentClass);
+        LOG.debug("verify declFieldInit : end");
     }
 
     @Override

@@ -34,7 +34,12 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_UNREGISTRED_CLASS = "La classe suivante n'est pas définie : ";
     public static final String CONTEXTUAL_ERROR_INCOMPATIBLE_TYPE_FOR_NEW = "L'opérateur new instancie une variable de type classe. Or, vous essayez instancier une variable de type : ";
     public static final String CONTEXTUAL_ERROR_DECLFIELD_DUPE = "L'attribut suivant a déjé été déclarée précédemment dans le classe : ";
-    public static final String CONTEXTUAL_ERROR_IDENT_VOID_TYPE_FIELD = "Le type de l'attribut suivant est void : ";
+    public static final String CONTEXTUAL_ERROR_VOID_TYPE_FIELD = "Le type de l'attribut suivant est void : ";
+    public static final String CONTEXTUAL_ERROR_VOID_TYPE_PARAM = "Le type du paramètre suivant est void : ";
+    public static final String CONTEXTUAL_ERROR_DIFF_SIGNATURE_REDEFINED_METHOD = "Vous essayer de rédéfinir la méthode suivante avec une signature différente : ";
+    public static final String CONTEXTUAL_ERROR_METHOD_OVERRIDING_FIELD = "La méthode suivante possède le même nom qu'un des attributs hérités : ";
+    public static final String CONTEXTUAL_ERROR_FIELD_OVERRIDING_METHOD = "L'attribut suivant possède le même nom qu'une des méthodes héritées : ";
+    public static final String CONTEXTUAL_ERROR_DIFF_TYPE_REDEFINED_METHOD = "Vous essayer de rédéfinir la méthode suivante avec une type de retour différent : ";
 
     // CodegenError messages
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les floattants ou division par zéro.";
