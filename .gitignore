@@ -2,6 +2,7 @@
 /target
 *.res
 *.ass
+cobertura.ser
 
 # ANTLR 4 default generated files directory
 /gen
