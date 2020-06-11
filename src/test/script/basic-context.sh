@@ -27,7 +27,7 @@ test_context_invalid () {
     code=$? # si code vaut 0 alors succès, sinon échec
 
     if [ $code -eq 0 ]; then
-        echo "$1 : KO"
+        echo "[FAILED] $1 : KO"
     else
         # si le test s'est exécuté avec une erreur, on regarde si l'erreur générée correspond à celle attendue
         file=${2%*.expected}
@@ -38,11 +38,11 @@ test_context_invalid () {
                 # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
-                echo "$1 : FAILED."
+                echo "[FAILED] $1 : FAILED."
                 echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
             fi
         else
-            echo "$1 : Fichier .expected inexistant"
+            echo "[FAILED] $1 : Fichier .expected inexistant"
         fi
     fi
 }

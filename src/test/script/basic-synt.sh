@@ -27,10 +27,10 @@ test_synt_invalid () {
     code=$? # si code vaut 0 alors succès, sinon échec
 
     if [ $code -eq 0 ]; then
-        echo "$1 : KO"
+        echo "[FAILED] $1 : KO"
     else
         if [ ! -f $2 ]; then
-            echo "$1 : Fichier .expected inexistant"
+            echo "[FAILED] $1 : Fichier .expected inexistant"
         else
             # On regarde si le résultat obtenu correspond à celui attendu
             file=${2%*.expected}
@@ -40,7 +40,7 @@ test_synt_invalid () {
                 # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
-                echo "$1 : FAILED."
+                echo "[FAILED] $1 : FAILED."
             fi
         fi
     fi

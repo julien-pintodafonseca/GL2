@@ -24,23 +24,23 @@ test_codegen_invalid () {
     decac $1 # On génère le fichier assembleur .ass
 
     if [ $? -ne 0 ]; then
-        echo "$1 : KO (pour la génération de code)"
+        echo "[FAILED] $1 : KO (pour la génération de code)"
     elif [ ! -f $ass_file ]; then
-        echo "Fichier cond0.ass non généré."
+        echo "[FAILED] $1 : Fichier .ass non généré."
     else
         resultat=$(ima $ass_file) # On exécute le fichier assembleur
 
         if [ $? -eq 0 ]; then
-            echo "$1 : KO"
+            echo "[FAILED] $1 : KO"
         elif [ ! -f $2 ]; then
-            echo "$1 : Fichier .expected inexistant"
+            echo "[FAILED] $1 : Fichier .expected inexistant"
         else
             # si le test s'est exécuté avec une erreur, on regarde si le résultat obtenu correspond à celui attendu
             if [ "$resultat" = "$(cat $2)" ]; then
                 # echo "$1 : PASSED"
                 nbpassed=$((nbpassed+1))
             else
-                echo "$1 : FAILED"
+                echo "[FAILED] $1 : FAILED"
                 echo "Résultat inattendu de ima:"
                 echo "$resultat"
             fi
@@ -63,7 +63,7 @@ test_codegen_valid () {
     if [ $? -ne 0 ]; then
         echo "[FAILED] $1 : KO (pour la génération de code)"
     elif [ ! -f $ass_file ]; then
-        echo "Fichier cond0.ass non généré."
+        echo "[FAILED] $1 : Fichier .ass non généré."
     else
         resultat=$(ima $ass_file) # On exécute le fichier assembleur
 
