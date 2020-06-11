@@ -1,14 +1,18 @@
 package fr.ensimag.deca.utils;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
 public class Utils {
-    public static String normalizeDisplay(String str) {
-        return str.replace("\t","")
-                .replace("\r", "")
-                .replace("\n", "");
+    public static List<String> normalizeDisplay(String str) {
+        str = str.replaceAll("\t","")
+                .replaceAll("\\r\\n", "\n") // fix carriage return
+                .replaceAll("\\r", "\n");   // for windows & linux
+        return Arrays.asList(str.split("\n"));
     }
 }
