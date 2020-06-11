@@ -4,7 +4,6 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.tree.ReadInt;
 import fr.ensimag.ima.pseudocode.Register;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,19 +13,21 @@ import java.util.List;
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
-public class TestReadInt extends TestCase {
-    final private List<String> IMACodeGenPrintExpected = new ArrayList<>();
-    final private List<String> IMACodeGenInstExpected = new ArrayList<>();
+public class TestReadInt {
+    private final List<String> IMACodeGenPrintExpected = new ArrayList<>();
+    private final List<String> IMACodeGenInstExpected = new ArrayList<>();
+
     private DecacCompiler compiler = new DecacCompiler(null, null);
 
     @Before
-    public void setUp() {
+    public void setup() {
         IMACodeGenPrintExpected.add("RINT");
         IMACodeGenPrintExpected.add("BOV read_error; Overflow check for previous operation");
         IMACodeGenPrintExpected.add("WINT");

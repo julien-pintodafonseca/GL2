@@ -2,13 +2,11 @@ package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.FloatLiteral;
 import fr.ensimag.deca.tree.Initialization;
 import fr.ensimag.deca.tree.IntLiteral;
 import fr.ensimag.ima.pseudocode.DAddr;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -20,6 +18,7 @@ import java.util.List;
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -28,7 +27,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-public class TestInitialization extends TestCase {
+public class TestInitialization {
     private final IntLiteral expectedIntLiteral = new IntLiteral(5);
     private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);
     private final UnsupportedOperationException expectedNoMoreRegister =
@@ -39,11 +38,12 @@ public class TestInitialization extends TestCase {
     @Mock private AbstractExpr exprFloat;
     @Mock private AbstractExpr expr;
     @Mock private DAddr address;
+
     private DecacCompiler compiler;
     private DecacCompiler compilerWithoutAvailableRegisters;
 
     @Before
-    public void setUp() throws ContextualError, DecacFatalError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
         compiler.setRegisterManager(4);

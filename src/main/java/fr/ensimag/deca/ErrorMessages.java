@@ -44,7 +44,7 @@ public final class ErrorMessages {
     public static final String CONTEXTUEL_ERROR_BAD_USED_THIS = "Le mot-clef this ne peut être utilisé qu'au sein d'une classe. Or, vous l'utilisez dans la fonction main.";
 
     // CodegenError messages
-    public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les floattants ou division par zéro.";
+    public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les flottants ou division par zéro.";
     public static final String CODEGEN_ERROR_READINT_ERROR = "Saisie incorrecte : la saisie est soit incorrecte (nombre entier attendu), soit celle d'un nombre trop grand (dépassement).";
     public static final String CODEGEN_ERROR_READFLOAT_ERROR = "Saisie incorrecte : la saisie est soit incorrecte (nombre réel attendu), soit celle d'un nombre trop grand (dépassement)";
 

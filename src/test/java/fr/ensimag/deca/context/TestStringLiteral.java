@@ -2,7 +2,6 @@ package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.tree.StringLiteral;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,20 +11,21 @@ import java.util.List;
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
-public class TestStringLiteral extends TestCase {
+public class TestStringLiteral {
+    private final List<String> IMACodeGenPrintExpectedEmptyString = new ArrayList<>();
+    private final List<String> IMACodeGenPrintExpectedString = new ArrayList<>();
+
     private DecacCompiler compiler = new DecacCompiler(null, null);
 
-    final private List<String> IMACodeGenPrintExpectedEmptyString = new ArrayList<>();
-    final private List<String> IMACodeGenPrintExpectedString = new ArrayList<>();
-
     @Before
-    public void setUp() {
+    public void setup() {
         IMACodeGenPrintExpectedEmptyString.add("WSTR \"\"");
         IMACodeGenPrintExpectedString.add("WSTR \"hello\"");
     }

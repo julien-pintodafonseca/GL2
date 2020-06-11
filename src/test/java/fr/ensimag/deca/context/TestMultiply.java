@@ -6,7 +6,6 @@ import fr.ensimag.deca.tree.*;
 import fr.ensimag.deca.utils.Utils;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -31,6 +30,7 @@ public class TestMultiply {
     @Mock private AbstractExpr intexpr2;
     @Mock private AbstractExpr floatexpr1;
     @Mock private AbstractExpr floatexpr2;
+
     private GPRegister reg1;
     private GPRegister reg2;
     private DecacCompiler compiler;

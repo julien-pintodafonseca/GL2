@@ -4,10 +4,8 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.tree.IntLiteral;
 import fr.ensimag.ima.pseudocode.Register;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,22 +13,23 @@ import java.util.List;
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
-public class TestIntLiteral extends TestCase {
-    private DecacCompiler compiler = new DecacCompiler(null, null);
+public class TestIntLiteral {
+    private final List<String> IMACodeGenInstExpectedInt0 = new ArrayList<>();
+    private final List<String> IMACodeGenInstExpectedInt = new ArrayList<>();
+    private final List<String> IMACodeGenPrintExpectedInt0 = new ArrayList<>();
+    private final List<String> IMACodeGenPrintExpectedInt = new ArrayList<>();
 
-    final private List<String> IMACodeGenInstExpectedInt0 = new ArrayList<>();
-    final private List<String> IMACodeGenInstExpectedInt = new ArrayList<>();
-    final private List<String> IMACodeGenPrintExpectedInt0 = new ArrayList<>();
-    final private List<String> IMACodeGenPrintExpectedInt = new ArrayList<>();
+    private DecacCompiler compiler;
 
     @Before
-    public void setUp() {
+    public void setup() {
         IMACodeGenInstExpectedInt0.add("LOAD #0, R1");
         IMACodeGenInstExpectedInt.add("LOAD #5, R1");
         IMACodeGenPrintExpectedInt0.add("LOAD #0, R1");
@@ -51,6 +50,8 @@ public class TestIntLiteral extends TestCase {
 
     @Test
     public void testVerifyExpr() {
+        compiler = new DecacCompiler(null, null);
+
         IntLiteral int1 = new IntLiteral(0); // Cas d'une valeur nulle
         IntLiteral int2 = new IntLiteral(5); // Cas d'une valeur quelconque
 

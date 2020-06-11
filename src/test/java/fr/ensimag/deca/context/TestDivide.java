@@ -6,25 +6,22 @@ import fr.ensimag.deca.tree.*;
 import fr.ensimag.deca.utils.Utils;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class TestDivide {
-
     private final Type INT = new IntType(null);
     private final Type FLOAT = new FloatType(null);
 
@@ -32,6 +29,7 @@ public class TestDivide {
     @Mock private AbstractExpr intexpr2;
     @Mock private AbstractExpr floatexpr1;
     @Mock private AbstractExpr floatexpr2;
+
     private GPRegister reg1;
     private GPRegister reg2;
     private DecacCompiler compiler;

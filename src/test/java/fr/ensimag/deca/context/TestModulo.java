@@ -3,11 +3,13 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.tree.*;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.FloatLiteral;
+import fr.ensimag.deca.tree.IntLiteral;
+import fr.ensimag.deca.tree.Modulo;
 import fr.ensimag.deca.utils.Utils;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -18,13 +20,13 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class TestModulo {
-    private DecacCompiler compiler = new DecacCompiler(null, null);
+    private final DecacCompiler compiler = new DecacCompiler(null, null);
     private final Type INT = compiler.environmentType.INT;
     private final Type FLOAT = compiler.environmentType.FLOAT;
 
@@ -32,14 +34,13 @@ public class TestModulo {
     @Mock private AbstractExpr intexpr2;
     @Mock private AbstractExpr floatexpr1;
     @Mock private AbstractExpr floatexpr2;
+
     private GPRegister reg1;
     private GPRegister reg2;
-    //private DecacCompiler compiler;
 
     @Before
     public void setup() throws ContextualError {
         MockitoAnnotations.initMocks(this);
-        compiler = new DecacCompiler(null, null);
         reg1 = Register.R0;
         reg2 = Register.R1;
         when(intexpr1.verifyExpr(compiler, null, null)).thenReturn(INT);

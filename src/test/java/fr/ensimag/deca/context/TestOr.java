@@ -2,11 +2,9 @@ package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.Or;
 import fr.ensimag.ima.pseudocode.Label;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -18,6 +16,7 @@ import java.util.List;
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
@@ -28,17 +27,18 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-public class TestOr extends TestCase {
+public class TestOr {
+    private final List<String> IMACodeGenCMPExpectedOrFalse = new ArrayList<>();
+    private final List<String> IMACodeGenCMPExpectedOrTrue = new ArrayList<>();
+
     @Mock private AbstractExpr sonL;
     @Mock private AbstractExpr sonR;
     @Mock private Label lb;
+
     private DecacCompiler compiler;
 
-    final private List<String> IMACodeGenCMPExpectedOrFalse = new ArrayList<>();
-    final private List<String> IMACodeGenCMPExpectedOrTrue = new ArrayList<>();
-
     @Before
-    public void setUp() throws ContextualError, DecacFatalError {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
         compiler.setLabelManager();

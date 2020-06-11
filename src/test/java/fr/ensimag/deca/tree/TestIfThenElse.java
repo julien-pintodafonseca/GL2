@@ -23,8 +23,8 @@ import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class TestIfThenElse extends TestCase {
-    final private List<String> IMACodeGenInstExpected = new ArrayList<>();
+public class TestIfThenElse {
+    private final List<String> IMACodeGenInstExpected = new ArrayList<>();
     @Mock private AbstractExpr conditionBool;
     @Mock private AbstractExpr conditionNotBool;
     @Mock private ListInst thenBranch;
@@ -35,7 +35,7 @@ public class TestIfThenElse extends TestCase {
     private DecacCompiler compiler = new DecacCompiler(null, null);
 
     @Before
-    public void setUp() throws ContextualError, DecacFatalError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         when(conditionBool.getType()).thenReturn(compiler.environmentType.BOOLEAN);
         when(conditionNotBool.getType()).thenReturn(compiler.environmentType.INT);

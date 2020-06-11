@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
@@ -25,17 +26,18 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-public class TestLowerOrEqual extends TestCase {
+public class TestLowerOrEqual {
+    private final List<String> IMACodeGenCMPExpectedReverseTrue = new ArrayList<>();
+    private final List<String> IMACodeGenCMPExpectedReverseFalse = new ArrayList<>();
+
     @Mock private AbstractExpr sonL;
     @Mock private AbstractExpr sonR;
     @Mock private Label lb;
+
     private DecacCompiler compiler;
 
-    final private List<String> IMACodeGenCMPExpectedReverseTrue = new ArrayList<>();
-    final private List<String> IMACodeGenCMPExpectedReverseFalse = new ArrayList<>();
-
     @Before
-    public void setUp() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
         IMACodeGenCMPExpectedReverseTrue.add("CMP R3, R2");
         IMACodeGenCMPExpectedReverseTrue.add("BGT lb");

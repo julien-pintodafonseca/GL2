@@ -5,7 +5,6 @@ import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.tree.BooleanLiteral;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,24 +14,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 
-public class TestBooleanLiteral extends TestCase {
-    private DecacCompiler compilerBoolTrue = new DecacCompiler(null, null);
-    private DecacCompiler compilerBoolFalse = new DecacCompiler(null, null);
-
-    final private List<String> IMACodeGenInstExpectedBooleanTrue = new ArrayList<>();
-    final private List<String> IMACodeGenInstExpectedBooleanFalse = new ArrayList<>();
-    final private List<String> IMACodeGenPrintExpectedBooleanTrueTrue = new ArrayList<>();
-    final private List<String> IMACodeGenPrintExpectedBooleanFalseFalse = new ArrayList<>();
-    final private List<String> IMACodeGenPrintExpectedBooleanTrueFalse = new ArrayList<>();
-    final private List<String> IMACodeGenPrintExpectedBooleanFalseTrue = new ArrayList<>();
+public class TestBooleanLiteral {
+    private final List<String> IMACodeGenInstExpectedBooleanTrue = new ArrayList<>();
+    private final List<String> IMACodeGenInstExpectedBooleanFalse = new ArrayList<>();
+    private final List<String> IMACodeGenPrintExpectedBooleanTrueTrue = new ArrayList<>();
+    private final List<String> IMACodeGenPrintExpectedBooleanFalseFalse = new ArrayList<>();
+    private final List<String> IMACodeGenPrintExpectedBooleanTrueFalse = new ArrayList<>();
+    private final List<String> IMACodeGenPrintExpectedBooleanFalseTrue = new ArrayList<>();
 
     @Mock private Label lb;
 
+    private DecacCompiler compilerBoolTrue;
+    private DecacCompiler compilerBoolFalse;
+
     @Before
-    public void setUp() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
         IMACodeGenInstExpectedBooleanTrue.add("LOAD #1, R1");
         IMACodeGenInstExpectedBooleanFalse.add("LOAD #0, R1");
@@ -54,6 +54,9 @@ public class TestBooleanLiteral extends TestCase {
 
     @Test
     public void testVerifyExpr() throws ContextualError {
+        compilerBoolTrue = new DecacCompiler(null, null);
+        compilerBoolFalse = new DecacCompiler(null, null);
+
         BooleanLiteral boolTrue = new BooleanLiteral(true); // Cas d'une valeur True
         BooleanLiteral boolFalse = new BooleanLiteral(false); // Cas d'une valeur False
 
@@ -144,6 +147,5 @@ public class TestBooleanLiteral extends TestCase {
 
         String resultFalse = compilerBoolFalse.displayIMAProgram();
         assertThat(normalizeDisplay(resultFalse), is(IMACodeGenInstExpectedBooleanFalse));
-
     }
 }

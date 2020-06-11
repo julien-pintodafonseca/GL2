@@ -2,19 +2,18 @@ package fr.ensimag.deca.codegen;
 
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
-public class TestLabelManager extends TestCase {
+public class TestLabelManager {
     private final DecacFatalError expectedLabelTypeEx =
             new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
 
