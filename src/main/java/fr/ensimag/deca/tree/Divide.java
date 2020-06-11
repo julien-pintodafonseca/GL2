@@ -22,8 +22,8 @@ public class Divide extends AbstractOpArith {
             compiler.addInstruction(new QUO(register1, register2));
         } else {
             compiler.addInstruction(new DIV(register1, register2));
-            codeGenError(compiler);
         }
+        codeGenError(compiler);
     }
 
 
