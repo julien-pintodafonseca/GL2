@@ -36,6 +36,7 @@ public class TestPlusAdvanced {
     @Mock private AbstractExpr intexpr2;
     @Mock private AbstractExpr floatexpr1;
     @Mock private AbstractExpr floatexpr2;
+
     private GPRegister reg1;
     private GPRegister reg2;
     private DecacCompiler compiler;
