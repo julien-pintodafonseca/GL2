@@ -14,6 +14,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThrows;
@@ -29,6 +33,7 @@ public class TestInitialization extends TestCase {
     private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);
     private final UnsupportedOperationException expectedNoMoreRegister =
             new UnsupportedOperationException("no more available registers : policy not yet implemented");
+    private final List<String> IMACodeGenInitializationExpected = new ArrayList<>();
 
     @Mock private AbstractExpr exprInt;
     @Mock private AbstractExpr exprFloat;
@@ -51,6 +56,8 @@ public class TestInitialization extends TestCase {
         while ((i = compilerWithoutAvailableRegisters.getRegisterManager().nextAvailable()) != -1) { // on marque tous les registres comme étant utilisés
             compilerWithoutAvailableRegisters.getRegisterManager().take(i);
         }
+
+        IMACodeGenInitializationExpected.add("STORE R2, address");
     }
 
     @Test
@@ -72,6 +79,9 @@ public class TestInitialization extends TestCase {
         init.codeGenInitialization(compiler, address);
         assertEquals(expr.getType(), init.getExpression().getType());
         assertThat(init.getExpression(), is(expr));
+
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenInitializationExpected));
 
         // Levée d'une erreur si plus de registre disponible
         UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {

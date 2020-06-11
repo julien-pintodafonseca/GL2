@@ -14,6 +14,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThrows;
@@ -30,6 +34,10 @@ import static org.mockito.Mockito.when;
 public class TestNot extends TestCase {
     private final UnsupportedOperationException expectedNoMoreRegister =
             new UnsupportedOperationException("no more available registers : policy not yet implemented");
+    private final List<String> IMACodeGenCMPExpectedNotBooleanLiteralFalse = new ArrayList<>();
+    private final List<String> IMACodeGenCMPExpectedNotBooleanLiteralTrue = new ArrayList<>();
+    private final List<String> IMACodeGenCMPExpectedNotAbstractExprFalse = new ArrayList<>();
+    private final List<String> IMACodeGenCMPExpectedNotAbstractExprTrue = new ArrayList<>();
 
     @Mock private BooleanLiteral exprBoolean;
     @Mock private AbstractExpr expr;
@@ -51,6 +59,13 @@ public class TestNot extends TestCase {
         while ((i = compilerWithoutAvailableRegisters.getRegisterManager().nextAvailable()) != -1) { // on marque tous les registres comme étant utilisés
             compilerWithoutAvailableRegisters.getRegisterManager().take(i);
         }
+
+        IMACodeGenCMPExpectedNotBooleanLiteralFalse.add("CMP #1, R2");
+        IMACodeGenCMPExpectedNotBooleanLiteralFalse.add("BNE lb");
+        IMACodeGenCMPExpectedNotBooleanLiteralTrue.add("CMP #1, R2");
+        IMACodeGenCMPExpectedNotBooleanLiteralTrue.add("BEQ lb");
+        IMACodeGenCMPExpectedNotAbstractExprFalse.add("");
+        IMACodeGenCMPExpectedNotAbstractExprTrue.add("");
     }
 
     @Test
@@ -76,6 +91,9 @@ public class TestNot extends TestCase {
         assertEquals(exprBoolean.getType(), notBoolean.getOperand().getType());
         assertThat(notBoolean.getOperand(), is(exprBoolean));
 
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotBooleanLiteralFalse));
+
 
         // Levée d'une erreur si plus de registre disponible
         UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {
@@ -96,6 +114,9 @@ public class TestNot extends TestCase {
         assertEquals(exprBoolean.getType(), notBoolean.getOperand().getType());
         assertThat(notBoolean.getOperand(), is(exprBoolean));
 
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotBooleanLiteralTrue));
+
 
         // Levée d'une erreur si plus de registre disponible
         UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {
@@ -107,13 +128,25 @@ public class TestNot extends TestCase {
     @Test
     public void testCodeGenCMPAbstractExpr() throws DecacFatalError { // Cas où l'attribut "operand" est de type AbstractExpr
         Not not = new Not(expr);
+        compiler = new DecacCompiler(null, null);
+        compiler.setRegisterManager(5);
 
         // Les appels récursifs à la méthode codeGenCMP() se font en donnant la valeur inverse pour l'argument "reverse"
         not.codeGenCMP(compiler, lb, false); // i.e. si on appelle codeGenCMP avec reverse=false
         verify(expr).codeGenCMP(compiler, lb, true); // alors la fonction rappelle la même méthode avec reverse=true
 
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotAbstractExprFalse));
+
+        compiler = new DecacCompiler(null, null);
+        compiler.setRegisterManager(5);
+
+        // Les appels récursifs à la méthode codeGenCMP() se font en donnant la valeur inverse pour l'argument "reverse"
         not.codeGenCMP(compiler, lb, true);
         verify(expr).codeGenCMP(compiler, lb, false);
+
+        result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotAbstractExprTrue));
 
         // Pas de modification des attributs lors de la génération de code
         assertEquals(expr.getType(), not.getOperand().getType());

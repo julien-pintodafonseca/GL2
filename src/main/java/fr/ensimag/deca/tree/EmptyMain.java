@@ -13,14 +13,14 @@ import java.io.PrintStream;
  */
 public class EmptyMain extends AbstractMain {
     @Override
-    protected void verifyMain(DecacCompiler compiler) throws ContextualError {
+    public void verifyMain(DecacCompiler compiler) throws ContextualError {
         // Règle syntaxe contextuelle : (3.3)
         // nothing
     }
 
     @Override
-    protected void codeGenMain(DecacCompiler compiler) {
-        throw new UnsupportedOperationException("not yet implemented");
+    public void codeGenMain(DecacCompiler compiler) {
+        // nothing
     }
 
     /**

@@ -3,7 +3,15 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.tree.StringLiteral;
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  *
@@ -12,6 +20,15 @@ import org.junit.Test;
  */
 public class TestStringLiteral extends TestCase {
     private DecacCompiler compiler = new DecacCompiler(null, null);
+
+    final private List<String> IMACodeGenPrintExpectedEmptyString = new ArrayList<>();
+    final private List<String> IMACodeGenPrintExpectedString = new ArrayList<>();
+
+    @Before
+    public void setUp() {
+        IMACodeGenPrintExpectedEmptyString.add("WSTR \"\"");
+        IMACodeGenPrintExpectedString.add("WSTR \"hello\"");
+    }
 
     @Test
     public void testVerifyExpr() {
@@ -29,11 +46,23 @@ public class TestStringLiteral extends TestCase {
 
     @Test
     public void testCodeGenPrint() {
+        compiler = new DecacCompiler(null, null);
+
         // Cas d'une chaine vide
         StringLiteral str1 = new StringLiteral("");
         str1.verifyExpr(compiler, null, null);
         StringLiteral str1CodeGenPrint = new StringLiteral("");
         str1CodeGenPrint.verifyExpr(compiler, null, null);
+
+        // Pas de modification des attributs lors de la génération de code
+        str1CodeGenPrint.codeGenPrint(compiler, false);
+        assertEquals(str1.getValue(), str1CodeGenPrint.getValue());
+        assertEquals(str1.getType(), str1CodeGenPrint.getType());
+
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenPrintExpectedEmptyString));
+
+        compiler = new DecacCompiler(null, null);
 
         // Cas d'une chaine quelconque
         StringLiteral str2 = new StringLiteral("hello");
@@ -42,12 +71,11 @@ public class TestStringLiteral extends TestCase {
         str2CodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
-        str1CodeGenPrint.codeGenPrint(compiler, false);
-        assertEquals(str1.getValue(), str1CodeGenPrint.getValue());
-        assertEquals(str1.getType(), str1CodeGenPrint.getType());
-
         str2CodeGenPrint.codeGenPrint(compiler, true);
         assertEquals(str2.getValue(), str2CodeGenPrint.getValue());
         assertEquals(str2.getType(), str2CodeGenPrint.getType());
+
+        result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenPrintExpectedString));
     }
 }
