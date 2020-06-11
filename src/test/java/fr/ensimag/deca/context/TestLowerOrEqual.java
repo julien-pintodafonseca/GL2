@@ -12,6 +12,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
@@ -25,17 +29,25 @@ public class TestLowerOrEqual extends TestCase {
     @Mock private AbstractExpr sonL;
     @Mock private AbstractExpr sonR;
     @Mock private Label lb;
-    @Mock private DecacCompiler compiler;
+    private DecacCompiler compiler;
+
+    final private List<String> IMACodeGenCMPExpectedReverseTrue = new ArrayList<>();
+    final private List<String> IMACodeGenCMPExpectedReverseFalse = new ArrayList<>();
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        when(compiler.getRegisterManager()).thenReturn(new RegisterManager(5));
+        IMACodeGenCMPExpectedReverseTrue.add("CMP R3, R2");
+        IMACodeGenCMPExpectedReverseTrue.add("BGT lb");
+        IMACodeGenCMPExpectedReverseFalse.add("CMP R3, R2");
+        IMACodeGenCMPExpectedReverseFalse.add("BLE lb");
     }
 
     @Test
     public void testCodeGenCMPReverseTrue() throws DecacFatalError { // Cas où le paramètre reverse=true
         LowerOrEqual lowerOrEqual = new LowerOrEqual(sonL, sonR);
+        compiler = new DecacCompiler(null, null);
+        compiler.setRegisterManager(5);
 
         lowerOrEqual.codeGenCMP(compiler, lb, true);
 
@@ -44,11 +56,16 @@ public class TestLowerOrEqual extends TestCase {
         assertThat(lowerOrEqual.getLeftOperand(), is(sonL));
         assertEquals(sonR.getType(), lowerOrEqual.getRightOperand().getType());
         assertThat(lowerOrEqual.getRightOperand(), is(sonR));
+
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedReverseTrue));
     }
 
     @Test
     public void testCodeGenCMPReverseFalse() throws DecacFatalError { // Cas où le paramètre reverse=true
         LowerOrEqual lowerOrEqual = new LowerOrEqual(sonL, sonR);
+        compiler = new DecacCompiler(null, null);
+        compiler.setRegisterManager(5);
 
         lowerOrEqual.codeGenCMP(compiler, lb, false);
 
@@ -57,5 +74,8 @@ public class TestLowerOrEqual extends TestCase {
         assertThat(lowerOrEqual.getLeftOperand(), is(sonL));
         assertEquals(sonR.getType(), lowerOrEqual.getRightOperand().getType());
         assertThat(lowerOrEqual.getRightOperand(), is(sonR));
+
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedReverseFalse));
     }
 }
