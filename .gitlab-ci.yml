@@ -20,9 +20,8 @@ before_script:
 
 stages:
   - build
-  - simple-test
-  - complete-test
-
+  - test
+  - cobertura
 
 build:
   stage: build
@@ -30,12 +29,11 @@ build:
     - mvn clean compile $MAVEN_OPT_1
 
 simple-test:
-  stage: simple-test
-  script:
-    - mvn test $MAVEN_OPT_1 $MAVEN_OPT_2
-
-complete-test:
-  stage: complete-test
+  stage: test
   script:
     - mvn test $MAVEN_OPT_1
+
+cobertura:
+  stage: cobertura
+  script:
     - cobertura-dump.sh

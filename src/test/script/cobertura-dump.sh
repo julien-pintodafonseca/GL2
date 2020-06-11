@@ -3,10 +3,12 @@
 # Auteur : Equipe GL2
 # Date : 2020
 
-# Shows cobertura code coverage directly in terminal
+# Generate a cobertura report
+# Shows code coverage results directly in terminal
 
 echo "cleaning files..."
 oui=$(mvn cobertura:clean)
+oui=$(rm cobertura.ser 2> /dev/null)
 echo "generating cobertura report..."
 oui=$(mvn cobertura:cobertura)
 echo "retrieving cobertura results..."
