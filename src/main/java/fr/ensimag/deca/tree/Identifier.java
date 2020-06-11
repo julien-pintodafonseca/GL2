@@ -224,7 +224,7 @@ public class Identifier extends AbstractIdentifier {
     }
     
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
     	 VariableDefinition varDef = getVariableDefinition();
          DAddr addr = varDef.getOperand();
          compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R1));

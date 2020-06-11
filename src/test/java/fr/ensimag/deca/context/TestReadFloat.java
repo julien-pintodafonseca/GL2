@@ -3,8 +3,11 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.tree.ReadFloat;
+import fr.ensimag.ima.pseudocode.GPRegister;
 import junit.framework.TestCase;
 import org.junit.Test;
+
+import static org.mockito.Mockito.mock;
 
 /**
  *
@@ -28,27 +31,27 @@ public class TestReadFloat extends TestCase {
     @Test
     public void testCodeGenPrint() throws DecacFatalError {
         ReadFloat read = new ReadFloat();
+        compiler.setErrorLabelManager();
         read.verifyExpr(compiler, null, null);
         ReadFloat readCodeGenPrint = new ReadFloat();
         readCodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
-        // TODO
-        //readCodeGenPrint.codeGenPrint(compiler, false);
-        //assertEquals(read.getType(), readCodeGenPrint.getType());
+        readCodeGenPrint.codeGenPrint(compiler, false);
+        assertEquals(read.getType(), readCodeGenPrint.getType());
     }
 
     @Test
     public void testCodeGenInst() throws DecacFatalError {
         ReadFloat read = new ReadFloat();
+        compiler.setErrorLabelManager();
         read.verifyExpr(compiler, null, null);
         ReadFloat readCodeGenPrint = new ReadFloat();
         readCodeGenPrint.verifyExpr(compiler, null, null);
 
         // Pas de modification des attributs lors de la génération de code
-        // TODO
-        //GPRegister register = mock(GPRegister.class);
-        //readCodeGenPrint.codeGenInst(compiler, register);
-        //assertEquals(read.getType(), readCodeGenPrint.getType());
+        GPRegister register = mock(GPRegister.class);
+        readCodeGenPrint.codeGenInst(compiler, register);
+        assertEquals(read.getType(), readCodeGenPrint.getType());
     }
 }
