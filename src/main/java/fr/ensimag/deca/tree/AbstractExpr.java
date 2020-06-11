@@ -185,7 +185,7 @@ public abstract class AbstractExpr extends AbstractInst {
      *                with op a comparison operator
      * @throws DecacFatalError
      */
-    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         throw new UnsupportedOperationException("not yet implemented");
     }
     

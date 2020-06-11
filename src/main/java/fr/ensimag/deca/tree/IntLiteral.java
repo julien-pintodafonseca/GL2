@@ -46,13 +46,13 @@ public class IntLiteral extends AbstractExpr {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
+    public void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
         compiler.addInstruction(new LOAD(new ImmediateInteger(getValue()), Register.R1));
         super.codeGenPrint(compiler, printHex);
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
+    public void codeGenInst(DecacCompiler compiler, GPRegister register) {
         compiler.addInstruction(new LOAD(new ImmediateInteger(getValue()), register));
     }
 

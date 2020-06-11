@@ -23,7 +23,7 @@ public class And extends AbstractOpBool {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         if (reverse) {
             // expr1 && expr2
             getLeftOperand().codeGenCMP(compiler, label, true);
