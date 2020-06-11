@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class TestMinusAdvanced {
+public class TestMinus {
     private final Type INT = new IntType(null);
     private final Type FLOAT = new FloatType(null);
 
@@ -38,8 +38,7 @@ public class TestMinusAdvanced {
     public void testIntInt() throws ContextualError {
         Minus minus = new Minus(intexpr1, intexpr2);
         // check the result
-        assertTrue(minus.getLeftOperand().verifyExpr(compiler, null, null).isInt());
-        assertTrue(minus.getRightOperand().verifyExpr(compiler, null, null).isInt());
+        assertTrue(minus.verifyExpr(compiler, null, null).isInt());
         // check that the mocks have been called properly.
         verify(intexpr1).verifyExpr(compiler, null, null);
         verify(intexpr2).verifyExpr(compiler, null, null);
@@ -49,8 +48,6 @@ public class TestMinusAdvanced {
     public void testIntFloat() throws ContextualError {
         Minus minus = new Minus(intexpr1, floatexpr1);
         // check the result
-        //assertTrue(t.getLeftOperand().verifyExpr(compiler, null, null).isInt());
-        //assertTrue(t.getRightOperand().verifyExpr(compiler, null, null).isFloat());
         assertTrue(minus.verifyExpr(compiler, null, null).isFloat());
         // ConvFloat should have been inserted on the right side
         assertTrue(minus.getLeftOperand() instanceof ConvFloat);
@@ -64,8 +61,6 @@ public class TestMinusAdvanced {
     public void testFloatInt() throws ContextualError {
         Minus minus = new Minus(floatexpr1, intexpr1);
         // check the result
-        //assertTrue(t.getLeftOperand().verifyExpr(compiler, null, null).isFloat());
-        //assertTrue(t.getRightOperand().verifyExpr(compiler, null, null).isInt());
         assertTrue(minus.verifyExpr(compiler, null, null).isFloat());
         // ConvFloat should have been inserted on the right side
         assertTrue(minus.getRightOperand() instanceof ConvFloat);
