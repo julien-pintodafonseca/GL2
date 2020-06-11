@@ -40,6 +40,8 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_METHOD_OVERRIDING_FIELD = "La méthode suivante possède le même nom qu'un des attributs hérités : ";
     public static final String CONTEXTUAL_ERROR_FIELD_OVERRIDING_METHOD = "L'attribut suivant possède le même nom qu'une des méthodes héritées : ";
     public static final String CONTEXTUAL_ERROR_DIFF_TYPE_REDEFINED_METHOD = "Vous essayer de rédéfinir la méthode suivante avec une type de retour différent : ";
+    public static final String CONTEXTUAL_ERROR_METHOD_DECLPARAM_DUPE =    "Une méthode prend des paramètres avec un nom unique. Or, le paramètre suivant existe déjà : ";
+    public static final String CONTEXTUEL_ERROR_BAD_USED_THIS = "Le mot-clef this ne peut être utilisé qu'au sein d'une classe. Or, vous l'utilisez dans la fonction main.";
 
     // CodegenError messages
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les floattants ou division par zéro.";

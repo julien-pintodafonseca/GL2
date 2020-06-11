@@ -47,7 +47,7 @@ public class DeclField extends AbstractDeclField {
             Definition superVarName = currentClass.getSuperClass().getMembers().get(varName.getName());
             if (superVarName != null) {
                 if (!superVarName.isField()) {
-                    throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHOD_OVERRIDING_FIELD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
+                    throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_FIELD_OVERRIDING_METHOD + varName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
                 }
             }
             currentClass.incNumberOfFields();

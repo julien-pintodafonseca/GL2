@@ -23,5 +23,5 @@ public abstract class AbstractDeclParam extends Tree {
     /**
      * Pass 3 of [SyntaxeContextuelle].
      */
-    public abstract void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams);
+    public abstract void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError;
 }

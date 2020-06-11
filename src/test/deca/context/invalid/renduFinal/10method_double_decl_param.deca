@@ -1,0 +1,17 @@
+// Description:
+//      Déclaration paramètre d'une méthode : deux paramètres avec le même non
+//      => Une méthode ne peut pas avoir deux paramètres ayant le même nom
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 11 : les paramètres de type float et int ont la même nom y
+
+class B {
+    int x=2;
+    void plus(int y, float y) {
+            x=x+y;
+    }
+}
+
+{
+}

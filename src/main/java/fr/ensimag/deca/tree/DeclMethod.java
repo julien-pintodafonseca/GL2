@@ -69,6 +69,7 @@ public class DeclMethod extends AbstractDeclMethod {
         // Règle syntaxe contextuelle : (3.11)
         Type returnType = type.getType();
         EnvironmentExp envExpParams = params.verifyListParamBody(compiler);
+        envExpParams.setParentEnvironment(localEnv);
         methodBody.verifyMethodBody(compiler, envExpParams, currentClass, returnType);
     }
 

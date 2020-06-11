@@ -1,0 +1,1 @@
+src\test\deca\context\invalid\renduFinal\12new_incompatible_type.deca:15:10: L'opérateur new instancie une variable de type classe. Or, vous essayez instancier une variable de type : int.

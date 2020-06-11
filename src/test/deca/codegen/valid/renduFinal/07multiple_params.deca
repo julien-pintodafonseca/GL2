@@ -1,0 +1,19 @@
+// Description:
+//      Définition d'une méthode
+//      => Cas spécifique où la méthode prends plusieurs paramètres
+//
+// Resultats:
+//      x=3
+
+class B {
+    float x=2;
+    void plus(int y, int z, float t){
+            x=x+(y-z)/t;
+    }
+}
+
+{
+    B b = new B();
+    b.plus(7, 4, 3);
+    println("x=", b.x);
+}

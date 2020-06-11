@@ -1,0 +1,16 @@
+// Description:
+//      Utilisation de new : incompatibilité au niveau du typage
+//      => New permet d'initiliser une instance de classe
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 15 : new ne permet pas d'instancier une variable de type : y
+
+class B {
+    int x=2;
+}
+
+{
+    int y;
+    B x = new int();
+}

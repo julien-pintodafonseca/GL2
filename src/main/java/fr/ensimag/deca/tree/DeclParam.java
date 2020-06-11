@@ -2,10 +2,7 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
-import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 
 import java.io.PrintStream;
@@ -38,9 +35,16 @@ public class DeclParam extends AbstractDeclParam {
     }
 
     @Override
-    public void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) {
+    public void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError {
         // Règle syntaxe contextuelle : (3.13)
-        throw new UnsupportedOperationException("not yet implemented");
+        ParamDefinition paramDef = new ParamDefinition(varType.getType(),getLocation());
+        varName.setDefinition(paramDef);
+        varName.setType(varType.getType());
+        try {
+            envExpParams.declare(varName.getName(), paramDef);
+        } catch (EnvironmentExp.DoubleDefException e) {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHOD_DECLPARAM_DUPE + varName.getName() + ".", getLocation());
+        }
     }
 
     @Override

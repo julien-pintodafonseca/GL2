@@ -45,7 +45,7 @@ public class New extends AbstractExpr {
             setType(temp);
             return temp;
         } else {
-            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_TYPE_FOR_NEW + temp + "( " + ident.getName() +" ).", getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_TYPE_FOR_NEW + temp + ".", getLocation());
         }
     }
 

@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -31,8 +32,7 @@ public class This extends AbstractExpr {
             setType(t);
             return t;
         } else {
-            // erreur à créer
-            return null;
+            throw new ContextualError(ErrorMessages.CONTEXTUEL_ERROR_BAD_USED_THIS, getLocation());
         }
     }
 

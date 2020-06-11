@@ -28,7 +28,7 @@ public class ListDeclParam extends TreeList<AbstractDeclParam> {
         return s;
     }
 
-    public EnvironmentExp verifyListParamBody(DecacCompiler compiler) {
+    public EnvironmentExp verifyListParamBody(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify listClassParams : start");
         // Règle syntaxe contextuelle : (3.12)
         EnvironmentExp envExpParams = new EnvironmentExp(null);
