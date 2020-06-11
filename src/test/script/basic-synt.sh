@@ -131,7 +131,7 @@ test_step_provided() {
       nbtests=$((nbtests+1))
       expected=$(basename $cas_de_test .${cas_de_test##*.})
       file="src/test/deca/syntax/invalid/provided/$expected.expected"
-      test_synt_valid "$cas_de_test" "$file"
+      test_synt_invalid "$cas_de_test" "$file"
   done
   # echo
 }

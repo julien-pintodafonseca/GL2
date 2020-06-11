@@ -12,24 +12,26 @@
       |  ||  +> [11, 8] Identifier (y)
       |  ||  `> [11, 10] Initialization
       |  ||     `> [11, 12] Int (531486315)
-      |  []> [12, 8] DeclVar
-      |  ||  +> [12, 4] Identifier (int)
-      |  ||  +> [12, 8] Identifier (z)
-      |  ||  `> [12, 10] Initialization
-      |  ||     `> [12, 12] Int (214656135)
-      |  []> [13, 8] DeclVar
-      |      +> [13, 4] Identifier (int)
-      |      +> [13, 8] Identifier (t)
-      |      `> [13, 10] Initialization
-      |         `> [13, 26] Multiply
-      |            +> [13, 22] Multiply
-      |            |  +> [13, 18] Multiply
-      |            |  |  +> [13, 14] Plus
-      |            |  |  |  +> [13, 13] Identifier (z)
-      |            |  |  |  `> [13, 15] Identifier (y)
-      |            |  |  `> [13, 20] Identifier (y)
-      |            |  `> [13, 24] Identifier (x)
-      |            `> [13, 28] Identifier (y)
+      |  []> [12, 10] DeclVar
+      |  ||  +> [12, 4] Identifier (float)
+      |  ||  +> [12, 10] Identifier (z)
+      |  ||  `> [12, 12] Initialization
+      |  ||     `> [12, 14] Int (214656135)
+      |  []> [13, 10] DeclVar
+      |      +> [13, 4] Identifier (float)
+      |      +> [13, 10] Identifier (t)
+      |      `> [13, 12] Initialization
+      |         `> [13, 32] Multiply
+      |            +> [13, 28] Multiply
+      |            |  +> [13, 24] Multiply
+      |            |  |  +> [13, 20] Multiply
+      |            |  |  |  +> [13, 16] Plus
+      |            |  |  |  |  +> [13, 15] Identifier (z)
+      |            |  |  |  |  `> [13, 17] Identifier (y)
+      |            |  |  |  `> [13, 22] Identifier (y)
+      |            |  |  `> [13, 26] Identifier (x)
+      |            |  `> [13, 30] Identifier (y)
+      |            `> [13, 34] Identifier (z)
       `> ListInst [List with 1 elements]
          []> [14, 4] Println
              `> ListExpr [List with 2 elements]
