@@ -28,7 +28,7 @@ build:
   script:
     - mvn clean compile $MAVEN_OPT_1
 
-simple-test:
+test:
   stage: test
   script:
     - mvn test $MAVEN_OPT_1
