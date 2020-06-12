@@ -126,14 +126,8 @@ test_step_provided() {
   # echo
 
   # echo "--- TEST: src/test/deca/syntax/invalid/provided/ ---"
-  for cas_de_test in src/test/deca/syntax/invalid/provided/*.deca
-  do
-      nbtests=$((nbtests+1))
-      expected=$(basename $cas_de_test .${cas_de_test##*.})
-      file="src/test/deca/syntax/invalid/provided/$expected.expected"
-      test_synt_invalid "$cas_de_test" "$file"
-  done
-  # echo
+  nbtests=$((nbtests+1))
+  test_lex_valid "src/test/deca/syntax/valid/provided/simple_lex.deca"
 }
 
 # ----------------------------------------------------------------------------------------------------
