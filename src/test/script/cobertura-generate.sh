@@ -6,11 +6,14 @@
 # Only generate a cobertura report
 # $@ : MVN_OPTS
 
-echo "cleaning files..."
-mvn cobertura:clean
-echo "generating cobertura report..."
 if [ $# -eq 1 ] && [ $1 == "skip" ]; then
+  echo "cleaning files..."
+  mvn cobertura:clean
+  echo "generating cobertura report..."
   mvn cobertura:cobertura -Pcobertura
 else
+  echo "cleaning files..."
+  mvn cobertura:clean $@
+  echo "generating cobertura report..."
   mvn cobertura:cobertura $@
 fi

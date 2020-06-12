@@ -37,4 +37,4 @@ test:
 cobertura:
   stage: cobertura
   script:
-    - cobertura-dump.sh $MAVEN_OPT_3
+    - cobertura-dump.sh $MAVEN_OPT_1 $MAVEN_OPT_3
