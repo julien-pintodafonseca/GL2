@@ -66,12 +66,10 @@ public class EnvironmentType {
             if (envTypes.get(symbol) instanceof ClassDefinition) {
                 return (ClassDefinition) envTypes.get(symbol);
             } else {
-                // erreur à créer
-                return null;
+                throw new UnsupportedOperationException("erreur à créer");
             }
         } else {
-            // erreur à créer
-            return null;
+            throw new UnsupportedOperationException("erreur à créer");
         }
     }
 
@@ -96,7 +94,7 @@ public class EnvironmentType {
         } else if (t.isObject() || !t.isClass()) {
             return false;
         } else {
-            Type typeSuperClass = getClassDefinition(type.getName()).getSuperClass().getType();
+            Type typeSuperClass = getClassDefinition(t.getName()).getSuperClass().getType();
             return subType(typeSuperClass, type);
         }
     }

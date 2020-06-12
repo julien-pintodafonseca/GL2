@@ -1,0 +1,20 @@
+// Description:
+//      Sélection : incompatibilité au niveau du typage de l'expression
+//      => L'expression doit est du type d'une classe, pour pouvoir accès à son attribut.
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 15 : L'accès au champ ou au méthode d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression x est de type int.
+
+
+class A {
+    int x;
+    void setX(int x) {
+        this.x = x ;
+    }
+}
+
+{
+    int x;
+    println("z=", x.x);
+}

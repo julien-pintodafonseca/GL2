@@ -1,0 +1,40 @@
+// Description:
+//      Utilisation d'un champ protégé
+//
+// Resultats:
+//      x=3
+
+class A {
+    protected int x;
+    void setX(int x) {
+        this.x = x ;
+    }
+    int getX() {
+        return x ;
+    }
+    void init() {
+        x = 0 ;
+    }
+}
+
+class B extends A {
+    int y ;
+    void init() {
+        setX(0) ;
+        y = 0 ;
+    }
+}
+
+class C extends A {
+    int z ;
+    void init() {
+        x = 0;
+        z = 1;
+    }
+}
+
+{
+    C c = new C();
+    println("z=", c.z);
+    println("y=", c.getX());
+}

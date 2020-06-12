@@ -239,6 +239,54 @@ test_step_renduInter02() {
 }
 
 # ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "renduFinal"
+test_step_renduFinal() {
+  echo "=== STEP: RENDU_FINAL ==="
+
+  # echo "--- TEST: src/test/deca/codegen/interactive/renduFinal/ ---"
+  for cas_de_test in src/test/deca/codegen/interactive/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/context/valid/renduFinal/$expected.expected"
+      test_context_valid "$cas_de_test" "$file"
+  done
+  # echo
+
+  # echo "--- TEST: src/test/deca/codegen/invalid/renduFinal/ ---"
+  for cas_de_test in src/test/deca/codegen/invalid/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/context/valid/renduFinal/$expected.expected"
+      test_context_valid "$cas_de_test" "$file"
+  done
+  # echo
+
+  # echo "--- TEST: src/test/deca/codegen/valid/renduFinal/ ---"
+  for cas_de_test in src/test/deca/codegen/valid/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/context/valid/renduFinal/$expected.expected"
+      test_context_valid "$cas_de_test" "$file"
+  done
+  # echo
+
+  # no src/test/deca/context/valid/renduFinal/
+
+  # echo "--- TEST: src/test/deca/context/invalid/renduFinal/ ---"
+  for cas_de_test in src/test/deca/context/invalid/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=$(basename $cas_de_test .${cas_de_test##*.})
+      file="src/test/deca/context/invalid/renduFinal/$expected"
+      test_context_invalid "$cas_de_test" "$file.expected"
+  done
+  # echo
+}
+
+# ----------------------------------------------------------------------------------------------------
 # Main
 
 nbtests=0
@@ -248,5 +296,6 @@ test_step_provided
 test_step_renduInitial
 test_step_renduInter01
 test_step_renduInter02
+test_step_renduFinal
 
 echo "##### RESULTS: $nbpassed/$nbtests #####"

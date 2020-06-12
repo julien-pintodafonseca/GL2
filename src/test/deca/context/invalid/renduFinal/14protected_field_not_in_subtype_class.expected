@@ -1,0 +1,1 @@
+src\test\deca\context\invalid\renduFinal\14protected_field_not_in_subtype_class.deca:16:17: Vous essayez d'accéder à un attribut protégé. Or, le type de a (A) n'est pas un sous-type de X.

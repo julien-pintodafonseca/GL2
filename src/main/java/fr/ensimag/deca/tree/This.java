@@ -32,7 +32,7 @@ public class This extends AbstractExpr {
             setType(t);
             return t;
         } else {
-            throw new ContextualError(ErrorMessages.CONTEXTUEL_ERROR_BAD_USED_THIS, getLocation());
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_BAD_USED_THIS, getLocation());
         }
     }
 

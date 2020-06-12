@@ -1,0 +1,25 @@
+// Description:
+//      Utilisation d'un champ protégé : incompatibilité au niveau du typage
+//      => Le type de l'expression doit être un sous-type de la classe courante
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 15 : le type de a (A) n’est pas un sous-type de B
+
+class A {
+    protected int x;
+}
+
+class B extends A {
+    int getX(A a) {
+        return a.x;
+    }
+}
+
+class X {
+    void m() {
+        A a = new A();
+        B b = new B();
+        println(b.getX(a));
+    }
+}

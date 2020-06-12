@@ -225,6 +225,50 @@ test_step_renduInter02() {
 }
 
 # ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "renduFinal"
+test_step_renduFinal() {
+  echo "=== STEP: RENDU_FINAL ==="
+
+  # echo "--- TEST: src/test/deca/codegen/interactive/renduFinal/ ---"
+  for cas_de_test in src/test/deca/codegen/interactive/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  # echo
+
+  # echo "--- TEST: src/test/deca/codegen/invalid/renduFinal/ ---"
+  for cas_de_test in src/test/deca/codegen/invalid/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  # echo
+
+  # echo "--- TEST: src/test/deca/codegen/valid/renduFinal/ ---"
+  for cas_de_test in src/test/deca/codegen/valid/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  # echo
+
+  # echo "--- TEST: src/test/deca/context/invalid/renduFinal/ ---"
+  for cas_de_test in src/test/deca/context/invalid/renduFinal/*.deca
+  do
+      nbtests=$((nbtests+1))
+      test_lex_valid "$cas_de_test"
+  done
+  # echo
+
+  # no src/test/deca/context/valid/renduFinal/
+
+  # no src/test/deca/syntax/valid/renduFinal/
+
+  # no src/test/deca/syntax/invalid/renduFinal/
+}
+
+# ----------------------------------------------------------------------------------------------------
 # Main
 
 nbtests=0
@@ -234,5 +278,6 @@ test_step_provided
 test_step_renduInitial
 test_step_renduInter01
 test_step_renduInter02
+test_step_renduFinal
 
 echo "##### RESULTS: $nbpassed/$nbtests #####"

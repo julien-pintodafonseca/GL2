@@ -1,0 +1,95 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 2 elements]
+   |  []> [10, 0] DeclClass
+   |  ||  +> [10, 6] Identifier (B)
+   |  ||  |  definition: type defined at [10, 0], type=B
+   |  ||  +> Identifier (Object)
+   |  ||  |  definition: type (builtin), type=Object
+   |  ||  +> ListDeclField [List with 1 elements]
+   |  ||  |  []> [11, 8] DeclField
+   |  ||  |      +> [11, 4] Identifier (int)
+   |  ||  |      |  definition: type (builtin), type=int
+   |  ||  |      +> [11, 8] Identifier (x)
+   |  ||  |      |  definition: field defined at [11, 8], type=int
+   |  ||  |      `> Initialization
+   |  ||  |         `> [11, 10] Int (2)
+   |  ||  |            type: int
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [14, 0] DeclClass
+   |      +> [14, 6] Identifier (A)
+   |      |  definition: type defined at [14, 0], type=A
+   |      +> [14, 16] Identifier (B)
+   |      |  definition: type defined at [10, 0], type=B
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [15, 8] DeclField
+   |      |      +> [15, 4] Identifier (int)
+   |      |      |  definition: type (builtin), type=int
+   |      |      +> [15, 8] Identifier (x)
+   |      |      |  definition: field defined at [15, 8], type=int
+   |      |      `> Initialization
+   |      |         `> [15, 10] Int (3)
+   |      |            type: int
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [18, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [19, 6] DeclVar
+      |  ||  +> [19, 4] Identifier (A)
+      |  ||  |  definition: type defined at [14, 0], type=A
+      |  ||  +> [19, 6] Identifier (a)
+      |  ||  |  definition: variable defined at [19, 6], type=A
+      |  ||  `> [19, 8] Initialization
+      |  ||     `> [19, 10] New
+      |  ||        type: A
+      |  ||        `> [19, 14] Identifier (A)
+      |  ||           definition: type defined at [14, 0], type=A
+      |  []> [20, 6] DeclVar
+      |  ||  +> [20, 4] Identifier (B)
+      |  ||  |  definition: type defined at [10, 0], type=B
+      |  ||  +> [20, 6] Identifier (b)
+      |  ||  |  definition: variable defined at [20, 6], type=B
+      |  ||  `> [20, 8] Initialization
+      |  ||     `> [20, 10] New
+      |  ||        type: B
+      |  ||        `> [20, 14] Identifier (B)
+      |  ||           definition: type defined at [10, 0], type=B
+      |  []> [21, 6] DeclVar
+      |      +> [21, 4] Identifier (B)
+      |      |  definition: type defined at [10, 0], type=B
+      |      +> [21, 6] Identifier (ba)
+      |      |  definition: variable defined at [21, 6], type=B
+      |      `> [21, 9] Initialization
+      |         `> [21, 11] New
+      |            type: A
+      |            `> [21, 15] Identifier (A)
+      |               definition: type defined at [14, 0], type=A
+      `> ListInst [List with 3 elements]
+         []> [22, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [22, 12] StringLiteral (xA=)
+         ||     ||  type: string
+         ||     []> [22, 20] Selection
+         ||         type: int
+         ||         +> [22, 19] Identifier (a)
+         ||         |  definition: variable defined at [19, 6], type=A
+         ||         `> [22, 21] Identifier (x)
+         ||            definition: field defined at [15, 8], type=int
+         []> [23, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [23, 12] StringLiteral (xB=)
+         ||     ||  type: string
+         ||     []> [23, 20] Selection
+         ||         type: int
+         ||         +> [23, 19] Identifier (b)
+         ||         |  definition: variable defined at [20, 6], type=B
+         ||         `> [23, 21] Identifier (x)
+         ||            definition: field defined at [11, 8], type=int
+         []> [24, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [24, 12] StringLiteral (xBA=)
+                ||  type: string
+                []> [24, 22] Selection
+                    type: int
+                    +> [24, 20] Identifier (ba)
+                    |  definition: variable defined at [21, 6], type=B
+                    `> [24, 23] Identifier (x)
+                       definition: field defined at [11, 8], type=int
