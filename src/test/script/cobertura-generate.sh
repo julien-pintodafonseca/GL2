@@ -3,8 +3,7 @@
 # Auteur : Equipe GL2
 # Date : 2020
 
-# Generate a cobertura report
-# Shows code coverage results directly in terminal
+# Only generate a cobertura report
 # $@ : MVN_OPTS
 
 echo "cleaning files..."
@@ -16,5 +15,3 @@ if [ $# -eq 1 ] && [ $1 == "skip" ]; then
 else
   mvn cobertura:cobertura $@
 fi
-echo "retrieving cobertura results..."
-mvn cobertura:dump-datafile $@

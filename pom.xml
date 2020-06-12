@@ -11,7 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <compileSource>1.8</compileSource>
-    <skipSystemTests>false</skipSystemTests>
+    <maven.exec.skip>false</maven.exec.skip>
   </properties>
 
   <dependencies>
@@ -139,27 +139,16 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.6.0</version>
+            <configuration>
+              <skip>${maven.exec.skip}</skip>
+            </configuration>
             <executions>
-              <!--
-              <execution>
-                <id>basic-debug</id>
-                <configuration>
-                  <executable>./src/test/script/launchers/test_synt</executable>
-                  <arguments>
-                    <argument>src/test/deca/syntax/valid/A0empty_main.deca</argument>
-                  </arguments>
-                </configuration>
-                <phase>test</phase>
-                <goals><goal>exec</goal></goals>
-              </execution>
-              -->
               <!-- One <execution> per executable to launch. Execution
                    failure (exit status != 0) will stop the tests. -->
               <execution>
                 <id>basic-lex</id>
                 <configuration>
                   <executable>./src/test/script/basic-lex.sh</executable>
-                  <skip>${skipSystemTests}</skip>
                   <!-- If we need to pass arguments :
                        <arguments>
                        <argument>...</argument>
@@ -173,7 +162,6 @@
                 <id>basic-synt</id>
                 <configuration>
                   <executable>./src/test/script/basic-synt.sh</executable>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -194,7 +182,6 @@
                 <id>basic-context</id>
                 <configuration>
                   <executable>./src/test/script/basic-context.sh</executable>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -203,7 +190,6 @@
                 <id>basic-gencode</id>
                 <configuration>
                   <executable>./src/test/script/basic-gencode.sh</executable>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -212,7 +198,6 @@
                 <id>basic-decac</id>
                 <configuration>
                   <executable>./src/test/script/basic-decac.sh</executable>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -478,21 +463,10 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.6.0</version>
+            <configuration>
+              <skip>${maven.exec.skip}</skip>
+            </configuration>
             <executions>
-              <!--
-              <execution>
-                <id>basic-debug</id>
-                <configuration>
-                  <executable>C:/Program Files/Git/bin/sh.exe</executable>
-                  <arguments>
-                    <argument>./src/test/script/launchers/test_synt</argument>
-                    <argument>src/test/deca/syntax/valid/A0empty_main.deca</argument>
-                  </arguments>
-                </configuration>
-                <phase>test</phase>
-                <goals><goal>exec</goal></goals>
-              </execution>
-              -->
               <!-- One <execution> per executable to launch. Execution
                    failure (exit status != 0) will stop the tests. -->
               <execution>
@@ -502,7 +476,6 @@
                   <arguments>
                     <argument>./src/test/script/basic-lex.sh</argument>
                   </arguments>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -514,7 +487,6 @@
                   <arguments>
                     <argument>./src/test/script/basic-synt.sh</argument>
                   </arguments>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -538,7 +510,6 @@
                   <arguments>
                     <argument>./src/test/script/basic-context.sh</argument>
                   </arguments>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -550,7 +521,6 @@
                   <arguments>
                     <argument>./src/test/script/basic-gencode.sh</argument>
                   </arguments>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
@@ -562,7 +532,6 @@
                   <arguments>
                     <argument>./src/test/script/basic-decac.sh</argument>
                   </arguments>
-                  <skip>${skipSystemTests}</skip>
                 </configuration>
                 <phase>test</phase>
                 <goals><goal>exec</goal></goals>
