@@ -1,1 +1,1 @@
-06method_overriding_diff_type.deca:18:4: Vous essayer de redéfinir la méthode suivante avec une type de retour différent : plus (classe A) de type int au lieu de void.
+06method_overriding_diff_type.deca:18:4: Vous essayez de redéfinir la méthode suivante avec une type de retour différent : plus (classe A) de type int au lieu de void.

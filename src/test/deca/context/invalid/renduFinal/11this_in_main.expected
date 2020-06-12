@@ -1,1 +1,1 @@
-11this_in_main.deca:14:4: Le mot-clef this ne peut être utilisé qu'au sein d'une classe. Or, vous l'utilisez dans la fonction main.
+11this_in_main.deca:11:21: Une méthode prend des paramètres avec un nom unique. Or, le paramètre suivant existe déjà : y.
