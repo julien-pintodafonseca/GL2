@@ -6,6 +6,7 @@ default:
 variables:
   MAVEN_OPT_1: "-Dmaven.repo.local=.m2/repository"
   MAVEN_OPT_2: "-Dmaven.exec.skip=true"
+  MAVEN_OPT_3: "-Pcobertura"
 
 cache:
   paths:
@@ -36,4 +37,4 @@ test:
 cobertura:
   stage: cobertura
   script:
-    - cobertura-dump.sh $MAVEN_OPT_1 $MAVEN_OPT_2
+    - cobertura-dump.sh $MAVEN_OPT_3

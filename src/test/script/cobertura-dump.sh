@@ -8,13 +8,12 @@
 # $@ : MVN_OPTS
 
 echo "cleaning files..."
-mvn cobertura:clean $@
-rm cobertura.ser 2> /dev/null
+mvn cobertura:clean
 echo "generating cobertura report..."
 if [ $# -eq 1 ] && [ $1 == "skip" ]; then
-  mvn cobertura:cobertura -Dmaven.exec.skip=true
+  mvn cobertura:cobertura -Pcobertura
 else
   mvn cobertura:cobertura $@
 fi
 echo "retrieving cobertura results..."
-mvn cobertura:dump-datafile $@
+mvn cobertura:dump-datafile
