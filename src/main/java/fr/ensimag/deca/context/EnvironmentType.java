@@ -98,4 +98,19 @@ public class EnvironmentType {
             return subType(typeSuperClass, type);
         }
     }
+
+    /**
+     *
+     * @param t1
+     * @param t2
+     * @return true si on peut affecter à un object de type t1 un objet de type t2
+     */
+    public boolean assignCompatible(Type t1, Type t2) {
+        // Règles d'affectation
+        if (t1.isFloat() && t2.isInt()) {
+            return true;
+        } else {
+            return subType(t2, t1);
+        }
+    }
 }

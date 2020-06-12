@@ -44,6 +44,8 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_BAD_USED_THIS = "Le mot-clef this ne peut être utilisé qu'au sein d'une classe. Or, vous l'utilisez dans la fonction main.";
     public static final String CONTEXTUAL_ERROR_SELECTION_BAD_SUBTYPE = "Vous essayez d'accéder à un attribut protégé. Or, le type ";
     public static final String CONTEXTUAL_ERROR_SELECTION_EXPR_IS_NOT_CLASS = "L'accès aux champs ou aux méthodes d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression ";
+    public static final String CONTEXTUAL_ERROR_RETURN_METHOD_VOID_TYPE = "La méthode est de type void : elle ne nécessite donc pas d'instruction \"return\"";
+    public static final String CONTEXTUAL_ERROR_RETURN_INCOMPATIBLE_TYPE = "L'instruction return renvoie une expression dont le type n'est pas un sous-type du type de retour de la méthode : ";
 
     // CodegenError messages
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les flottants ou division par zéro.";

@@ -57,6 +57,8 @@ public class DeclMethod extends AbstractDeclMethod {
 
         currentClass.incNumberOfFields();
         MethodDefinition methDef = new MethodDefinition(t, getLocation(), s, currentClass.getNumberOfFields());
+        methodName.setDefinition(methDef);
+        methodName.setType(t);
         try {
             currentClass.getMembers().declare(methodName.getName(), methDef);
         } catch (EnvironmentExp.DoubleDefException e) {

@@ -1,0 +1,15 @@
+// Description:
+//      Instruction return innatendue
+//      => Une méthode de type void ne nécessite pas d'instruction return
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 15 : La méthode est de type void : elle ne nécessite donc pas d'instruction "return"
+
+
+class A {
+    int x;
+    void setX(int x) {
+        return x ;
+    }
+}

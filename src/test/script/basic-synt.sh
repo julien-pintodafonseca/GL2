@@ -127,7 +127,7 @@ test_step_provided() {
 
   # echo "--- TEST: src/test/deca/syntax/invalid/provided/ ---"
   nbtests=$((nbtests+1))
-  test_lex_valid "src/test/deca/syntax/valid/provided/simple_lex.deca"
+  test_synt_valid "src/test/deca/syntax/valid/provided/simple_lex.deca"
 }
 
 # ----------------------------------------------------------------------------------------------------

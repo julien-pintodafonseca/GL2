@@ -1,0 +1,1 @@
+src/test/deca/context/invalid/renduFinal/16return_void.deca:13:8: La méthode est de type void : elle ne nécessite donc pas d'instruction "return"

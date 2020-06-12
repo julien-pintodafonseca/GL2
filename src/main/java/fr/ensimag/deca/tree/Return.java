@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -34,13 +35,18 @@ public class Return extends AbstractInst {
         // Règle syntaxe contextuelle : (3.24) -> (3.28)
         if (!returnType.isVoid()) {
             argument.verifyExpr(compiler, localEnv, currentClass);
-            if (argument.getType() != returnType) {
-                // erreur à créer
-                // règle (3.28) à implémenter
-                // faire les cas de cast
+            if (!compiler.environmentType.assignCompatible(returnType, argument.getType())) {
+                throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_RETURN_INCOMPATIBLE_TYPE + argument.getType().getName()
+                        + " (" + argument.decompile() + ") au lieu de " + returnType.getName() + ".", getLocation());
+            } else if (returnType.isFloat() && argument.getType().isInt()){
+                ConvFloat conv = new ConvFloat(argument);
+                argument = conv;
+            } else if (!returnType.sameType(argument.getType())) {
+                Cast cast = new Cast(new Identifier(returnType.getName()), argument);
+                argument = cast;
             }
         } else {
-            // erreur à créer
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_RETURN_METHOD_VOID_TYPE, getLocation());
         }
     }
 

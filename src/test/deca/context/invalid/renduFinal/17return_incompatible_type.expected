@@ -1,0 +1,1 @@
+src/test/deca/context/invalid/renduFinal/17return_incompatible_type.deca:13:8: L'instruction return renvoie une expression dont le type n'est pas un sous-type du type de retour de la méthode : boolean (x) au lieu de float.

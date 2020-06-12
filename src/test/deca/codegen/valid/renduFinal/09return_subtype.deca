@@ -1,0 +1,18 @@
+// Description:
+//      Utilisation de l'instruction return
+//      => Cas spécifique où l'élément retourné est d'un sous-type du type de retour de la méthode
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 15 : La méthode est de type void : elle ne nécessite donc pas d'instruction "return"
+
+
+class A {
+    int x;
+    A setX(B b) {
+        return b ;
+    }
+}
+
+class B extends A{
+}

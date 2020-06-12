@@ -1,0 +1,15 @@
+// Description:
+//      Instruction return : incompatibilité au niveau du typage
+//      => L'instruction return doit renvoyer une expression dont le type est un sous-type du type de retour de la méthode
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 15 : L'instruction return renvoie une expression dont le type n'est pas un sous-type du type de retour de la méthode : boolean (x) au lieu de float
+
+
+class A {
+    int x;
+    float setX(boolean x) {
+        return x;
+    }
+}
