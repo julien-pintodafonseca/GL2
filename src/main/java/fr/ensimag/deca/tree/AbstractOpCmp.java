@@ -54,7 +54,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
             compiler.getRegisterManager().take(i);

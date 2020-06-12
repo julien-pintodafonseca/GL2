@@ -1,0 +1,56 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [9, 0] DeclClass
+   |      +> [9, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [10, 17] DeclField
+   |      |      +> [10, 13] Identifier (int)
+   |      |      +> [10, 17] Identifier (x)
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 2 elements]
+   |         []> [11, 3] DeclMethod
+   |         ||  +> [11, 3] Identifier (int)
+   |         ||  +> [11, 7] Identifier (getX)
+   |         ||  +> ListDeclParam [List with 0 elements]
+   |         ||  `> [11, 14] MethodBody
+   |         ||     +> ListDeclVar [List with 0 elements]
+   |         ||     `> ListInst [List with 1 elements]
+   |         ||        []> [12, 6] Return
+   |         ||            `> [12, 13] Identifier (x)
+   |         []> [14, 3] DeclMethod
+   |             +> [14, 3] Identifier (void)
+   |             +> [14, 8] Identifier (setX)
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [14, 13] DeclParam
+   |             |      +> [14, 13] Identifier (int)
+   |             |      `> [14, 17] Identifier (x)
+   |             `> [14, 20] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [15, 13] Assign
+   |                       +> [15, 10] Selection
+   |                       |  +> [15, 6] This
+   |                       |  `> [15, 11] Identifier (x)
+   |                       `> [15, 15] Identifier (x)
+   `> [19, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [20, 5] DeclVar
+      |      +> [20, 3] Identifier (A)
+      |      +> [20, 5] Identifier (a)
+      |      `> [20, 7] Initialization
+      |         `> [20, 9] New
+      |            `> [20, 13] Identifier (A)
+      `> ListInst [List with 2 elements]
+         []> [22, 3] MethodCall
+         ||  +> [22, 3] Identifier (a)
+         ||  +> [22, 5] Identifier (setX)
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [22, 10] Int (1)
+         []> [23, 3] Println
+             `> ListExpr [List with 2 elements]
+                []> [23, 11] StringLiteral (a.getX() = )
+                []> [23, 26] MethodCall
+                    +> [23, 26] Identifier (a)
+                    +> [23, 28] Identifier (getX)
+                    `> ListExpr [List with 0 elements]

@@ -2,20 +2,23 @@ package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.FloatLiteral;
 import fr.ensimag.deca.tree.Initialization;
 import fr.ensimag.deca.tree.IntLiteral;
 import fr.ensimag.ima.pseudocode.DAddr;
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -24,21 +27,23 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-public class TestInitialization extends TestCase {
+public class TestInitialization {
     private final IntLiteral expectedIntLiteral = new IntLiteral(5);
     private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);
     private final UnsupportedOperationException expectedNoMoreRegister =
             new UnsupportedOperationException("no more available registers : policy not yet implemented");
+    private final List<String> IMACodeGenInitializationExpected = new ArrayList<>();
 
     @Mock private AbstractExpr exprInt;
     @Mock private AbstractExpr exprFloat;
     @Mock private AbstractExpr expr;
     @Mock private DAddr address;
+
     private DecacCompiler compiler;
     private DecacCompiler compilerWithoutAvailableRegisters;
 
     @Before
-    public void setUp() throws ContextualError, DecacFatalError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
         compiler.setRegisterManager(4);
@@ -51,6 +56,8 @@ public class TestInitialization extends TestCase {
         while ((i = compilerWithoutAvailableRegisters.getRegisterManager().nextAvailable()) != -1) { // on marque tous les registres comme étant utilisés
             compilerWithoutAvailableRegisters.getRegisterManager().take(i);
         }
+
+        IMACodeGenInitializationExpected.add("STORE R2, address");
     }
 
     @Test
@@ -72,6 +79,9 @@ public class TestInitialization extends TestCase {
         init.codeGenInitialization(compiler, address);
         assertEquals(expr.getType(), init.getExpression().getType());
         assertThat(init.getExpression(), is(expr));
+
+        String result = compiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenInitializationExpected));
 
         // Levée d'une erreur si plus de registre disponible
         UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {

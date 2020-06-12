@@ -18,42 +18,56 @@
       |  ||  `> [11, 10] Initialization
       |  ||     `> [11, 12] Int (531486315)
       |  ||        type: int
-      |  []> [12, 8] DeclVar
-      |  ||  +> [12, 4] Identifier (int)
-      |  ||  |  definition: type (builtin), type=int
-      |  ||  +> [12, 8] Identifier (z)
-      |  ||  |  definition: variable defined at [12, 8], type=int
-      |  ||  `> [12, 10] Initialization
-      |  ||     `> [12, 12] Int (214656135)
-      |  ||        type: int
-      |  []> [13, 8] DeclVar
-      |      +> [13, 4] Identifier (int)
-      |      |  definition: type (builtin), type=int
-      |      +> [13, 8] Identifier (t)
-      |      |  definition: variable defined at [13, 8], type=int
-      |      `> [13, 10] Initialization
-      |         `> [13, 26] Multiply
-      |            type: int
-      |            +> [13, 22] Multiply
-      |            |  type: int
-      |            |  +> [13, 18] Multiply
-      |            |  |  type: int
-      |            |  |  +> [13, 14] Plus
-      |            |  |  |  type: int
-      |            |  |  |  +> [13, 13] Identifier (z)
-      |            |  |  |  |  definition: variable defined at [12, 8], type=int
-      |            |  |  |  `> [13, 15] Identifier (y)
-      |            |  |  |     definition: variable defined at [11, 8], type=int
-      |            |  |  `> [13, 20] Identifier (y)
-      |            |  |     definition: variable defined at [11, 8], type=int
-      |            |  `> [13, 24] Identifier (x)
-      |            |     definition: variable defined at [10, 8], type=int
-      |            `> [13, 28] Identifier (y)
-      |               definition: variable defined at [11, 8], type=int
+      |  []> [12, 10] DeclVar
+      |  ||  +> [12, 4] Identifier (float)
+      |  ||  |  definition: type (builtin), type=float
+      |  ||  +> [12, 10] Identifier (z)
+      |  ||  |  definition: variable defined at [12, 10], type=float
+      |  ||  `> [12, 12] Initialization
+      |  ||     `> ConvFloat
+      |  ||        type: float
+      |  ||        `> [12, 14] Int (214656135)
+      |  ||           type: int
+      |  []> [13, 10] DeclVar
+      |      +> [13, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [13, 10] Identifier (t)
+      |      |  definition: variable defined at [13, 10], type=float
+      |      `> [13, 12] Initialization
+      |         `> [13, 32] Multiply
+      |            type: float
+      |            +> [13, 28] Multiply
+      |            |  type: float
+      |            |  +> [13, 24] Multiply
+      |            |  |  type: float
+      |            |  |  +> [13, 20] Multiply
+      |            |  |  |  type: float
+      |            |  |  |  +> [13, 16] Plus
+      |            |  |  |  |  type: float
+      |            |  |  |  |  +> [13, 15] Identifier (z)
+      |            |  |  |  |  |  definition: variable defined at [12, 10], type=float
+      |            |  |  |  |  `> ConvFloat
+      |            |  |  |  |     type: float
+      |            |  |  |  |     `> [13, 17] Identifier (y)
+      |            |  |  |  |        definition: variable defined at [11, 8], type=int
+      |            |  |  |  `> ConvFloat
+      |            |  |  |     type: float
+      |            |  |  |     `> [13, 22] Identifier (y)
+      |            |  |  |        definition: variable defined at [11, 8], type=int
+      |            |  |  `> ConvFloat
+      |            |  |     type: float
+      |            |  |     `> [13, 26] Identifier (x)
+      |            |  |        definition: variable defined at [10, 8], type=int
+      |            |  `> ConvFloat
+      |            |     type: float
+      |            |     `> [13, 30] Identifier (y)
+      |            |        definition: variable defined at [11, 8], type=int
+      |            `> [13, 34] Identifier (z)
+      |               definition: variable defined at [12, 10], type=float
       `> ListInst [List with 1 elements]
          []> [14, 4] Println
              `> ListExpr [List with 2 elements]
                 []> [14, 12] StringLiteral (t=)
                 ||  type: string
                 []> [14, 18] Identifier (t)
-                    definition: variable defined at [13, 8], type=int
+                    definition: variable defined at [13, 10], type=float

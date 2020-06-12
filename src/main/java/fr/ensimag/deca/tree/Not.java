@@ -40,7 +40,7 @@ public class Not extends AbstractUnaryExpr {
     }
 
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         if(getOperand() instanceof BooleanLiteral) {
             // Si l'attribut "operand" est un booleanLiteral
             int i = compiler.getRegisterManager().nextAvailable();

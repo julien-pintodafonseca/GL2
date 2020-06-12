@@ -19,9 +19,9 @@ import java.io.PrintStream;
 public class DeclVar extends AbstractDeclVar {
     private static final Logger LOG = Logger.getLogger(DeclVar.class);
 
-    final private AbstractIdentifier type;
-    final private AbstractIdentifier varName;
-    final private AbstractInitialization initialization;
+    private final AbstractIdentifier type;
+    private final AbstractIdentifier varName;
+    private final AbstractInitialization initialization;
 
     public DeclVar(AbstractIdentifier type, AbstractIdentifier varName, AbstractInitialization initialization) {
         Validate.notNull(type);

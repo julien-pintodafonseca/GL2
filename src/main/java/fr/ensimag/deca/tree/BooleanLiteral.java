@@ -51,9 +51,8 @@ public class BooleanLiteral extends AbstractExpr {
         return type;
     }
     @Override
-    protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
+    public void codeGenInst(DecacCompiler compiler, GPRegister register) {
     	if(getValue()) {
-
     		compiler.addInstruction(new LOAD(new ImmediateInteger(1), register));
     	}else {
     		compiler.addInstruction(new LOAD(new ImmediateInteger(0), register));
@@ -61,7 +60,7 @@ public class BooleanLiteral extends AbstractExpr {
     	
     }
     @Override
-    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
     	if(!getValue() && reverse) {
     		compiler.addInstruction(new BRA(label));
     	}else if(getValue() && !reverse) {

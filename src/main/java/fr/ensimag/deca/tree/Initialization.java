@@ -39,7 +39,7 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    protected void verifyInitialization(DecacCompiler compiler, Type t,
+    public void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.8)
@@ -50,7 +50,7 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
+    public void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
             compiler.getRegisterManager().take(i);

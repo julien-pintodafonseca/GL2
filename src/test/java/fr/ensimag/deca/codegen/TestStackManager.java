@@ -1,14 +1,15 @@
 package fr.ensimag.deca.codegen;
 
-import junit.framework.TestCase;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
-public class TestStackManager extends TestCase {
+public class TestStackManager {
     @Test
     public void testGetGB() {
         StackManager sm = new StackManager(new RegisterManager(7));

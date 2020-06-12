@@ -9,7 +9,7 @@
 {
     int x = 500000001;
     int y = 531486315;
-    int z = 214656135;
-    int t = (z+y) * y * x * y;
+    float z = 214656135;
+    float t = (z+y) * y * x * y * z;
     println("t=", t);
 }

@@ -24,14 +24,6 @@ public class While extends AbstractInst {
     private AbstractExpr condition;
     private ListInst body;
 
-    public AbstractExpr getCondition() {
-        return condition;
-    }
-
-    public ListInst getBody() {
-        return body;
-    }
-
     public While(AbstractExpr condition, ListInst body) {
         Validate.notNull(condition);
         Validate.notNull(body);
@@ -40,7 +32,7 @@ public class While extends AbstractInst {
     }
 
     @Override
-    protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
+    public void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.25)
@@ -54,7 +46,7 @@ public class While extends AbstractInst {
     }
 
     @Override
-    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+    public void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
         int i = compiler.getLabelManager().getLabelValue(LabelType.LB_WHILE);
         Label labelBegin = new Label("while" + i);
         Label labelEnd = new Label("while_end" + i);
@@ -71,10 +63,10 @@ public class While extends AbstractInst {
     @Override
     public void decompile(IndentPrintStream s) {
         s.print("while (");
-        getCondition().decompile(s);
+        condition.decompile(s);
         s.println(") {");
         s.indent();
-        getBody().decompile(s);
+        body.decompile(s);
         s.unindent();
         s.print("}");
     }

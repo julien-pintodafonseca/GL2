@@ -50,7 +50,7 @@ public class StringLiteral extends AbstractStringLiteral {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) {
+    public void codeGenPrint(DecacCompiler compiler, boolean printHex) {
         compiler.addInstruction(new WSTR(new ImmediateString(value)));
     }
 
