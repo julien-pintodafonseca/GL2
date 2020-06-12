@@ -1,1 +1,1 @@
-src\test\deca\context\invalid\renduFinal\15selection_expr_not_class.deca:19:19: L'accès au champ ou au méthode d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression xest de type int.
+15selection_expr_not_class.deca:19:19: L'accÃ¨s aux champs ou aux mÃ©thodes d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression x est de type int.

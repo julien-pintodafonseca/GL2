@@ -1,1 +1,1 @@
-src\test\deca\context\invalid\renduFinal\13protected_field_expr_is_not_subtype.deca:15:16: Vous essayez d'accéder à un attribut protégé. Or, le type A n'est pas un sous-type de B.
+13protected_field_expr_is_not_subtype.deca:15:16: Vous essayez d'accÃ©der Ã  un attribut protÃ©gÃ©. Or, le type A n'est pas un sous-type de B.

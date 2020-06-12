@@ -43,7 +43,7 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_METHOD_DECLPARAM_DUPE =    "Une méthode prend des paramètres avec un nom unique. Or, le paramètre suivant existe déjà : ";
     public static final String CONTEXTUAL_ERROR_BAD_USED_THIS = "Le mot-clef this ne peut être utilisé qu'au sein d'une classe. Or, vous l'utilisez dans la fonction main.";
     public static final String CONTEXTUAL_ERROR_SELECTION_BAD_SUBTYPE = "Vous essayez d'accéder à un attribut protégé. Or, le type ";
-    public static final String CONTEXTUAL_ERROR_SELECTION_EXPR_IS_NOT_CLASS = "L'accès au champ ou au méthode d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression ";
+    public static final String CONTEXTUAL_ERROR_SELECTION_EXPR_IS_NOT_CLASS = "L'accès aux champs ou aux méthodes d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression ";
 
     // CodegenError messages
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les flottants ou division par zéro.";

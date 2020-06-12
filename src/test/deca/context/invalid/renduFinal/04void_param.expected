@@ -1,1 +1,1 @@
-src\test\deca\context\invalid\renduFinal\04void_param.deca:11:14: Le type du paramètre suivant est void : y (classe B, méthode plus).
+04void_param.deca:11:14: Le type du paramÃ¨tre suivant est void : y (classe B, mÃ©thode plus).
