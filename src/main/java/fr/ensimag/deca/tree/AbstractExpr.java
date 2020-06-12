@@ -93,12 +93,18 @@ public abstract class AbstractExpr extends AbstractInst {
         Type rightType = verifyExpr(compiler, localEnv, currentClass);
 
         // Condition de types
-        if (rightType.sameType(expectedType)) {
-            return this;
-        } else if (expectedType.isFloat() && rightType.isInt()) {
-            ConvFloat conv = new ConvFloat(this);
-            conv.setType(expectedType);
-            return conv;
+        if (compiler.environmentType.assignCompatible(expectedType, rightType)) {
+            if (rightType.sameType(expectedType)) {
+                return this;
+            } else if (expectedType.isFloat() && rightType.isInt()) {
+                ConvFloat conv = new ConvFloat(this);
+                conv.setType(expectedType);
+                return conv;
+            } else {
+                Cast cast = new Cast(new Identifier(expectedType.getName()), this);
+                cast.setType(expectedType);
+                return cast;
+            }
         } else {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_INCOMPATIBLE_ASSIGN_TYPE + rightType + " ( type attendue : "+ expectedType + " )",getLocation());
         }

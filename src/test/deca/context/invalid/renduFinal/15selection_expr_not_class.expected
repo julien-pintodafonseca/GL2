@@ -1,1 +1,1 @@
-15selection_expr_not_class.deca:19:19: L'accès aux champs ou aux méthodes d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression x est de type int.
+15selection_expr_not_class.deca:19:19: L'accès aux champs d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression x est de type int.

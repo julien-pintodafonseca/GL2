@@ -1,0 +1,1 @@
+src/test/deca/context/invalid/renduFinal/18methodcall_expr_not_class.deca:19:18: L'accès aux méthodes d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression x est de type int.

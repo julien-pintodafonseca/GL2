@@ -1,0 +1,40 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [10, 0] DeclClass
+   |      +> [10, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [11, 8] DeclField
+   |      |      +> [11, 4] Identifier (int)
+   |      |      +> [11, 8] Identifier (x)
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [12, 4] DeclMethod
+   |             +> [12, 4] Identifier (void)
+   |             +> [12, 9] Identifier (setX)
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [12, 14] DeclParam
+   |             |      +> [12, 14] Identifier (int)
+   |             |      `> [12, 18] Identifier (x)
+   |             `> [12, 21] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [13, 15] Assign
+   |                       +> [13, 12] Selection
+   |                       |  +> [13, 8] This
+   |                       |  `> [13, 13] Identifier (x)
+   |                       `> [13, 17] Identifier (x)
+   `> [17, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [18, 8] DeclVar
+      |      +> [18, 4] Identifier (int)
+      |      +> [18, 8] Identifier (x)
+      |      `> NoInitialization
+      `> ListInst [List with 1 elements]
+         []> [19, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [19, 12] StringLiteral (z=)
+                []> [19, 18] MethodCall
+                    +> [19, 18] Identifier (x)
+                    +> [19, 20] Identifier (setX)
+                    `> ListExpr [List with 0 elements]

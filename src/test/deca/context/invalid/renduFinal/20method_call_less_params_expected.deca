@@ -1,0 +1,22 @@
+// Description:
+//      MethodCall : incompatibilité au niveau de la signature de la méthode
+//      => Les paramètres passés à la fonction lors de son appel doivent correspondre à sa signature
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 21 : La méthode plus prend en entrée 1 paramètre au lieau de 2 paramètres
+
+class A {
+    int x;
+    int plus(int y){
+        y=x+y;
+        return y;
+    }
+}
+
+{
+    A a = new A();
+    int x = 3;
+    float z = 4;
+    println("z=", a.plus(x, z));
+}

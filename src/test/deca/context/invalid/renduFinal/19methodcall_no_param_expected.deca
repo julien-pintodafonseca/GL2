@@ -1,0 +1,20 @@
+// Description:
+//      MethodCall : incompatibilité au niveau de la signature de la méthode
+//      => Les paramètres passés à la fonction lors de son appel doivent correspondre à sa signature
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 19 : La méthode getX n'attend aucun paramètre en entrée
+
+class A {
+    int x;
+    int getX() {
+        return x ;
+    }
+}
+
+{
+    A a = new A();
+    int y = 0;
+    println("x=", a.getX(y));
+}
