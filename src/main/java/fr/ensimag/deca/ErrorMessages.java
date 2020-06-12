@@ -45,6 +45,7 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_SELECTION_BAD_SUBTYPE = "Vous essayez d'accéder à un attribut protégé. Or, le type ";
     public static final String CONTEXTUAL_ERROR_SELECTION_EXPR_IS_NOT_CLASS = "L'accès aux champs d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression ";
     public static final String CONTEXTUAL_ERROR_METHODCALL_EXPR_IS_NOT_CLASS = "L'accès aux méthodes d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression ";
+    public static final String CONTEXTUAL_ERROR_METHODCALL_WITHOUT_CLASS = "Vous essayez d'accéder à une méthode suivante sans préciser la classe où elle est définie : ";
     public static final String CONTEXTUAL_ERROR_RETURN_METHOD_VOID_TYPE = "La méthode est de type void : elle ne nécessite donc pas d'instruction \"return\"";
     public static final String CONTEXTUAL_ERROR_RETURN_INCOMPATIBLE_TYPE = "L'instruction return renvoie une expression dont le type n'est pas un sous-type du type de retour de la méthode : ";
     public static final String CONTEXTUAL_ERROR_METHODCALL_NO_PARAM_EXPECTED = "La méthode suivante n'attend aucun paramètre en entrée : ";

@@ -1,0 +1,19 @@
+// Description:
+//      MethodCall : méthode appellée dans le main sans précision de la classe où est définie la méthode
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 17 : Vous essayez d'accéder à une méthode suivante sans préciser la classe où elle est définie : init
+
+class C {
+    int z ;
+    void init() {
+        z = 1;
+    }
+}
+
+{
+    C c = new C();
+    init();
+    println("z=", c.z);
+}

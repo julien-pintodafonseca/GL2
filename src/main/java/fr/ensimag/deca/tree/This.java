@@ -31,8 +31,10 @@ public class This extends AbstractExpr {
             Type t = currentClass.getType();
             setType(t);
             return t;
-        } else {
+        } else if (!impl) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_BAD_USED_THIS, getLocation());
+        } else {
+            return null;
         }
     }
 

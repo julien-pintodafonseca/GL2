@@ -1,1 +1,1 @@
-src/test/deca/context/invalid/renduFinal/19methodcall_no_param_expected.deca:19:18: La méthode suivante n'attend aucun paramètre en entrée : getX.
+19methodcall_no_param_expected.deca:19:18: La méthode suivante n'attend aucun paramètre en entrée : getX.
