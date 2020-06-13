@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -29,7 +30,19 @@ public class Cast extends AbstractExpr {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Syntaxe contextuelle : règle (3.39)
+        Type t1 = type.verifyType(compiler);
+        Type t2 = expr.verifyExpr(compiler, localEnv, currentClass);
+        if (!t2.isVoid()) {
+            if (compiler.environmentType.assignCompatible(t1, t2) || compiler.environmentType.assignCompatible(t2, t1)) {
+                setType(t1);
+                return t1;
+            } else {
+                throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CAST_INCOMPATIBLE_TYPE + t1 + " : " + expr.decompile() + " (type " + t2 + ").", getLocation());
+            }
+        } else {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CAST_VOID_TYPE + expr.decompile() + ".", getLocation());
+        }
     }
 
     @Override

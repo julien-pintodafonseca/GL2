@@ -1,0 +1,1 @@
+23instancof_uncompatible_type.deca:13:10: L'opérateur instanceof n'accepte comme première opérande que l'instance d'une classe ou l'élément null. Or, l'expression suivante est de type A : x.

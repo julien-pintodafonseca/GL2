@@ -1,12 +1,19 @@
-// programme TD intro objects
-classA {
+// Description:
+//      Utilisation du cast et de l'instruction instanceof
+//
+// Resultats:
+//
+//
+//
+
+class A {
     float x = 3.5;
     boolean equalsA (A a) {
         print("A:", x, ";");
         return a !=null && a.x==x;
     }
     boolean equals (Object o) {
-        return o instanceof A &&  equalsA((A)(o));
+        return o instanceof A && equalsA((A)(o));
     }
 
     void test (Object o) {
@@ -23,7 +30,7 @@ class B extends A {
 
     boolean equalsB (B b) {
         print("B:", x, ";");
-        return equals A(b) && b.x == x;
+        return equalsA(b) && b.x == x;
     }
 
     boolean equals (Object o) {

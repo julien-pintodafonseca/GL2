@@ -1,0 +1,18 @@
+// Description:
+//      Cast : l'opération de cast ne peut s'effectuer sur une expression de type void
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 18 : Vous essayez de caster l'expression suivante qui est de type void
+
+class C {
+    int z ;
+    void init() {
+        z = 1;
+    }
+}
+
+{
+    C c = new C();
+    println("z=", (C) (c.init()));
+}

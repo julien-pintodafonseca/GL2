@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -29,7 +30,19 @@ public class InstanceOf extends AbstractExpr {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Syntaxe contextuelle : règle (3.40)
+        Type t1 = expr.verifyExpr(compiler, localEnv, currentClass);
+        Type t2 = type.verifyType(compiler);
+        if (t1.isClassOrNull()) {
+            if(t2.isClass()) {
+                setType(compiler.environmentType.BOOLEAN);
+                return compiler.environmentType.BOOLEAN;
+            } else {
+                throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_INSTANCEOF_NOT_CLASS + t2 + ".", getLocation());
+            }
+        } else {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_INSTANCEOF_NOT_NULL_OR_CLASS + t2 + " : " + expr.decompile() + ".", getLocation());
+        }
     }
 
     @Override

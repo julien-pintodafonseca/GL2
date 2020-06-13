@@ -1,0 +1,173 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 2 elements]
+   |  []> [9, 0] DeclClass
+   |  ||  +> [9, 6] Identifier (A)
+   |  ||  +> Identifier (Object)
+   |  ||  +> ListDeclField [List with 1 elements]
+   |  ||  |  []> [10, 10] DeclField
+   |  ||  |      +> [10, 4] Identifier (float)
+   |  ||  |      +> [10, 10] Identifier (x)
+   |  ||  |      `> Initialization
+   |  ||  |         `> [10, 14] Float (3.5)
+   |  ||  `> ListDeclMethod [List with 3 elements]
+   |  ||     []> [11, 4] DeclMethod
+   |  ||     ||  +> [11, 4] Identifier (boolean)
+   |  ||     ||  +> [11, 12] Identifier (equalsA)
+   |  ||     ||  +> ListDeclParam [List with 1 elements]
+   |  ||     ||  |  []> [11, 21] DeclParam
+   |  ||     ||  |      +> [11, 21] Identifier (A)
+   |  ||     ||  |      `> [11, 23] Identifier (a)
+   |  ||     ||  `> [11, 26] MethodBody
+   |  ||     ||     +> ListDeclVar [List with 0 elements]
+   |  ||     ||     `> ListInst [List with 2 elements]
+   |  ||     ||        []> [12, 8] Print
+   |  ||     ||        ||  `> ListExpr [List with 3 elements]
+   |  ||     ||        ||     []> [12, 14] StringLiteral (A:)
+   |  ||     ||        ||     []> [12, 20] Identifier (x)
+   |  ||     ||        ||     []> [12, 23] StringLiteral (;)
+   |  ||     ||        []> [13, 8] Return
+   |  ||     ||            `> [13, 24] And
+   |  ||     ||               +> [13, 17] NotEquals
+   |  ||     ||               |  +> [13, 15] Identifier (a)
+   |  ||     ||               |  `> [13, 19] NullLiteral
+   |  ||     ||               `> [13, 30] Equals
+   |  ||     ||                  +> [13, 28] Selection
+   |  ||     ||                  |  +> [13, 27] Identifier (a)
+   |  ||     ||                  |  `> [13, 29] Identifier (x)
+   |  ||     ||                  `> [13, 32] Identifier (x)
+   |  ||     []> [15, 4] DeclMethod
+   |  ||     ||  +> [15, 4] Identifier (boolean)
+   |  ||     ||  +> [15, 12] Identifier (equals)
+   |  ||     ||  +> ListDeclParam [List with 1 elements]
+   |  ||     ||  |  []> [15, 20] DeclParam
+   |  ||     ||  |      +> [15, 20] Identifier (Object)
+   |  ||     ||  |      `> [15, 27] Identifier (o)
+   |  ||     ||  `> [15, 30] MethodBody
+   |  ||     ||     +> ListDeclVar [List with 0 elements]
+   |  ||     ||     `> ListInst [List with 1 elements]
+   |  ||     ||        []> [16, 8] Return
+   |  ||     ||            `> [16, 30] And
+   |  ||     ||               +> [16, 17] InstanceOf
+   |  ||     ||               |  +> [16, 15] Identifier (o)
+   |  ||     ||               |  `> [16, 28] Identifier (A)
+   |  ||     ||               `> [16, 33] MethodCall
+   |  ||     ||                  +> This
+   |  ||     ||                  +> [16, 33] Identifier (equalsA)
+   |  ||     ||                  `> ListExpr [List with 1 elements]
+   |  ||     ||                     []> [16, 41] Cast
+   |  ||     ||                         +> [16, 42] Identifier (A)
+   |  ||     ||                         `> [16, 45] Identifier (o)
+   |  ||     []> [19, 4] DeclMethod
+   |  ||         +> [19, 4] Identifier (void)
+   |  ||         +> [19, 9] Identifier (test)
+   |  ||         +> ListDeclParam [List with 1 elements]
+   |  ||         |  []> [19, 15] DeclParam
+   |  ||         |      +> [19, 15] Identifier (Object)
+   |  ||         |      `> [19, 22] Identifier (o)
+   |  ||         `> [19, 25] MethodBody
+   |  ||            +> ListDeclVar [List with 0 elements]
+   |  ||            `> ListInst [List with 1 elements]
+   |  ||               []> [20, 8] IfThenElse
+   |  ||                   +> [20, 12] MethodCall
+   |  ||                   |  +> This
+   |  ||                   |  +> [20, 12] Identifier (equals)
+   |  ||                   |  `> ListExpr [List with 1 elements]
+   |  ||                   |     []> [20, 19] Identifier (o)
+   |  ||                   +> ListInst [List with 1 elements]
+   |  ||                   |  []> [21, 12] Println
+   |  ||                   |      `> ListExpr [List with 1 elements]
+   |  ||                   |         []> [21, 20] StringLiteral (Eq)
+   |  ||                   `> ListInst [List with 1 elements]
+   |  ||                      []> [23, 12] Println
+   |  ||                          `> ListExpr [List with 1 elements]
+   |  ||                             []> [23, 20] StringLiteral (Diff)
+   |  []> [28, 0] DeclClass
+   |      +> [28, 6] Identifier (B)
+   |      +> [28, 16] Identifier (A)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [29, 8] DeclField
+   |      |      +> [29, 4] Identifier (int)
+   |      |      +> [29, 8] Identifier (x)
+   |      |      `> Initialization
+   |      |         `> [29, 12] Int (11)
+   |      `> ListDeclMethod [List with 2 elements]
+   |         []> [31, 4] DeclMethod
+   |         ||  +> [31, 4] Identifier (boolean)
+   |         ||  +> [31, 12] Identifier (equalsB)
+   |         ||  +> ListDeclParam [List with 1 elements]
+   |         ||  |  []> [31, 21] DeclParam
+   |         ||  |      +> [31, 21] Identifier (B)
+   |         ||  |      `> [31, 23] Identifier (b)
+   |         ||  `> [31, 26] MethodBody
+   |         ||     +> ListDeclVar [List with 0 elements]
+   |         ||     `> ListInst [List with 2 elements]
+   |         ||        []> [32, 8] Print
+   |         ||        ||  `> ListExpr [List with 3 elements]
+   |         ||        ||     []> [32, 14] StringLiteral (B:)
+   |         ||        ||     []> [32, 20] Identifier (x)
+   |         ||        ||     []> [32, 23] StringLiteral (;)
+   |         ||        []> [33, 8] Return
+   |         ||            `> [33, 26] And
+   |         ||               +> [33, 15] MethodCall
+   |         ||               |  +> This
+   |         ||               |  +> [33, 15] Identifier (equalsA)
+   |         ||               |  `> ListExpr [List with 1 elements]
+   |         ||               |     []> [33, 23] Identifier (b)
+   |         ||               `> [33, 33] Equals
+   |         ||                  +> [33, 30] Selection
+   |         ||                  |  +> [33, 29] Identifier (b)
+   |         ||                  |  `> [33, 31] Identifier (x)
+   |         ||                  `> [33, 36] Identifier (x)
+   |         []> [36, 4] DeclMethod
+   |             +> [36, 4] Identifier (boolean)
+   |             +> [36, 12] Identifier (equals)
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [36, 20] DeclParam
+   |             |      +> [36, 20] Identifier (Object)
+   |             |      `> [36, 27] Identifier (o)
+   |             `> [36, 30] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [37, 8] Return
+   |                       `> [37, 30] And
+   |                          +> [37, 17] InstanceOf
+   |                          |  +> [37, 15] Identifier (o)
+   |                          |  `> [37, 28] Identifier (B)
+   |                          `> [37, 34] MethodCall
+   |                             +> This
+   |                             +> [37, 34] Identifier (equalsB)
+   |                             `> ListExpr [List with 1 elements]
+   |                                []> [37, 42] Cast
+   |                                    +> [37, 43] Identifier (B)
+   |                                    `> [37, 46] Identifier (o)
+   `> [41, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [42, 6] DeclVar
+      |  ||  +> [42, 4] Identifier (A)
+      |  ||  +> [42, 6] Identifier (oB)
+      |  ||  `> [42, 9] Initialization
+      |  ||     `> [42, 11] New
+      |  ||        `> [42, 15] Identifier (B)
+      |  []> [42, 20] DeclVar
+      |      +> [42, 4] Identifier (A)
+      |      +> [42, 20] Identifier (oA)
+      |      `> [42, 23] Initialization
+      |         `> [42, 25] New
+      |            `> [42, 29] Identifier (A)
+      `> ListInst [List with 3 elements]
+         []> [43, 4] MethodCall
+         ||  +> [43, 4] Identifier (oA)
+         ||  +> [43, 7] Identifier (test)
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [43, 12] Identifier (oB)
+         []> [44, 4] MethodCall
+         ||  +> [44, 4] Identifier (oB)
+         ||  +> [44, 7] Identifier (test)
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [44, 12] Identifier (oA)
+         []> [45, 4] MethodCall
+             +> [45, 4] Identifier (oB)
+             +> [45, 7] Identifier (test)
+             `> ListExpr [List with 1 elements]
+                []> [45, 12] New
+                    `> [45, 16] Identifier (B)

@@ -1,0 +1,11 @@
+// Description:
+//      Cast : l'opération de cast est possible si les deux types des opérandes sont compatibles pour le cast
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 17 : L'expression suivante ne peut pas être castée dans le type int : x (type boolean).
+
+{
+    boolean x = true;
+    int y = (int) (x);
+}

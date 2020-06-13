@@ -1,0 +1,275 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 2 elements]
+   |  []> [9, 0] DeclClass
+   |  ||  +> [9, 6] Identifier (A)
+   |  ||  |  definition: type defined at [9, 0], type=A
+   |  ||  +> Identifier (Object)
+   |  ||  |  definition: type (builtin), type=Object
+   |  ||  +> ListDeclField [List with 1 elements]
+   |  ||  |  []> [10, 10] DeclField
+   |  ||  |      +> [10, 4] Identifier (float)
+   |  ||  |      |  definition: type (builtin), type=float
+   |  ||  |      +> [10, 10] Identifier (x)
+   |  ||  |      |  definition: field defined at [10, 10], type=float
+   |  ||  |      `> Initialization
+   |  ||  |         `> [10, 14] Float (3.5)
+   |  ||  |            type: float
+   |  ||  `> ListDeclMethod [List with 3 elements]
+   |  ||     []> [11, 4] DeclMethod
+   |  ||     ||  +> [11, 4] Identifier (boolean)
+   |  ||     ||  |  definition: type (builtin), type=boolean
+   |  ||     ||  +> [11, 12] Identifier (equalsA)
+   |  ||     ||  |  definition: method defined at [11, 4], type=boolean
+   |  ||     ||  +> ListDeclParam [List with 1 elements]
+   |  ||     ||  |  []> [11, 21] DeclParam
+   |  ||     ||  |      +> [11, 21] Identifier (A)
+   |  ||     ||  |      |  definition: type defined at [9, 0], type=A
+   |  ||     ||  |      `> [11, 23] Identifier (a)
+   |  ||     ||  |         definition: parameter defined at [11, 21], type=A
+   |  ||     ||  `> [11, 26] MethodBody
+   |  ||     ||     +> ListDeclVar [List with 0 elements]
+   |  ||     ||     `> ListInst [List with 2 elements]
+   |  ||     ||        []> [12, 8] Print
+   |  ||     ||        ||  `> ListExpr [List with 3 elements]
+   |  ||     ||        ||     []> [12, 14] StringLiteral (A:)
+   |  ||     ||        ||     ||  type: string
+   |  ||     ||        ||     []> [12, 20] Identifier (x)
+   |  ||     ||        ||     ||  definition: field defined at [10, 10], type=float
+   |  ||     ||        ||     []> [12, 23] StringLiteral (;)
+   |  ||     ||        ||         type: string
+   |  ||     ||        []> [13, 8] Return
+   |  ||     ||            `> [13, 24] And
+   |  ||     ||               type: boolean
+   |  ||     ||               +> [13, 17] NotEquals
+   |  ||     ||               |  type: boolean
+   |  ||     ||               |  +> [13, 15] Identifier (a)
+   |  ||     ||               |  |  definition: parameter defined at [11, 21], type=A
+   |  ||     ||               |  `> [13, 19] NullLiteral
+   |  ||     ||               |     type: null
+   |  ||     ||               `> [13, 30] Equals
+   |  ||     ||                  type: boolean
+   |  ||     ||                  +> [13, 28] Selection
+   |  ||     ||                  |  type: float
+   |  ||     ||                  |  +> [13, 27] Identifier (a)
+   |  ||     ||                  |  |  definition: parameter defined at [11, 21], type=A
+   |  ||     ||                  |  `> [13, 29] Identifier (x)
+   |  ||     ||                  |     definition: field defined at [10, 10], type=float
+   |  ||     ||                  `> [13, 32] Identifier (x)
+   |  ||     ||                     definition: field defined at [10, 10], type=float
+   |  ||     []> [15, 4] DeclMethod
+   |  ||     ||  +> [15, 4] Identifier (boolean)
+   |  ||     ||  |  definition: type (builtin), type=boolean
+   |  ||     ||  +> [15, 12] Identifier (equals)
+   |  ||     ||  |  definition: method defined at [15, 4], type=boolean
+   |  ||     ||  +> ListDeclParam [List with 1 elements]
+   |  ||     ||  |  []> [15, 20] DeclParam
+   |  ||     ||  |      +> [15, 20] Identifier (Object)
+   |  ||     ||  |      |  definition: type (builtin), type=Object
+   |  ||     ||  |      `> [15, 27] Identifier (o)
+   |  ||     ||  |         definition: parameter defined at [15, 20], type=Object
+   |  ||     ||  `> [15, 30] MethodBody
+   |  ||     ||     +> ListDeclVar [List with 0 elements]
+   |  ||     ||     `> ListInst [List with 1 elements]
+   |  ||     ||        []> [16, 8] Return
+   |  ||     ||            `> [16, 30] And
+   |  ||     ||               type: boolean
+   |  ||     ||               +> [16, 17] InstanceOf
+   |  ||     ||               |  type: boolean
+   |  ||     ||               |  +> [16, 15] Identifier (o)
+   |  ||     ||               |  |  definition: parameter defined at [15, 20], type=Object
+   |  ||     ||               |  `> [16, 28] Identifier (A)
+   |  ||     ||               |     definition: type defined at [9, 0], type=A
+   |  ||     ||               `> [16, 33] MethodCall
+   |  ||     ||                  type: boolean
+   |  ||     ||                  +> This
+   |  ||     ||                  |  type: A
+   |  ||     ||                  +> [16, 33] Identifier (equalsA)
+   |  ||     ||                  |  definition: method defined at [11, 4], type=boolean
+   |  ||     ||                  `> ListExpr [List with 1 elements]
+   |  ||     ||                     []> [16, 41] Cast
+   |  ||     ||                         type: A
+   |  ||     ||                         +> [16, 42] Identifier (A)
+   |  ||     ||                         |  definition: type defined at [9, 0], type=A
+   |  ||     ||                         `> [16, 45] Identifier (o)
+   |  ||     ||                            definition: parameter defined at [15, 20], type=Object
+   |  ||     []> [19, 4] DeclMethod
+   |  ||         +> [19, 4] Identifier (void)
+   |  ||         |  definition: type (builtin), type=void
+   |  ||         +> [19, 9] Identifier (test)
+   |  ||         |  definition: method defined at [19, 4], type=void
+   |  ||         +> ListDeclParam [List with 1 elements]
+   |  ||         |  []> [19, 15] DeclParam
+   |  ||         |      +> [19, 15] Identifier (Object)
+   |  ||         |      |  definition: type (builtin), type=Object
+   |  ||         |      `> [19, 22] Identifier (o)
+   |  ||         |         definition: parameter defined at [19, 15], type=Object
+   |  ||         `> [19, 25] MethodBody
+   |  ||            +> ListDeclVar [List with 0 elements]
+   |  ||            `> ListInst [List with 1 elements]
+   |  ||               []> [20, 8] IfThenElse
+   |  ||                   +> [20, 12] MethodCall
+   |  ||                   |  type: boolean
+   |  ||                   |  +> This
+   |  ||                   |  |  type: A
+   |  ||                   |  +> [20, 12] Identifier (equals)
+   |  ||                   |  |  definition: method defined at [15, 4], type=boolean
+   |  ||                   |  `> ListExpr [List with 1 elements]
+   |  ||                   |     []> [20, 19] Identifier (o)
+   |  ||                   |         definition: parameter defined at [19, 15], type=Object
+   |  ||                   +> ListInst [List with 1 elements]
+   |  ||                   |  []> [21, 12] Println
+   |  ||                   |      `> ListExpr [List with 1 elements]
+   |  ||                   |         []> [21, 20] StringLiteral (Eq)
+   |  ||                   |             type: string
+   |  ||                   `> ListInst [List with 1 elements]
+   |  ||                      []> [23, 12] Println
+   |  ||                          `> ListExpr [List with 1 elements]
+   |  ||                             []> [23, 20] StringLiteral (Diff)
+   |  ||                                 type: string
+   |  []> [28, 0] DeclClass
+   |      +> [28, 6] Identifier (B)
+   |      |  definition: type defined at [28, 0], type=B
+   |      +> [28, 16] Identifier (A)
+   |      |  definition: type defined at [9, 0], type=A
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [29, 8] DeclField
+   |      |      +> [29, 4] Identifier (int)
+   |      |      |  definition: type (builtin), type=int
+   |      |      +> [29, 8] Identifier (x)
+   |      |      |  definition: field defined at [29, 8], type=int
+   |      |      `> Initialization
+   |      |         `> [29, 12] Int (11)
+   |      |            type: int
+   |      `> ListDeclMethod [List with 2 elements]
+   |         []> [31, 4] DeclMethod
+   |         ||  +> [31, 4] Identifier (boolean)
+   |         ||  |  definition: type (builtin), type=boolean
+   |         ||  +> [31, 12] Identifier (equalsB)
+   |         ||  |  definition: method defined at [31, 4], type=boolean
+   |         ||  +> ListDeclParam [List with 1 elements]
+   |         ||  |  []> [31, 21] DeclParam
+   |         ||  |      +> [31, 21] Identifier (B)
+   |         ||  |      |  definition: type defined at [28, 0], type=B
+   |         ||  |      `> [31, 23] Identifier (b)
+   |         ||  |         definition: parameter defined at [31, 21], type=B
+   |         ||  `> [31, 26] MethodBody
+   |         ||     +> ListDeclVar [List with 0 elements]
+   |         ||     `> ListInst [List with 2 elements]
+   |         ||        []> [32, 8] Print
+   |         ||        ||  `> ListExpr [List with 3 elements]
+   |         ||        ||     []> [32, 14] StringLiteral (B:)
+   |         ||        ||     ||  type: string
+   |         ||        ||     []> [32, 20] Identifier (x)
+   |         ||        ||     ||  definition: field defined at [29, 8], type=int
+   |         ||        ||     []> [32, 23] StringLiteral (;)
+   |         ||        ||         type: string
+   |         ||        []> [33, 8] Return
+   |         ||            `> [33, 26] And
+   |         ||               type: boolean
+   |         ||               +> [33, 15] MethodCall
+   |         ||               |  type: boolean
+   |         ||               |  +> This
+   |         ||               |  |  type: B
+   |         ||               |  +> [33, 15] Identifier (equalsA)
+   |         ||               |  |  definition: method defined at [11, 4], type=boolean
+   |         ||               |  `> ListExpr [List with 1 elements]
+   |         ||               |     []> [33, 23] Identifier (b)
+   |         ||               |         definition: parameter defined at [31, 21], type=B
+   |         ||               `> [33, 33] Equals
+   |         ||                  type: boolean
+   |         ||                  +> [33, 30] Selection
+   |         ||                  |  type: int
+   |         ||                  |  +> [33, 29] Identifier (b)
+   |         ||                  |  |  definition: parameter defined at [31, 21], type=B
+   |         ||                  |  `> [33, 31] Identifier (x)
+   |         ||                  |     definition: field defined at [29, 8], type=int
+   |         ||                  `> [33, 36] Identifier (x)
+   |         ||                     definition: field defined at [29, 8], type=int
+   |         []> [36, 4] DeclMethod
+   |             +> [36, 4] Identifier (boolean)
+   |             |  definition: type (builtin), type=boolean
+   |             +> [36, 12] Identifier (equals)
+   |             |  definition: method defined at [36, 4], type=boolean
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [36, 20] DeclParam
+   |             |      +> [36, 20] Identifier (Object)
+   |             |      |  definition: type (builtin), type=Object
+   |             |      `> [36, 27] Identifier (o)
+   |             |         definition: parameter defined at [36, 20], type=Object
+   |             `> [36, 30] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [37, 8] Return
+   |                       `> [37, 30] And
+   |                          type: boolean
+   |                          +> [37, 17] InstanceOf
+   |                          |  type: boolean
+   |                          |  +> [37, 15] Identifier (o)
+   |                          |  |  definition: parameter defined at [36, 20], type=Object
+   |                          |  `> [37, 28] Identifier (B)
+   |                          |     definition: type defined at [28, 0], type=B
+   |                          `> [37, 34] MethodCall
+   |                             type: boolean
+   |                             +> This
+   |                             |  type: B
+   |                             +> [37, 34] Identifier (equalsB)
+   |                             |  definition: method defined at [31, 4], type=boolean
+   |                             `> ListExpr [List with 1 elements]
+   |                                []> [37, 42] Cast
+   |                                    type: B
+   |                                    +> [37, 43] Identifier (B)
+   |                                    |  definition: type defined at [28, 0], type=B
+   |                                    `> [37, 46] Identifier (o)
+   |                                       definition: parameter defined at [36, 20], type=Object
+   `> [41, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [42, 6] DeclVar
+      |  ||  +> [42, 4] Identifier (A)
+      |  ||  |  definition: type defined at [9, 0], type=A
+      |  ||  +> [42, 6] Identifier (oB)
+      |  ||  |  definition: variable defined at [42, 6], type=A
+      |  ||  `> [42, 9] Initialization
+      |  ||     `> [42, 11] New
+      |  ||        type: B
+      |  ||        `> [42, 15] Identifier (B)
+      |  ||           definition: type defined at [28, 0], type=B
+      |  []> [42, 20] DeclVar
+      |      +> [42, 4] Identifier (A)
+      |      |  definition: type defined at [9, 0], type=A
+      |      +> [42, 20] Identifier (oA)
+      |      |  definition: variable defined at [42, 20], type=A
+      |      `> [42, 23] Initialization
+      |         `> [42, 25] New
+      |            type: A
+      |            `> [42, 29] Identifier (A)
+      |               definition: type defined at [9, 0], type=A
+      `> ListInst [List with 3 elements]
+         []> [43, 4] MethodCall
+         ||  type: void
+         ||  +> [43, 4] Identifier (oA)
+         ||  |  definition: variable defined at [42, 20], type=A
+         ||  +> [43, 7] Identifier (test)
+         ||  |  definition: method defined at [19, 4], type=void
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [43, 12] Identifier (oB)
+         ||         definition: variable defined at [42, 6], type=A
+         []> [44, 4] MethodCall
+         ||  type: void
+         ||  +> [44, 4] Identifier (oB)
+         ||  |  definition: variable defined at [42, 6], type=A
+         ||  +> [44, 7] Identifier (test)
+         ||  |  definition: method defined at [19, 4], type=void
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [44, 12] Identifier (oA)
+         ||         definition: variable defined at [42, 20], type=A
+         []> [45, 4] MethodCall
+             type: void
+             +> [45, 4] Identifier (oB)
+             |  definition: variable defined at [42, 6], type=A
+             +> [45, 7] Identifier (test)
+             |  definition: method defined at [19, 4], type=void
+             `> ListExpr [List with 1 elements]
+                []> [45, 12] New
+                    type: B
+                    `> [45, 16] Identifier (B)
+                       definition: type defined at [28, 0], type=B

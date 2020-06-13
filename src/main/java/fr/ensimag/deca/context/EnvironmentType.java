@@ -6,7 +6,6 @@ import java.util.Map;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.Location;
 
-// A FAIRE: étendre cette classe pour traiter la partie "avec objet" de Déca
 /**
  * Environment containing types. Initially contains predefined identifiers, more
  * classes can be added with declareClass().

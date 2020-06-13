@@ -1,0 +1,16 @@
+// Description:
+//      Instanceof : utilisation de instance avec une expression qui n'est pas une instance de class
+//
+// Resultats:
+//      Erreur contextuelle
+//      Ligne 13 : Vous essayez d'utiliser l'opérateur instanceof sur une expression de type int
+
+class A {
+}
+
+{
+    int x = 0;
+    if (x instanceof A) {
+        print("Equals");
+    }
+}

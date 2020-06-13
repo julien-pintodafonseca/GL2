@@ -1,0 +1,1 @@
+25cast_incompatible_type.deca:10:12: L'expression suivante ne peut pas être castée dans le type int : x (type boolean).
