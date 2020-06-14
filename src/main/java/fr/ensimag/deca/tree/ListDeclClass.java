@@ -57,5 +57,18 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
         LOG.debug("verify listClassBody: end");
     }
 
+    /**
+     * Construction of the Virtual Method Table
+     *
+     * @param compiler
+     */
+    protected void codeGenMethodTable(DecacCompiler compiler) {
+        LOG.debug("codeGen MethodTable for ListDeclClass: start");
+        for (AbstractDeclClass declClass : getList()) {
+            declClass.codeGenMethodTable(compiler);
+        }
+        LOG.debug("verify Method Table for ListDeclClass: end");
+    }
+
 
 }

@@ -1,9 +1,6 @@
 package fr.ensimag.ima.pseudocode.instructions;
 
-import fr.ensimag.ima.pseudocode.BinaryInstructionDValToReg;
-import fr.ensimag.ima.pseudocode.DVal;
-import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.ImmediateInteger;
+import fr.ensimag.ima.pseudocode.*;
 
 /**
  * @author Equipe GL2
@@ -19,4 +16,7 @@ public class LOAD extends BinaryInstructionDValToReg {
         this(new ImmediateInteger(i), r);
     }
 
+    public LOAD(Label label, GPRegister register) {
+        super(label, register);
+    }
 }

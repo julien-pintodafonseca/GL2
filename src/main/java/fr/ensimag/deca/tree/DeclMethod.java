@@ -5,6 +5,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.deca.tools.SymbolTable;
 
 import java.io.PrintStream;
 
@@ -28,6 +29,11 @@ public class DeclMethod extends AbstractDeclMethod {
     }
 
     @Override
+    public SymbolTable.Symbol getName() {
+        return methodName.getName();
+    }
+
+    @Override
     public void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         // Règle syntaxe contextuelle : (2.7)
         Type t = type.verifyType(compiler);
@@ -36,6 +42,7 @@ public class DeclMethod extends AbstractDeclMethod {
         Signature s = params.verifyListParamMembers(compiler, currentClass,this);
         // on vérifie que, si la méthode est déjà définie dans l'environnement des expressions de la superClass,
         Definition superMethName = currentClass.getSuperClass().getMembers().get(methodName.getName());
+        MethodDefinition methDef;
         if (superMethName != null) {
 
             if (superMethName instanceof MethodDefinition) {
@@ -50,13 +57,17 @@ public class DeclMethod extends AbstractDeclMethod {
                     throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DIFF_TYPE_REDEFINED_METHOD + methodName.getName() +
                             " (classe " + currentClass.getType() + ") de type " + t.getName() +" au lieu de " + superMethName.getType().getName() + ".", getLocation());
                 }
+
+                // Comme on redéfinit une méthode de la superClass, il ne faut définir la méthode en lui donnant l'index de la méthode redéfinie
+                methDef = new MethodDefinition(t, getLocation(), s, ((MethodDefinition) superMethName).getIndex());
             } else {
                 throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHOD_OVERRIDING_FIELD + methodName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
             }
+        } else {
+            currentClass.incNumberOfMethods();
+            methDef = new MethodDefinition(t, getLocation(), s, currentClass.getNumberOfMethods());
         }
 
-        currentClass.incNumberOfFields();
-        MethodDefinition methDef = new MethodDefinition(t, getLocation(), s, currentClass.getNumberOfFields());
         methodName.setDefinition(methDef);
         methodName.setType(t);
         try {

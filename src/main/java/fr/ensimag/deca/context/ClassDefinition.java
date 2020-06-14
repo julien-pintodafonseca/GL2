@@ -1,7 +1,8 @@
 package fr.ensimag.deca.context;
 
+import fr.ensimag.deca.codegen.VTable;
 import fr.ensimag.deca.tree.Location;
-import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.DAddr;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -12,6 +13,21 @@ import org.apache.commons.lang.Validate;
  */
 public class ClassDefinition extends TypeDefinition {
 
+    public VTable getVTable() {
+        return this.vtable;
+    }
+
+    public void initVTable() {
+        this.vtable = new VTable();
+    }
+
+    public DAddr getOperand() {
+        return this.operand;
+    }
+
+    public void setOperand(DAddr operand) {
+        this.operand = operand;
+    }
 
     public void setNumberOfFields(int numberOfFields) {
         this.numberOfFields = numberOfFields;
@@ -41,6 +57,8 @@ public class ClassDefinition extends TypeDefinition {
 
     private int numberOfFields = 0;
     private int numberOfMethods = 0;
+    private DAddr operand;
+    private VTable vtable;
     
     @Override
     public boolean isClass() {

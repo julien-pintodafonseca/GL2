@@ -11,4 +11,8 @@ public class BinaryInstructionDValToReg extends BinaryInstruction {
     public BinaryInstructionDValToReg(DVal op1, GPRegister op2) {
         super(op1, op2);
     }
+
+    public BinaryInstructionDValToReg(Label label, GPRegister register) {
+        super(label, register);
+    }
 }

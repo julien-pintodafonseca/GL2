@@ -4,6 +4,7 @@ import fr.ensimag.deca.codegen.ErrorLabelManager;
 import fr.ensimag.deca.codegen.LabelManager;
 import fr.ensimag.deca.codegen.RegisterManager;
 import fr.ensimag.deca.codegen.StackManager;
+import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
@@ -211,7 +212,7 @@ public class DecacCompiler implements Callable<Boolean> {
      */
     private boolean doCompile(String sourceName, String destName,
             PrintStream out, PrintStream err)
-            throws DecacFatalError, LocationException {
+            throws DecacFatalError, LocationException, EnvironmentExp.DoubleDefException {
         AbstractProgram prog = doLexingAndParsing(sourceName, err);
 
         if (prog == null) {
@@ -226,9 +227,7 @@ public class DecacCompiler implements Callable<Boolean> {
             prog.verifyProgram(this);
             assert (prog.checkAllDecorations());
             if (!compilerOptions.getVerification()) {
-                addComment("start main program");
                 prog.codeGenProgram(this);
-                addComment("end main program");
                 LOG.debug("Generated assembly code:" + nl + program.display());
                 LOG.info("Output file assembly file is: " + destName);
 

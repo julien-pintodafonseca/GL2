@@ -5,7 +5,14 @@ import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LEA;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.commons.lang.Validate;
 
 import java.io.PrintStream;
@@ -69,6 +76,50 @@ public class DeclClass extends AbstractDeclClass {
         // Règle syntaxe contextuelle : (3.5)
         fields.verifyListClassBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());
         methods.verifyListClassBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());
+    }
+
+    @Override
+    protected void codeGenMethodTable(DecacCompiler compiler) {
+        compiler.addComment("Code of the method table of " + className.getName());
+
+        // Récupération de l'adresse de la classe supérieure
+        compiler.addInstruction(new LEA(classExtension.getClassDefinition().getOperand(),Register.R0));
+
+        RegisterOffset classOperand = new RegisterOffset(compiler.getStackManager().getGB(), Register.GB);
+        compiler.getStackManager().incrGB();
+
+        compiler.addInstruction(new STORE(Register.R0, classOperand));
+        className.getClassDefinition().setOperand(classOperand);
+
+        // Construction de la table des étiquettes et de la table des méthodes
+        className.getClassDefinition().initVTable();
+
+        // Ajout de la méthode equals
+        for(AbstractDeclMethod method : methods.getList()){
+            MethodDefinition methodDef = (MethodDefinition) className.getClassDefinition().getMembers().get(method.getName());
+            methodDef.setLabel(new Label("code." + className.getName() + "." + method.getName()));
+
+            className.getClassDefinition().getVTable().addMethod(methodDef);
+        }
+
+        // Ajout des méthodes de la superclasse
+        int i=1;
+        while(classExtension.getClassDefinition().getVTable().containKey(i) || className.getClassDefinition().getVTable().containKey(i) ){
+            if(!className.getClassDefinition().getVTable().containKey(i)) {
+                className.getClassDefinition().getVTable().addMethod(classExtension.getClassDefinition().getVTable().getMethodDef(i));
+            }
+
+            // génération du code assembleur pour la table des méthodes
+            compiler.addInstruction(new LOAD(className.getClassDefinition().getVTable().getMethodDef(i).getLabel(), Register.R0));
+
+            RegisterOffset methodOperand = new RegisterOffset(compiler.getStackManager().getGB(), Register.GB);
+            compiler.getStackManager().incrGB();
+
+            compiler.addInstruction(new STORE(Register.R0, methodOperand));
+            className.getClassDefinition().getVTable().getMethodDef(i).setOperand(classOperand);
+            i++;
+        }
+
     }
 
     @Override

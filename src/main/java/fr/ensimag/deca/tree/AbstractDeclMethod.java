@@ -4,6 +4,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.tools.SymbolTable;
 
 /**
  * Method declaration.
@@ -12,6 +13,8 @@ import fr.ensimag.deca.context.EnvironmentExp;
  * @date 2020
  */
 public abstract class AbstractDeclMethod extends Tree {
+
+    public abstract SymbolTable.Symbol getName();
 
     /**
      * Pass 2 of [SyntaxeContextuelle]. Verify that the methods) are OK,
@@ -24,4 +27,5 @@ public abstract class AbstractDeclMethod extends Tree {
      * contained in the method are OK.
      */
     public abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError;
+
 }
