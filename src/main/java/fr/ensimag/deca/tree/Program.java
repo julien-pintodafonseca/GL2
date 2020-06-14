@@ -60,10 +60,11 @@ public class Program extends AbstractProgram {
         compiler.addComment("--------------------------------------------------");
         compiler.addComment("           Building of the method table           ");
         compiler.addComment("--------------------------------------------------");
-        codeGenMethodTableObject(compiler);
+        //codeGenMethodTableObject(compiler);
 
         classes.codeGenMethodTable(compiler);
         main.codeGenMain(compiler);
+        compiler.addInstruction(new HALT());
         compiler.getErrorLabelManager().printErrors(compiler);
     }
 
