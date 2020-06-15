@@ -1,10 +1,14 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tree.AbstractDeclMethod;
+import fr.ensimag.ima.pseudocode.*;
+import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
 
 import javax.management.ListenerNotFoundException;
@@ -63,7 +67,42 @@ public class MethodCall extends AbstractExpr {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHODCALL_WITHOUT_CLASS + meth.getName() + ".", getLocation());
         }
     }
+    @Override
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        compiler.addComment("Appel de la méthode : " + this.decompile());
 
+        // On reserve de la place pour 1 + nombre de paramètres
+        compiler.addInstruction(new ADDSP(params.size()+1));
+
+        // On récupère le param implicite
+        obj.codeGenInst(compiler, Register.R1);
+        // On empile le paramètre implicite (obj)
+        compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(0,Register.SP)));
+
+        // On empile les paramètres
+        int i = -1;
+        for (AbstractExpr param : params.getList()) {
+            param.codeGenInst(compiler, Register.R1);
+            compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(i, Register.SP)));
+            i--;
+        }
+
+        //on recupère le paramètre implicite
+        compiler.addInstruction(new LOAD(new RegisterOffset(0,Register.SP), Register.R1));
+        //test si null
+        compiler.addInstruction(new CMP(new NullOperand(), Register.R1));
+        compiler.addInstruction(new BEQ(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT))));
+        compiler.getErrorLabelManager().addError(ErrorLabelType.LB_NULL_DEREFERENCEMENT);
+
+        // Récupère adresse de la table des méthodes
+        compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.R1), Register.R1));
+        // Appel de la méthode
+        ClassDefinition def =compiler.environmentType.getClassDefinition(obj.getType().getName());
+        MethodDefinition methDef = (MethodDefinition) def.getMembers().get(meth.getName());
+        compiler.addInstruction(new BSR(new RegisterOffset(methDef.getIndex(), Register.R1)));
+        // Dépile les paramètres
+        compiler.addInstruction(new SUBSP(params.size()+1));
+    }
     @Override
     public void decompile(IndentPrintStream s) {
         if (obj != null) {

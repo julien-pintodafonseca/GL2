@@ -178,7 +178,7 @@ public abstract class AbstractExpr extends AbstractInst {
      * @param register
      */
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // nothing for the program like "hello";
     }
 
     /**

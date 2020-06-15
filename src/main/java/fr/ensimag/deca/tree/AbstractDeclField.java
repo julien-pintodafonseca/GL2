@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -25,4 +26,8 @@ public abstract class AbstractDeclField extends Tree {
      */
     protected abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError;
+
+    public abstract void codeGenField(DecacCompiler compiler, ClassDefinition currentClass);
+
+    public abstract void codeGenFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError;
 }

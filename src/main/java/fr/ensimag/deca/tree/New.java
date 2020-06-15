@@ -49,6 +49,7 @@ public class New extends AbstractExpr {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        compiler.addComment("new ligne "+getLocation().getLine());
         compiler.addInstruction(new NEW(ident.getClassDefinition().getNumberOfFields() + 1, register));
         compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_HEAP))));
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_HEAP);

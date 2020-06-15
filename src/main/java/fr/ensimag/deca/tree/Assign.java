@@ -47,7 +47,7 @@ public class Assign extends AbstractBinaryExpr {
         AbstractExpr leftOp = getLeftOperand();
         if (leftOp instanceof Identifier) {
             // gestion de la règle LValue -> Identifier
-            VariableDefinition varDef = ((Identifier) leftOp).getVariableDefinition();
+            ExpDefinition varDef = ((Identifier) leftOp).getExpDefinition();
             getRightOperand().codeGenInst(compiler, register);
             compiler.addInstruction(new STORE(register, varDef.getOperand()));
         } else {

@@ -43,6 +43,8 @@ public class ErrorLabelManager {
                 return "tas_plein";
             case LB_FULL_STACK:
                 return "pile_pleine";
+            case LB_NULL_DEREFERENCEMENT:
+                return "null_dereferencement";
             default:
                 return null;
         }
@@ -106,6 +108,15 @@ public class ErrorLabelManager {
                 compiler.addComment("--------------------------------------------------");
                 compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_FULL_STACK)));
                 compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_FULL_STACK));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_NULL_DEREFERENCEMENT:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("    Message d’erreur : dereferencement de null    ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_NULL_DEREFERENCEMENT));
                 compiler.addInstruction(new WNL());
                 compiler.addInstruction(new ERROR());
                 break;

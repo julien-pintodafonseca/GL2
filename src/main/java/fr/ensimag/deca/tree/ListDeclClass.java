@@ -72,13 +72,13 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
     }
 
     /**
-     * Generate the code of the method
+     * Generate the code of the initialization of variables and the code of the methods
      * @param compiler
      */
-    protected void codeGenMethod(DecacCompiler compiler) throws DecacFatalError {
+    protected void codeGenMethodAndFields(DecacCompiler compiler) throws DecacFatalError {
         LOG.debug("codeGen MethodBody for ListDeclClass: start");
         for (AbstractDeclClass declClass : getList()) {
-            declClass.codeGenMethod(compiler);
+            declClass.codeGenMethodAndFields(compiler);
         }
         LOG.debug("codeGen MethodBody Table for ListDeclClass: end");
     }

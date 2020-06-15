@@ -58,6 +58,12 @@ public class Program extends AbstractProgram {
         compiler.setErrorLabelManager();
         // TSTO #d
         // BOV pile_pleine
+        // Calcul pour ADDSP
+        int addsp = main.getNumberDeclVariables() + 2; // +2 car on compte la méthode equals de la classe Object et le pointeur vers la superclass de Object (null)
+        for (AbstractDeclClass classe : classes.getList()) {
+            addsp = addsp + compiler.environmentType.getClassDefinition(classe.getName()).getNumberOfMethods() + 1; // +1 car on compte le pointeur vers la superclass
+        }
+        compiler.addInstruction(new ADDSP(addsp));
 
         compiler.addComment("--------------------------------------------------");
         compiler.addComment("       Construction de la table des méthodes      ");
@@ -65,7 +71,6 @@ public class Program extends AbstractProgram {
         codeGenMethodTableObject(compiler);
 
         classes.codeGenMethodTable(compiler);
-        compiler.addFirst(new ADDSP(main.getNumberDeclVariables()+compiler.getStackManager().getGB()));
 
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());
@@ -73,8 +78,8 @@ public class Program extends AbstractProgram {
         // Code des méthodes de la classe Object
         codeGenMethodObject(compiler);
 
-        // Code des méthodes des classes créées par l'utilisateur
-        classes.codeGenMethod(compiler);
+        // Code des méthodes des classes créées par l'utilisateur et de l'initialisation des champs
+        classes.codeGenMethodAndFields(compiler);
 
         compiler.getErrorLabelManager().printErrors(compiler);
     }

@@ -8,6 +8,7 @@ import fr.ensimag.deca.context.ClassType;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.MethodDefinition;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
@@ -37,6 +38,11 @@ public class DeclClass extends AbstractDeclClass {
         this.classExtension = classExtension;
         this.fields = fields;
         this.methods = methods;
+    }
+
+    @Override
+    public SymbolTable.Symbol getName() {
+        return className.getName();
     }
 
     @Override
@@ -124,11 +130,12 @@ public class DeclClass extends AbstractDeclClass {
     }
 
     @Override
-    protected void codeGenMethod(DecacCompiler compiler) throws DecacFatalError {
+    protected void codeGenMethodAndFields(DecacCompiler compiler) throws DecacFatalError {
         compiler.addComment("");
         compiler.addComment("--------------------------------------------------");
         compiler.addComment("                Classe " + className.getName());
         compiler.addComment("--------------------------------------------------");
+        fields.codeGenFields(compiler, className.getClassDefinition());
         methods.codeGenMethod(compiler, className.getClassDefinition());
     }
 

@@ -57,6 +57,7 @@ public abstract class AbstractPrint extends AbstractInst {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+        compiler.addComment("Affichage de : " + arguments.decompile());
         for (AbstractExpr a : getArguments().getList()) {
             a.codeGenPrint(compiler, getPrintHex());
         }

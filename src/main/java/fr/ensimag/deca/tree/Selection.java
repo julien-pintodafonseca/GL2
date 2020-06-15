@@ -1,12 +1,15 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
-import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.codegen.ErrorLabelType;
+import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.*;
+import fr.ensimag.ima.pseudocode.instructions.BEQ;
+import fr.ensimag.ima.pseudocode.instructions.CMP;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import org.apache.commons.lang.Validate;
 
 import java.io.PrintStream;
@@ -48,6 +51,23 @@ public class Selection extends AbstractLValue {
         } else {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_SELECTION_EXPR_IS_NOT_CLASS + obj.decompile() + " est de type " + obj.getType() + ".", getLocation());
         }
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        obj.codeGenInst(compiler, Register.R1);
+        compiler.addInstruction(new CMP(new NullOperand(), Register.R1));
+        compiler.addInstruction(new BEQ(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT))));
+        compiler.getErrorLabelManager().addError(ErrorLabelType.LB_NULL_DEREFERENCEMENT);
+        ClassDefinition def =compiler.environmentType.getClassDefinition(obj.getType().getName());
+        FieldDefinition fieldDef = (FieldDefinition) def.getMembers().get(field.getName());
+        compiler.addInstruction(new LOAD(new RegisterOffset(fieldDef.getIndex(), Register.R1), register));
+    }
+
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
+        codeGenInst(compiler, Register.R1);
+        super.codeGenPrint(compiler, printHex);
     }
 
     @Override

@@ -220,12 +220,12 @@ public class Identifier extends AbstractIdentifier {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
-        compiler.addInstruction(new LOAD(getVariableDefinition().getOperand(), register));
+        compiler.addInstruction(new LOAD(getExpDefinition().getOperand(), register));
     }
     
     @Override
     public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
-    	 VariableDefinition varDef = getVariableDefinition();
+    	 ExpDefinition varDef = getExpDefinition();
          DAddr addr = varDef.getOperand();
          compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R1));
     	 compiler.addInstruction(new CMP(addr,Register.R1));
