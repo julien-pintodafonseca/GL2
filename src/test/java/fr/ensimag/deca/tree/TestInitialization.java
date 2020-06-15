@@ -1,11 +1,8 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.AbstractExpr;
-import fr.ensimag.deca.tree.FloatLiteral;
-import fr.ensimag.deca.tree.Initialization;
-import fr.ensimag.deca.tree.IntLiteral;
+import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.ima.pseudocode.DAddr;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +24,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
+// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
 public class TestInitialization {
     private final IntLiteral expectedIntLiteral = new IntLiteral(5);
     private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);

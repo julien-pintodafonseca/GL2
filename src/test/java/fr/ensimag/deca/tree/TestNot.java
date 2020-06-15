@@ -1,10 +1,8 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.AbstractExpr;
-import fr.ensimag.deca.tree.BooleanLiteral;
-import fr.ensimag.deca.tree.Not;
+import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import org.junit.Before;
@@ -30,6 +28,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
+// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
 public class TestNot {
     private final UnsupportedOperationException expectedNoMoreRegister =
             new UnsupportedOperationException("no more available registers : policy not yet implemented");

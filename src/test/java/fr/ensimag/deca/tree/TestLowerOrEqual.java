@@ -1,9 +1,7 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.AbstractExpr;
-import fr.ensimag.deca.tree.Lower;
 import fr.ensimag.ima.pseudocode.Label;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
 
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
-public class TestLower {
+// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
+public class TestLowerOrEqual {
     private final List<String> IMACodeGenCMPExpectedReverseTrue = new ArrayList<>();
     private final List<String> IMACodeGenCMPExpectedReverseFalse = new ArrayList<>();
 
@@ -37,24 +36,24 @@ public class TestLower {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         IMACodeGenCMPExpectedReverseTrue.add("CMP R3, R2");
-        IMACodeGenCMPExpectedReverseTrue.add("BGE lb");
+        IMACodeGenCMPExpectedReverseTrue.add("BGT lb");
         IMACodeGenCMPExpectedReverseFalse.add("CMP R3, R2");
-        IMACodeGenCMPExpectedReverseFalse.add("BLT lb");
+        IMACodeGenCMPExpectedReverseFalse.add("BLE lb");
     }
 
     @Test
     public void testCodeGenCMPReverseTrue() throws DecacFatalError { // Cas où le paramètre reverse=true
-        Lower lower = new Lower(sonL, sonR);
+        LowerOrEqual lowerOrEqual = new LowerOrEqual(sonL, sonR);
         compiler = new DecacCompiler(null, null);
         compiler.setRegisterManager(5);
 
-        lower.codeGenCMP(compiler, lb, true);
+        lowerOrEqual.codeGenCMP(compiler, lb, true);
 
         // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), lower.getLeftOperand().getType());
-        assertThat(lower.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), lower.getRightOperand().getType());
-        assertThat(lower.getRightOperand(), is(sonR));
+        assertEquals(sonL.getType(), lowerOrEqual.getLeftOperand().getType());
+        assertThat(lowerOrEqual.getLeftOperand(), is(sonL));
+        assertEquals(sonR.getType(), lowerOrEqual.getRightOperand().getType());
+        assertThat(lowerOrEqual.getRightOperand(), is(sonR));
 
         String result = compiler.displayIMAProgram();
         assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedReverseTrue));
@@ -62,17 +61,17 @@ public class TestLower {
 
     @Test
     public void testCodeGenCMPReverseFalse() throws DecacFatalError { // Cas où le paramètre reverse=true
-        Lower lower = new Lower(sonL, sonR);
+        LowerOrEqual lowerOrEqual = new LowerOrEqual(sonL, sonR);
         compiler = new DecacCompiler(null, null);
         compiler.setRegisterManager(5);
 
-        lower.codeGenCMP(compiler, lb, false);
+        lowerOrEqual.codeGenCMP(compiler, lb, false);
 
         // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), lower.getLeftOperand().getType());
-        assertThat(lower.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), lower.getRightOperand().getType());
-        assertThat(lower.getRightOperand(), is(sonR));
+        assertEquals(sonL.getType(), lowerOrEqual.getLeftOperand().getType());
+        assertThat(lowerOrEqual.getLeftOperand(), is(sonL));
+        assertEquals(sonR.getType(), lowerOrEqual.getRightOperand().getType());
+        assertThat(lowerOrEqual.getRightOperand(), is(sonR));
 
         String result = compiler.displayIMAProgram();
         assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedReverseFalse));

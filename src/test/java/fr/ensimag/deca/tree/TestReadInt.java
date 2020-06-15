@@ -1,8 +1,7 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.ReadInt;
 import fr.ensimag.ima.pseudocode.Register;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +19,7 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
+// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
 public class TestReadInt {
     private final List<String> IMACodeGenPrintExpected = new ArrayList<>();
     private final List<String> IMACodeGenInstExpected = new ArrayList<>();

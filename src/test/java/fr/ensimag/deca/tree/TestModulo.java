@@ -1,12 +1,10 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.tree.AbstractExpr;
-import fr.ensimag.deca.tree.FloatLiteral;
-import fr.ensimag.deca.tree.IntLiteral;
-import fr.ensimag.deca.tree.Modulo;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.utils.Utils;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
@@ -25,6 +23,12 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
+// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
 public class TestModulo {
     private final DecacCompiler compiler = new DecacCompiler(null, null);
     private final Type INT = compiler.environmentType.INT;

@@ -1,7 +1,6 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.tree.StringLiteral;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +17,7 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
+// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
 public class TestStringLiteral {
     private final List<String> IMACodeGenPrintExpectedEmptyString = new ArrayList<>();
     private final List<String> IMACodeGenPrintExpectedString = new ArrayList<>();
