@@ -1,19 +1,17 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.context.FloatType;
-import fr.ensimag.deca.context.IntType;
-import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
-import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * Print statement (print, println, ...).
@@ -25,7 +23,7 @@ public abstract class AbstractPrint extends AbstractInst {
     private static final Logger LOG = Logger.getLogger(AbstractPrint.class);
 
     private boolean printHex;
-    private ListExpr arguments = new ListExpr();
+    private ListExpr arguments;
     
     abstract String getSuffix();
 
@@ -89,5 +87,4 @@ public abstract class AbstractPrint extends AbstractInst {
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         arguments.prettyPrint(s, prefix, true);
     }
-
 }

@@ -15,6 +15,8 @@ import fr.ensimag.deca.context.Type;
  * @date 2020
  */
 public abstract class AbstractMethodBody extends Tree {
+
+    // TODO : vérifier que cette méthode est utilisée quelque part
     protected abstract void codeGenMethodBody(DecacCompiler compiler) throws DecacFatalError;
 
     /**

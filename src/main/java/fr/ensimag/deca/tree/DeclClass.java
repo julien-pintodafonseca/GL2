@@ -95,7 +95,7 @@ public class DeclClass extends AbstractDeclClass {
         className.getClassDefinition().initVTable();
 
         // Ajout de la méthode equals
-        for(AbstractDeclMethod method : methods.getList()){
+        for (AbstractDeclMethod method : methods.getList()) {
             MethodDefinition methodDef = (MethodDefinition) className.getClassDefinition().getMembers().get(method.getName());
             methodDef.setLabel(new Label("code." + className.getName() + "." + method.getName()));
 
@@ -104,8 +104,8 @@ public class DeclClass extends AbstractDeclClass {
 
         // Ajout des méthodes de la superclasse
         int i=1;
-        while(classExtension.getClassDefinition().getVTable().containKey(i) || className.getClassDefinition().getVTable().containKey(i) ){
-            if(!className.getClassDefinition().getVTable().containKey(i)) {
+        while (classExtension.getClassDefinition().getVTable().containKey(i) || className.getClassDefinition().getVTable().containKey(i) ) {
+            if (!className.getClassDefinition().getVTable().containKey(i)) {
                 className.getClassDefinition().getVTable().addMethod(classExtension.getClassDefinition().getVTable().getMethodDef(i));
             }
 
@@ -152,5 +152,4 @@ public class DeclClass extends AbstractDeclClass {
         fields.iterChildren(f);
         methods.iterChildren(f);
     }
-
 }

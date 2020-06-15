@@ -3,7 +3,6 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
-import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
@@ -11,7 +10,6 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.WINT;
 import org.apache.log4j.Logger;
 
 import java.io.PrintStream;
@@ -46,13 +44,13 @@ public class IntLiteral extends AbstractExpr {
     }
 
     @Override
-    public void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
         compiler.addInstruction(new LOAD(new ImmediateInteger(getValue()), Register.R1));
         super.codeGenPrint(compiler, printHex);
     }
 
     @Override
-    public void codeGenInst(DecacCompiler compiler, GPRegister register) {
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
         compiler.addInstruction(new LOAD(new ImmediateInteger(getValue()), register));
     }
 
@@ -75,5 +73,4 @@ public class IntLiteral extends AbstractExpr {
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         // leaf node => nothing to do
     }
-
 }

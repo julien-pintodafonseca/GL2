@@ -24,7 +24,7 @@ public class RegisterManager {
         registers = new HashMap<>();
 
         // We don't deal with scratch registers R0 & R1
-        for(int i=2; i<=(size-1); i++) {
+        for (int i=2; i<=(size-1); i++) {
             registers.put(i, false);
         }
     }
@@ -49,7 +49,7 @@ public class RegisterManager {
     }
 
     public int nextAvailable() {
-        for(int i=2; i<=(size-1); i++) {
+        for (int i=2; i<=(size-1); i++) {
             if (!registers.get(i)) {
                 return i;
             }

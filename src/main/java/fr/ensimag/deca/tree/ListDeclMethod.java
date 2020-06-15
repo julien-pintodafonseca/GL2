@@ -26,7 +26,7 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
-    public void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
+    protected void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         LOG.debug("verify listClassMethods : start");
         // Règle syntaxe contextuelle : (2.6)
         for (AbstractDeclMethod declMethod : getList()) {
@@ -46,5 +46,4 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
         }
         LOG.debug("verify listClassMethodsBody : end");
     }
-
 }

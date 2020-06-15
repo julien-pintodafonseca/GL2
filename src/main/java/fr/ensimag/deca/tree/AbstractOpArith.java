@@ -1,20 +1,17 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.codegen.ErrorLabelType;
-import fr.ensimag.deca.codegen.LabelType;
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BOV;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
-import fr.ensimag.ima.pseudocode.instructions.OPP;
 
 /**
  * Arithmetic binary operations (+, -, /, ...)
@@ -77,11 +74,11 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
         }
     }
 
-    public void codeGenError(DecacCompiler compiler) throws DecacFatalError {
+    protected void codeGenError(DecacCompiler compiler) throws DecacFatalError {
         // test débordement arithmétique sur les flottants ou division par zéro
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_ARITHMETIC_OVERFLOW);
         compiler.addInstruction(new BOV(new Label("" + compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW))), "Overflow : check for previous operation");
     }
 
-    public abstract void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError;
+    protected abstract void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError;
 }

@@ -1,11 +1,11 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import org.apache.commons.lang.Validate;
 
@@ -32,7 +32,7 @@ public class Selection extends AbstractLValue {
         // Syntaxe contextuelle : règles (3.65) et (3.66)
         obj.verifyExpr(compiler, localEnv, currentClass);
         Type typeClass = obj.getType();
-        if(typeClass.isClass()) {
+        if (typeClass.isClass()) {
             ClassDefinition classDef = compiler.environmentType.getClassDefinition(typeClass.getName());
             field.verifyExpr(compiler, classDef.getMembers(), currentClass);
 

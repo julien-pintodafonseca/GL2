@@ -22,9 +22,9 @@ public class NotEquals extends AbstractOpExactCmp {
     protected String getOperatorName() {
         return "!=";
     }
-    
+
     @Override
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         super.codeGenCMP(compiler, label, reverse);
         if (reverse) {
             compiler.addInstruction(new BEQ(label));
@@ -32,5 +32,4 @@ public class NotEquals extends AbstractOpExactCmp {
             compiler.addInstruction(new BNE(label));
         }
     }
-
 }

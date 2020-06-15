@@ -18,10 +18,10 @@ public abstract class AbstractDeclParam extends Tree {
      * Pass 2 of [SyntaxeContextuelle]. Verify that the type of
      * the params of a method are OK.
      */
-    public abstract Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethode) throws ContextualError;
+    protected abstract Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethode) throws ContextualError;
 
     /**
      * Pass 3 of [SyntaxeContextuelle].
      */
-    public abstract void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError;
+    protected abstract void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError;
 }

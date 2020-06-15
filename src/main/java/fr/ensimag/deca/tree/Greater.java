@@ -18,14 +18,13 @@ public class Greater extends AbstractOpIneq {
         super(leftOperand, rightOperand);
     }
 
-
     @Override
     protected String getOperatorName() {
         return ">";
     }
     
     @Override
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         super.codeGenCMP(compiler, label, reverse);
         if (reverse) {
             compiler.addInstruction(new BLE(label));
@@ -33,5 +32,4 @@ public class Greater extends AbstractOpIneq {
             compiler.addInstruction(new BGT(label));
         }
     }
-
 }

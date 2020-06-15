@@ -34,7 +34,7 @@ public class InstanceOf extends AbstractExpr {
         Type t1 = expr.verifyExpr(compiler, localEnv, currentClass);
         Type t2 = type.verifyType(compiler);
         if (t1.isClassOrNull()) {
-            if(t2.isClass()) {
+            if (t2.isClass()) {
                 setType(compiler.environmentType.BOOLEAN);
                 return compiler.environmentType.BOOLEAN;
             } else {

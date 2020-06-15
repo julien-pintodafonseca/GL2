@@ -23,7 +23,7 @@ public class DeclParam extends AbstractDeclParam {
     }
 
     @Override
-    public Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
+    protected Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
         // Règle syntaxe contextuelle : (2.9)
         Type t = varType.verifyType(compiler);
         varType.setType(t);
@@ -35,7 +35,7 @@ public class DeclParam extends AbstractDeclParam {
     }
 
     @Override
-    public void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError {
+    protected void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError {
         // Règle syntaxe contextuelle : (3.13)
         ParamDefinition paramDef = new ParamDefinition(varType.getType(),getLocation());
         varName.setDefinition(paramDef);

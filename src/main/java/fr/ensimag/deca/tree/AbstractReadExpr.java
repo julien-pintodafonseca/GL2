@@ -2,9 +2,6 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.codegen.ErrorLabelType;
-import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.instructions.BOV;
 
 /**
  * read...() statement.
@@ -18,5 +15,5 @@ public abstract class AbstractReadExpr extends AbstractExpr {
         super();
     }
 
-    abstract public void codeGenError(DecacCompiler compiler) throws DecacFatalError;
+    protected abstract void codeGenError(DecacCompiler compiler) throws DecacFatalError;
 }

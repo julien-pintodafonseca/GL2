@@ -14,7 +14,6 @@ public abstract class AbstractMain extends Tree {
 
     protected abstract void codeGenMain(DecacCompiler compiler) throws DecacFatalError;
 
-
     /**
      * Implements non-terminal "main" of [SyntaxeContextuelle] in pass 3 
      */

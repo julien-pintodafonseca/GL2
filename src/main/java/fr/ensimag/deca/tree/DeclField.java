@@ -97,5 +97,4 @@ public class DeclField extends AbstractDeclField {
         varName.iterChildren(f);
         initialization.iterChildren(f);
     }
-
 }

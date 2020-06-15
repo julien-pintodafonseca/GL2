@@ -3,6 +3,7 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tools.IndentPrintStream;
+
 import java.io.PrintStream;
 
 /**
@@ -13,13 +14,13 @@ import java.io.PrintStream;
  */
 public class EmptyMain extends AbstractMain {
     @Override
-    public void verifyMain(DecacCompiler compiler) throws ContextualError {
+    protected void verifyMain(DecacCompiler compiler) throws ContextualError {
         // Règle syntaxe contextuelle : (3.3)
         // nothing
     }
 
     @Override
-    public void codeGenMain(DecacCompiler compiler) {
+    protected void codeGenMain(DecacCompiler compiler) {
         // nothing
     }
 

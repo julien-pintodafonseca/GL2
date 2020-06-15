@@ -5,9 +5,6 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tree.AbstractDeclField;
-import fr.ensimag.deca.tree.AbstractDeclParam;
-import fr.ensimag.deca.tree.TreeList;
 import org.apache.log4j.Logger;
 
 /**
@@ -16,13 +13,12 @@ import org.apache.log4j.Logger;
  * @date 2020
  */
 public class ListDeclField extends TreeList<AbstractDeclField> {
-
     private static final Logger LOG = Logger.getLogger(ListDeclClass.class);
 
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
-    public void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
+    protected void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         LOG.debug("verify listClassFields : start");
         // Règle syntaxe contextuelle : (2.4)
         for (AbstractDeclField declField : getList()) {
@@ -51,5 +47,4 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
             s.println();
         }
     }
-
 }

@@ -1,11 +1,12 @@
 package fr.ensimag.deca.tree;
 
+import org.apache.commons.lang.Validate;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.lang.Validate;
 
 /**
  *
@@ -20,7 +21,7 @@ public abstract class TreeList<TreeType extends Tree> extends Tree {
      * IfThenElse, While, ...). If external iteration is needed, use getList().
      */
 
-    private List<TreeType> list = new ArrayList<TreeType>();
+    private List<TreeType> list = new ArrayList<>();
 
     public void add(TreeType i) {
         Validate.notNull(i);
@@ -83,5 +84,4 @@ public abstract class TreeList<TreeType extends Tree> extends Tree {
             i.iter(f);
         }
     }
-
 }

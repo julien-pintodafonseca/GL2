@@ -58,5 +58,4 @@ public class Location implements Serializable {
         this.positionInLine = positionInLine;
         this.filename = filename;
     }
-
 }

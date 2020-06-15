@@ -8,16 +8,10 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.ImmediateFloat;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.BEQ;
-import fr.ensimag.ima.pseudocode.instructions.BNE;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-
 import org.apache.log4j.Logger;
 
 import java.io.PrintStream;
@@ -51,19 +45,19 @@ public class BooleanLiteral extends AbstractExpr {
         return type;
     }
     @Override
-    public void codeGenInst(DecacCompiler compiler, GPRegister register) {
-    	if(getValue()) {
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
+    	if (getValue()) {
     		compiler.addInstruction(new LOAD(new ImmediateInteger(1), register));
-    	}else {
+    	} else {
     		compiler.addInstruction(new LOAD(new ImmediateInteger(0), register));
     	}
     	
     }
     @Override
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
-    	if(!getValue() && reverse) {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    	if (!getValue() && reverse) {
     		compiler.addInstruction(new BRA(label));
-    	}else if(getValue() && !reverse) {
+    	} else if (getValue() && !reverse) {
     		compiler.addInstruction(new BRA(label));
     	}
     }
@@ -87,5 +81,4 @@ public class BooleanLiteral extends AbstractExpr {
     String prettyPrintNode() {
         return "BooleanLiteral (" + value + ")";
     }
-
 }

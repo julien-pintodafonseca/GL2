@@ -23,7 +23,7 @@ public class And extends AbstractOpBool {
     }
 
     @Override
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         if (reverse) {
             // expr1 && expr2
             getLeftOperand().codeGenCMP(compiler, label, true);
@@ -42,5 +42,4 @@ public class And extends AbstractOpBool {
             compiler.addLabel(labelEnd);
         }
     }
-    
 }

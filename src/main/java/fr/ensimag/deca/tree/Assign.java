@@ -4,8 +4,6 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.log4j.Logger;
 
@@ -60,5 +58,4 @@ public class Assign extends AbstractBinaryExpr {
     protected String getOperatorName() {
         return "=";
     }
-
 }

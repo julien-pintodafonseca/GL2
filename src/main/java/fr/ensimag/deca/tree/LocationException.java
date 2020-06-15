@@ -35,5 +35,4 @@ public class LocationException extends Exception {
         assert(location == null || location.getFilename() != null);
         this.location = location;
     }
-
 }

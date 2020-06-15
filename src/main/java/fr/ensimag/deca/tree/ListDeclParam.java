@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 public class ListDeclParam extends TreeList<AbstractDeclParam> {
     private static final Logger LOG = Logger.getLogger(ListInst.class);
 
-    public Signature verifyListParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
+    protected Signature verifyListParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
         LOG.debug("verify listClassParams : start");
         // Règle syntaxe contextuelle : (2.8)
         Signature s=new Signature();
@@ -28,7 +28,7 @@ public class ListDeclParam extends TreeList<AbstractDeclParam> {
         return s;
     }
 
-    public EnvironmentExp verifyListParamBody(DecacCompiler compiler) throws ContextualError {
+    protected EnvironmentExp verifyListParamBody(DecacCompiler compiler) throws ContextualError {
         LOG.debug("verify listClassParams : start");
         // Règle syntaxe contextuelle : (3.12)
         EnvironmentExp envExpParams = new EnvironmentExp(null);

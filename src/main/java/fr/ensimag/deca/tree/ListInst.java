@@ -25,8 +25,8 @@ public class ListInst extends TreeList<AbstractInst> {
      *          corresponds to "class" attribute (null in the main bloc).
      * @param returnType
      *          corresponds to "return" attribute (void in the main bloc).
-     */    
-    public void verifyListInst(DecacCompiler compiler, EnvironmentExp localEnv,
+     */
+    protected void verifyListInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
         // Règle syntaxe contextuelle : (3.19)
@@ -37,7 +37,7 @@ public class ListInst extends TreeList<AbstractInst> {
         LOG.debug("verify ListInst: end");
     }
 
-    public void codeGenListInst(DecacCompiler compiler) throws DecacFatalError {
+    protected void codeGenListInst(DecacCompiler compiler) throws DecacFatalError {
         for (AbstractInst inst : getList()) {
             inst.codeGenInst(compiler);
         }

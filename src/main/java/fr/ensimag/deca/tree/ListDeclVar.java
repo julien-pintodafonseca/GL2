@@ -37,8 +37,8 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
      *      the "env_exp_r" attribute
      * @param currentClass 
      *          corresponds to "class" attribute (null in the main bloc).
-     */    
-    void verifyListDeclVariable(DecacCompiler compiler, EnvironmentExp localEnv,
+     */
+    protected void verifyListDeclVariable(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
         LOG.debug("verify listDeclVar: start");
         // Règle syntaxe contextuelle : (3.16)
@@ -48,10 +48,9 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
         LOG.debug("verify listDeclVar: end");
     }
 
-    public void codeGenListDeclVar(DecacCompiler compiler) throws DecacFatalError {
+    protected void codeGenListDeclVar(DecacCompiler compiler) throws DecacFatalError {
         for (AbstractDeclVar declVar : getList()) {
             declVar.codeGenDeclVar(compiler);
         }
     }
-
 }

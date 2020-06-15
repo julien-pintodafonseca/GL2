@@ -34,7 +34,7 @@ public class DeclMethod extends AbstractDeclMethod {
     }
 
     @Override
-    public void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
+    protected void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         // Règle syntaxe contextuelle : (2.7)
         Type t = type.verifyType(compiler);
         type.setType(t);
@@ -48,7 +48,7 @@ public class DeclMethod extends AbstractDeclMethod {
             if (superMethName instanceof MethodDefinition) {
                 // les signatures de la méthode et de la méthode héritée sont identiques
                 Signature superSignature = ((MethodDefinition) superMethName).getSignature();
-                if(!superSignature.equals(s)) {
+                if (!superSignature.equals(s)) {
                     throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DIFF_SIGNATURE_REDEFINED_METHOD + methodName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
                 }
 

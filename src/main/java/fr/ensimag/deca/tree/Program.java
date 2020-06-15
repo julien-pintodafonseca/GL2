@@ -4,15 +4,17 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.*;
-import java.io.PrintStream;
+import fr.ensimag.ima.pseudocode.instructions.HALT;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * Deca complete program (class definition plus main block)
@@ -22,6 +24,8 @@ import org.apache.log4j.Logger;
  */
 public class Program extends AbstractProgram {
     private static final Logger LOG = Logger.getLogger(Program.class);
+    private ListDeclClass classes;
+    private AbstractMain main;
     
     public Program(ListDeclClass classes, AbstractMain main) {
         Validate.notNull(classes);
@@ -29,14 +33,14 @@ public class Program extends AbstractProgram {
         this.classes = classes;
         this.main = main;
     }
+
     public ListDeclClass getClasses() {
         return classes;
     }
+
     public AbstractMain getMain() {
         return main;
     }
-    private ListDeclClass classes;
-    private AbstractMain main;
 
     @Override
     public void verifyProgram(DecacCompiler compiler) throws ContextualError, EnvironmentExp.DoubleDefException {

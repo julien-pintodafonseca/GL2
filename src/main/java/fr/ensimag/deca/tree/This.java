@@ -1,16 +1,14 @@
 package fr.ensimag.deca.tree;
 
-import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import java.io.PrintStream;
 
-import org.apache.commons.lang.Validate;
+import java.io.PrintStream;
 
 /**
  *
@@ -47,7 +45,7 @@ public class This extends AbstractExpr {
 
     @Override
     protected void prettyPrintChildren(PrintStream s, String prefix) {
-            //no child
+            // no child
     }
 
     @Override

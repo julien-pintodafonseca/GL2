@@ -4,10 +4,8 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tree.AbstractDeclMethod;
 import org.apache.commons.lang.Validate;
 
-import javax.management.ListenerNotFoundException;
 import java.io.PrintStream;
 
 /**
