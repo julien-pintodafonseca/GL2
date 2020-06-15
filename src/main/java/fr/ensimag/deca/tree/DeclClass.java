@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ClassType;
@@ -80,7 +81,7 @@ public class DeclClass extends AbstractDeclClass {
 
     @Override
     protected void codeGenMethodTable(DecacCompiler compiler) {
-        compiler.addComment("Code of the method table of " + className.getName());
+        compiler.addComment("Code de la table des methodes de " + className.getName());
 
         // Récupération de l'adresse de la classe supérieure
         compiler.addInstruction(new LEA(classExtension.getClassDefinition().getOperand(),Register.R0));
@@ -99,14 +100,14 @@ public class DeclClass extends AbstractDeclClass {
             MethodDefinition methodDef = (MethodDefinition) className.getClassDefinition().getMembers().get(method.getName());
             methodDef.setLabel(new Label("code." + className.getName() + "." + method.getName()));
 
-            className.getClassDefinition().getVTable().addMethod(methodDef);
+            className.getClassDefinition().getVTable().addMethod(method);
         }
 
         // Ajout des méthodes de la superclasse
         int i=1;
         while(classExtension.getClassDefinition().getVTable().containKey(i) || className.getClassDefinition().getVTable().containKey(i) ){
             if(!className.getClassDefinition().getVTable().containKey(i)) {
-                className.getClassDefinition().getVTable().addMethod(classExtension.getClassDefinition().getVTable().getMethodDef(i));
+                className.getClassDefinition().getVTable().addMethod(classExtension.getClassDefinition().getVTable().getMethod(i));
             }
 
             // génération du code assembleur pour la table des méthodes
@@ -120,6 +121,15 @@ public class DeclClass extends AbstractDeclClass {
             i++;
         }
 
+    }
+
+    @Override
+    protected void codeGenMethod(DecacCompiler compiler) throws DecacFatalError {
+        compiler.addComment("");
+        compiler.addComment("--------------------------------------------------");
+        compiler.addComment("                Classe " + className.getName());
+        compiler.addComment("--------------------------------------------------");
+        methods.codeGenMethod(compiler, className.getClassDefinition());
     }
 
     @Override

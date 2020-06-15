@@ -19,6 +19,11 @@ public class EmptyMain extends AbstractMain {
     }
 
     @Override
+    public int getNumberDeclVariables() {
+        return 0;
+    }
+
+    @Override
     public void codeGenMain(DecacCompiler compiler) {
         // nothing
     }

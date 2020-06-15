@@ -15,6 +15,8 @@ import fr.ensimag.deca.context.Type;
  * @date 2020
  */
 public abstract class AbstractMethodBody extends Tree {
+    public abstract int getNumberDeclVariables();
+
     protected abstract void codeGenMethodBody(DecacCompiler compiler) throws DecacFatalError;
 
     /**

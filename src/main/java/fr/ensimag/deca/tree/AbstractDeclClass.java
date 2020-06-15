@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ContextualError;
 
 /**
@@ -38,5 +39,11 @@ public abstract class AbstractDeclClass extends Tree {
      * @param compiler
      */
     protected abstract void codeGenMethodTable(DecacCompiler compiler);
+
+    /**
+     * Generate the code of the method
+     * @param compiler
+     */
+    protected abstract void codeGenMethod(DecacCompiler compiler) throws DecacFatalError;
 
 }

@@ -12,13 +12,13 @@ class A {
       return x ;
    }
    void setX(int x) {
-      this.x = x ;
+      //this.x = x ;
    }
 }
 
 {
-   A a = new A() ;
+   //A a = new A() ;
 
-   a.setX(1) ;
-   println("a.getX() = ", a.getX()) ;
+   //a.setX(1) ;
+   //println("a.getX() = ", a.getX()) ;
 }

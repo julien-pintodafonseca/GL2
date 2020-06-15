@@ -7,6 +7,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import java.io.PrintStream;
 
+import fr.ensimag.ima.pseudocode.instructions.ADDSP;
 import fr.ensimag.ima.pseudocode.instructions.HALT;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
@@ -40,13 +41,19 @@ public class Main extends AbstractMain {
     }
 
     @Override
+    public int getNumberDeclVariables() {
+        return declVariables.size();
+    }
+
+    @Override
     protected void codeGenMain(DecacCompiler compiler) throws DecacFatalError {
+        compiler.addComment("");
         compiler.addComment("--------------------------------------------------");
-        compiler.addComment("             Code of the main program             ");
+        compiler.addComment("           Code du programme principal            ");
         compiler.addComment("--------------------------------------------------");
-        compiler.addComment("Beginning of variable declarations:");
+        compiler.addComment("Declarations des variables :");
         declVariables.codeGenListDeclVar(compiler);
-        compiler.addComment("Beginning of main instructions:");
+        compiler.addComment("Instructions du programme principal :");
         insts.codeGenListInst(compiler);
     }
     

@@ -30,6 +30,12 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     @Override
+    public int getNumberDeclVariables() {
+        return declVariables.size();
+    }
+
+
+    @Override
     protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError {
         // Règle syntaxe contextuelle : (3.14) -> (3.18)
         declVariables.verifyListDeclVariable(compiler, localEnv, currentClass);
@@ -38,7 +44,8 @@ public class MethodBody extends AbstractMethodBody {
 
     @Override
     protected void codeGenMethodBody(DecacCompiler compiler) throws DecacFatalError {
-        throw new UnsupportedOperationException("not yet implemented");
+        declVariables.codeGenListDeclVar(compiler);
+        insts.codeGenListInst(compiler);
     }
 
     @Override

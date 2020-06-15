@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -16,6 +17,8 @@ public abstract class AbstractDeclMethod extends Tree {
 
     public abstract SymbolTable.Symbol getName();
 
+    public abstract AbstractIdentifier getIdentifier();
+
     /**
      * Pass 2 of [SyntaxeContextuelle]. Verify that the methods) are OK,
      * without looking at method body.
@@ -27,5 +30,11 @@ public abstract class AbstractDeclMethod extends Tree {
      * contained in the method are OK.
      */
     public abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError;
+
+    /**
+     * Generate the code of the method
+     * @param compiler
+     */
+    protected abstract void codeGenMethod(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError;
 
 }
