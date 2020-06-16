@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
+// TODO
 public class TestOr {
     private final List<String> IMACodeGenCMPExpectedOrFalse = new ArrayList<>();
     private final List<String> IMACodeGenCMPExpectedOrTrue = new ArrayList<>();

@@ -3,81 +3,94 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.ima.pseudocode.Label;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 /**
  *
  * @author Equipe GL2
  * @date 2020
  */
-// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
 public class TestAnd {
-    private final List<String> IMACodeGenCMPExpectedAndTrue = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedAndFalse = new ArrayList<>();
+    private final Label anyLabel = new Label("my_basic_label");
+    private final BooleanLiteral boolTrueExpr1 = new BooleanLiteral(true);
+    private final BooleanLiteral boolTrueExpr2 = new BooleanLiteral(true);
+    private final BooleanLiteral boolFalseExpr1 = new BooleanLiteral(false);
+    private final BooleanLiteral boolFalseExpr2 = new BooleanLiteral(false);
 
-    @Mock private AbstractExpr sonL;
-    @Mock private AbstractExpr sonR;
-    @Mock private Label lb;
+    @Test
+    public void testCodeGenCMPWithReverse() throws DecacFatalError {
+        // true && true
+        List<String> expectedTrue1 = Collections.singletonList("");
+        codeGenCMPWithSpecificParams(boolTrueExpr1, boolTrueExpr2, true, expectedTrue1);
 
-    private DecacCompiler compiler;
+        // true && false
+        List<String> expectedTrue2 = Collections.singletonList("BRA my_basic_label");
+        codeGenCMPWithSpecificParams(boolTrueExpr1, boolFalseExpr2, true, expectedTrue2);
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        compiler = new DecacCompiler(null, null);
-        compiler.setLabelManager();
-        when(sonL.getType()).thenReturn(compiler.environmentType.BOOLEAN);
-        when(sonR.getType()).thenReturn(compiler.environmentType.BOOLEAN);
-        IMACodeGenCMPExpectedAndTrue.add("");
-        IMACodeGenCMPExpectedAndFalse.add("BRA or_end0");
-        IMACodeGenCMPExpectedAndFalse.add("or0:");
-        IMACodeGenCMPExpectedAndFalse.add("or_end0:");
+        // false && true
+        List<String> expectedTrue3 = Collections.singletonList("BRA my_basic_label");
+        codeGenCMPWithSpecificParams(boolFalseExpr1, boolTrueExpr2, true, expectedTrue3);
+
+        // false && false
+        List<String> expectedTrue4 = new ArrayList<>();
+        expectedTrue4.add("BRA my_basic_label");
+        expectedTrue4.add("BRA my_basic_label");
+        codeGenCMPWithSpecificParams(boolFalseExpr1, boolFalseExpr2, true, expectedTrue4);
     }
 
     @Test
-    public void testCodeGenCMP() throws DecacFatalError {
-        And and = new And(sonL, sonR);
+    public void testCodeGenCMPWithoutReverse() throws DecacFatalError {
+        // true && true
+        List<String> expectedFalse1 = new ArrayList<>();
+        expectedFalse1.add("BRA or0");
+        expectedFalse1.add("BRA or_end0");
+        expectedFalse1.add("or0:");
+        expectedFalse1.add("BRA my_basic_label");
+        expectedFalse1.add("or_end0:");
+        codeGenCMPWithSpecificParams(boolTrueExpr1, boolTrueExpr2, false, expectedFalse1);
 
-        // Les appels récursifs à la méthode codeGenCMP() se font en gardant la même valeur pour l'argument "reverse"
-        and.codeGenCMP(compiler, lb, false);
-        verify(sonL).codeGenCMP(eq(compiler), any(Label.class), eq(false));
-        verify(sonR).codeGenCMP(compiler, lb, false);
+        // true && false
+        List<String> expectedFalse2 = new ArrayList<>();
+        expectedFalse2.add("BRA or0");
+        expectedFalse2.add("BRA or_end0");
+        expectedFalse2.add("or0:");
+        expectedFalse2.add("or_end0:");
+        codeGenCMPWithSpecificParams(boolTrueExpr1, boolFalseExpr2, false, expectedFalse2);
 
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), and.getLeftOperand().getType());
-        assertThat(and.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), and.getRightOperand().getType());
-        assertThat(and.getRightOperand(), is(sonR));
+        // false && true
+        List<String> expectedFalse3 = new ArrayList<>();
+        expectedFalse3.add("BRA or_end0");
+        expectedFalse3.add("or0:");
+        expectedFalse3.add("BRA my_basic_label");
+        expectedFalse3.add("or_end0:");
+        codeGenCMPWithSpecificParams(boolFalseExpr1, boolTrueExpr2, false, expectedFalse3);
 
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedAndFalse));
+        // false && false
+        List<String> expectedFalse4 = new ArrayList<>();
+        expectedFalse4.add("BRA or_end0");
+        expectedFalse4.add("or0:");
+        expectedFalse4.add("or_end0:");
+        codeGenCMPWithSpecificParams(boolFalseExpr1, boolFalseExpr2, false, expectedFalse4);
+    }
 
-        compiler = new DecacCompiler(null, null);
+    private void codeGenCMPWithSpecificParams(BooleanLiteral boolExpr1, BooleanLiteral boolExpr2,
+                                              Boolean reverse, List<String> expected) throws DecacFatalError {
+        // check codeGenCMP
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setLabelManager();
 
-        // Les appels récursifs à la méthode codeGenCMP() se font en gardant la même valeur pour l'argument "reverse"
-        and.codeGenCMP(compiler, lb, true);
-        verify(sonL).codeGenCMP(compiler, lb, true);
-        verify(sonR).codeGenCMP(compiler, lb, true);
+        And and = new And(boolExpr1, boolExpr2);
+        and.codeGenCMP(myCompiler, anyLabel, reverse);
 
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), and.getLeftOperand().getType());
-        assertThat(and.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), and.getRightOperand().getType());
-        assertThat(and.getRightOperand(), is(sonR));
-
-        result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedAndTrue));
+        String result = myCompiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(expected));
     }
 }

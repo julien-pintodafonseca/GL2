@@ -30,20 +30,17 @@ import static org.mockito.Mockito.when;
 public class TestMinus {
     private final Type INT = new IntType(null);
     private final Type FLOAT = new FloatType(null);
+    private final GPRegister reg1 = Register.R0;
+    private final GPRegister reg2 = Register.R1;
 
     @Mock private AbstractExpr intexpr1;
     @Mock private AbstractExpr intexpr2;
     @Mock private AbstractExpr floatexpr1;
     @Mock private AbstractExpr floatexpr2;
 
-    private GPRegister reg1;
-    private GPRegister reg2;
-
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        reg1 = Register.R0;
-        reg2 = Register.R1;
         when(intexpr1.getType()).thenReturn(INT);
         when(intexpr2.getType()).thenReturn(INT);
         when(floatexpr1.getType()).thenReturn(FLOAT);

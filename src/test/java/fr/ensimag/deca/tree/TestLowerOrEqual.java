@@ -21,7 +21,7 @@ import static org.hamcrest.core.Is.is;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
+// TODO
 public class TestLowerOrEqual {
     private final List<String> IMACodeGenCMPExpectedReverseTrue = new ArrayList<>();
     private final List<String> IMACodeGenCMPExpectedReverseFalse = new ArrayList<>();

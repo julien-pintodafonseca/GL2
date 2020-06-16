@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
+// TODO
 public class TestInitialization {
     private final IntLiteral expectedIntLiteral = new IntLiteral(5);
     private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);

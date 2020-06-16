@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
+// TODO
 public class TestModulo {
     private final DecacCompiler compiler = new DecacCompiler(null, null);
     private final Type INT = compiler.environmentType.INT;

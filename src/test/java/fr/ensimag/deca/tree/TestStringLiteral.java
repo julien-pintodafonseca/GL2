@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
+// TODO
 public class TestStringLiteral {
     private final List<String> IMACodeGenPrintExpectedEmptyString = new ArrayList<>();
     private final List<String> IMACodeGenPrintExpectedString = new ArrayList<>();

@@ -19,7 +19,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO : vérifier que les tests sont ok (ne comporte QUE des méthodes codegen, etc)
+// TODO
 public class TestFloatLiteral {
     private final List<String> IMACodeGenInstExpectedFloat0 = new ArrayList<>();
     private final List<String> IMACodeGenInstExpectedFloat = new ArrayList<>();
