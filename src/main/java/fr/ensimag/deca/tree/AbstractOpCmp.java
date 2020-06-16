@@ -79,5 +79,5 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             // restauration dans les registres
         }
     }
-    
+
 }

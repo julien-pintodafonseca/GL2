@@ -4,6 +4,7 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.deca.tools.SymbolTable;
 
 import java.io.PrintStream;
 
@@ -20,6 +21,11 @@ public class DeclParam extends AbstractDeclParam {
     public DeclParam(AbstractIdentifier varType, AbstractIdentifier varName) {
         this.varType = varType;
         this.varName = varName;
+    }
+
+    @Override
+    public ExpDefinition getExpDefinition() {
+        return varName.getExpDefinition();
     }
 
     @Override

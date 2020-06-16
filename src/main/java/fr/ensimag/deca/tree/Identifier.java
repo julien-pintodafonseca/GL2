@@ -7,11 +7,7 @@ import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
-import fr.ensimag.ima.pseudocode.DAddr;
-import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.ImmediateInteger;
-import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.*;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.BNE;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
@@ -206,35 +202,51 @@ public class Identifier extends AbstractIdentifier {
             return typeDef.getType();
         }
     }
-    
-    
+
+
     private Definition definition;
 
     @Override
     protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        VariableDefinition varDef = getVariableDefinition();
-        DAddr addr = varDef.getOperand();
-        compiler.addInstruction(new LOAD(addr, Register.R1));
+        ExpDefinition expDef = getExpDefinition();
+        if(expDef.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
+        compiler.addInstruction(new LOAD(expDef.getOperand(), Register.R1));
         super.codeGenPrint(compiler, printHex);
     }
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
+        if(getExpDefinition().isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
         compiler.addInstruction(new LOAD(getExpDefinition().getOperand(), register));
     }
     
     @Override
     public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
-    	 ExpDefinition varDef = getExpDefinition();
-         DAddr addr = varDef.getOperand();
-         compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R1));
-    	 compiler.addInstruction(new CMP(addr,Register.R1));
-    	
+        ExpDefinition expDef = getExpDefinition();
+        if(expDef.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
+        compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R0));
+        compiler.addInstruction(new CMP(expDef.getOperand(), Register.R0));
+
     	if(reverse) {
     		compiler.addInstruction(new BNE(label));
     	}else{
     		compiler.addInstruction(new BEQ(label));
     	}
+    }
+
+    @Override
+    public DAddr codeGenOperandAssign(DecacCompiler compiler) {
+        ExpDefinition expDef = getExpDefinition();
+        if(expDef.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
+        return expDef.getOperand();
     }
 
     @Override
@@ -267,5 +279,4 @@ public class Identifier extends AbstractIdentifier {
             s.println();
         }
     }
-
 }

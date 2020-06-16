@@ -9,6 +9,8 @@ import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 import java.io.PrintStream;
@@ -111,7 +113,14 @@ public class DeclMethod extends AbstractDeclMethod {
             compiler.addInstruction(new ADDSP(methodBody.getNumberDeclVariables()));
         }
 
-        Label end = new Label("fin." + methodName.getMethodDefinition().getLabel().toString());
+        // Set les opérandes pour chaque paramètre
+        int i = -3;
+        for (AbstractDeclParam param : params.getList()) {
+            param.getExpDefinition().setOperand(new RegisterOffset(i, Register.LB));
+            i--;
+        }
+
+        Label end = new Label("fin." + currentClass.getType() + "." + methodName.getName());
         compiler.getLabelManager().setCurrentLabel(end);
 
         // à compléter : Code de la sauvegarde des registres;
@@ -121,7 +130,7 @@ public class DeclMethod extends AbstractDeclMethod {
 
         // si la méthode n'est pas de type void, on s'assure qu'elle comprend bien une instruction de retour
         if(!type.getType().isVoid()) {
-            compiler.addInstruction(new WSTR("Erreur : sortie de la methode " + methodName.getName() + " sans instruction return."));
+            compiler.addInstruction(new WSTR("Erreur : sortie de la methode " + currentClass.getType() + "." + methodName.getName() + " sans instruction return."));
             compiler.addInstruction(new WNL());
             compiler.addInstruction(new ERROR());
         }

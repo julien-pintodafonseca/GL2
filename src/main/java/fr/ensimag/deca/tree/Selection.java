@@ -31,6 +31,17 @@ public class Selection extends AbstractLValue {
     }
 
     @Override
+    public DAddr codeGenOperandAssign(DecacCompiler compiler) throws DecacFatalError {
+        obj.codeGenInst(compiler, Register.R1);
+        compiler.addInstruction(new CMP(new NullOperand(), Register.R1));
+        compiler.addInstruction(new BEQ(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT))));
+        compiler.getErrorLabelManager().addError(ErrorLabelType.LB_NULL_DEREFERENCEMENT);
+        ClassDefinition def =compiler.environmentType.getClassDefinition(obj.getType().getName());
+        ExpDefinition fieldDef = def.getMembers().get(field.getName());
+        return fieldDef.getOperand();
+    }
+
+    @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
         // Syntaxe contextuelle : règles (3.65) et (3.66)
         obj.verifyExpr(compiler, localEnv, currentClass);
@@ -60,7 +71,7 @@ public class Selection extends AbstractLValue {
         compiler.addInstruction(new BEQ(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT))));
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_NULL_DEREFERENCEMENT);
         ClassDefinition def =compiler.environmentType.getClassDefinition(obj.getType().getName());
-        FieldDefinition fieldDef = (FieldDefinition) def.getMembers().get(field.getName());
+        FieldDefinition fieldDef = field.getFieldDefinition();
         compiler.addInstruction(new LOAD(new RegisterOffset(fieldDef.getIndex(), Register.R1), register));
     }
 

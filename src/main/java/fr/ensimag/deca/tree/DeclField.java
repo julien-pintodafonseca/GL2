@@ -80,6 +80,7 @@ public class DeclField extends AbstractDeclField {
     public void codeGenField(DecacCompiler compiler, ClassDefinition currentClass) {
         compiler.addComment("Initialisation de " + currentClass.getType() + "." + varName.getName());
         compiler.addInstruction(new LOAD(0, Register.R0));
+        varName.getFieldDefinition().setOperand(new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1));
         compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1))); // R1 contient l’adresse de l’objet
     }
 

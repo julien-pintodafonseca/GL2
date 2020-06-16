@@ -62,7 +62,7 @@ public class DeclVar extends AbstractDeclVar {
 
     @Override
     protected void codeGenDeclVar(DecacCompiler compiler) throws DecacFatalError {
-        compiler.addComment("Declaration de la variable " + varName.getName());
+        compiler.addComment("Declaration de la variable " + varName.getName() + " ligne " + getLocation().getLine());
         int offset = compiler.getStackManager().getGB();
         compiler.getStackManager().incrGB();
         RegisterOffset addr = new RegisterOffset(offset, Register.GB);

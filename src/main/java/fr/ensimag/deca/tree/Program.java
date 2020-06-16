@@ -117,7 +117,9 @@ public class Program extends AbstractProgram {
         inst.add(new Return(new Equals(new This(false), new Identifier(compiler.createSymbol("other")))));
         MethodBody methodBody = new MethodBody(new ListDeclVar(), inst);
         ListDeclParam params = new ListDeclParam();
-        params.add(new DeclParam(new Identifier(compiler.environmentType.OBJECT.getName()), new Identifier(compiler.createSymbol("other"))));
+        AbstractIdentifier paramName = new Identifier(compiler.createSymbol("other"));
+        paramName.setDefinition(new ParamDefinition(compiler.environmentType.OBJECT, Location.BUILTIN));
+        params.add(new DeclParam(new Identifier(compiler.environmentType.OBJECT.getName()), paramName));
         AbstractIdentifier type = new Identifier(compiler.environmentType.BOOLEAN.getName());
         type.setType(compiler.environmentType.BOOLEAN);
         DeclMethod method = new DeclMethod(type, new Identifier(compiler.createSymbol("equals")), params, methodBody);

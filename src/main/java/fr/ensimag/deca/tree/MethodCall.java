@@ -67,9 +67,17 @@ public class MethodCall extends AbstractExpr {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHODCALL_WITHOUT_CLASS + meth.getName() + ".", getLocation());
         }
     }
+
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
-        compiler.addComment("Appel de la méthode : " + this.decompile());
+        // Cas spécifique où il faut stocker le résultat retourné par la méthode appellée dans le registre register
+        this.codeGenInst(compiler);
+        compiler.addInstruction(new LOAD(Register.R0, register));
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+        compiler.addComment("Appel de la méthode : " + this.decompile() + " ligne " + getLocation().getLine());
 
         // On reserve de la place pour 1 + nombre de paramètres
         compiler.addInstruction(new ADDSP(params.size()+1));
@@ -80,11 +88,11 @@ public class MethodCall extends AbstractExpr {
         compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(0,Register.SP)));
 
         // On empile les paramètres
-        int i = -1;
+        int i = - params.size();
         for (AbstractExpr param : params.getList()) {
             param.codeGenInst(compiler, Register.R1);
             compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(i, Register.SP)));
-            i--;
+            i++;
         }
 
         //on recupère le paramètre implicite
@@ -103,6 +111,13 @@ public class MethodCall extends AbstractExpr {
         // Dépile les paramètres
         compiler.addInstruction(new SUBSP(params.size()+1));
     }
+
+    @Override
+    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
+        codeGenInst(compiler, Register.R1);
+        super.codeGenPrint(compiler, printHex);
+    }
+
     @Override
     public void decompile(IndentPrintStream s) {
         if (obj != null) {
