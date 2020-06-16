@@ -58,7 +58,7 @@ public class TestOr {
     }
 
     @Test
-    public void testWrongConditionTypes() {
+    public void testWrongTypes() {
         // check that verifyCondition with a INT leftOperand throws contextualError
         Or or1 = new Or(intExpr1, boolTrueExpr2);
 

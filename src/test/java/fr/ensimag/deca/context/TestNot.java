@@ -45,7 +45,7 @@ public class TestNot {
     }
 
     @Test
-    public void testWrongConditionTypes() {
+    public void testWrongTypes() {
         // check that verifyCondition with a INT leftOperand throws contextualError
         Not not1 = new Not(intExpr1);
 
