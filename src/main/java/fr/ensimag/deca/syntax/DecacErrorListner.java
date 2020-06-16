@@ -2,17 +2,13 @@ package fr.ensimag.deca.syntax;
 
 import fr.ensimag.deca.tree.Location;
 import fr.ensimag.deca.tree.LocationException;
-import java.util.BitSet;
-import org.antlr.v4.runtime.ANTLRErrorListener;
-import org.antlr.v4.runtime.IntStream;
-import org.antlr.v4.runtime.Parser;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.apache.log4j.Logger;
+
+import java.util.BitSet;
 
 /**
  * Error listener that stops the compilation at the first error usuing
@@ -22,7 +18,6 @@ import org.apache.log4j.Logger;
  */
 public class DecacErrorListner implements ANTLRErrorListener {
     private static final Logger LOG = Logger.getLogger(DecacErrorListner.class);
-
     private IntStream input;
 
     public DecacErrorListner(IntStream input) {

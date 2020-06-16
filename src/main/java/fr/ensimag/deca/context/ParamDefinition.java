@@ -28,5 +28,4 @@ public class ParamDefinition extends ExpDefinition {
     public boolean isParam() {
         return true;
     }
-
 }

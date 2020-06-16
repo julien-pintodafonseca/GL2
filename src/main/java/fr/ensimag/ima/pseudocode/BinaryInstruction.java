@@ -1,7 +1,8 @@
 package fr.ensimag.ima.pseudocode;
 
-import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+
+import java.io.PrintStream;
 
 /**
  * Base class for instructions with 2 operands.

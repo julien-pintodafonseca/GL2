@@ -9,6 +9,10 @@ import java.io.PrintStream;
  * @date 2020
  */
 public class Line extends AbstractLine {
+    private Instruction instruction;
+    private String comment;
+    private Label label;
+
     public Line(Label label, Instruction instruction, String comment) {
         super();
         checkComment(comment);
@@ -44,9 +48,6 @@ public class Line extends AbstractLine {
             throw new IMAInternalError("Comment '" + s + "'contains carriage return character");
         }
     }
-    private Instruction instruction;
-    private String comment;
-    private Label label;
 
     @Override
     void display(PrintStream s) {

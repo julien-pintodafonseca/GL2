@@ -12,5 +12,4 @@ public class NullOperand extends DVal {
     public String toString() {
         return "#null";
     }
-
 }

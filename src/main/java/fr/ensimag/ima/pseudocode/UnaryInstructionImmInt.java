@@ -14,5 +14,4 @@ public abstract class UnaryInstructionImmInt extends UnaryInstruction {
     protected UnaryInstructionImmInt(int i) {
         super(new ImmediateInteger(i));
     }
-
 }

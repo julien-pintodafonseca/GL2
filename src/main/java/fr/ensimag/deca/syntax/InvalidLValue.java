@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.ParserRuleContext;
  * @date 2020
  */
 public class InvalidLValue extends DecaRecognitionException {
-
     private static final long serialVersionUID = 4670163376041273741L;
 
     public InvalidLValue(DecaParser recognizer, ParserRuleContext ctx) {

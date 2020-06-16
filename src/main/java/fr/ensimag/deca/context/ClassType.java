@@ -10,7 +10,6 @@ import fr.ensimag.deca.tree.Location;
  * @date 2020
  */
 public class ClassType extends Type {
-    
     protected ClassDefinition definition;
     
     public ClassDefinition getDefinition() {
@@ -47,7 +46,6 @@ public class ClassType extends Type {
     protected ClassType(Symbol className) {
         super(className);
     }
-    
 
     @Override
     public boolean sameType(Type otherType) {
@@ -60,5 +58,4 @@ public class ClassType extends Type {
     public boolean isSubClassOf(ClassType potentialSuperClass) {
         throw new UnsupportedOperationException("not yet implemented"); 
     }
-
 }

@@ -10,5 +10,4 @@ public class BranchInstruction extends UnaryInstruction {
     public BranchInstruction(Label op) {
         super(op);
     }
-
 }

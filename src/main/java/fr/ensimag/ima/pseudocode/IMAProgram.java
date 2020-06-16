@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * @date 2020
  */
 public class IMAProgram {
-    private final LinkedList<AbstractLine> lines = new LinkedList<AbstractLine>();
+    private final LinkedList<AbstractLine> lines = new LinkedList<>();
 
     public void add(AbstractLine line) {
         lines.add(line);

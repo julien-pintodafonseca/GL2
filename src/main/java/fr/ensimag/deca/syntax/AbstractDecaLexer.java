@@ -1,25 +1,17 @@
 package fr.ensimag.deca.syntax;
 
-import java.io.File;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Stack;
-
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonToken;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.IntStream;
-import org.antlr.v4.runtime.Lexer;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Token;
+import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.tree.LocationException;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
-import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.tree.LocationException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.Stack;
 
 /**
  * This is the super class for the lexer. It is extended by the lexer class

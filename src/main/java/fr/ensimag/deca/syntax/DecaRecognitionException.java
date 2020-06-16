@@ -2,11 +2,12 @@ package fr.ensimag.deca.syntax;
 
 import fr.ensimag.deca.tree.Location;
 import fr.ensimag.deca.tree.LocationException;
-import java.io.PrintStream;
 import org.antlr.v4.runtime.IntStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Token;
+
+import java.io.PrintStream;
 
 /**
  * Base class for exception to be thrown manually within parser
@@ -17,6 +18,7 @@ import org.antlr.v4.runtime.Token;
 class DecaRecognitionException extends RecognitionException {
     private static final long serialVersionUID = -4104122409998903414L;
     Location location;
+
     Location getLocation() {
         if (location != null) {
             return location;
@@ -50,5 +52,4 @@ class DecaRecognitionException extends RecognitionException {
     void display(PrintStream err) {
         new LocationException(getMessage(), getLocation()).display(err);
     }
-
 }

@@ -1,10 +1,11 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
-import java.util.HashMap;
-import java.util.Map;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.Location;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Environment containing types. Initially contains predefined identifiers, more

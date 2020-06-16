@@ -79,5 +79,4 @@ public abstract class Definition {
     }
 
     public abstract boolean isExpression();
-
 }

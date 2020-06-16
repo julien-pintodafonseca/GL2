@@ -9,6 +9,7 @@ import java.io.PrintStream;
  * @date 2020
  */
 public abstract class NullaryInstruction extends Instruction {
+
     @Override
     void displayOperands(PrintStream s) {
         // no operand
