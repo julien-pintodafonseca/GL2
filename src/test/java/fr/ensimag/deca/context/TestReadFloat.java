@@ -29,10 +29,10 @@ public class TestReadFloat {
     @Before
     public void setup() {
         IMACodeGenPrintExpected.add("RFLOAT");
-        IMACodeGenPrintExpected.add("BOV read_error; Overflow check for previous operation");
+        IMACodeGenPrintExpected.add("BOV read_error_float; Overflow check for previous operation");
         IMACodeGenPrintExpected.add("WFLOAT");
         IMACodeGenInstExpected.add("RFLOAT");
-        IMACodeGenInstExpected.add("BOV read_error; Overflow check for previous operation");
+        IMACodeGenInstExpected.add("BOV read_error_float; Overflow check for previous operation");
         IMACodeGenInstExpected.add("LOAD R1, R0");
     }
 

@@ -17,7 +17,8 @@ public class TestErrorLabelManager {
     private final DecacFatalError expectedLabelTypeEx =
             new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
     private final String expectedErrorLabelName1 = "arithmetic_overflow";
-    private final String expectedErrorLabelName2 = "read_error";
+    private final String expectedErrorLabelName2 = "read_error_float";
+    private final String expectedErrorLabelName3 = "read_error_int";
 
     @Test
     public void testErrorLabelType() {
@@ -60,7 +61,7 @@ public class TestErrorLabelManager {
         String result2 = elm.errorLabelName(ErrorLabelType.LB_READFLOAT_BAD_ENTRY);
         String result3 = elm.errorLabelName(ErrorLabelType.LB_READINT_BAD_ENTRY);
         assertThat(result2, is(expectedErrorLabelName2));
-        assertThat(result3, is(expectedErrorLabelName2));
+        assertThat(result3, is(expectedErrorLabelName3));
     }
 
     @Test
