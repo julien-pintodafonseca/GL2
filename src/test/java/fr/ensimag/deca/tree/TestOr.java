@@ -27,16 +27,14 @@ public class TestOr {
 
     @Test
     public void testCodeGenCMPWithReverse() throws DecacFatalError {
-        // true && true
-        //List<String> expectedTrue1 = Collections.singletonList("");
+        // true || true
         List<String> expectedTrue1 = new ArrayList<>();
         expectedTrue1.add("BRA or_end0");
         expectedTrue1.add("or0:");
         expectedTrue1.add("or_end0:");
         codeGenCMPWithSpecificParams(boolTrueExpr1, boolTrueExpr2, true, expectedTrue1);
 
-        // true && false
-        //List<String> expectedTrue2 = Collections.singletonList("BRA my_basic_label");
+        // true || false
         List<String> expectedTrue2 = new ArrayList<>();
         expectedTrue2.add("BRA or_end0");
         expectedTrue2.add("or0:");
@@ -44,8 +42,7 @@ public class TestOr {
         expectedTrue2.add("or_end0:");
         codeGenCMPWithSpecificParams(boolTrueExpr1, boolFalseExpr2, true, expectedTrue2);
 
-        // false && true
-        //List<String> expectedTrue3 = Collections.singletonList("BRA my_basic_label");
+        // false || true
         List<String> expectedTrue3 = new ArrayList<>();
         expectedTrue3.add("BRA or0");
         expectedTrue3.add("BRA or_end0");
@@ -53,7 +50,7 @@ public class TestOr {
         expectedTrue3.add("or_end0:");
         codeGenCMPWithSpecificParams(boolFalseExpr1, boolTrueExpr2, true, expectedTrue3);
 
-        // false && false
+        // false || false
         List<String> expectedTrue4 = new ArrayList<>();
         expectedTrue4.add("BRA or0");
         expectedTrue4.add("BRA or_end0");
@@ -65,23 +62,23 @@ public class TestOr {
 
     @Test
     public void testCodeGenCMPWithoutReverse() throws DecacFatalError {
-        // true && true
+        // true || true
         List<String> expectedFalse1 = new ArrayList<>();;
         expectedFalse1.add("BRA my_basic_label");
         expectedFalse1.add("BRA my_basic_label");
         codeGenCMPWithSpecificParams(boolTrueExpr1, boolTrueExpr2, false, expectedFalse1);
 
-        // true && false
+        // true || false
         List<String> expectedFalse2 = new ArrayList<>();
         expectedFalse2.add("BRA my_basic_label");
         codeGenCMPWithSpecificParams(boolTrueExpr1, boolFalseExpr2, false, expectedFalse2);
 
-        // false && true
+        // false || true
         List<String> expectedFalse3 = new ArrayList<>();
         expectedFalse3.add("BRA my_basic_label");
         codeGenCMPWithSpecificParams(boolFalseExpr1, boolTrueExpr2, false, expectedFalse3);
 
-        // false && false
+        // false || false
         List<String> expectedFalse4 = Collections.singletonList("");
         codeGenCMPWithSpecificParams(boolFalseExpr1, boolFalseExpr2, false, expectedFalse4);
     }

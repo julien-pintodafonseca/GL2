@@ -34,16 +34,16 @@ public class TestOr {
 
     @Test
     public void testVerifyExpr() throws ContextualError {
-        // true && true
+        // true || true
         verifyExprWithSpecificParams(boolTrueExpr1, boolTrueExpr2);
 
-        // true && false
+        // true || false
         verifyExprWithSpecificParams(boolTrueExpr1, boolFalseExpr2);
 
-        // false && true
+        // false || true
         verifyExprWithSpecificParams(boolFalseExpr1, boolTrueExpr2);
 
-        // false && false
+        // false || false
         verifyExprWithSpecificParams(boolFalseExpr1, boolFalseExpr2);
     }
 
@@ -95,4 +95,3 @@ public class TestOr {
         assertThat(result3.getMessage(), is(expected3.getMessage()));
     }
 }
-

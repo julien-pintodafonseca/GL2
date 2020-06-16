@@ -14,9 +14,9 @@ import static org.junit.Assert.assertTrue;
 public class TestNot {
     private final BooleanLiteral boolTrueExpr = new BooleanLiteral(true);
     private final BooleanLiteral boolFalseExpr = new BooleanLiteral(false);
-    private final IntLiteral intExpr1 = new IntLiteral(5);
-    private final FloatLiteral floatExpr1 = new FloatLiteral(-742.221354f);
-    private final StringLiteral stringExpr1 = new StringLiteral("bonsoir");
+    private final IntLiteral intExpr = new IntLiteral(5);
+    private final FloatLiteral floatExpr = new FloatLiteral(-742.221354f);
+    private final StringLiteral stringExpr = new StringLiteral("bonsoir");
 
     private DecacCompiler compiler;
 
@@ -27,12 +27,11 @@ public class TestNot {
 
     @Test
     public void testVerifyExpr() throws ContextualError {
-        // true
+        // !true
         verifyExprWithSpecificParams(boolTrueExpr);
 
-        // false
+        // !false
         verifyExprWithSpecificParams(boolFalseExpr);
-
     }
 
     private void verifyExprWithSpecificParams(BooleanLiteral NotOperand)
@@ -47,7 +46,7 @@ public class TestNot {
     @Test
     public void testWrongTypes() {
         // check that verifyCondition with a INT leftOperand throws contextualError
-        Not not1 = new Not(intExpr1);
+        Not not1 = new Not(intExpr);
 
         ContextualError expected1 =
                 new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "int" + ".", null);
@@ -59,7 +58,7 @@ public class TestNot {
 
 
         // check that verifyCondition with a FLOAT rightOperand throws contextualError
-        Not not2 = new Not(floatExpr1);
+        Not not2 = new Not(floatExpr);
 
         ContextualError expected2 =
                 new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "float" + ".", null);
@@ -71,7 +70,7 @@ public class TestNot {
 
 
         // check that verifyCondition with a STRING rightOperand throws contextualError
-        Not not3 = new Not(stringExpr1);
+        Not not3 = new Not(stringExpr);
 
         ContextualError expected3 =
                 new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "string" + ".", null);

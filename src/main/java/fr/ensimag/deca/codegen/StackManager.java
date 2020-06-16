@@ -1,8 +1,5 @@
 package fr.ensimag.deca.codegen;
 
-import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.ima.pseudocode.GPRegister;
-
 /**
  *
  * @author Equipe GL2
