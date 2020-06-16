@@ -9,8 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
@@ -28,127 +30,62 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestNot {
-    private final UnsupportedOperationException expectedNoMoreRegister =
-            new UnsupportedOperationException("no more available registers : policy not yet implemented");
-    private final List<String> IMACodeGenCMPExpectedNotBooleanLiteralFalse = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedNotBooleanLiteralTrue = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedNotAbstractExprFalse = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedNotAbstractExprTrue = new ArrayList<>();
+    private final Label anyLabel = new Label("my_basic_label");
+    private final BooleanLiteral boolTrueExpr1 = new BooleanLiteral(true);
+    private final BooleanLiteral boolFalseExpr1 = new BooleanLiteral(false);
 
-    @Mock private BooleanLiteral exprBoolean;
-    @Mock private AbstractExpr expr;
-    @Mock private Label lb;
+    @Test
+    public void testCodeGenCMPWithReverse() throws DecacFatalError {
+        // not true
+        //List<String> expectedTrue1 = Collections.singletonList("");
+        List<String> expectedTrue1 = new ArrayList<>();
+        expectedTrue1.add("LOAD #1, R2");
+        expectedTrue1.add("CMP #1, R2");
+        expectedTrue1.add("BEQ my_basic_label");
+        codeGenCMPWithSpecificParams(boolTrueExpr1, true, expectedTrue1);
 
-    private DecacCompiler compiler;
-    private DecacCompiler compilerWithoutAvailableRegisters;
+        // not false
+        //List<String> expectedTrue2 = Collections.singletonList("BRA my_basic_label");
+        List<String> expectedTrue2 = new ArrayList<>();
+        expectedTrue2.add("LOAD #0, R2");
+        expectedTrue2.add("CMP #1, R2");
+        expectedTrue2.add("BEQ my_basic_label");
+        codeGenCMPWithSpecificParams(boolFalseExpr1, true, expectedTrue2);
 
-    @Before
-    public void setup() throws ContextualError, DecacFatalError {
-        MockitoAnnotations.initMocks(this);
-        compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
-        when(expr.verifyExpr(compiler, null, null)).thenReturn(compiler.environmentType.BOOLEAN);
-        when(exprBoolean.verifyExpr(compiler, null, null)).thenReturn(compiler.environmentType.BOOLEAN);
-
-        compilerWithoutAvailableRegisters = new DecacCompiler(null, null);
-        compilerWithoutAvailableRegisters.setRegisterManager(8);
-        int i;
-        while ((i = compilerWithoutAvailableRegisters.getRegisterManager().nextAvailable()) != -1) { // on marque tous les registres comme étant utilisés
-            compilerWithoutAvailableRegisters.getRegisterManager().take(i);
-        }
-
-        IMACodeGenCMPExpectedNotBooleanLiteralFalse.add("CMP #1, R2");
-        IMACodeGenCMPExpectedNotBooleanLiteralFalse.add("BNE lb");
-        IMACodeGenCMPExpectedNotBooleanLiteralTrue.add("CMP #1, R2");
-        IMACodeGenCMPExpectedNotBooleanLiteralTrue.add("BEQ lb");
-        IMACodeGenCMPExpectedNotAbstractExprFalse.add("");
-        IMACodeGenCMPExpectedNotAbstractExprTrue.add("");
     }
 
     @Test
-    public void testVerifyExpr() throws ContextualError {
-        Not not = new Not(expr);
+    public void testCodeGenCMPWithoutReverse() throws DecacFatalError {
+        // not true
+        List<String> expectedFalse1 = new ArrayList<>();;
+        expectedFalse1.add("LOAD #1, R2");
+        expectedFalse1.add("CMP #1, R2");
+        expectedFalse1.add("BNE my_basic_label");
+        codeGenCMPWithSpecificParams(boolTrueExpr1, false, expectedFalse1);
 
-        // Le type renvoyé est bien BOOLEAN
-        assertEquals(not.verifyExpr(compiler, null, null), compiler.environmentType.BOOLEAN);
+        // not false
+        List<String> expectedFalse2 = new ArrayList<>();
+        expectedFalse2.add("LOAD #0, R2");
+        expectedFalse2.add("CMP #1, R2");
+        expectedFalse2.add("BNE my_basic_label");
+        codeGenCMPWithSpecificParams(boolFalseExpr1, false, expectedFalse2);
 
-        // Le type de l'expression est bien BOOLEAN
-        assertEquals(not.getType(), compiler.environmentType.BOOLEAN);
     }
 
-    @Test // Cas où l'attribut "operand" est de type BooleanLiteral et le paramètre reverse=false
-    public void testCodeGenCMPBooleanLiteralReverseFalse() throws DecacFatalError {
-        Not notBoolean = new Not(exprBoolean);
+    private void codeGenCMPWithSpecificParams(BooleanLiteral boolExpr1,
+                                              Boolean reverse, List<String> expected) throws DecacFatalError {
+        // check codeGenCMP
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setRegisterManager(5);
+        myCompiler.setLabelManager();
 
-        // Appel à la fonction codeGenInst() lorsqu'il reste un registre disponible
-        notBoolean.codeGenCMP(compiler, lb, false);
-        verify(exprBoolean).codeGenInst(eq(compiler), any(GPRegister.class));
+        Not not = new Not(boolExpr1);
+        not.codeGenCMP(myCompiler, anyLabel, reverse);
 
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(exprBoolean.getType(), notBoolean.getOperand().getType());
-        assertThat(notBoolean.getOperand(), is(exprBoolean));
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotBooleanLiteralFalse));
-
-
-        // Levée d'une erreur si plus de registre disponible
-        UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {
-            notBoolean.codeGenCMP(compilerWithoutAvailableRegisters, lb, false); // Appel avec "reverse" = false
-        });
-        assertThat(resultNoMoreRegister.getMessage(), is(expectedNoMoreRegister.getMessage()));
-    }
-
-    @Test // Cas où l'attribut "operand" est de type BooleanLiteral et le paramètre reverse=true
-    public void testCodeGenCMPBooleanLiteralReverseTrue() throws DecacFatalError {
-        Not notBoolean = new Not(exprBoolean);
-
-        // Appel à la fonction codeGenInst() lorsqu'il reste un registre disponible
-        notBoolean.codeGenCMP(compiler, lb, true);
-        verify(exprBoolean).codeGenInst(eq(compiler), any(GPRegister.class));
-
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(exprBoolean.getType(), notBoolean.getOperand().getType());
-        assertThat(notBoolean.getOperand(), is(exprBoolean));
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotBooleanLiteralTrue));
-
-
-        // Levée d'une erreur si plus de registre disponible
-        UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {
-            notBoolean.codeGenCMP(compilerWithoutAvailableRegisters, lb, true); // Appel avec "reverse" = true
-        });
-        assertThat(resultNoMoreRegister.getMessage(), is(expectedNoMoreRegister.getMessage()));
-    }
-
-    @Test
-    public void testCodeGenCMPAbstractExpr() throws DecacFatalError { // Cas où l'attribut "operand" est de type AbstractExpr
-        Not not = new Not(expr);
-        compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
-
-        // Les appels récursifs à la méthode codeGenCMP() se font en donnant la valeur inverse pour l'argument "reverse"
-        not.codeGenCMP(compiler, lb, false); // i.e. si on appelle codeGenCMP avec reverse=false
-        verify(expr).codeGenCMP(compiler, lb, true); // alors la fonction rappelle la même méthode avec reverse=true
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotAbstractExprFalse));
-
-        compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
-
-        // Les appels récursifs à la méthode codeGenCMP() se font en donnant la valeur inverse pour l'argument "reverse"
-        not.codeGenCMP(compiler, lb, true);
-        verify(expr).codeGenCMP(compiler, lb, false);
-
-        result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotAbstractExprTrue));
-
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(expr.getType(), not.getOperand().getType());
-        assertThat(not.getOperand(), is(expr));
+        String result = myCompiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(expected));
     }
 }
+
+
