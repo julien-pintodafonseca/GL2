@@ -164,10 +164,6 @@ public class DecacCompiler implements Callable<Boolean> {
      * The main program. Every instruction generated will eventually end up here.
      */
     private final IMAProgram program = new IMAProgram();
-    /**
-     * The main program. Every instruction generated will eventually end up here.
-     */
-    private final IMAProgram programSave = new IMAProgram();
 
     /** The global environment for types (and the symbolTable) */
     public final SymbolTable symbolTable = new SymbolTable();

@@ -597,22 +597,24 @@ decl_method returns[DeclMethod tree]
         AbstractMethodBody methodBody;
 }
     : type ident OPARENT params=list_params CPARENT (block {
-            assert($type.tree != null);
-            assert($ident.tree != null);
-            assert($params.tree != null);
             assert($block.decls != null);
             assert($block.insts != null);
             methodBody = new MethodBody($block.decls, $block.insts);
             setLocation(methodBody, $block.start);
-
-            // à mettre à la fin lorsque MethodBodyASM sera créée
-            $tree = new DeclMethod($type.tree, $ident.tree, $params.tree, methodBody);
-            setLocation($tree, $type.start);
         }
       | ASM OPARENT code=multi_line_string CPARENT SEMI {
+            assert($code.text != null);
+            StringLiteral s = new StringLiteral($code.text.substring(1,$code.text.length()-1).replaceAll("\\\\\"", "\""));
+            methodBody = new MethodBodyASM(s);
+            s.setLocation($code.location);
+            setLocation(methodBody, $code.start);
         }
       ) {
-
+            assert($type.tree != null);
+            assert($ident.tree != null);
+            assert($params.tree != null);
+            $tree = new DeclMethod($type.tree, $ident.tree, $params.tree, methodBody);
+            setLocation($tree, $type.start);
         }
     ;
 

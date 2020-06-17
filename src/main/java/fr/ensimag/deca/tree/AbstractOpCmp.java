@@ -48,7 +48,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             Type t = compiler.environmentType.BOOLEAN;
             setType(t);
             return t;
-        } else if(this instanceof AbstractOpExactCmp && (t1.isClass() || t1.isNull()) && (t2.isClass() || t2.isNull())) {
+        } else if(this instanceof AbstractOpExactCmp && (((t1.isClass() || t1.isNull()) && (t2.isClass() || t2.isNull())) || (t1.isBoolean() && t2.isBoolean()))) {
                 // TODO
                 Type t = compiler.environmentType.BOOLEAN;
                 setType(t);

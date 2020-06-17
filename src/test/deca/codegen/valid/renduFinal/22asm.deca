@@ -1,0 +1,17 @@
+// Description:
+//      Ajout d'une méthode en langage assembleur
+//
+// Resultats:
+//      A:3.5;
+
+class A {
+    float x = 3.5;
+    float getX() asm("LOAD -2(LB), R1
+        LOAD 1(R1), R0
+        RTS");
+}
+
+{
+    A oA = new A();
+    println("A:", oA.getX(), ";");
+}

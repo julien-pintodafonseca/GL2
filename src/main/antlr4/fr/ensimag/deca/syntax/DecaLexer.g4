@@ -31,6 +31,7 @@ OR: '||';
 COMMA: ',';
 ELSE: 'else';
 WHILE: 'while';
+ASM: 'asm';
 
 SPACES: (' ' | '\t' | '\n' | '\r') { skip(); };
 
@@ -77,6 +78,7 @@ INT: '0' | POSITIVE_DIGIT DIGIT*;
 
 fragment STRING_CAR: ~ ('"' | '\\' | '\n');
 STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
+MULTI_LINE_STRING: '"' (STRING_CAR | '\n' | '\\"' | '\\\\')* '"';
 
 
 fragment MONOCOMMENT: '//' (~('\n'| '\r'))*;
