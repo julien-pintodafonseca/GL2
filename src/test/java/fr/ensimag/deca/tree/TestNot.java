@@ -24,44 +24,47 @@ public class TestNot {
     private final Label anyLabel = new Label("my_basic_label");
     private final BooleanLiteral boolTrueExpr = new BooleanLiteral(true);
     private final BooleanLiteral boolFalseExpr = new BooleanLiteral(false);
+    private final IntLiteral anyIntExpr = new IntLiteral(24);
+    private final StringLiteral anyStringExpr = new StringLiteral("aquaponey");
 
     @Test
-    public void testCodeGenCMPWithReverse() throws DecacFatalError {
+    public void testCodeGenCMPWithBooleanOperandAndReverse() throws DecacFatalError {
         // !true
         List<String> expectedTrue1 = new ArrayList<>();
         expectedTrue1.add("LOAD #1, R2");
         expectedTrue1.add("CMP #1, R2");
         expectedTrue1.add("BEQ my_basic_label");
-        codeGenCMPWithSpecificParams(boolTrueExpr, true, expectedTrue1);
+        codeGenCMPWithBooleanOperandAndSpecificParams(boolTrueExpr, true, expectedTrue1);
 
         // !false
         List<String> expectedTrue2 = new ArrayList<>();
         expectedTrue2.add("LOAD #0, R2");
         expectedTrue2.add("CMP #1, R2");
         expectedTrue2.add("BEQ my_basic_label");
-        codeGenCMPWithSpecificParams(boolFalseExpr, true, expectedTrue2);
+        codeGenCMPWithBooleanOperandAndSpecificParams(boolFalseExpr, true, expectedTrue2);
     }
 
     @Test
-    public void testCodeGenCMPWithoutReverse() throws DecacFatalError {
+    public void testCodeGenCMPWithoutBooleanOperandAndReverse() throws DecacFatalError {
         // !true
         List<String> expectedFalse1 = new ArrayList<>();;
         expectedFalse1.add("LOAD #1, R2");
         expectedFalse1.add("CMP #1, R2");
         expectedFalse1.add("BNE my_basic_label");
-        codeGenCMPWithSpecificParams(boolTrueExpr, false, expectedFalse1);
+        codeGenCMPWithBooleanOperandAndSpecificParams(boolTrueExpr, false, expectedFalse1);
 
         // !false
         List<String> expectedFalse2 = new ArrayList<>();
         expectedFalse2.add("LOAD #0, R2");
         expectedFalse2.add("CMP #1, R2");
         expectedFalse2.add("BNE my_basic_label");
-        codeGenCMPWithSpecificParams(boolFalseExpr, false, expectedFalse2);
+        codeGenCMPWithBooleanOperandAndSpecificParams(boolFalseExpr, false, expectedFalse2);
     }
 
-    private void codeGenCMPWithSpecificParams(BooleanLiteral boolExpr1,
+    private void codeGenCMPWithBooleanOperandAndSpecificParams(BooleanLiteral boolExpr1,
                                               Boolean reverse, List<String> expected) throws DecacFatalError {
         // check codeGenCMP
+        // with boolean operand
         DecacCompiler myCompiler = new DecacCompiler(null, null);
         myCompiler.setRegisterManager(5);
 
@@ -75,7 +78,7 @@ public class TestNot {
     @Test
     public void testNoMoreRegistersAvailable() throws DecacFatalError {
         // check that codeGenCMP with no registers available throws UnsupportedOperationException
-        // if operand is boolean
+        // with boolean operand
         DecacCompiler myCompiler = new DecacCompiler(null, null);
         myCompiler.setRegisterManager(5);
         myCompiler.getRegisterManager().take(2);
@@ -96,5 +99,48 @@ public class TestNot {
 
         assertThat(resultWithReverse.getMessage(), is(expected.getMessage()));
         assertThat(resultWithoutReverse.getMessage(), is(expected.getMessage()));
+    }
+
+    @Test
+    public void testCodeGenCMPWithWrongTypesOperand() throws DecacFatalError {
+        // check codeGenCMP
+        // without boolean operand
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setRegisterManager(5);
+
+        Not notWithReverse = new Not(anyIntExpr);
+        Not notWithoutReverse = new Not(anyIntExpr);
+
+        UnsupportedOperationException expected =
+                new UnsupportedOperationException("not yet implemented");
+        UnsupportedOperationException resultWithReverse = assertThrows(UnsupportedOperationException.class, () -> {
+            notWithReverse.codeGenCMP(myCompiler, anyLabel, true);
+        });
+        UnsupportedOperationException resultWithoutReverse = assertThrows(UnsupportedOperationException.class, () -> {
+            notWithoutReverse.codeGenCMP(myCompiler, anyLabel, false);
+        });
+
+        assertThat(resultWithReverse.getMessage(), is(expected.getMessage()));
+        assertThat(resultWithoutReverse.getMessage(), is(expected.getMessage()));
+
+        // ------------------------------
+
+        DecacCompiler myCompiler2 = new DecacCompiler(null, null);
+        myCompiler2.setRegisterManager(5);
+
+        Not notWithReverse2 = new Not(anyStringExpr);
+        Not notWithoutReverse2 = new Not(anyStringExpr);
+
+        UnsupportedOperationException expected2 =
+                new UnsupportedOperationException("not yet implemented");
+        UnsupportedOperationException resultWithReverse2 = assertThrows(UnsupportedOperationException.class, () -> {
+            notWithReverse2.codeGenCMP(myCompiler2, anyLabel, true);
+        });
+        UnsupportedOperationException resultWithoutReverse2 = assertThrows(UnsupportedOperationException.class, () -> {
+            notWithoutReverse2.codeGenCMP(myCompiler2, anyLabel, false);
+        });
+
+        assertThat(resultWithReverse2.getMessage(), is(expected2.getMessage()));
+        assertThat(resultWithoutReverse2.getMessage(), is(expected2.getMessage()));
     }
 }
