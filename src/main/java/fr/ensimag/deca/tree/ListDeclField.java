@@ -1,10 +1,16 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.log4j.Logger;
 
 /**
@@ -46,5 +52,45 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
             field.decompile(s);
             s.println();
         }
+    }
+
+    protected void codeGenFields(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
+        compiler.addLabel(new Label("init."+currentClass.getType()));
+        if (!currentClass.getSuperClass().getType().isObject()) {
+            compiler.addInstruction(new TSTO(3), "Test de debordement de pile");
+            compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_STACK))));
+            compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_STACK);
+
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l’adresse de l’objet
+
+            // Initialisation à 0
+            for (AbstractDeclField field : this.getList()) {
+                field.codeGenField(compiler, currentClass);
+            }
+
+            // Appel de l’initialisation des champs hérités
+            compiler.addComment("Appel de l’initialisation des champs herites de " + currentClass.getSuperClass().getType());
+            compiler.addInstruction(new PUSH(Register.R1)); // on empile l’objet à initialiser
+            compiler.addInstruction(new BSR(new Label("init." + currentClass.getSuperClass().getType().toString())));
+            compiler.addInstruction(new SUBSP(1)); // on remet la pile dans son état initial
+
+            // Initialisation explicite à la bonne valeur
+            for (AbstractDeclField field : this.getList()) {
+                field.codeGenFieldInit(compiler, currentClass);
+            }
+        } else {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l’adresse de l’objet
+
+            // Initialisation à 0
+            for (AbstractDeclField field : this.getList()) {
+                field.codeGenField(compiler, currentClass);
+            }
+
+            // Initialisation explicite à la bonne valeur
+            for (AbstractDeclField field : this.getList()) {
+                field.codeGenFieldInit(compiler, currentClass);
+            }
+        }
+        compiler.addInstruction(new RTS());
     }
 }

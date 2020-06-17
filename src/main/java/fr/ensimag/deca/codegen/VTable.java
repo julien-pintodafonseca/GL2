@@ -14,22 +14,25 @@ import java.util.Map;
  * @date 2020
  */
 public class VTable {
-    private Map<Integer, MethodDefinition> vTable;
+    private Map<Integer, AbstractDeclMethod> vTable;
 
     public VTable() {
         vTable = new HashMap<>();
     }
 
-    public void addMethod(MethodDefinition methodDef) {
-        this.vTable.put(methodDef.getIndex(), methodDef);
+    public void addMethod(AbstractDeclMethod method) {
+        this.vTable.put(method.getIdentifier().getMethodDefinition().getIndex(), method);
     }
 
     public boolean containKey(int i) {
         return vTable.containsKey(i);
     }
 
-    public MethodDefinition getMethodDef(int i) {
+    public AbstractDeclMethod getMethod(int i) {
         return vTable.get(i);
     }
 
+    public MethodDefinition getMethodDef(int i) {
+        return vTable.get(i).getIdentifier().getMethodDefinition();
+    }
 }

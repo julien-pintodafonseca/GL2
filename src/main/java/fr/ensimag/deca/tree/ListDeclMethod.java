@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -45,5 +46,15 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
             declMethod.verifyClassBody(compiler, localEnv, currentClass);
         }
         LOG.debug("verify listClassMethodsBody : end");
+    }
+
+    /**
+     * Generate the code of the method
+     * @param compiler
+     */
+    protected void codeGenMethod(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
+        for (AbstractDeclMethod declMethod : getList()) {
+            declMethod.codeGenMethod(compiler, currentClass);
+        }
     }
 }

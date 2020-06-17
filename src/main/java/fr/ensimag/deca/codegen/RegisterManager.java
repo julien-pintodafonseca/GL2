@@ -64,5 +64,4 @@ public class RegisterManager {
             throw new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER+regNumber);
         }
     }
-
 }

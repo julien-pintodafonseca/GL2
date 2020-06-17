@@ -32,10 +32,21 @@ public class ErrorLabelManager {
     }
 
     public String errorLabelName(ErrorLabelType lt) {
-        if (lt == ErrorLabelType.LB_ARITHMETIC_OVERFLOW) {
-            return "arithmetic_overflow";
-        } else {
-            return "read_error";
+        switch (lt) {
+            case LB_ARITHMETIC_OVERFLOW:
+                return "arithmetic_overflow";
+            case LB_READINT_BAD_ENTRY:
+                return "read_error_int";
+            case LB_READFLOAT_BAD_ENTRY:
+                return "read_error_float";
+            case LB_FULL_HEAP:
+                return "tas_plein";
+            case LB_FULL_STACK:
+                return "pile_pleine";
+            case LB_NULL_DEREFERENCEMENT:
+                return "null_dereferencement";
+            default:
+                return null;
         }
     }
 
@@ -78,6 +89,34 @@ public class ErrorLabelManager {
                 compiler.addComment("--------------------------------------------------");
                 compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_READFLOAT_BAD_ENTRY)));
                 compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_READFLOAT_ERROR));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_FULL_HEAP:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("          Message d’erreur : allocation           ");
+                compiler.addComment("              impossible, tas plein               ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_FULL_HEAP)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_FULL_HEAP));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_FULL_STACK:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("         Message d’erreur : pile pleine           ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_FULL_STACK)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_FULL_STACK));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_NULL_DEREFERENCEMENT:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("    Message d’erreur : dereferencement de null    ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_NULL_DEREFERENCEMENT));
                 compiler.addInstruction(new WNL());
                 compiler.addInstruction(new ERROR());
                 break;

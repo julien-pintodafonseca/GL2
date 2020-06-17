@@ -2,6 +2,7 @@ package fr.ensimag.deca.codegen;
 
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.ima.pseudocode.Label;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,12 +14,21 @@ import java.util.Map;
  */
 public class LabelManager {
     public Map<LabelType, Integer> myLabels;
+    private Label currentLabel; // label utilisé pour les instructions return
 
     public LabelManager() {
         myLabels = new HashMap<>();
         for (LabelType lt : LabelType.values()) {
             myLabels.put(lt, 0);
         }
+    }
+
+    public void setCurrentLabel(Label currentLabel) {
+        this.currentLabel = currentLabel;
+    }
+
+    public Label getCurrentLabel() {
+        return this.currentLabel;
     }
 
     public Integer getLabelValue(LabelType lt) throws DecacFatalError {

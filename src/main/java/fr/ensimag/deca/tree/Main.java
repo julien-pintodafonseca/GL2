@@ -39,13 +39,17 @@ public class Main extends AbstractMain {
     }
 
     @Override
+    protected int getNumberDeclVariables() {
+        return declVariables.size();
+    }
+
+    @Override
     protected void codeGenMain(DecacCompiler compiler) throws DecacFatalError {
+        compiler.addComment("");
         compiler.addComment("--------------------------------------------------");
-        compiler.addComment("             Code of the main program             ");
+        compiler.addComment("           Code du programme principal            ");
         compiler.addComment("--------------------------------------------------");
-        compiler.addComment("Beginning of variable declarations:");
         declVariables.codeGenListDeclVar(compiler);
-        compiler.addComment("Beginning of main instructions:");
         insts.codeGenListInst(compiler);
     }
     

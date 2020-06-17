@@ -199,35 +199,50 @@ public class Identifier extends AbstractIdentifier {
             return typeDef.getType();
         }
     }
-    
-    
+
     private Definition definition;
 
     @Override
     protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        VariableDefinition varDef = getVariableDefinition();
-        DAddr addr = varDef.getOperand();
-        compiler.addInstruction(new LOAD(addr, Register.R1));
+        ExpDefinition expDef = getExpDefinition();
+        if(expDef.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
+        compiler.addInstruction(new LOAD(expDef.getOperand(), Register.R1));
         super.codeGenPrint(compiler, printHex);
     }
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
-        compiler.addInstruction(new LOAD(getVariableDefinition().getOperand(), register));
+        if(getExpDefinition().isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
+        compiler.addInstruction(new LOAD(getExpDefinition().getOperand(), register));
     }
     
     @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
-    	 VariableDefinition varDef = getVariableDefinition();
-         DAddr addr = varDef.getOperand();
-         compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R1));
-    	 compiler.addInstruction(new CMP(addr,Register.R1));
-    	
+        ExpDefinition expDef = getExpDefinition();
+        if (expDef.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
+        compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R0));
+        compiler.addInstruction(new CMP(expDef.getOperand(), Register.R0));
+
     	if (reverse) {
     		compiler.addInstruction(new BNE(label));
     	} else {
     		compiler.addInstruction(new BEQ(label));
     	}
+    }
+
+    @Override
+    protected DAddr codeGenOperandAssign(DecacCompiler compiler) {
+        ExpDefinition expDef = getExpDefinition();
+        if(expDef.isField()) {
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
+        }
+        return expDef.getOperand();
     }
 
     @Override

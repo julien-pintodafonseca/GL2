@@ -29,10 +29,10 @@ public class TestReadInt {
     @Before
     public void setup() {
         IMACodeGenPrintExpected.add("RINT");
-        IMACodeGenPrintExpected.add("BOV read_error; Overflow check for previous operation");
+        IMACodeGenPrintExpected.add("BOV read_error_int; Overflow check for previous operation");
         IMACodeGenPrintExpected.add("WINT");
         IMACodeGenInstExpected.add("RINT");
-        IMACodeGenInstExpected.add("BOV read_error; Overflow check for previous operation");
+        IMACodeGenInstExpected.add("BOV read_error_int; Overflow check for previous operation");
         IMACodeGenInstExpected.add("LOAD R1, R0");
     }
 

@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import org.apache.log4j.Logger;
@@ -67,6 +68,18 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
         for (AbstractDeclClass declClass : getList()) {
             declClass.codeGenMethodTable(compiler);
         }
-        LOG.debug("verify Method Table for ListDeclClass: end");
+        LOG.debug("codeGen Method Table for ListDeclClass: end");
+    }
+
+    /**
+     * Generate the code of the initialization of variables and the code of the methods
+     * @param compiler
+     */
+    protected void codeGenMethodAndFields(DecacCompiler compiler) throws DecacFatalError {
+        LOG.debug("codeGen MethodBody for ListDeclClass: start");
+        for (AbstractDeclClass declClass : getList()) {
+            declClass.codeGenMethodAndFields(compiler);
+        }
+        LOG.debug("codeGen MethodBody Table for ListDeclClass: end");
     }
 }

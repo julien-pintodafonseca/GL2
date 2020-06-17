@@ -2,10 +2,15 @@ package fr.ensimag.deca.tree;
 
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.*;
 
 import java.io.PrintStream;
 
@@ -31,6 +36,10 @@ public class DeclMethod extends AbstractDeclMethod {
     @Override
     public SymbolTable.Symbol getName() {
         return methodName.getName();
+    }
+
+    public AbstractIdentifier getIdentifier() {
+        return methodName;
     }
 
     @Override
@@ -84,6 +93,49 @@ public class DeclMethod extends AbstractDeclMethod {
         EnvironmentExp envExpParams = params.verifyListParamBody(compiler);
         envExpParams.setParentEnvironment(localEnv);
         methodBody.verifyMethodBody(compiler, envExpParams, currentClass, returnType);
+    }
+
+    @Override
+    protected void codeGenMethod(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
+        if (currentClass.getType() == compiler.environmentType.OBJECT) {
+            compiler.addComment("---------- Code de la methode " + methodName.getName() + " dans la classe Object");
+        } else {
+            compiler.addComment("---------- Code de la methode " + methodName.getName() + " dans la classe " + currentClass.getType() + " (ligne " + getLocation().getLine() + ")");
+        }
+        compiler.addLabel(methodName.getMethodDefinition().getLabel());
+        // TSTO #d
+        // BOV pile_pleine
+        //compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_STACK))));
+        //compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_STACK);
+        if (methodBody.getNumberDeclVariables() != 0) {
+            compiler.addInstruction(new ADDSP(methodBody.getNumberDeclVariables()));
+        }
+
+        // Set les opérandes pour chaque paramètre
+        int i = -3;
+        for (AbstractDeclParam param : params.getList()) {
+            param.getExpDefinition().setOperand(new RegisterOffset(i, Register.LB));
+            i--;
+        }
+
+        Label end = new Label("fin." + currentClass.getType() + "." + methodName.getName());
+        compiler.getLabelManager().setCurrentLabel(end);
+
+        // à compléter : Code de la sauvegarde des registres;
+        compiler.addComment("Sauvegarde des registres");
+
+        methodBody.codeGenMethodBody(compiler); // Code de la méthode
+
+        // si la méthode n'est pas de type void, on s'assure qu'elle comprend bien une instruction de retour
+        if (!type.getType().isVoid()) {
+            compiler.addInstruction(new WSTR("Erreur : sortie de la methode " + currentClass.getType() + "." + methodName.getName() + " sans instruction return."));
+            compiler.addInstruction(new WNL());
+            compiler.addInstruction(new ERROR());
+        }
+        compiler.addLabel(end);
+        // à compléter : Code de la restauration des registres
+        compiler.addComment("Restauration des registres");
+        compiler.addInstruction(new RTS());
     }
 
     @Override

@@ -34,5 +34,4 @@ public class StackManager {
     public void incrLB() {
         LB++;
     }
-
 }

@@ -59,5 +59,7 @@ public final class ErrorMessages {
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les flottants ou division par zéro.";
     public static final String CODEGEN_ERROR_READINT_ERROR = "Saisie incorrecte : la saisie est soit incorrecte (nombre entier attendu), soit celle d'un nombre trop grand (dépassement).";
     public static final String CODEGEN_ERROR_READFLOAT_ERROR = "Saisie incorrecte : la saisie est soit incorrecte (nombre réel attendu), soit celle d'un nombre trop grand (dépassement)";
-
+    public static final String CODEGEN_ERROR_FULL_HEAP = "Erreur : allocation impossible, tas plein.";
+    public static final String CODEGEN_ERROR_FULL_STACK = "Erreur : pile pleine.";
+    public static final String CODEGEN_ERROR_NULL_DEREFERENCEMENT = "Erreur : déréférencement de null." ;
 }

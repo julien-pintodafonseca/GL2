@@ -8,6 +8,8 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BRA;
 import org.apache.commons.lang.Validate;
 
 import java.io.PrintStream;
@@ -39,8 +41,7 @@ public class Return extends AbstractInst {
                 throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_RETURN_INCOMPATIBLE_TYPE + argument.getType().getName()
                         + " (" + argument.decompile() + ") au lieu de " + returnType.getName() + ".", getLocation());
             } else if (returnType.isFloat() && argument.getType().isInt()) {
-                ConvFloat conv = new ConvFloat(argument);
-                argument = conv;
+                argument = new ConvFloat(argument);
             } else if (!returnType.sameType(argument.getType())) {
                 Cast cast = new Cast(new Identifier(returnType.getName()), argument);
                 cast.setType(returnType);
@@ -53,7 +54,8 @@ public class Return extends AbstractInst {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
-        throw new UnsupportedOperationException("not yet implemented");
+        argument.codeGenInst(compiler, Register.R0);
+        compiler.addInstruction(new BRA(compiler.getLabelManager().getCurrentLabel()));
     }
 
     @Override

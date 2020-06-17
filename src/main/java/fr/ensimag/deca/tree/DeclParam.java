@@ -22,6 +22,10 @@ public class DeclParam extends AbstractDeclParam {
         this.varName = varName;
     }
 
+    protected ExpDefinition getExpDefinition() {
+        return varName.getExpDefinition();
+    }
+
     @Override
     protected Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
         // Règle syntaxe contextuelle : (2.9)

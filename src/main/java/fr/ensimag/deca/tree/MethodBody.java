@@ -1,6 +1,5 @@
 package fr.ensimag.deca.tree;
 
-
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
@@ -30,6 +29,11 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     @Override
+    protected int getNumberDeclVariables() {
+        return declVariables.size();
+    }
+
+    @Override
     protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError {
         // Règle syntaxe contextuelle : (3.14) -> (3.18)
         declVariables.verifyListDeclVariable(compiler, localEnv, currentClass);
@@ -38,7 +42,8 @@ public class MethodBody extends AbstractMethodBody {
 
     @Override
     protected void codeGenMethodBody(DecacCompiler compiler) throws DecacFatalError {
-        throw new UnsupportedOperationException("not yet implemented");
+        declVariables.codeGenListDeclVar(compiler);
+        insts.codeGenListInst(compiler);
     }
 
     @Override

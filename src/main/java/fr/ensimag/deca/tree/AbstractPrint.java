@@ -55,6 +55,7 @@ public abstract class AbstractPrint extends AbstractInst {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler) throws DecacFatalError {
+        compiler.addComment("Instruction print" + getSuffix() + " ligne " + getLocation().getLine());
         for (AbstractExpr a : getArguments().getList()) {
             a.codeGenPrint(compiler, getPrintHex());
         }
