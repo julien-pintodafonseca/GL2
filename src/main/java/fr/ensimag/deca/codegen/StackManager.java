@@ -11,6 +11,8 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 public class StackManager {
     private RegisterManager registerManager;
 
+    private boolean inClass;
+
     private int GB; // Global Stack
     private int LB; // Local Stack
     private int SP; // Stack Pointer
@@ -20,6 +22,14 @@ public class StackManager {
         GB = 1 ;
         LB = 1;
         // SP = TODO
+    }
+
+    public void setInClass(boolean inClass) {
+        this.inClass = inClass;
+    }
+
+    public boolean getInClass() {
+        return inClass;
     }
 
     public int getGB() {

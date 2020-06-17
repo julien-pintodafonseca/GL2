@@ -38,9 +38,6 @@ public class ListInst extends TreeList<AbstractInst> {
     }
 
     public void codeGenListInst(DecacCompiler compiler) throws DecacFatalError {
-        if(getList().size() != 0) {
-            compiler.addComment("---------- Instructions :");
-        }
         for (AbstractInst inst : getList()) {
             inst.codeGenInst(compiler);
         }

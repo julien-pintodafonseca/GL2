@@ -9,6 +9,8 @@ import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
@@ -63,6 +65,23 @@ public class Initialization extends AbstractInitialization {
             // restauration dans le registre
         }
     }
+
+    @Override
+    protected void codeGenInitializationField(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
+        int i = compiler.getRegisterManager().nextAvailable();
+        if (i != -1) {
+            compiler.getRegisterManager().take(i);
+            getExpression().codeGenInst(compiler, Register.getR(i));
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l'adresse de l'objet
+            compiler.addInstruction(new STORE(Register.getR(i), addr));
+            compiler.getRegisterManager().free(i);
+        } else {
+            // chargement dans la pile de 1 registres
+            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
+            // restauration dans le registre
+        }
+    }
+
 
     @Override
     public void decompile(IndentPrintStream s) {

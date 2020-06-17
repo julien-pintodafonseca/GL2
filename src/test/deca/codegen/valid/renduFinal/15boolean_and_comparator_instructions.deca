@@ -1,0 +1,21 @@
+// Description:
+//      Utilisation d'une expression en tant qu'instruction
+//      => Cas particulier où l'expression est un booleanLiteral, une expression de comparaison (==, >=, etc.)
+//          ou une expression booléenne (&&, ||)
+//
+// Resultats:
+//
+
+{
+   true;
+   true && true;
+   3<5;
+   3<=5;
+   3>5;
+   3>=5;
+   "hello"=="false";
+   3!=5;
+   false || true;
+   !true;
+}
+

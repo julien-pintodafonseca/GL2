@@ -39,6 +39,9 @@ public class MethodBody extends AbstractMethodBody {
     protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError {
         // Règle syntaxe contextuelle : (3.14) -> (3.18)
         declVariables.verifyListDeclVariable(compiler, localEnv, currentClass);
+        if(insts.getList().size() != 0) {
+            compiler.addComment("---------- Instructions :");
+        }
         insts.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
 

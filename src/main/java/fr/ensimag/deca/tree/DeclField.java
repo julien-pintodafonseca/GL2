@@ -81,6 +81,7 @@ public class DeclField extends AbstractDeclField {
         compiler.addComment("Initialisation de " + currentClass.getType() + "." + varName.getName());
         compiler.addInstruction(new LOAD(0, Register.R0));
         varName.getFieldDefinition().setOperand(new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1));
+        compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l’adresse de l’objet
         compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1))); // R1 contient l’adresse de l’objet
     }
 
@@ -88,8 +89,7 @@ public class DeclField extends AbstractDeclField {
     public void codeGenFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
         if (initialization instanceof Initialization) {
             compiler.addComment("Initialisation explicite de " + currentClass.getType() + "." + varName.getName());
-            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l’adresse de l’objet
-            initialization.codeGenInitialization(compiler, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1));
+            initialization.codeGenInitializationField(compiler, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1)); // R1 contient l’adresse de l’objet
         }
     }
 

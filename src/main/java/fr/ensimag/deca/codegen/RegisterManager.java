@@ -15,6 +15,7 @@ import java.util.Map;
 public class RegisterManager {
     private Map<Integer, Boolean> registers; // Value is true if the register is used
     private int size; // R0 ... R{size-1}
+    int nbMaxRegistersUsed;
 
     public RegisterManager(int n) {
         Validate.isTrue(n >= 4);
@@ -22,11 +23,20 @@ public class RegisterManager {
 
         size = n;
         registers = new HashMap<>();
+        nbMaxRegistersUsed = 0;
 
         // We don't deal with scratch registers R0 & R1
         for(int i=2; i<=(size-1); i++) {
             registers.put(i, false);
         }
+    }
+
+    public void resetNbMaxRegistersUsed() {
+        nbMaxRegistersUsed = 0;
+    }
+
+    public int getNbMaxRegistersUsed() {
+        return nbMaxRegistersUsed;
     }
 
     public int getSize() {
@@ -41,6 +51,9 @@ public class RegisterManager {
     public void take(int regNumber) throws DecacFatalError {
         verifyRegNumber(regNumber);
         registers.put(regNumber, true);
+        if (regNumber-1 > nbMaxRegistersUsed) {
+            nbMaxRegistersUsed = regNumber -1;
+        }
     }
 
     public void free(int regNumber) throws DecacFatalError {

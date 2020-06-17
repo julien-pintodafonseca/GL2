@@ -8,12 +8,12 @@ import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
-import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.*;
 import fr.ensimag.ima.pseudocode.instructions.*;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Method declaration.
@@ -104,13 +104,16 @@ public class DeclMethod extends AbstractDeclMethod {
         } else {
             compiler.addComment("---------- Code de la methode " + methodName.getName() + " dans la classe " + currentClass.getType() + " (ligne " + getLocation().getLine() + ")");
         }
+        compiler.getTSTOManager().resetCurrentAndMax();
         compiler.addLabel(methodName.getMethodDefinition().getLabel());
-        // TSTO #d
-        // BOV pile_pleine
-        //compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_STACK))));
-        //compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_STACK);
+        Line lineTSTO = new Line(new TSTO(0));
+        compiler.add(lineTSTO); // TSTO #d
+        compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_STACK))));
+        compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_STACK);
+
         if(methodBody.getNumberDeclVariables() != 0) {
             compiler.addInstruction(new ADDSP(methodBody.getNumberDeclVariables()));
+            compiler.getTSTOManager().addCurrent(methodBody.getNumberDeclVariables());
         }
 
         // Set les opérandes pour chaque paramètre
@@ -123,10 +126,25 @@ public class DeclMethod extends AbstractDeclMethod {
         Label end = new Label("fin." + currentClass.getType() + "." + methodName.getName());
         compiler.getLabelManager().setCurrentLabel(end);
 
-        // à compléter : Code de la sauvegarde des registres;
+        // Code de la sauvegarde des registres
         compiler.addComment("Sauvegarde des registres");
+        List<Line> saveRegisters = new ArrayList<>();
+        for(int j=2; j<(compiler.getRegisterManager().getSize()); j++) {
+            Line line = new Line(null, null, null);
+            saveRegisters.add(line);
+            compiler.add(line);
+        }
 
+        compiler.getRegisterManager().resetNbMaxRegistersUsed();
         methodBody.codeGenMethodBody(compiler); // Code de la méthode
+
+        // Maintenant qu'on connait le nombre de registre max utilisé, on peut générer le code de la sauvegarde des registres
+        int nb_register = compiler.getRegisterManager().getNbMaxRegistersUsed();
+        compiler.getTSTOManager().addCurrent(nb_register);
+        for(int j=2; j<nb_register+2; j++) {
+            saveRegisters.get(j-2).setInstruction(new PUSH(Register.getR(j)));
+            compiler.getRegisterManager().free(j);
+        }
 
         // si la méthode n'est pas de type void, on s'assure qu'elle comprend bien une instruction de retour
         if(!type.getType().isVoid()) {
@@ -135,9 +153,17 @@ public class DeclMethod extends AbstractDeclMethod {
             compiler.addInstruction(new ERROR());
         }
         compiler.addLabel(end);
-        // à compléter : Code de la restauration des registres
+
+        // Code de la restauration des registres
         compiler.addComment("Restauration des registres");
+        for(int j=nb_register+1; j>1; j--) {
+            compiler.addInstruction(new POP(Register.getR(j)));
+            compiler.getRegisterManager().free(j);
+        }
+        compiler.getTSTOManager().addCurrent(-nb_register);
+
         compiler.addInstruction(new RTS());
+        lineTSTO.setInstruction(new TSTO(compiler.getTSTOManager().getMax()));
     }
 
     @Override

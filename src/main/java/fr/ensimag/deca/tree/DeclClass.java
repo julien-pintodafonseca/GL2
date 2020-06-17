@@ -87,7 +87,7 @@ public class DeclClass extends AbstractDeclClass {
 
     @Override
     protected void codeGenMethodTable(DecacCompiler compiler) {
-        compiler.addComment("Code de la table des methodes de " + className.getName());
+        compiler.addComment("Construction de la table des methodes de " + className.getName());
 
         // Récupération de l'adresse de la classe supérieure
         compiler.addInstruction(new LEA(classExtension.getClassDefinition().getOperand(),Register.R0));

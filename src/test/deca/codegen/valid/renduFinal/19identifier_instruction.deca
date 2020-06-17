@@ -1,0 +1,11 @@
+// Description:
+//      Utilisation d'une expression en tant qu'instruction
+//      => Cas particulier où l'expression est un identifier
+//
+// Resultats:
+//
+
+{
+   int x = 3;
+   x;
+}

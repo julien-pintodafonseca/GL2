@@ -1,0 +1,11 @@
+// Description:
+//      Utilisation d'une expression en tant qu'instruction
+//      => Cas particulier où l'expression est une demande de saisie à l'utilisateur (readInt et readFloat)
+//
+// Resultats:
+//
+
+{
+    readInt();
+    readFloat();
+}

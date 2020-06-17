@@ -45,6 +45,8 @@ public class ErrorLabelManager {
                 return "pile_pleine";
             case LB_NULL_DEREFERENCEMENT:
                 return "null_dereferencement";
+            case LB_CONV_FLOAT:
+                return "conversion_int_float_impossible";
             default:
                 return null;
         }
@@ -117,6 +119,16 @@ public class ErrorLabelManager {
                 compiler.addComment("--------------------------------------------------");
                 compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT)));
                 compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_NULL_DEREFERENCEMENT));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_CONV_FLOAT:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("    Message d’erreur : conversion int -> float    ");
+                compiler.addComment("                    impossible                    ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_CONV_FLOAT)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_CONV_FLOAT));
                 compiler.addInstruction(new WNL());
                 compiler.addInstruction(new ERROR());
                 break;

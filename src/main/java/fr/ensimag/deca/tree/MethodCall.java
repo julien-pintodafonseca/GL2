@@ -46,7 +46,7 @@ public class MethodCall extends AbstractExpr {
                 int numberOfParam = signMeth.size();
                 for (AbstractExpr expr : params.getList()) {
                     if (paramNumber < numberOfParam) {
-                        expr.verifyRValue(compiler, localEnv, currentClass, signMeth.paramNumber(paramNumber));
+                        params.set(paramNumber, expr.verifyRValue(compiler, localEnv, currentClass, signMeth.paramNumber(paramNumber)));
                         paramNumber++;
                     } else if (numberOfParam == 0) {
                         throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_METHODCALL_NO_PARAM_EXPECTED + meth.getName() + ".", getLocation());
@@ -81,6 +81,7 @@ public class MethodCall extends AbstractExpr {
 
         // On reserve de la place pour 1 + nombre de paramètres
         compiler.addInstruction(new ADDSP(params.size()+1));
+        compiler.getTSTOManager().addCurrent(params.size()+1);
 
         // On récupère le param implicite
         obj.codeGenInst(compiler, Register.R1);
@@ -88,11 +89,11 @@ public class MethodCall extends AbstractExpr {
         compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(0,Register.SP)));
 
         // On empile les paramètres
-        int i = - params.size();
+        int i = -1;
         for (AbstractExpr param : params.getList()) {
             param.codeGenInst(compiler, Register.R1);
             compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(i, Register.SP)));
-            i++;
+            i--;
         }
 
         //on recupère le paramètre implicite
@@ -107,9 +108,13 @@ public class MethodCall extends AbstractExpr {
         // Appel de la méthode
         ClassDefinition def =compiler.environmentType.getClassDefinition(obj.getType().getName());
         MethodDefinition methDef = (MethodDefinition) def.getMembers().get(meth.getName());
+        compiler.getTSTOManager().addCurrent(2);
         compiler.addInstruction(new BSR(new RegisterOffset(methDef.getIndex(), Register.R1)));
+        compiler.getTSTOManager().addCurrent(-2);
+
         // Dépile les paramètres
         compiler.addInstruction(new SUBSP(params.size()+1));
+        compiler.getTSTOManager().addCurrent(-(params.size()+1));
     }
 
     @Override

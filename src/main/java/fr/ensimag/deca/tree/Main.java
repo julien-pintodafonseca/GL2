@@ -36,6 +36,9 @@ public class Main extends AbstractMain {
         LOG.debug("verify Main: start");
         EnvironmentExp env = new EnvironmentExp(null);
         declVariables.verifyListDeclVariable(compiler, env, null);
+        if(insts.getList().size() != 0) {
+            compiler.addComment("---------- Instructions :");
+        }
         insts.verifyListInst(compiler, env, null, compiler.environmentType.VOID);
         LOG.debug("verify Main: end");
     }

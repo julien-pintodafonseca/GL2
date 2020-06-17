@@ -1,0 +1,17 @@
+// Description:
+//      Utilisation d'une expression en tant qu'instruction
+//      => Cas particulier où l'expression est un intLiteral, un floatLiteral ou une expression arithmétique
+//
+// Resultats:
+//
+
+{
+   3;
+   3.5;
+   -3;
+   3*3;
+   3.58-3;
+   3+3.6;
+   3/3;
+   3%3;
+}

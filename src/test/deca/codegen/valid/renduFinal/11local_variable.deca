@@ -1,0 +1,21 @@
+// Description:
+//      Utilisation d'une variable locale
+//
+// Resultats:
+//      A:3.5;
+//      A:5.5;
+
+class A {
+    float x = 3.5;
+    void add2 () {
+        int y=2;
+        println("A:", x, ";");
+        this.x=this.x+y;
+    }
+}
+
+{
+    A oA = new A();
+    oA.add2();
+    println("A:", oA.x, ";");
+}

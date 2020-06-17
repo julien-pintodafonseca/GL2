@@ -1,0 +1,30 @@
+// Description:
+//      Utilisation d'une expression booléenne dans un return
+//
+// Resultats:
+//      A:3.5;
+//      OK
+
+class A {
+    float x = 3.5;
+    int z = 8;
+    boolean test (int y, boolean t) {
+        println("A:", x, ";");
+        if(y<50) {
+            this.x=this.x+y;
+        }
+        this.z=this.z-y;
+        return t && !(x!=1 && y>=1 && (z<6 || z==0));
+    }
+}
+
+{
+    A oA = new A();
+    int y = 1;
+    boolean result = oA.test(y, true);
+    if(result) {
+        println("OK");
+    } else {
+        println("NOK");
+    }
+}

@@ -42,5 +42,5 @@ public class And extends AbstractOpBool {
             compiler.addLabel(labelEnd);
         }
     }
-    
+
 }

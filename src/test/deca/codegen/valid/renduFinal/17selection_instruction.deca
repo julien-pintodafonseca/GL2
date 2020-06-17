@@ -1,0 +1,16 @@
+// Description:
+//      Utilisation d'une expression en tant qu'instruction
+//      => Cas particulier où l'expression est une sélection
+//
+// Resultats:
+//
+
+class A{
+    int x;
+}
+
+{
+    A a=new A();
+    a.x;
+}
+

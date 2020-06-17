@@ -209,6 +209,6 @@ test_step_provided
 test_step_renduInitial
 test_step_renduInter01
 test_step_renduInter02
-#test_step_renduFinal
+test_step_renduFinal
 
 echo "##### RESULTS: $nbpassed/$nbtests #####"

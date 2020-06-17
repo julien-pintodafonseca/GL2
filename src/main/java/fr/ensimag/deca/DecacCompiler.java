@@ -1,9 +1,6 @@
 package fr.ensimag.deca;
 
-import fr.ensimag.deca.codegen.ErrorLabelManager;
-import fr.ensimag.deca.codegen.LabelManager;
-import fr.ensimag.deca.codegen.RegisterManager;
-import fr.ensimag.deca.codegen.StackManager;
+import fr.ensimag.deca.codegen.*;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.EnvironmentType;
 import fr.ensimag.deca.syntax.DecaLexer;
@@ -83,6 +80,13 @@ public class DecacCompiler implements Callable<Boolean> {
     public void setErrorLabelManager() { errorLabelManager = new ErrorLabelManager(); }
 
     /**
+     * TSTO manager
+     */
+    private TSTOManager tstoManager;
+    public TSTOManager getTSTOManager() { return tstoManager; }
+    public void setTSTOManager() { tstoManager = new TSTOManager(); }
+
+    /**
      * Source file associated with this compiler instance.
      */
     public File getSource() {
@@ -160,6 +164,10 @@ public class DecacCompiler implements Callable<Boolean> {
      * The main program. Every instruction generated will eventually end up here.
      */
     private final IMAProgram program = new IMAProgram();
+    /**
+     * The main program. Every instruction generated will eventually end up here.
+     */
+    private final IMAProgram programSave = new IMAProgram();
 
     /** The global environment for types (and the symbolTable) */
     public final SymbolTable symbolTable = new SymbolTable();

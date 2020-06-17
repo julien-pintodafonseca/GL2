@@ -1,0 +1,20 @@
+// Description:
+//      Méthode avec un type de retour INT sans instruction return
+//      => Toute méthode qui n'est pas de type void doit posséder une instruction return
+//
+// Resultats:
+//      Erreur à l'exécution
+//      Ligne 19 : pas d'instruction return
+
+class A {
+    float x = 3.5;
+    int getX() {
+        int y=2;
+        this.x=this.x+y;
+    }
+}
+
+{
+    A oA = new A();
+    int x = oA.getX();
+}

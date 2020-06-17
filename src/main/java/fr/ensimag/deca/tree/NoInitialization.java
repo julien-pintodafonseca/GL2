@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -32,6 +33,11 @@ public class NoInitialization extends AbstractInitialization {
 
     @Override
     protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) {
+        // do nothing
+    }
+
+    @Override
+    protected void codeGenInitializationField(DecacCompiler compiler, DAddr addr) {
         // do nothing
     }
 

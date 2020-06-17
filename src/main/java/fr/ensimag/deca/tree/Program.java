@@ -2,12 +2,10 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.Label;
-import fr.ensimag.ima.pseudocode.NullOperand;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.*;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
@@ -56,14 +54,20 @@ public class Program extends AbstractProgram {
         compiler.setStackManager(compiler.getRegisterManager());
         compiler.setLabelManager();
         compiler.setErrorLabelManager();
-        // TSTO #d
-        // BOV pile_pleine
+        compiler.setTSTOManager();
+        compiler.getTSTOManager().resetCurrentAndMax();
+        Line lineTSTO = new Line(new TSTO(0));
+        compiler.add(lineTSTO); // TSTO #d
+        compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_STACK))));
+        compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_STACK);
+
         // Calcul pour ADDSP
         int addsp = main.getNumberDeclVariables() + 2; // +2 car on compte la méthode equals de la classe Object et le pointeur vers la superclass de Object (null)
         for (AbstractDeclClass classe : classes.getList()) {
             addsp = addsp + compiler.environmentType.getClassDefinition(classe.getName()).getNumberOfMethods() + 1; // +1 car on compte le pointeur vers la superclass
         }
         compiler.addInstruction(new ADDSP(addsp));
+        compiler.getTSTOManager().addCurrent(addsp);
 
         compiler.addComment("--------------------------------------------------");
         compiler.addComment("       Construction de la table des méthodes      ");
@@ -72,9 +76,12 @@ public class Program extends AbstractProgram {
 
         classes.codeGenMethodTable(compiler);
 
+        compiler.getStackManager().setInClass(false);
         main.codeGenMain(compiler);
         compiler.addInstruction(new HALT());
+        lineTSTO.setInstruction(new TSTO(compiler.getTSTOManager().getMax()));
 
+        compiler.getStackManager().setInClass(true);
         // Code des méthodes de la classe Object
         codeGenMethodObject(compiler);
 
@@ -97,7 +104,7 @@ public class Program extends AbstractProgram {
     }
 
     protected void codeGenMethodTableObject(DecacCompiler compiler) {
-        compiler.addComment("Code de la table des methodes de Object");
+        compiler.addComment("Construction de la table des methodes de Object");
         ClassDefinition objectClassDef = compiler.environmentType.getClassDefinition(compiler.createSymbol("Object"));
         objectClassDef.initVTable();
 
@@ -114,7 +121,10 @@ public class Program extends AbstractProgram {
 
         // public boolean equals (Object other) { return this == other; }
         ListInst inst = new ListInst();
-        inst.add(new Return(new Equals(new This(false), new Identifier(compiler.createSymbol("other")))));
+        Identifier ident = new Identifier(compiler.createSymbol("other"));
+        ident.setDefinition(new ParamDefinition(compiler.environmentType.OBJECT, Location.BUILTIN));
+        ident.getExpDefinition().setOperand(new RegisterOffset(-3, Register.LB));
+        inst.add(new Return(new Equals(new This(false), ident)));
         MethodBody methodBody = new MethodBody(new ListDeclVar(), inst);
         ListDeclParam params = new ListDeclParam();
         AbstractIdentifier paramName = new Identifier(compiler.createSymbol("other"));

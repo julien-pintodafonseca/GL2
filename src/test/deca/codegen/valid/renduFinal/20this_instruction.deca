@@ -1,0 +1,19 @@
+// Description:
+//      Utilisation d'une expression en tant qu'instruction
+//      => Cas particulier où l'expression est this
+//
+// Resultats:
+//
+
+class A{
+    int x=2;
+    int getX(){
+        this;
+        return this.x;
+    }
+}
+
+{
+     A a=new A();
+     int x=a.getX();
+}

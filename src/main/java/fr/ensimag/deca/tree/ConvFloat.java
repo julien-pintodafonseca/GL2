@@ -1,10 +1,13 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.ima.pseudocode.GPRegister;
+import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
 import fr.ensimag.ima.pseudocode.instructions.FLOAT;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 
@@ -30,6 +33,9 @@ public class ConvFloat extends AbstractUnaryExpr {
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
             getOperand().codeGenInst(compiler, register);
             compiler.addInstruction(new FLOAT(register, Register.R1));
+            Label lb = new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_CONV_FLOAT));
+            compiler.addInstruction(new BOV(lb));
+            compiler.getErrorLabelManager().addError(ErrorLabelType.LB_CONV_FLOAT);
             compiler.addInstruction(new LOAD(Register.R1, register));
     }
 

@@ -65,7 +65,12 @@ public class DeclVar extends AbstractDeclVar {
         compiler.addComment("Declaration de la variable " + varName.getName() + " ligne " + getLocation().getLine());
         int offset = compiler.getStackManager().getGB();
         compiler.getStackManager().incrGB();
-        RegisterOffset addr = new RegisterOffset(offset, Register.GB);
+        RegisterOffset addr;
+        if (compiler.getStackManager().getInClass()) {
+            addr = new RegisterOffset(offset, Register.LB);
+        } else {
+            addr = new RegisterOffset(offset, Register.GB);
+        }
         initialization.codeGenInitialization(compiler, addr);
         varName.getVariableDefinition().setOperand(addr);
     }

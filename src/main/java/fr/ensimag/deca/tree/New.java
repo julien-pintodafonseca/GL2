@@ -55,9 +55,13 @@ public class New extends AbstractExpr {
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_HEAP);
         compiler.addInstruction(new LEA(ident.getClassDefinition().getOperand(), Register.R0));
         compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(0, register)));
+        compiler.getTSTOManager().addCurrent(1);
         compiler.addInstruction(new PUSH(register));
+        compiler.getTSTOManager().addCurrent(2);
         compiler.addInstruction(new BSR(new Label("init." + ident.getName())));
+        compiler.getTSTOManager().addCurrent(-2);
         compiler.addInstruction(new POP(register));
+        compiler.getTSTOManager().addCurrent(-1);
     }
 
     @Override

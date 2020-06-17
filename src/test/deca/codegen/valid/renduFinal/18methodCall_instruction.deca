@@ -1,0 +1,18 @@
+// Description:
+//      Utilisation d'une expression en tant qu'instruction
+//      => Cas particulier où l'expression est un appel de fonction (methodCall)
+//
+// Resultats:
+//
+
+class A{
+    int x;
+    int getX(){
+        return this.x;
+    }
+}
+
+{
+    A a=new A();
+    a.getX();
+}

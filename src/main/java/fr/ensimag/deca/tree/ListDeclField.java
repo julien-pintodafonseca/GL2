@@ -67,8 +67,6 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
             compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_STACK))));
             compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_STACK);
 
-            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l’adresse de l’objet
-
             // Initialisation à 0
             for (AbstractDeclField field : this.getList()) {
                 field.codeGenField(compiler, currentClass);
@@ -85,8 +83,6 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
                 field.codeGenFieldInit(compiler, currentClass);
             }
         } else {
-            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l’adresse de l’objet
-
             // Initialisation à 0
             for (AbstractDeclField field : this.getList()) {
                 field.codeGenField(compiler, currentClass);
