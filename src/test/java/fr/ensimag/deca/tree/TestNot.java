@@ -111,6 +111,7 @@ public class TestNot {
         Not notWithReverse = new Not(anyIntExpr);
         Not notWithoutReverse = new Not(anyIntExpr);
 
+        // TODO : est-ce normal que ce cas ne soit pas implémenté ?
         UnsupportedOperationException expected =
                 new UnsupportedOperationException("not yet implemented");
         UnsupportedOperationException resultWithReverse = assertThrows(UnsupportedOperationException.class, () -> {
