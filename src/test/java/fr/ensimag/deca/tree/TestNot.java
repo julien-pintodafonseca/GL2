@@ -2,6 +2,8 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.ima.pseudocode.Label;
 import org.junit.Test;
 
@@ -11,6 +13,7 @@ import java.util.List;
 import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThrows;
 
 /**
  *
@@ -37,7 +40,6 @@ public class TestNot {
         expectedTrue2.add("CMP #1, R2");
         expectedTrue2.add("BEQ my_basic_label");
         codeGenCMPWithSpecificParams(boolFalseExpr, true, expectedTrue2);
-
     }
 
     @Test
@@ -55,7 +57,6 @@ public class TestNot {
         expectedFalse2.add("CMP #1, R2");
         expectedFalse2.add("BNE my_basic_label");
         codeGenCMPWithSpecificParams(boolFalseExpr, false, expectedFalse2);
-
     }
 
     private void codeGenCMPWithSpecificParams(BooleanLiteral boolExpr1,
@@ -63,12 +64,37 @@ public class TestNot {
         // check codeGenCMP
         DecacCompiler myCompiler = new DecacCompiler(null, null);
         myCompiler.setRegisterManager(5);
-        myCompiler.setLabelManager();
 
         Not not = new Not(boolExpr1);
         not.codeGenCMP(myCompiler, anyLabel, reverse);
 
         String result = myCompiler.displayIMAProgram();
         assertThat(normalizeDisplay(result), is(expected));
+    }
+
+    @Test
+    public void testNoMoreRegistersAvailable() throws DecacFatalError {
+        // check that codeGenCMP with no registers available throws UnsupportedOperationException
+        // if operand is boolean
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setRegisterManager(5);
+        myCompiler.getRegisterManager().take(2);
+        myCompiler.getRegisterManager().take(3);
+        myCompiler.getRegisterManager().take(4);
+
+        Not not = new Not(boolTrueExpr);
+
+        // TODO : inscrire ce message d'erreur dans la classe ErrorMessages !
+        UnsupportedOperationException expected =
+                new UnsupportedOperationException("no more available registers : policy not yet implemented");
+        UnsupportedOperationException resultWithReverse = assertThrows(UnsupportedOperationException.class, () -> {
+            not.codeGenCMP(myCompiler, anyLabel, true);
+        });
+        UnsupportedOperationException resultWithoutReverse = assertThrows(UnsupportedOperationException.class, () -> {
+            not.codeGenCMP(myCompiler, anyLabel, false);
+        });
+
+        assertThat(resultWithReverse.getMessage(), is(expected.getMessage()));
+        assertThat(resultWithoutReverse.getMessage(), is(expected.getMessage()));
     }
 }
