@@ -1,0 +1,48 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [9, 10] DeclVar
+      |      +> [9, 4] Identifier (float)
+      |      +> [9, 10] Identifier (x)
+      |      `> [9, 12] Initialization
+      |         `> [9, 19] Minus
+      |            +> [9, 15] Float (3.5)
+      |            `> [10, 22] Multiply
+      |               +> [10, 17] Float (3.5)
+      |               `> [11, 22] Minus
+      |                  +> [11, 20] Int (1)
+      |                  `> [12, 26] Multiply
+      |                     +> [12, 24] Int (0)
+      |                     `> [13, 29] Minus
+      |                        +> [13, 25] Float (3.5)
+      |                        `> [14, 32] Multiply
+      |                           +> [14, 28] Float (3.5)
+      |                           `> [15, 37] Divide
+      |                              +> [15, 33] Float (3.5)
+      |                              `> [16, 41] Minus
+      |                                 +> [16, 37] Float (4.2)
+      |                                 `> [17, 44] Multiply
+      |                                    +> [17, 40] Float (3.5)
+      |                                    `> [18, 48] Minus
+      |                                       +> [18, 44] Float (1.4)
+      |                                       `> [19, 52] Divide
+      |                                          +> [19, 48] Float (4.2)
+      |                                          `> [20, 56] Minus
+      |                                             +> [20, 52] Float (3.5)
+      |                                             `> [21, 60] Multiply
+      |                                                +> [21, 56] Float (3.2)
+      |                                                `> [22, 61] Minus
+      |                                                   +> [22, 60] Int (5)
+      |                                                   `> [23, 66] Multiply
+      |                                                      +> [23, 64] Int (5)
+      |                                                      `> [24, 72] Minus
+      |                                                         +> [24, 69] Plus
+      |                                                         |  +> [24, 68] Int (5)
+      |                                                         |  `> [24, 70] Int (52)
+      |                                                         `> [24, 73] Int (56)
+      `> ListInst [List with 1 elements]
+         []> [34, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [34, 12] StringLiteral (x=)
+                []> [34, 18] Identifier (x)

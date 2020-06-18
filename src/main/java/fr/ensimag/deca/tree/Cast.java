@@ -1,6 +1,7 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
@@ -29,7 +30,7 @@ public class Cast extends AbstractExpr {
     }
 
     @Override
-    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
+    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Syntaxe contextuelle : règle (3.39)
         Type t1 = type.verifyType(compiler);
         Type t2 = expr.verifyExpr(compiler, localEnv, currentClass);

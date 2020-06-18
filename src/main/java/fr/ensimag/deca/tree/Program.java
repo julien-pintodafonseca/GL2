@@ -37,7 +37,7 @@ public class Program extends AbstractProgram {
     private AbstractMain main;
 
     @Override
-    public void verifyProgram(DecacCompiler compiler) throws ContextualError, EnvironmentExp.DoubleDefException {
+    public void verifyProgram(DecacCompiler compiler) throws ContextualError, EnvironmentExp.DoubleDefException, DecacFatalError {
         // Règle syntaxe contextuelle : (3.1)
         LOG.debug("verify program: start");
         declareObject(compiler);
@@ -91,7 +91,7 @@ public class Program extends AbstractProgram {
         compiler.getErrorLabelManager().printErrors(compiler);
     }
 
-    protected void declareObject(DecacCompiler compiler) throws EnvironmentExp.DoubleDefException {
+    protected void declareObject(DecacCompiler compiler) throws EnvironmentExp.DoubleDefException, DecacFatalError {
         ClassDefinition objectClassDef = compiler.environmentType.getClassDefinition(compiler.createSymbol("Object"));
 
         // Définition de la méthode Equals
@@ -103,7 +103,7 @@ public class Program extends AbstractProgram {
         objectClassDef.getMembers().declare(compiler.createSymbol("equals"), equalMethodDef);
     }
 
-    protected void codeGenMethodTableObject(DecacCompiler compiler) {
+    protected void codeGenMethodTableObject(DecacCompiler compiler) throws DecacFatalError {
         compiler.addComment("Construction de la table des methodes de Object");
         ClassDefinition objectClassDef = compiler.environmentType.getClassDefinition(compiler.createSymbol("Object"));
         objectClassDef.initVTable();

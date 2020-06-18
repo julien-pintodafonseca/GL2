@@ -35,7 +35,7 @@ public class DeclVar extends AbstractDeclVar {
     @Override
     protected void verifyDeclVar(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.17)
         LOG.debug("verify declVar: start");
         Type typeVar = type.verifyType(compiler);

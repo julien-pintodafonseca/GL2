@@ -1,0 +1,58 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [8, 0] DeclClass
+   |      +> [8, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [9, 4] DeclMethod
+   |             +> [9, 4] Identifier (int)
+   |             +> [9, 8] Identifier (suiteFibo)
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [9, 18] DeclParam
+   |             |      +> [9, 18] Identifier (int)
+   |             |      `> [9, 22] Identifier (n)
+   |             `> [9, 25] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [11, 8] IfThenElse
+   |                       +> [11, 12] GreaterOrEqual
+   |                       |  +> [11, 11] Identifier (n)
+   |                       |  `> [11, 14] Int (2)
+   |                       +> ListInst [List with 1 elements]
+   |                       |  []> [12, 12] Return
+   |                       |      `> [12, 34] Plus
+   |                       |         +> [12, 19] MethodCall
+   |                       |         |  +> [builtin] This
+   |                       |         |  +> [12, 19] Identifier (suiteFibo)
+   |                       |         |  `> ListExpr [List with 1 elements]
+   |                       |         |     []> [12, 30] Minus
+   |                       |         |         +> [12, 29] Identifier (n)
+   |                       |         |         `> [12, 31] Int (1)
+   |                       |         `> [12, 36] MethodCall
+   |                       |            +> [builtin] This
+   |                       |            +> [12, 36] Identifier (suiteFibo)
+   |                       |            `> ListExpr [List with 1 elements]
+   |                       |               []> [12, 47] Minus
+   |                       |                   +> [12, 46] Identifier (n)
+   |                       |                   `> [12, 48] Int (2)
+   |                       `> ListInst [List with 1 elements]
+   |                          []> [16, 13] Return
+   |                              `> [16, 20] Int (1)
+   `> [21, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [22, 6] DeclVar
+      |      +> [22, 4] Identifier (A)
+      |      +> [22, 6] Identifier (a)
+      |      `> [22, 8] Initialization
+      |         `> [22, 10] New
+      |            `> [22, 14] Identifier (A)
+      `> ListInst [List with 1 elements]
+         []> [23, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [23, 12] StringLiteral (x=)
+                []> [23, 18] MethodCall
+                    +> [23, 18] Identifier (a)
+                    +> [23, 20] Identifier (suiteFibo)
+                    `> ListExpr [List with 1 elements]
+                       []> [23, 30] Int (7)

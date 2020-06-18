@@ -70,7 +70,7 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     public abstract Type verifyExpr(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError;
+            throws ContextualError, DecacFatalError;
 
     /**
      * Verify the expression in right hand-side of (implicit) assignments 
@@ -85,7 +85,7 @@ public abstract class AbstractExpr extends AbstractInst {
      */
     public AbstractExpr verifyRValue(DecacCompiler compiler,
             EnvironmentExp localEnv, ClassDefinition currentClass, 
-            Type expectedType) throws ContextualError {
+            Type expectedType) throws ContextualError, DecacFatalError {
         LOG.debug("verify expr: start (abstractExpr)");
         // Règle syntaxe contextuelle : (3.28)
         Type rightType = verifyExpr(compiler, localEnv, currentClass);
@@ -111,7 +111,7 @@ public abstract class AbstractExpr extends AbstractInst {
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.20)
         LOG.debug("verify inst: start (abstractExpr)");
         verifyExpr(compiler, localEnv, currentClass);

@@ -31,14 +31,11 @@ public class Main extends AbstractMain {
     }
 
     @Override
-    protected void verifyMain(DecacCompiler compiler) throws ContextualError {
+    protected void verifyMain(DecacCompiler compiler) throws ContextualError, DecacFatalError {
         // Règles syntaxe contextuelle : (3.4) -> (3.18)
         LOG.debug("verify Main: start");
         EnvironmentExp env = new EnvironmentExp(null);
         declVariables.verifyListDeclVariable(compiler, env, null);
-        if(insts.getList().size() != 0) {
-            compiler.addComment("---------- Instructions :");
-        }
         insts.verifyListInst(compiler, env, null, compiler.environmentType.VOID);
         LOG.debug("verify Main: end");
     }
@@ -55,6 +52,9 @@ public class Main extends AbstractMain {
         compiler.addComment("           Code du programme principal            ");
         compiler.addComment("--------------------------------------------------");
         declVariables.codeGenListDeclVar(compiler);
+        if(insts.getList().size() != 0) {
+            compiler.addComment("---------- Instructions :");
+        }
         insts.codeGenListInst(compiler);
     }
     

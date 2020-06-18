@@ -23,7 +23,7 @@ public class UnaryMinus extends AbstractUnaryExpr {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Syntaxe contextuelle : règle (3.37)
         getOperand().verifyExpr(compiler, localEnv, currentClass);
         Type t = getOperand().getType();

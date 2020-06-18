@@ -45,7 +45,7 @@ public class DeclMethod extends AbstractDeclMethod {
     }
 
     @Override
-    public void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
+    public void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (2.7)
         Type t = type.verifyType(compiler);
         type.setType(t);
@@ -89,7 +89,7 @@ public class DeclMethod extends AbstractDeclMethod {
     }
 
     @Override
-    public void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
+    public void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.11)
         Type returnType = type.getType();
         EnvironmentExp envExpParams = params.verifyListParamBody(compiler);

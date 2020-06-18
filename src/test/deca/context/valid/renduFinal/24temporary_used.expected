@@ -1,0 +1,93 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [9, 10] DeclVar
+      |      +> [9, 4] Identifier (float)
+      |      |  definition: type (builtin), type=float
+      |      +> [9, 10] Identifier (x)
+      |      |  definition: variable defined at [9, 10], type=float
+      |      `> [9, 12] Initialization
+      |         `> [9, 19] Minus
+      |            type: float
+      |            +> [9, 15] Float (3.5)
+      |            |  type: float
+      |            `> [10, 22] Multiply
+      |               type: float
+      |               +> [10, 17] Float (3.5)
+      |               |  type: float
+      |               `> [11, 22] Minus
+      |                  type: float
+      |                  +> ConvFloat
+      |                  |  type: float
+      |                  |  `> [11, 20] Int (1)
+      |                  |     type: int
+      |                  `> [12, 26] Multiply
+      |                     type: float
+      |                     +> ConvFloat
+      |                     |  type: float
+      |                     |  `> [12, 24] Int (0)
+      |                     |     type: int
+      |                     `> [13, 29] Minus
+      |                        type: float
+      |                        +> [13, 25] Float (3.5)
+      |                        |  type: float
+      |                        `> [14, 32] Multiply
+      |                           type: float
+      |                           +> [14, 28] Float (3.5)
+      |                           |  type: float
+      |                           `> [15, 37] Divide
+      |                              type: float
+      |                              +> [15, 33] Float (3.5)
+      |                              |  type: float
+      |                              `> [16, 41] Minus
+      |                                 type: float
+      |                                 +> [16, 37] Float (4.2)
+      |                                 |  type: float
+      |                                 `> [17, 44] Multiply
+      |                                    type: float
+      |                                    +> [17, 40] Float (3.5)
+      |                                    |  type: float
+      |                                    `> [18, 48] Minus
+      |                                       type: float
+      |                                       +> [18, 44] Float (1.4)
+      |                                       |  type: float
+      |                                       `> [19, 52] Divide
+      |                                          type: float
+      |                                          +> [19, 48] Float (4.2)
+      |                                          |  type: float
+      |                                          `> [20, 56] Minus
+      |                                             type: float
+      |                                             +> [20, 52] Float (3.5)
+      |                                             |  type: float
+      |                                             `> [21, 60] Multiply
+      |                                                type: float
+      |                                                +> [21, 56] Float (3.2)
+      |                                                |  type: float
+      |                                                `> ConvFloat
+      |                                                   type: float
+      |                                                   `> [22, 61] Minus
+      |                                                      type: int
+      |                                                      +> [22, 60] Int (5)
+      |                                                      |  type: int
+      |                                                      `> [23, 66] Multiply
+      |                                                         type: int
+      |                                                         +> [23, 64] Int (5)
+      |                                                         |  type: int
+      |                                                         `> [24, 72] Minus
+      |                                                            type: int
+      |                                                            +> [24, 69] Plus
+      |                                                            |  type: int
+      |                                                            |  +> [24, 68] Int (5)
+      |                                                            |  |  type: int
+      |                                                            |  `> [24, 70] Int (52)
+      |                                                            |     type: int
+      |                                                            `> [24, 73] Int (56)
+      |                                                               type: int
+      `> ListInst [List with 1 elements]
+         []> [34, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [34, 12] StringLiteral (x=)
+                ||  type: string
+                []> [34, 18] Identifier (x)
+                    definition: variable defined at [9, 10], type=float

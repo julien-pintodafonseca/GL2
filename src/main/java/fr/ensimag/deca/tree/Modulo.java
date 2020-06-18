@@ -23,7 +23,7 @@ public class Modulo extends AbstractOpArith {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Syntaxe contextuelle : règle (3.33)
         getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         getRightOperand().verifyExpr(compiler, localEnv, currentClass);

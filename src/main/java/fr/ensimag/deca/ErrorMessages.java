@@ -9,6 +9,8 @@ public final class ErrorMessages {
     // DecacFatalError messages
     public static final String DECAC_FATAL_ERROR_REGISTER_MANAGER_WRONG_REG_NUMBER = "Numéro de registre inexistant : ";
     public static final String DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE = "Un type de label inexistant a été utilisé.";
+    public static final String DECAC_FATAL_ERROR_SYMBOL_IN_ENVIRONNEMENT_TYPE_NOT_DECLARE = "Vous ne pouvez pas accèder à la définition de la classe suivante car elle n'est pas déclarée dans l'environnement des types : ";
+    public static final String DECAC_FATAL_ERROR_ENVIRONNEMENT_TYPE_NOT_CLASS_DEFINITION = "Vous essayez d'accéder à la définition de classe de la variable suivante qui ne possède pas de définition de classe : ";
 
     // DecacCompilerError messages
     public static final String DECAC_COMPILER_WRONG_ENTRY = "L'entrée suivante n'est pas reconnue : "; 

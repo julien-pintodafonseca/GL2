@@ -39,12 +39,9 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     @Override
-    protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError {
+    protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.14) -> (3.18)
         declVariables.verifyListDeclVariable(compiler, localEnv, currentClass);
-        if(insts.getList().size() != 0) {
-            compiler.addComment("---------- Instructions :");
-        }
         insts.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
 
@@ -73,6 +70,9 @@ public class MethodBody extends AbstractMethodBody {
         compiler.getRegisterManager().resetNbMaxRegistersUsed();
 
         declVariables.codeGenListDeclVar(compiler);
+        if(insts.getList().size() != 0) {
+            compiler.addComment("---------- Instructions :");
+        }
         insts.codeGenListInst(compiler);
 
         // Maintenant qu'on connait le nombre de registre max utilisé, on peut générer le code de la sauvegarde des registres

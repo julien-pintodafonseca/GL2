@@ -42,7 +42,7 @@ public abstract class AbstractPrint extends AbstractInst {
     @Override
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
         // Règles syntaxe contextuelle : (3.21), (3.26), (3.27), (3.30)
         LOG.debug("verify inst: start (abstractPrint)");
         for (AbstractExpr expr : getArguments().getList()) {

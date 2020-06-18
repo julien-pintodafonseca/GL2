@@ -1,0 +1,24 @@
+// Description:
+//      Procédure récursive convergente
+//
+// Resultats:
+//      x=8
+
+
+class A {
+    int suiteFibo(int n) {
+        // fibo (n) = fibo(n - 1) + fibo(n - 2)
+        if(n>=2) {
+            return suiteFibo(n-1) + suiteFibo(n-2);
+        }
+        else
+        {
+             return 1;
+        }
+    }
+}
+
+{
+    A a = new A();
+    println("x=", a.suiteFibo(7));
+}

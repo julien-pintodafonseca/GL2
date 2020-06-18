@@ -3,6 +3,9 @@ package fr.ensimag.deca.context;
 import fr.ensimag.deca.DecacCompiler;
 import java.util.HashMap;
 import java.util.Map;
+
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.deca.tree.Location;
 
@@ -60,15 +63,15 @@ public class EnvironmentType {
         return envTypes.containsKey(symbol);
     }
 
-    public ClassDefinition getClassDefinition(Symbol symbol) {
+    public ClassDefinition getClassDefinition(Symbol symbol) throws DecacFatalError {
         if (isDeclare(symbol)) {
             if (envTypes.get(symbol) instanceof ClassDefinition) {
                 return (ClassDefinition) envTypes.get(symbol);
             } else {
-                throw new UnsupportedOperationException("erreur à créer");
+                throw new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_ENVIRONNEMENT_TYPE_NOT_CLASS_DEFINITION + symbol.getName());
             }
         } else {
-            throw new UnsupportedOperationException("erreur à créer");
+            throw new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_SYMBOL_IN_ENVIRONNEMENT_TYPE_NOT_DECLARE + symbol.getName());
         }
     }
 
@@ -86,7 +89,7 @@ public class EnvironmentType {
      * @param type
      * @return true si t est un sous-type de type
      */
-    public boolean subType(Type t, Type type) {
+    public boolean subType(Type t, Type type) throws DecacFatalError {
         // Règles de sous-typage
         if (t.isNull() || t == type || type.isObject()) {
             return true;
@@ -104,7 +107,7 @@ public class EnvironmentType {
      * @param t2
      * @return true si on peut affecter à un object de type t1 un objet de type t2
      */
-    public boolean assignCompatible(Type t1, Type t2) {
+    public boolean assignCompatible(Type t1, Type t2) throws DecacFatalError {
         // Règles d'affectation
         if (t1.isFloat() && t2.isInt()) {
             return true;

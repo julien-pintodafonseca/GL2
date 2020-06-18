@@ -43,7 +43,7 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
      * Pass 3 of [SyntaxeContextuelle]
      */
     protected void verifyListClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.6)
         LOG.debug("verify declFieldInit: start");
         for (AbstractDeclField declField : getList()) {

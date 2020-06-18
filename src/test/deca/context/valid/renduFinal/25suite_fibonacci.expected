@@ -1,0 +1,90 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [8, 0] DeclClass
+   |      +> [8, 6] Identifier (A)
+   |      |  definition: type defined at [8, 0], type=A
+   |      +> Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [9, 4] DeclMethod
+   |             +> [9, 4] Identifier (int)
+   |             |  definition: type (builtin), type=int
+   |             +> [9, 8] Identifier (suiteFibo)
+   |             |  definition: method defined at [9, 4], type=int
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [9, 18] DeclParam
+   |             |      +> [9, 18] Identifier (int)
+   |             |      |  definition: type (builtin), type=int
+   |             |      `> [9, 22] Identifier (n)
+   |             |         definition: parameter defined at [9, 18], type=int
+   |             `> [9, 25] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [11, 8] IfThenElse
+   |                       +> [11, 12] GreaterOrEqual
+   |                       |  type: boolean
+   |                       |  +> [11, 11] Identifier (n)
+   |                       |  |  definition: parameter defined at [9, 18], type=int
+   |                       |  `> [11, 14] Int (2)
+   |                       |     type: int
+   |                       +> ListInst [List with 1 elements]
+   |                       |  []> [12, 12] Return
+   |                       |      `> [12, 34] Plus
+   |                       |         type: int
+   |                       |         +> [12, 19] MethodCall
+   |                       |         |  type: int
+   |                       |         |  +> [builtin] This
+   |                       |         |  |  type: A
+   |                       |         |  +> [12, 19] Identifier (suiteFibo)
+   |                       |         |  |  definition: method defined at [9, 4], type=int
+   |                       |         |  `> ListExpr [List with 1 elements]
+   |                       |         |     []> [12, 30] Minus
+   |                       |         |         type: int
+   |                       |         |         +> [12, 29] Identifier (n)
+   |                       |         |         |  definition: parameter defined at [9, 18], type=int
+   |                       |         |         `> [12, 31] Int (1)
+   |                       |         |            type: int
+   |                       |         `> [12, 36] MethodCall
+   |                       |            type: int
+   |                       |            +> [builtin] This
+   |                       |            |  type: A
+   |                       |            +> [12, 36] Identifier (suiteFibo)
+   |                       |            |  definition: method defined at [9, 4], type=int
+   |                       |            `> ListExpr [List with 1 elements]
+   |                       |               []> [12, 47] Minus
+   |                       |                   type: int
+   |                       |                   +> [12, 46] Identifier (n)
+   |                       |                   |  definition: parameter defined at [9, 18], type=int
+   |                       |                   `> [12, 48] Int (2)
+   |                       |                      type: int
+   |                       `> ListInst [List with 1 elements]
+   |                          []> [16, 13] Return
+   |                              `> [16, 20] Int (1)
+   |                                 type: int
+   `> [21, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [22, 6] DeclVar
+      |      +> [22, 4] Identifier (A)
+      |      |  definition: type defined at [8, 0], type=A
+      |      +> [22, 6] Identifier (a)
+      |      |  definition: variable defined at [22, 6], type=A
+      |      `> [22, 8] Initialization
+      |         `> [22, 10] New
+      |            type: A
+      |            `> [22, 14] Identifier (A)
+      |               definition: type defined at [8, 0], type=A
+      `> ListInst [List with 1 elements]
+         []> [23, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [23, 12] StringLiteral (x=)
+                ||  type: string
+                []> [23, 18] MethodCall
+                    type: int
+                    +> [23, 18] Identifier (a)
+                    |  definition: variable defined at [22, 6], type=A
+                    +> [23, 20] Identifier (suiteFibo)
+                    |  definition: method defined at [9, 4], type=int
+                    `> ListExpr [List with 1 elements]
+                       []> [23, 30] Int (7)
+                           type: int

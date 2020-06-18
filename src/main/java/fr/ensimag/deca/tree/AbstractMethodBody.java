@@ -22,5 +22,5 @@ public abstract class AbstractMethodBody extends Tree {
     /**
      * Implements non-terminal "main" of [SyntaxeContextuelle] in pass 3
      */
-    protected abstract void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError;
+    protected abstract void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError, DecacFatalError;
 }

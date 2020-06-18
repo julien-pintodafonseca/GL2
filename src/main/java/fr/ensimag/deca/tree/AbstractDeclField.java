@@ -25,7 +25,7 @@ public abstract class AbstractDeclField extends Tree {
      * Pass 3 of [SyntaxeContextuelle]. Look at field initialization.
      */
     protected abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError;
+            throws ContextualError, DecacFatalError;
 
     public abstract void codeGenField(DecacCompiler compiler, ClassDefinition currentClass);
 

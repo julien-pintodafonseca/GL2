@@ -42,7 +42,7 @@ public class Initialization extends AbstractInitialization {
     @Override
     public void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.8)
         LOG.debug("verify initialization: start");
         AbstractExpr rightExpr = getExpression().verifyRValue(compiler, localEnv, currentClass, t);

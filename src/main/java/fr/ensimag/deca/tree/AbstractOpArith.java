@@ -28,7 +28,7 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
 
     @Override
     public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Syntaxe contextuelle : règle (3.33)
         Type t1 = getLeftOperand().verifyExpr(compiler, localEnv, currentClass);
         Type t2 = getRightOperand().verifyExpr(compiler, localEnv, currentClass);

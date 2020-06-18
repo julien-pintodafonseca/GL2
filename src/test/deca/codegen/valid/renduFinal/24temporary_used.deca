@@ -1,0 +1,35 @@
+// Description:
+//      Très grande expression nécessitant beaucoup de registres/-temporaires
+//      => Test de la politique d’allocation des registres
+//
+// Resultats:
+//      x=0.0
+
+{
+    float x = (3.5 -
+                (3.5) * (
+                    1 -
+                        0 *
+                        (3.5 -
+                            3.5 *
+                                (3.5 /
+                                    (4.2 -
+                                        3.5 * (
+                                            1.4 -
+                                                4.2 /(
+                                                    3.5 -
+                                                        3.2 * (
+                                                            5-
+                                                                5 * (
+                                                                    5+52-56
+                                                                    )
+                                                            )
+                                                    )
+                                            )
+                                    )
+                                )
+                        )
+                    )
+            );
+    println("x=", x);
+}

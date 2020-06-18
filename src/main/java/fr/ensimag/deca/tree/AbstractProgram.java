@@ -13,7 +13,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
  *
  */
 public abstract class AbstractProgram extends Tree {
-    public abstract void verifyProgram(DecacCompiler compiler) throws ContextualError, EnvironmentExp.DoubleDefException;
+    public abstract void verifyProgram(DecacCompiler compiler) throws ContextualError, EnvironmentExp.DoubleDefException, DecacFatalError;
     public abstract void codeGenProgram(DecacCompiler compiler) throws DecacFatalError;
 
 }

@@ -26,7 +26,7 @@ public abstract class AbstractInitialization extends Tree {
      */
     protected abstract void verifyInitialization(DecacCompiler compiler,
             Type t, EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError;
+            throws ContextualError, DecacFatalError;
 
     protected abstract void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError;
 

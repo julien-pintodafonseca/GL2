@@ -39,7 +39,7 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
      *          corresponds to "class" attribute (null in the main bloc).
      */    
     void verifyListDeclVariable(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass) throws ContextualError {
+            ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         LOG.debug("verify listDeclVar: start");
         // Règle syntaxe contextuelle : (3.16)
         for (AbstractDeclVar declVar : this.getList()) {

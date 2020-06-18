@@ -33,7 +33,7 @@ public class MethodCall extends AbstractExpr {
     }
 
     @Override
-    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError {
+    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Syntaxe contextuelle : règles (3.71), (3.72), (3.73) et (3.74)
         obj.verifyExpr(compiler, localEnv, currentClass);
         if (obj.getType() != null) {

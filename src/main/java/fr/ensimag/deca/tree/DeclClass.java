@@ -46,7 +46,7 @@ public class DeclClass extends AbstractDeclClass {
     }
 
     @Override
-    protected void verifyClass(DecacCompiler compiler) throws ContextualError {
+    protected void verifyClass(DecacCompiler compiler) throws ContextualError, DecacFatalError {
         // Règles syntaxe contextuelle : (1.3) et (2.3)
         if (compiler.environmentType.isDeclare(classExtension.getName())) {
             if (!compiler.environmentType.isDeclare(className.getName())) {
@@ -68,7 +68,7 @@ public class DeclClass extends AbstractDeclClass {
 
     @Override
     protected void verifyClassMembers(DecacCompiler compiler)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
 
         ClassDefinition superClassDef = classExtension.getClassDefinition();
         className.getClassDefinition().setNumberOfFields(superClassDef.getNumberOfFields());
@@ -79,7 +79,7 @@ public class DeclClass extends AbstractDeclClass {
     }
     
     @Override
-    protected void verifyClassBody(DecacCompiler compiler) throws ContextualError {
+    protected void verifyClassBody(DecacCompiler compiler) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.5)
         fields.verifyListClassBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());
         methods.verifyListClassBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());

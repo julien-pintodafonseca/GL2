@@ -28,7 +28,7 @@ public class ListInst extends TreeList<AbstractInst> {
      */    
     public void verifyListInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.19)
         LOG.debug("verify ListInst: start");
         for (AbstractInst inst : getList()) {
