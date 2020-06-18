@@ -1,0 +1,32 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [9, 0] Main
+      +> ListDeclVar [List with 0 elements]
+      `> ListInst [List with 10 elements]
+         []> [10, 3] BooleanLiteral (true)
+         []> [11, 8] And
+         ||  +> [11, 3] BooleanLiteral (true)
+         ||  `> [11, 11] BooleanLiteral (true)
+         []> [12, 4] Lower
+         ||  +> [12, 3] Int (3)
+         ||  `> [12, 5] Int (5)
+         []> [13, 4] LowerOrEqual
+         ||  +> [13, 3] Int (3)
+         ||  `> [13, 6] Int (5)
+         []> [14, 4] Greater
+         ||  +> [14, 3] Int (3)
+         ||  `> [14, 5] Int (5)
+         []> [15, 4] GreaterOrEqual
+         ||  +> [15, 3] Int (3)
+         ||  `> [15, 6] Int (5)
+         []> [16, 10] Equals
+         ||  +> [16, 3] StringLiteral (hello)
+         ||  `> [16, 12] StringLiteral (false)
+         []> [17, 4] NotEquals
+         ||  +> [17, 3] Int (3)
+         ||  `> [17, 6] Int (5)
+         []> [18, 9] Or
+         ||  +> [18, 3] BooleanLiteral (false)
+         ||  `> [18, 12] BooleanLiteral (true)
+         []> [19, 3] Not
+             `> [19, 4] BooleanLiteral (true)

@@ -1,0 +1,24 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 0 elements]
+      `> ListInst [List with 8 elements]
+         []> [9, 3] Int (3)
+         []> [10, 3] Float (3.5)
+         []> [11, 3] UnaryMinus
+         ||  `> [11, 4] Int (3)
+         []> [12, 4] Multiply
+         ||  +> [12, 3] Int (3)
+         ||  `> [12, 5] Int (3)
+         []> [13, 7] Minus
+         ||  +> [13, 3] Float (3.58)
+         ||  `> [13, 8] Int (3)
+         []> [14, 4] Plus
+         ||  +> [14, 3] Int (3)
+         ||  `> [14, 5] Float (3.6)
+         []> [15, 4] Divide
+         ||  +> [15, 3] Int (3)
+         ||  `> [15, 5] Int (3)
+         []> [16, 4] Modulo
+             +> [16, 3] Int (3)
+             `> [16, 5] Int (3)

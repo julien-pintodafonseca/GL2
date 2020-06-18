@@ -1,0 +1,112 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [8, 0] DeclClass
+   |      +> [8, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 2 elements]
+   |      |  []> [9, 10] DeclField
+   |      |  ||  +> [9, 4] Identifier (float)
+   |      |  ||  +> [9, 10] Identifier (x)
+   |      |  ||  `> Initialization
+   |      |  ||     `> [9, 14] Float (3.5)
+   |      |  []> [10, 8] DeclField
+   |      |      +> [10, 4] Identifier (int)
+   |      |      +> [10, 8] Identifier (z)
+   |      |      `> Initialization
+   |      |         `> [10, 12] Int (8)
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [11, 4] DeclMethod
+   |             +> [11, 4] Identifier (boolean)
+   |             +> [11, 12] Identifier (test)
+   |             +> ListDeclParam [List with 2 elements]
+   |             |  []> [11, 18] DeclParam
+   |             |  ||  +> [11, 18] Identifier (int)
+   |             |  ||  `> [11, 22] Identifier (y)
+   |             |  []> [11, 25] DeclParam
+   |             |      +> [11, 25] Identifier (boolean)
+   |             |      `> [11, 33] Identifier (t)
+   |             `> [11, 36] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 4 elements]
+   |                   []> [12, 8] Println
+   |                   ||  `> ListExpr [List with 3 elements]
+   |                   ||     []> [12, 16] StringLiteral (A:)
+   |                   ||     []> [12, 22] Identifier (x)
+   |                   ||     []> [12, 25] StringLiteral (;)
+   |                   []> [13, 8] IfThenElse
+   |                   ||  +> [13, 12] Lower
+   |                   ||  |  +> [13, 11] Identifier (y)
+   |                   ||  |  `> [13, 13] Int (50)
+   |                   ||  +> ListInst [List with 1 elements]
+   |                   ||  |  []> [14, 18] Assign
+   |                   ||  |      +> [14, 16] Selection
+   |                   ||  |      |  +> [14, 12] This
+   |                   ||  |      |  `> [14, 17] Identifier (x)
+   |                   ||  |      `> [14, 25] Plus
+   |                   ||  |         +> [14, 23] Selection
+   |                   ||  |         |  +> [14, 19] This
+   |                   ||  |         |  `> [14, 24] Identifier (x)
+   |                   ||  |         `> [14, 26] Identifier (y)
+   |                   ||  `> ListInst [List with 0 elements]
+   |                   []> [16, 14] Assign
+   |                   ||  +> [16, 12] Selection
+   |                   ||  |  +> [16, 8] This
+   |                   ||  |  `> [16, 13] Identifier (z)
+   |                   ||  `> [16, 21] Minus
+   |                   ||     +> [16, 19] Selection
+   |                   ||     |  +> [16, 15] This
+   |                   ||     |  `> [16, 20] Identifier (z)
+   |                   ||     `> [16, 22] Identifier (y)
+   |                   []> [17, 8] Return
+   |                       `> [17, 17] And
+   |                          +> [17, 15] Identifier (t)
+   |                          `> [17, 20] Not
+   |                             `> [17, 35] And
+   |                                +> [17, 27] And
+   |                                |  +> [17, 23] NotEquals
+   |                                |  |  +> [17, 22] Identifier (x)
+   |                                |  |  `> [17, 25] Int (1)
+   |                                |  `> [17, 31] GreaterOrEqual
+   |                                |     +> [17, 30] Identifier (y)
+   |                                |     `> [17, 33] Int (1)
+   |                                `> [17, 43] Or
+   |                                   +> [17, 40] Lower
+   |                                   |  +> [17, 39] Identifier (z)
+   |                                   |  `> [17, 41] Int (6)
+   |                                   `> [17, 47] Equals
+   |                                      +> [17, 46] Identifier (z)
+   |                                      `> [17, 49] Int (0)
+   `> [21, 0] Main
+      +> ListDeclVar [List with 3 elements]
+      |  []> [22, 6] DeclVar
+      |  ||  +> [22, 4] Identifier (A)
+      |  ||  +> [22, 6] Identifier (oA)
+      |  ||  `> [22, 9] Initialization
+      |  ||     `> [22, 11] New
+      |  ||        `> [22, 15] Identifier (A)
+      |  []> [23, 8] DeclVar
+      |  ||  +> [23, 4] Identifier (int)
+      |  ||  +> [23, 8] Identifier (y)
+      |  ||  `> [23, 10] Initialization
+      |  ||     `> [23, 12] Int (1)
+      |  []> [24, 12] DeclVar
+      |      +> [24, 4] Identifier (boolean)
+      |      +> [24, 12] Identifier (result)
+      |      `> [24, 19] Initialization
+      |         `> [24, 21] MethodCall
+      |            +> [24, 21] Identifier (oA)
+      |            +> [24, 24] Identifier (test)
+      |            `> ListExpr [List with 2 elements]
+      |               []> [24, 29] Identifier (y)
+      |               []> [24, 32] BooleanLiteral (true)
+      `> ListInst [List with 1 elements]
+         []> [25, 4] IfThenElse
+             +> [25, 7] Identifier (result)
+             +> ListInst [List with 1 elements]
+             |  []> [26, 8] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [26, 16] StringLiteral (OK)
+             `> ListInst [List with 1 elements]
+                []> [28, 8] Println
+                    `> ListExpr [List with 1 elements]
+                       []> [28, 16] StringLiteral (NOK)

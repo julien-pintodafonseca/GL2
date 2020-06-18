@@ -1,0 +1,37 @@
+`> [7, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [7, 0] DeclClass
+   |      +> [7, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [8, 10] DeclField
+   |      |      +> [8, 4] Identifier (float)
+   |      |      +> [8, 10] Identifier (x)
+   |      |      `> Initialization
+   |      |         `> [8, 14] Float (3.5)
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [9, 4] DeclMethod
+   |             +> [9, 4] Identifier (float)
+   |             +> [9, 10] Identifier (getX)
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [9, 21] MethodBodyASM
+   |                `> [9, 21] StringLiteral (LOAD -2(LB), R1
+        LOAD 1(R1), R0
+        RTS)
+   `> [14, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [15, 6] DeclVar
+      |      +> [15, 4] Identifier (A)
+      |      +> [15, 6] Identifier (oA)
+      |      `> [15, 9] Initialization
+      |         `> [15, 11] New
+      |            `> [15, 15] Identifier (A)
+      `> ListInst [List with 1 elements]
+         []> [16, 4] Println
+             `> ListExpr [List with 3 elements]
+                []> [16, 12] StringLiteral (A:)
+                []> [16, 18] MethodCall
+                ||  +> [16, 18] Identifier (oA)
+                ||  +> [16, 21] Identifier (getX)
+                ||  `> ListExpr [List with 0 elements]
+                []> [16, 29] StringLiteral (;)
