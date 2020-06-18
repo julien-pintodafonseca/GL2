@@ -17,7 +17,6 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestStringLiteral {
     private final List<String> IMACodeGenPrintExpectedEmptyString = new ArrayList<>();
     private final List<String> IMACodeGenPrintExpectedString = new ArrayList<>();
@@ -28,20 +27,6 @@ public class TestStringLiteral {
     public void setup() {
         IMACodeGenPrintExpectedEmptyString.add("WSTR \"\"");
         IMACodeGenPrintExpectedString.add("WSTR \"hello\"");
-    }
-
-    @Test
-    public void testVerifyExpr() {
-        StringLiteral str1 = new StringLiteral(""); // Cas d'une chaine vide
-        StringLiteral str2 = new StringLiteral("hello"); // Cas d'une chaine quelconque
-
-        // Le type renvoyé est bien STRING
-        assertEquals(compiler.environmentType.STRING, str1.verifyExpr(compiler, null, null));
-        assertEquals(compiler.environmentType.STRING, str2.verifyExpr(compiler, null, null));
-
-        // Le type de l'expression est bien STRING
-        assertEquals(compiler.environmentType.STRING, str1.getType());
-        assertEquals(compiler.environmentType.STRING, str2.getType());
     }
 
     @Test

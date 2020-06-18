@@ -1,8 +1,11 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.syntax;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.FloatLiteral;
+import fr.ensimag.deca.tree.IntLiteral;
 import fr.ensimag.ima.pseudocode.DAddr;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +33,7 @@ public class TestInitialization {
     private final FloatLiteral expectedFloatLiteral = new FloatLiteral(5.5f);
     private final UnsupportedOperationException expectedNoMoreRegister =
             new UnsupportedOperationException("no more available registers : policy not yet implemented");
-    private final List<String> IMACodeGenInitializationExpected = new ArrayList<>();
+    
 
     @Mock private AbstractExpr exprInt;
     @Mock private AbstractExpr exprFloat;
@@ -55,39 +58,8 @@ public class TestInitialization {
             compilerWithoutAvailableRegisters.getRegisterManager().take(i);
         }
 
-        IMACodeGenInitializationExpected.add("STORE R2, address");
+       
     }
 
-    @Test
-    public void testVerifyInitialization() throws ContextualError, DecacFatalError {
-        Initialization initInt = new Initialization(exprInt);
-        initInt.verifyInitialization(compiler, compiler.environmentType.INT, null, null);
-        assertEquals(expectedIntLiteral, initInt.getExpression());
 
-        Initialization initFloat = new Initialization(exprFloat);
-        initFloat.verifyInitialization(compiler, compiler.environmentType.FLOAT, null, null);
-        assertEquals(expectedFloatLiteral, initFloat.getExpression());
-    }
-
-    @Test
-    public void testCodeGenInitialization() throws DecacFatalError {
-        Initialization init = new Initialization(expr);
-
-        // Pas de modification des attributs lors de la génération de code
-        init.codeGenInitialization(compiler, address);
-        assertEquals(expr.getType(), init.getExpression().getType());
-        assertThat(init.getExpression(), is(expr));
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenInitializationExpected));
-
-        // TODO
-        /*
-        // Levée d'une erreur si plus de registre disponible
-        UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {
-            init.codeGenInitialization(compilerWithoutAvailableRegisters, address);
-        });
-        assertThat(resultNoMoreRegister.getMessage(), is(expectedNoMoreRegister.getMessage()));
-         */
-    }
 }

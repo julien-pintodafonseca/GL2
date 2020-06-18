@@ -1,4 +1,4 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.syntax;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
@@ -36,48 +36,6 @@ public class TestReadInt {
         IMACodeGenInstExpected.add("LOAD R1, R0");
     }
 
-    @Test
-    public void testVerifyExpr() {
-        ReadInt read = new ReadInt();
-
-        // Le type renvoyé est bien INT
-        assertEquals(read.verifyExpr(compiler, null, null), compiler.environmentType.INT);
-
-        // Le type de l'expression est bien INT
-        assertEquals(read.getType(), compiler.environmentType.INT);
-    }
-
-    @Test
-    public void testCodeGenPrint() throws DecacFatalError {
-        compiler = new DecacCompiler(null, null);
-        ReadInt read = new ReadInt();
-        compiler.setErrorLabelManager();
-        read.verifyExpr(compiler, null, null);
-        ReadInt readCodeGenPrint = new ReadInt();
-        readCodeGenPrint.verifyExpr(compiler, null, null);
-
-        // Pas de modification des attributs lors de la génération de code
-        readCodeGenPrint.codeGenPrint(compiler, false);
-        assertEquals(read.getType(), readCodeGenPrint.getType());
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenPrintExpected));
-    }
-
-    @Test
-    public void testCodeGenInst() throws DecacFatalError {
-        compiler = new DecacCompiler(null, null);
-        ReadInt read = new ReadInt();
-        compiler.setErrorLabelManager();
-        read.verifyExpr(compiler, null, null);
-        ReadInt readCodeGenPrint = new ReadInt();
-        readCodeGenPrint.verifyExpr(compiler, null, null);
-
-        // Pas de modification des attributs lors de la génération de code
-        readCodeGenPrint.codeGenInst(compiler, Register.R0);
-        assertEquals(read.getType(), readCodeGenPrint.getType());
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenInstExpected));
-    }
+    
+  
 }

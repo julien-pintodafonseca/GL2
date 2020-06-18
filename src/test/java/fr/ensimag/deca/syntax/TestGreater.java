@@ -1,7 +1,8 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.syntax;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.ima.pseudocode.Label;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,39 +42,5 @@ public class TestGreater {
         IMACodeGenCMPExpectedReverseFalse.add("BGT lb");
     }
 
-    @Test
-    public void testCodeGenCMPReverseTrue() throws DecacFatalError { // Cas où le paramètre reverse=true
-        Greater greater = new Greater(sonL, sonR);
-        compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
-
-        greater.codeGenCMP(compiler, lb, true);
-
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), greater.getLeftOperand().getType());
-        assertThat(greater.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), greater.getRightOperand().getType());
-        assertThat(greater.getRightOperand(), is(sonR));
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedReverseTrue));
-    }
-
-    @Test
-    public void testCodeGenCMPReverseFalse() throws DecacFatalError { // Cas où le paramètre reverse=true
-        Greater greater = new Greater(sonL, sonR);
-        compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
-
-        greater.codeGenCMP(compiler, lb, false);
-
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), greater.getLeftOperand().getType());
-        assertThat(greater.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), greater.getRightOperand().getType());
-        assertThat(greater.getRightOperand(), is(sonR));
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedReverseFalse));
-    }
+  
 }
