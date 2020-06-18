@@ -1,0 +1,24 @@
+// Description:
+//      Procédure récursive convergente
+//
+// Resultats:
+//      1
+//      22
+//      22
+
+class A {
+    float declP(float x, int e) {
+        if (e == 0) {
+            return 1;
+        } else {
+            float p = pow(x, e/2);
+            return 2;
+        }
+    }
+}
+
+{
+    A a = new A();
+    println(a.declP(0));
+    println(a.declP(5));
+}

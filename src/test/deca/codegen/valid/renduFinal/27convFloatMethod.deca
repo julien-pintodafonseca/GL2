@@ -1,0 +1,24 @@
+// Description:
+//      Procédure récursive convergente
+//
+// Resultats:
+//      1
+//      22
+//      22
+
+class A {
+    float cvf(float x, int e) {
+        if (e == 0) {
+            return 1;
+        } else {
+            return 22;
+        }
+    }
+}
+
+{
+    A a = new A();
+    println(a.cvf(0));
+    println(a.cvf(-33));
+    println(a.cvf(18));
+}

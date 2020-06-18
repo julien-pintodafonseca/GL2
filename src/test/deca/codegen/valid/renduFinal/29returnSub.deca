@@ -1,0 +1,23 @@
+// Description:
+//      Procédure récursive convergente
+//
+// Resultats:
+//      1
+//      22
+//      22
+
+class A {
+    int mySub(float x) {
+        int e = 2000;
+        if (x > 1999) {
+            e = 0;
+        }
+        return e-1;
+    }
+}
+
+{
+    A a = new A();
+    println(a.mySub(1999.1));
+    println(a.mySub(0));
+}
