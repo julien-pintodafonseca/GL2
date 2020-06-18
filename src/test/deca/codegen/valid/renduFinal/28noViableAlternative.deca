@@ -1,0 +1,53 @@
+// Description:
+//      fix ok pour "no viable alternative at input 'var'" problem
+//
+// Resultats:
+//      1
+//      2
+//      0
+//      0
+
+class A {
+    int noViableE(float x) {
+        println("entree noViableE");
+        int e = 0;
+        println("avant boucle while");
+        println("debut boucle while");
+        while (pow(2,e) <= x) {
+            e = e+1;
+            println(e);
+            println("---");
+            println("fin boucle while");
+        }
+        println("après boucle while");
+        println(e-1);
+        println("sortie noViableE");
+        return e-1;
+    }
+
+    float noViableP(int e) {
+        println("entree noViableP");
+        if (e == 0) {
+            println(e);
+            println("sortie noViableP");
+            return 1;
+        } else {
+            float p = pow(x, e/2);
+            println(e);
+            println("sortie noViableP");
+            return 2;
+        }
+    }
+
+    int pow(x, e) {
+        return e/2;
+    }
+}
+
+{
+    A a = new A();
+    println(a.noViableE(0));
+    println(a.noViableE(-18));
+    println(a.noViableP(0));
+    println(a.noViableP(5));
+}

@@ -40,8 +40,7 @@ class Math {
         while (pow(2,e) <= x) {
             e = e+1;
         }
-        e = e-1;
-        return e;
+        return e-1;
     }
 
     float abs(float x) {
