@@ -66,7 +66,7 @@ public class Not extends AbstractUnaryExpr {
                 compiler.addInstruction(new BNE(label));
             }
         } else {
-            // sinon si l'attribut "operand" est un autre objet de type AbstractExpr
+            // sinon si l'attribut "operand" est un autre objet de type AbstractExpr de type booléen
             if (reverse) {
                 getOperand().codeGenCMP(compiler, label, false);
             } else {
