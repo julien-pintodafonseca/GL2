@@ -1,0 +1,15 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m.getExponent(0.0)); // 0
+    println(m.getExponent(1.0)); // 0
+    println(m.getExponent(2.0)); // 1
+    println(m.getExponent(3.0)); // 1
+    println(m.getExponent(4.0)); // 2
+    println(m.getExponent(8.0)); // 3
+    println(m.getExponent(16.22)); // 4
+    println(m.getExponent(27.39)); // 4
+    println(m.getExponent(267.7)); // 8
+}
