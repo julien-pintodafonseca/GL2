@@ -3,12 +3,12 @@
 {
     Math m = new Math();
 
-    println(m.pow(0,0)); // 1
-    println(m.pow(2,0)); // 1
-    println(m.pow(1,126)); // 1
-    println(m.pow(2,3)); // 8
-    println(m.pow(2,-3)); // 0.125
-    println(m.pow(99456,1)); // 99456
-    println(m.pow(2.5,2)); // 6.25
-    println(m.pow(12345.6789,-12)); // 7.9766452e-50
+    println(m.pow(0,0));                // 1.00000e+00
+    println(m.pow(2,0));                // 1.00000e+00
+    println(m.pow(1,126));              // 1.00000e+00
+    println(m.pow(2,3));                // 8.00000e+00
+    println(m.pow(2,-3));               // 1.25000e-01
+    println(m.pow(99456,1));            // 9.94560e+04
+    println(m.pow(2.5,2));              // 6.25000e+00
+    println(m.pow(12345.6789,-12));     // 0.00000e-00
 }
