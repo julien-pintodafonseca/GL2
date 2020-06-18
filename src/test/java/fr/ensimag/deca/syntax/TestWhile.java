@@ -9,6 +9,8 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.ListInst;
+import fr.ensimag.deca.tree.ReadInt;
+import fr.ensimag.deca.tree.While;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,22 +35,26 @@ import static org.mockito.Mockito.when;
 // TODO
 public class TestWhile {
 
-    @Mock private AbstractExpr conditionBool;
-    @Mock private AbstractExpr conditionNotBool;
+    @Mock private AbstractExpr condition;
     @Mock private ListInst body;
-    @Mock private EnvironmentExp localEnv;
-    @Mock private ClassDefinition currentClass;
-    @Mock private Type returnType;
 
-    private DecacCompiler compiler = new DecacCompiler(null, null);
+    
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        when(conditionBool.getType()).thenReturn(compiler.environmentType.BOOLEAN);
-        when(conditionNotBool.getType()).thenReturn(compiler.environmentType.INT);
-
         
+        
+    }
+    @Test
+    public void testDecompile() {
+    	 
+    	While expr = new While(condition, body); 
+    	 
+        String result1 = expr.decompile();
+        String expected1 = "while () {"+"\n"+"}";
+        assertThat(result1, is(expected1));
+               
     }
 
    

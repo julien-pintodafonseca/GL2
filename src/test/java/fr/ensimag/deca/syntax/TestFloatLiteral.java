@@ -2,6 +2,7 @@ package fr.ensimag.deca.syntax;
 
 
 import fr.ensimag.deca.tree.FloatLiteral;
+import static org.hamcrest.core.Is.is;
 
 import org.junit.Test;
 
@@ -33,12 +34,12 @@ public class TestFloatLiteral {
     	FloatLiteral float2 = new FloatLiteral(5.2f); // Cas d'une valeur quelconque
          
         String result1 = float1.decompile();
-        String expected1 = "0.0f";
-        assertThat(result1, equalTo(expected1));
+        String expected1 = "0x0.0p0";
+        assertThat(result1, is(expected1));
         
         String result2 = float2.decompile();
-        String expected2 = "5.2f";
-        assertThat(result2, equalTo(expected2));
+        String expected2 = "0x1.4cccccp2";
+        assertThat(result2, is(expected2));
     }
 
 }

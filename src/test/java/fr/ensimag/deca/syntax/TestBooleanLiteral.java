@@ -1,6 +1,5 @@
 package fr.ensimag.deca.syntax;
 
-import fr.ensimag.deca.tree.And;
 import fr.ensimag.deca.tree.BooleanLiteral;
 import fr.ensimag.ima.pseudocode.Label;
 import org.junit.Before;

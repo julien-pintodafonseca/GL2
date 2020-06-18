@@ -1,19 +1,12 @@
 package fr.ensimag.deca.syntax;
 
-import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.tree.StringLiteral;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -22,16 +15,21 @@ import static org.junit.Assert.assertEquals;
  */
 // TODO
 public class TestStringLiteral {
-    private final List<String> IMACodeGenPrintExpectedEmptyString = new ArrayList<>();
-    private final List<String> IMACodeGenPrintExpectedString = new ArrayList<>();
-
-    private DecacCompiler compiler = new DecacCompiler(null, null);
-
-    @Before
-    public void setup() {
-        IMACodeGenPrintExpectedEmptyString.add("WSTR \"\"");
-        IMACodeGenPrintExpectedString.add("WSTR \"hello\"");
-    }
    
+    @Test
+    public void testDecompile() {
+    	 
+    	StringLiteral string1 = new StringLiteral(""); // Cas d'une chaine vide
+    	StringLiteral string2 = new StringLiteral("hello"); // Cas d'une chaine quelconque
+
+        String result1 = string1.decompile();
+        String expected1 = "";
+        assertThat(result1, is(expected1));
+        
+        String result2 = string2.decompile();
+        String expected2 = "hello";
+        assertThat(result2, is(expected2));
+       
+    }
  
 }
