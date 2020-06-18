@@ -61,9 +61,11 @@ public class Initialization extends AbstractInitialization {
         } else {
             int j = compiler.getRegisterManager().getSize() -1 ;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            compiler.getTSTOManager().addCurrent(1);
             getExpression().codeGenInst(compiler, Register.getR(j));
             compiler.addInstruction(new STORE(Register.getR(j), addr));
             compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
+            compiler.getTSTOManager().addCurrent(-1);
         }
     }
 
@@ -79,10 +81,12 @@ public class Initialization extends AbstractInitialization {
         } else {
             int j = compiler.getRegisterManager().getSize() -1 ;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            compiler.getTSTOManager().addCurrent(1);
             getExpression().codeGenInst(compiler, Register.getR(j));
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l'adresse de l'objet
             compiler.addInstruction(new STORE(Register.getR(j), addr));
             compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
+            compiler.getTSTOManager().addCurrent(-1);
         }
     }
 

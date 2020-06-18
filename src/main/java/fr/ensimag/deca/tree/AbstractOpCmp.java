@@ -73,9 +73,11 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             } else {
                 int k = compiler.getRegisterManager().getSize() -1 ;
                 compiler.addInstruction(new PUSH(Register.getR(k))); // chargement dans la pile de 1 registre
+                compiler.getTSTOManager().addCurrent(1);
                 getRightOperand().codeGenInst(compiler, Register.getR(k));
                 compiler.addInstruction(new CMP(Register.getR(k), Register.getR(i)));
                 compiler.addInstruction(new POP(Register.getR(k))); // restauration du registre
+                compiler.getTSTOManager().addCurrent(-1);
             }
 
             compiler.getRegisterManager().free(i);
@@ -84,12 +86,14 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             int k = j - 1;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 2 registres
             compiler.addInstruction(new PUSH(Register.getR(k)));
+            compiler.getTSTOManager().addCurrent(2);
 
             getRightOperand().codeGenInst(compiler, Register.getR(k));
             compiler.addInstruction(new CMP(Register.getR(k), Register.getR(j)));
 
             compiler.addInstruction(new POP(Register.getR(k))); // restauration des registres
             compiler.addInstruction(new POP(Register.getR(j)));
+            compiler.getTSTOManager().addCurrent(-2);
         }
     }
 

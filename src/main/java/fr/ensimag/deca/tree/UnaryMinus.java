@@ -54,10 +54,12 @@ public class UnaryMinus extends AbstractUnaryExpr {
         } else {
             int j = compiler.getRegisterManager().getSize() -1 ;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            compiler.getTSTOManager().addCurrent(1);
             getOperand().codeGenInst(compiler, Register.getR(j));
             compiler.addInstruction(new OPP(Register.getR(j), Register.R1));
             super.codeGenPrint(compiler, printHex);
             compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
+            compiler.getTSTOManager().addCurrent(-1);
         }
     }
 

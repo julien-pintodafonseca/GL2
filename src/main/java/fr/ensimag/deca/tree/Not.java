@@ -50,9 +50,11 @@ public class Not extends AbstractUnaryExpr {
             } else {
                 int j = compiler.getRegisterManager().getSize() -1 ;
                 compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+                compiler.getTSTOManager().addCurrent(1);
                 getOperand().codeGenInst(compiler, Register.getR(j));
                 compiler.addInstruction(new CMP(1, Register.getR(j)));
                 compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
+                compiler.getTSTOManager().addCurrent(-1);
             }
             if (reverse) {
                 compiler.addInstruction(new BEQ(label));
