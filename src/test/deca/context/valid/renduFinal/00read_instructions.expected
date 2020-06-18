@@ -1,0 +1,9 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [8, 0] Main
+      +> ListDeclVar [List with 0 elements]
+      `> ListInst [List with 2 elements]
+         []> [9, 4] ReadInt
+         ||  type: int
+         []> [10, 4] ReadFloat
+             type: float
