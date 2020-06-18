@@ -53,7 +53,8 @@ public class TestIfThenElse {
     }
 
     @Test
-    public void testVerifyInst() throws ContextualError {
+
+    public void testVerifyInst() throws ContextualError, DecacFatalError {
         IfThenElse ifNodeBool = new IfThenElse(conditionBool, thenBranch, elseBranch);
         IfThenElse ifNodeNotBool = new IfThenElse(conditionNotBool, thenBranch, elseBranch);
 

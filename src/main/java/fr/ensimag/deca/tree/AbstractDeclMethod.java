@@ -14,6 +14,7 @@ import fr.ensimag.deca.tools.SymbolTable;
  * @date 2020
  */
 public abstract class AbstractDeclMethod extends Tree {
+
     public abstract SymbolTable.Symbol getName();
 
     public abstract AbstractIdentifier getIdentifier();
