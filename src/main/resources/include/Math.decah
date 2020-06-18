@@ -37,10 +37,14 @@ class Math {
 
     int getExponent(float x) {
         int e = 0;
-        while (pow(2,e) <= x) {
-            e = e+1;
+        if (x == 0) {
+            return 0;
+        } else {
+            while (pow(2,e) <= x) {
+                e = e+1;
+            }
+            return e-1;
         }
-        return e-1;
     }
 
     float abs(float x) {
