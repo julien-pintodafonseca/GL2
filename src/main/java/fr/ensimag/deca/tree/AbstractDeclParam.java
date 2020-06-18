@@ -10,6 +10,7 @@ import fr.ensimag.deca.context.*;
  * @date 2020
  */
 public abstract class AbstractDeclParam extends Tree {
+
     protected abstract ExpDefinition getExpDefinition();
 
     /**
