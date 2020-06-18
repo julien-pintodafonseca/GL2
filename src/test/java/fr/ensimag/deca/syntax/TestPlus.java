@@ -1,9 +1,10 @@
 package fr.ensimag.deca.syntax;
 
-import fr.ensimag.deca.tree.FloatLiteral;
-import fr.ensimag.deca.tree.IntLiteral;
-import fr.ensimag.deca.tree.Plus;
+import fr.ensimag.deca.tree.*;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -14,6 +15,14 @@ import static org.hamcrest.core.Is.is;
  * @date 2020
  */
 public class TestPlus {
+
+    @Mock private AbstractExpr sonL;
+    @Mock private AbstractExpr sonR;
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testDecompile() {
@@ -40,5 +49,11 @@ public class TestPlus {
         String result4 = plus4.decompile();
         String expected4 = "(-0x1.f61582p8 + 0x1.46e978p1)";
         assertThat(result4, is(expected4));
+
+        Plus plus5 = new Plus(sonL, sonR);
+        String result5 = plus5.decompile();
+
+        String expected5 = "( + )";
+        assertThat(result5, is(expected5));
     }
 }

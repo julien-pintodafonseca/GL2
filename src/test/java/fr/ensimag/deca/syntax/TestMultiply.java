@@ -6,9 +6,7 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.FloatType;
 import fr.ensimag.deca.context.IntType;
 import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.tree.FloatLiteral;
-import fr.ensimag.deca.tree.IntLiteral;
-import fr.ensimag.deca.tree.Multiply;
+import fr.ensimag.deca.tree.*;
 import fr.ensimag.deca.utils.Utils;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
@@ -33,11 +31,14 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestMultiply {
-  
+    @Mock private AbstractExpr sonL;
+    @Mock private AbstractExpr sonR;
 
- 
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testDecompile() {
@@ -55,5 +56,10 @@ public class TestMultiply {
         String result3 = multiply3.decompile();
         String expected3 = "(-0x1.f61582p8 * 0x1.46e978p1)";
         assertThat(result3, is(expected3));
+
+        Multiply multiply4 = new Multiply(sonL, sonR);
+        String result4 = multiply4.decompile();
+        String expected4 = "( * )";
+        assertThat(result4, is(expected4));
     }
 }

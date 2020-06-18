@@ -1,4 +1,4 @@
-package fr.ensimag.deca.tree;
+package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
@@ -7,6 +7,9 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.ListInst;
+import fr.ensimag.deca.tree.While;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -27,10 +30,7 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestWhile {
-    private final List<String> IMACodeGenInstExpected = new ArrayList<>();
-
     @Mock private AbstractExpr conditionBool;
     @Mock private AbstractExpr conditionNotBool;
     @Mock private ListInst body;
@@ -45,10 +45,6 @@ public class TestWhile {
         MockitoAnnotations.initMocks(this);
         when(conditionBool.getType()).thenReturn(compiler.environmentType.BOOLEAN);
         when(conditionNotBool.getType()).thenReturn(compiler.environmentType.INT);
-
-        IMACodeGenInstExpected.add("while0:");
-        IMACodeGenInstExpected.add("BRA while0");
-        IMACodeGenInstExpected.add("while_end0:");
     }
 
     @Test
@@ -66,16 +62,5 @@ public class TestWhile {
         });
         assertThat(resultNotBooleanType.getMessage(), is(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE +
                 conditionNotBool.getType()));
-    }
-
-    @Test
-    public void testCodeGenInst() throws DecacFatalError {
-        While whileNode = new While(conditionBool, body);
-        compiler.setLabelManager();
-
-        whileNode.codeGenInst(compiler);
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenInstExpected));
     }
 }

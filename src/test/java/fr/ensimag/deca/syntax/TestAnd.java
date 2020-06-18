@@ -1,8 +1,13 @@
 package fr.ensimag.deca.syntax;
 
+import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.And;
 import fr.ensimag.deca.tree.BooleanLiteral;
+import fr.ensimag.deca.tree.Or;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -17,6 +22,14 @@ public class TestAnd {
     private final BooleanLiteral boolTrueExpr2 = new BooleanLiteral(true);
     private final BooleanLiteral boolFalseExpr1 = new BooleanLiteral(false);
     private final BooleanLiteral boolFalseExpr2 = new BooleanLiteral(false);
+
+    @Mock private AbstractExpr sonL;
+    @Mock private AbstractExpr sonR;
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testDecompile() {
@@ -43,5 +56,10 @@ public class TestAnd {
         String result4 = and4.decompile();
         String expected4 = "(false && false)";
         assertThat(result4, is(expected4));
+
+        And and5 = new And(sonL, sonR);
+        String result5 = and5.decompile();
+        String expected5 = "( && )";
+        assertThat(result5, is(expected5));
     }
 }
