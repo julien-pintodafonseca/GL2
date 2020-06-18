@@ -23,11 +23,11 @@ public class TestStringLiteral {
     	StringLiteral string2 = new StringLiteral("hello"); // Cas d'une chaine quelconque
 
         String result1 = string1.decompile();
-        String expected1 = "";
+        String expected1 = "\"\"";
         assertThat(result1, is(expected1));
         
         String result2 = string2.decompile();
-        String expected2 = "hello";
+        String expected2 = "\"hello\"";
         assertThat(result2, is(expected2));
        
     }

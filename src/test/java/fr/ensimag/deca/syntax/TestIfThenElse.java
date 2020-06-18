@@ -51,7 +51,7 @@ public class TestIfThenElse {
     	IfThenElse expr = new IfThenElse(condition, thenBranch, elseBranch); 
     	 
         String result1 = expr.decompile();
-        String expected1 = "if () {} else {}";
+        String expected1 = "if () {\r\n} else {\r\n}";
         assertThat(result1, is(expected1));
                
     }

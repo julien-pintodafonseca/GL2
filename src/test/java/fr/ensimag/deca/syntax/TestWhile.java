@@ -52,7 +52,7 @@ public class TestWhile {
     	While expr = new While(condition, body); 
     	 
         String result1 = expr.decompile();
-        String expected1 = "while () {"+"\n"+"}";
+        String expected1 = "while () {\r\n}";
         assertThat(result1, is(expected1));
                
     }
