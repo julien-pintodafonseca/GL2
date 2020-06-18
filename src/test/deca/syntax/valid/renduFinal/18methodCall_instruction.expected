@@ -1,0 +1,35 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [8, 0] DeclClass
+   |      +> [8, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [9, 8] DeclField
+   |      |      +> [9, 4] Identifier (int)
+   |      |      +> [9, 8] Identifier (x)
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [10, 4] DeclMethod
+   |             +> [10, 4] Identifier (int)
+   |             +> [10, 8] Identifier (getX)
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [10, 14] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [11, 8] Return
+   |                       `> [11, 19] Selection
+   |                          +> [11, 15] This
+   |                          `> [11, 20] Identifier (x)
+   `> [15, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [16, 6] DeclVar
+      |      +> [16, 4] Identifier (A)
+      |      +> [16, 6] Identifier (a)
+      |      `> [16, 7] Initialization
+      |         `> [16, 8] New
+      |            `> [16, 12] Identifier (A)
+      `> ListInst [List with 1 elements]
+         []> [17, 4] MethodCall
+             +> [17, 4] Identifier (a)
+             +> [17, 6] Identifier (getX)
+             `> ListExpr [List with 0 elements]

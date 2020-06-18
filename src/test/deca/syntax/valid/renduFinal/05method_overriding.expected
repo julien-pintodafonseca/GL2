@@ -1,0 +1,89 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 2 elements]
+   |  []> [9, 0] DeclClass
+   |  ||  +> [9, 6] Identifier (B)
+   |  ||  +> Identifier (Object)
+   |  ||  +> ListDeclField [List with 1 elements]
+   |  ||  |  []> [10, 8] DeclField
+   |  ||  |      +> [10, 4] Identifier (int)
+   |  ||  |      +> [10, 8] Identifier (x)
+   |  ||  |      `> Initialization
+   |  ||  |         `> [10, 10] Int (2)
+   |  ||  `> ListDeclMethod [List with 1 elements]
+   |  ||     []> [11, 4] DeclMethod
+   |  ||         +> [11, 4] Identifier (void)
+   |  ||         +> [11, 9] Identifier (plus)
+   |  ||         +> ListDeclParam [List with 1 elements]
+   |  ||         |  []> [11, 14] DeclParam
+   |  ||         |      +> [11, 14] Identifier (int)
+   |  ||         |      `> [11, 18] Identifier (y)
+   |  ||         `> [11, 20] MethodBody
+   |  ||            +> ListDeclVar [List with 0 elements]
+   |  ||            `> ListInst [List with 1 elements]
+   |  ||               []> [12, 13] Assign
+   |  ||                   +> [12, 12] Identifier (x)
+   |  ||                   `> [12, 15] Plus
+   |  ||                      +> [12, 14] Identifier (x)
+   |  ||                      `> [12, 16] Identifier (y)
+   |  []> [16, 0] DeclClass
+   |      +> [16, 6] Identifier (A)
+   |      +> [16, 16] Identifier (B)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [17, 8] DeclField
+   |      |      +> [17, 4] Identifier (int)
+   |      |      +> [17, 8] Identifier (y)
+   |      |      `> Initialization
+   |      |         `> [17, 10] Int (3)
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [18, 4] DeclMethod
+   |             +> [18, 4] Identifier (void)
+   |             +> [18, 9] Identifier (plus)
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [18, 14] DeclParam
+   |             |      +> [18, 14] Identifier (int)
+   |             |      `> [18, 18] Identifier (x)
+   |             `> [18, 20] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [19, 13] Assign
+   |                       +> [19, 12] Identifier (y)
+   |                       `> [19, 15] Plus
+   |                          +> [19, 14] Identifier (x)
+   |                          `> [19, 16] Identifier (y)
+   `> [23, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [24, 6] DeclVar
+      |  ||  +> [24, 4] Identifier (A)
+      |  ||  +> [24, 6] Identifier (a)
+      |  ||  `> [24, 8] Initialization
+      |  ||     `> [24, 10] New
+      |  ||        `> [24, 14] Identifier (A)
+      |  []> [25, 6] DeclVar
+      |      +> [25, 4] Identifier (B)
+      |      +> [25, 6] Identifier (b)
+      |      `> [25, 8] Initialization
+      |         `> [25, 10] New
+      |            `> [25, 14] Identifier (B)
+      `> ListInst [List with 4 elements]
+         []> [26, 4] MethodCall
+         ||  +> [26, 4] Identifier (a)
+         ||  +> [26, 6] Identifier (plus)
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [26, 11] Int (3)
+         []> [27, 4] MethodCall
+         ||  +> [27, 4] Identifier (b)
+         ||  +> [27, 6] Identifier (plus)
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [27, 11] Int (7)
+         []> [28, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [28, 12] StringLiteral (x=)
+         ||     []> [28, 19] Selection
+         ||         +> [28, 18] Identifier (b)
+         ||         `> [28, 20] Identifier (x)
+         []> [29, 4] Println
+             `> ListExpr [List with 2 elements]
+                []> [29, 12] StringLiteral (y=)
+                []> [29, 19] Selection
+                    +> [29, 18] Identifier (a)
+                    `> [29, 20] Identifier (y)

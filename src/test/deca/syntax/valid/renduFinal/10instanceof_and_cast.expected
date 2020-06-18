@@ -51,7 +51,7 @@
    |  ||     ||               |  +> [16, 15] Identifier (o)
    |  ||     ||               |  `> [16, 28] Identifier (A)
    |  ||     ||               `> [16, 33] MethodCall
-   |  ||     ||                  +> This
+   |  ||     ||                  +> [builtin] This
    |  ||     ||                  +> [16, 33] Identifier (equalsA)
    |  ||     ||                  `> ListExpr [List with 1 elements]
    |  ||     ||                     []> [16, 41] Cast
@@ -69,7 +69,7 @@
    |  ||            `> ListInst [List with 1 elements]
    |  ||               []> [20, 8] IfThenElse
    |  ||                   +> [20, 12] MethodCall
-   |  ||                   |  +> This
+   |  ||                   |  +> [builtin] This
    |  ||                   |  +> [20, 12] Identifier (equals)
    |  ||                   |  `> ListExpr [List with 1 elements]
    |  ||                   |     []> [20, 19] Identifier (o)
@@ -109,7 +109,7 @@
    |         ||        []> [33, 8] Return
    |         ||            `> [33, 26] And
    |         ||               +> [33, 15] MethodCall
-   |         ||               |  +> This
+   |         ||               |  +> [builtin] This
    |         ||               |  +> [33, 15] Identifier (equalsA)
    |         ||               |  `> ListExpr [List with 1 elements]
    |         ||               |     []> [33, 23] Identifier (b)
@@ -134,7 +134,7 @@
    |                          |  +> [37, 15] Identifier (o)
    |                          |  `> [37, 28] Identifier (B)
    |                          `> [37, 34] MethodCall
-   |                             +> This
+   |                             +> [builtin] This
    |                             +> [37, 34] Identifier (equalsB)
    |                             `> ListExpr [List with 1 elements]
    |                                []> [37, 42] Cast

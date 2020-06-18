@@ -29,7 +29,7 @@
       |            `> [16, 14] Identifier (C)
       `> ListInst [List with 2 elements]
          []> [17, 4] MethodCall
-         ||  +> This
+         ||  +> [builtin] This
          ||  +> [17, 4] Identifier (init)
          ||  `> ListExpr [List with 0 elements]
          []> [18, 4] Println

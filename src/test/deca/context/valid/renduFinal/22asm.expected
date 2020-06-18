@@ -1,0 +1,54 @@
+`> [7, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [7, 0] DeclClass
+   |      +> [7, 6] Identifier (A)
+   |      |  definition: type defined at [7, 0], type=A
+   |      +> Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [8, 10] DeclField
+   |      |      +> [8, 4] Identifier (float)
+   |      |      |  definition: type (builtin), type=float
+   |      |      +> [8, 10] Identifier (x)
+   |      |      |  definition: field defined at [8, 10], type=float
+   |      |      `> Initialization
+   |      |         `> [8, 14] Float (3.5)
+   |      |            type: float
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [9, 4] DeclMethod
+   |             +> [9, 4] Identifier (float)
+   |             |  definition: type (builtin), type=float
+   |             +> [9, 10] Identifier (getX)
+   |             |  definition: method defined at [9, 4], type=float
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [9, 21] MethodBodyASM
+   |                `> [9, 21] StringLiteral (LOAD -2(LB), R1
+        LOAD 1(R1), R0
+        RTS)
+   |                   type: string
+   `> [14, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [15, 6] DeclVar
+      |      +> [15, 4] Identifier (A)
+      |      |  definition: type defined at [7, 0], type=A
+      |      +> [15, 6] Identifier (oA)
+      |      |  definition: variable defined at [15, 6], type=A
+      |      `> [15, 9] Initialization
+      |         `> [15, 11] New
+      |            type: A
+      |            `> [15, 15] Identifier (A)
+      |               definition: type defined at [7, 0], type=A
+      `> ListInst [List with 1 elements]
+         []> [16, 4] Println
+             `> ListExpr [List with 3 elements]
+                []> [16, 12] StringLiteral (A:)
+                ||  type: string
+                []> [16, 18] MethodCall
+                ||  type: float
+                ||  +> [16, 18] Identifier (oA)
+                ||  |  definition: variable defined at [15, 6], type=A
+                ||  +> [16, 21] Identifier (getX)
+                ||  |  definition: method defined at [9, 4], type=float
+                ||  `> ListExpr [List with 0 elements]
+                []> [16, 29] StringLiteral (;)
+                    type: string

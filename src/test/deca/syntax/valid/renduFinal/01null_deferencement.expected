@@ -1,0 +1,51 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [9, 0] DeclClass
+   |      +> [9, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [10, 10] DeclField
+   |      |      +> [10, 4] Identifier (float)
+   |      |      +> [10, 10] Identifier (x)
+   |      |      `> Initialization
+   |      |         `> [10, 14] Float (3.5)
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [11, 4] DeclMethod
+   |             +> [11, 4] Identifier (float)
+   |             +> [11, 10] Identifier (add2)
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [11, 17] MethodBody
+   |                +> ListDeclVar [List with 1 elements]
+   |                |  []> [12, 12] DeclVar
+   |                |      +> [12, 8] Identifier (int)
+   |                |      +> [12, 12] Identifier (y)
+   |                |      `> [12, 13] Initialization
+   |                |         `> [12, 14] Int (2)
+   |                `> ListInst [List with 2 elements]
+   |                   []> [13, 14] Assign
+   |                   ||  +> [13, 12] Selection
+   |                   ||  |  +> [13, 8] This
+   |                   ||  |  `> [13, 13] Identifier (x)
+   |                   ||  `> [13, 21] Plus
+   |                   ||     +> [13, 19] Selection
+   |                   ||     |  +> [13, 15] This
+   |                   ||     |  `> [13, 20] Identifier (x)
+   |                   ||     `> [13, 22] Identifier (y)
+   |                   []> [14, 8] Return
+   |                       `> [14, 15] Identifier (x)
+   `> [18, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [19, 6] DeclVar
+      |  ||  +> [19, 4] Identifier (A)
+      |  ||  +> [19, 6] Identifier (oA)
+      |  ||  `> [19, 9] Initialization
+      |  ||     `> [19, 11] NullLiteral
+      |  []> [20, 10] DeclVar
+      |      +> [20, 4] Identifier (float)
+      |      +> [20, 10] Identifier (x)
+      |      `> [20, 12] Initialization
+      |         `> [20, 14] MethodCall
+      |            +> [20, 14] Identifier (oA)
+      |            +> [20, 17] Identifier (add2)
+      |            `> ListExpr [List with 0 elements]
+      `> ListInst [List with 0 elements]

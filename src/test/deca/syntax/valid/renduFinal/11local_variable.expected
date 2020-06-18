@@ -1,0 +1,58 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [8, 0] DeclClass
+   |      +> [8, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 1 elements]
+   |      |  []> [9, 10] DeclField
+   |      |      +> [9, 4] Identifier (float)
+   |      |      +> [9, 10] Identifier (x)
+   |      |      `> Initialization
+   |      |         `> [9, 14] Float (3.5)
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [10, 4] DeclMethod
+   |             +> [10, 4] Identifier (void)
+   |             +> [10, 9] Identifier (add2)
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [10, 17] MethodBody
+   |                +> ListDeclVar [List with 1 elements]
+   |                |  []> [11, 12] DeclVar
+   |                |      +> [11, 8] Identifier (int)
+   |                |      +> [11, 12] Identifier (y)
+   |                |      `> [11, 13] Initialization
+   |                |         `> [11, 14] Int (2)
+   |                `> ListInst [List with 2 elements]
+   |                   []> [12, 8] Println
+   |                   ||  `> ListExpr [List with 3 elements]
+   |                   ||     []> [12, 16] StringLiteral (A:)
+   |                   ||     []> [12, 22] Identifier (x)
+   |                   ||     []> [12, 25] StringLiteral (;)
+   |                   []> [13, 14] Assign
+   |                       +> [13, 12] Selection
+   |                       |  +> [13, 8] This
+   |                       |  `> [13, 13] Identifier (x)
+   |                       `> [13, 21] Plus
+   |                          +> [13, 19] Selection
+   |                          |  +> [13, 15] This
+   |                          |  `> [13, 20] Identifier (x)
+   |                          `> [13, 22] Identifier (y)
+   `> [17, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [18, 6] DeclVar
+      |      +> [18, 4] Identifier (A)
+      |      +> [18, 6] Identifier (oA)
+      |      `> [18, 9] Initialization
+      |         `> [18, 11] New
+      |            `> [18, 15] Identifier (A)
+      `> ListInst [List with 2 elements]
+         []> [19, 4] MethodCall
+         ||  +> [19, 4] Identifier (oA)
+         ||  +> [19, 7] Identifier (add2)
+         ||  `> ListExpr [List with 0 elements]
+         []> [20, 4] Println
+             `> ListExpr [List with 3 elements]
+                []> [20, 12] StringLiteral (A:)
+                []> [20, 20] Selection
+                ||  +> [20, 18] Identifier (oA)
+                ||  `> [20, 21] Identifier (x)
+                []> [20, 24] StringLiteral (;)
