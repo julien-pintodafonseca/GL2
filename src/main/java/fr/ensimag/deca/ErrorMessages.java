@@ -63,6 +63,6 @@ public final class ErrorMessages {
     public static final String CODEGEN_ERROR_READFLOAT_ERROR = "Saisie incorrecte : la saisie est soit incorrecte (nombre réel attendu), soit celle d'un nombre trop grand (dépassement)";
     public static final String CODEGEN_ERROR_FULL_HEAP = "Erreur : allocation impossible, tas plein.";
     public static final String CODEGEN_ERROR_FULL_STACK = "Erreur : pile pleine.";
-    public static final String CODEGEN_ERROR_NULL_DEREFERENCEMENT = "Erreur : déréférencement de null." ;
+    public static final String CODEGEN_ERROR_NULL_DEREFERENCEMENT = "Erreur : déréférencement de null.";
     public static final String CODEGEN_ERROR_CONV_FLOAT = "Erreur : conversion int -> float impossible.";
 }

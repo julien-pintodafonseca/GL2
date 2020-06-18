@@ -70,7 +70,10 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             codeGenInstArith(compiler, Register.getR(i), register);
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
+            int j = compiler.getRegisterManager().getSize() -1;
+            if (Register.getR(j) == register) {
+                j = j-1;
+            }
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
             getRightOperand().codeGenInst(compiler, Register.getR(j));

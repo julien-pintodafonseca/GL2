@@ -40,9 +40,8 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    protected void verifyInitialization(DecacCompiler compiler, Type t,
-            EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError, DecacFatalError {
+    public void verifyInitialization(DecacCompiler compiler, Type t, EnvironmentExp localEnv,
+                                     ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.8)
         LOG.debug("verify initialization: start");
         AbstractExpr rightExpr = getExpression().verifyRValue(compiler, localEnv, currentClass, t);
@@ -59,7 +58,7 @@ public class Initialization extends AbstractInitialization {
             compiler.addInstruction(new STORE(Register.getR(i), addr));
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
+            int j = compiler.getRegisterManager().getSize() -1;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
             getExpression().codeGenInst(compiler, Register.getR(j));
@@ -79,7 +78,7 @@ public class Initialization extends AbstractInitialization {
             compiler.addInstruction(new STORE(Register.getR(i), addr));
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
+            int j = compiler.getRegisterManager().getSize() -1;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
             getExpression().codeGenInst(compiler, Register.getR(j));

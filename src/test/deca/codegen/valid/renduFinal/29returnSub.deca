@@ -1,10 +1,9 @@
 // Description:
-//      Procédure récursive convergente
+//      // TODO
 //
 // Resultats:
-//      1
-//      22
-//      22
+//      -1
+//      1999
 
 class A {
     int mySub(float x) {

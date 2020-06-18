@@ -22,7 +22,6 @@ import java.io.PrintStream;
  * @date 2020
  */
 public class IfThenElse extends AbstractInst {
-    
     private final AbstractExpr condition; 
     private final ListInst thenBranch;
     private ListInst elseBranch;
@@ -37,9 +36,8 @@ public class IfThenElse extends AbstractInst {
     }
     
     @Override
-    protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
-            ClassDefinition currentClass, Type returnType)
-            throws ContextualError, DecacFatalError {
+    public void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass,
+                           Type returnType) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.22)
         condition.verifyExpr(compiler, localEnv, currentClass);
         if (condition.getType().isBoolean()) {

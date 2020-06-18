@@ -12,7 +12,6 @@ import fr.ensimag.deca.tools.SymbolTable;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Line;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
 
@@ -38,21 +37,23 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     @Override
-    protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass, Type returnType) throws ContextualError, DecacFatalError {
+    protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass,
+                                    Type returnType) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.14) -> (3.18)
         declVariables.verifyListDeclVariable(compiler, localEnv, currentClass);
         insts.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
 
     @Override
-    protected void codeGenMethodBody(DecacCompiler compiler, ClassDefinition currentClass, SymbolTable.Symbol methodName, Type type) throws DecacFatalError {
+    protected void codeGenMethodBody(DecacCompiler compiler, ClassDefinition currentClass,
+                                     SymbolTable.Symbol methodName, Type type) throws DecacFatalError {
         compiler.getTSTOManager().resetCurrentAndMax();
         Line lineTSTO = new Line(new TSTO(0));
         compiler.add(lineTSTO); // TSTO #d
         compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_STACK))));
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_STACK);
 
-        if(declVariables.size() != 0) {
+        if (declVariables.size() != 0) {
             compiler.addInstruction(new ADDSP(declVariables.size()));
             compiler.getTSTOManager().addCurrent(declVariables.size());
         }
@@ -60,7 +61,7 @@ public class MethodBody extends AbstractMethodBody {
         // Code de la sauvegarde des registres
         compiler.addComment("Sauvegarde des registres");
         List<Line> saveRegisters = new ArrayList<>();
-        for(int j=2; j<(compiler.getRegisterManager().getSize()); j++) {
+        for (int j=2; j<(compiler.getRegisterManager().getSize()); j++) {
             Line line = new Line(null, null, null);
             saveRegisters.add(line);
             compiler.add(line);
@@ -69,7 +70,7 @@ public class MethodBody extends AbstractMethodBody {
         compiler.getRegisterManager().resetNbMaxRegistersUsed();
 
         declVariables.codeGenListDeclVar(compiler);
-        if(insts.getList().size() != 0) {
+        if (insts.getList().size() != 0) {
             compiler.addComment("---------- Instructions :");
         }
         insts.codeGenListInst(compiler);
@@ -77,14 +78,15 @@ public class MethodBody extends AbstractMethodBody {
         // Maintenant qu'on connait le nombre de registre max utilisé, on peut générer le code de la sauvegarde des registres
         int nb_register = compiler.getRegisterManager().getNbMaxRegistersUsed();
         compiler.getTSTOManager().addCurrent(nb_register);
-        for(int j=2; j<nb_register+2; j++) {
+        for (int j=2; j<nb_register+2; j++) {
             saveRegisters.get(j-2).setInstruction(new PUSH(Register.getR(j)));
             compiler.getRegisterManager().free(j);
         }
 
         // si la méthode n'est pas de type void, on s'assure qu'elle comprend bien une instruction de retour
-        if(!type.isVoid()) {
-            compiler.addInstruction(new WSTR("Erreur : sortie de la methode " + currentClass.getType() + "." + methodName + " sans instruction return."));
+        if (!type.isVoid()) {
+            compiler.addInstruction(new WSTR("Erreur : sortie de la methode " + currentClass.getType() + "." +
+                    methodName + " sans instruction return."));
             compiler.addInstruction(new WNL());
             compiler.addInstruction(new ERROR());
         }
@@ -92,7 +94,7 @@ public class MethodBody extends AbstractMethodBody {
 
         // Code de la restauration des registres
         compiler.addComment("Restauration des registres");
-        for(int j=nb_register+1; j>1; j--) {
+        for (int j=nb_register+1; j>1; j--) {
             compiler.addInstruction(new POP(Register.getR(j)));
             compiler.getRegisterManager().free(j);
         }

@@ -16,7 +16,7 @@ public class StackManager {
 
     public StackManager(RegisterManager _registerManager) {
         registerManager = _registerManager;
-        GB = 1 ;
+        GB = 1;
         LB = 1;
         // SP = TODO
     }

@@ -59,7 +59,7 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
             super.codeGenPrint(compiler, printHex);
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
+            int j = compiler.getRegisterManager().getSize() -1;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
             codeGenInst(compiler, Register.getR(j));

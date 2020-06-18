@@ -52,7 +52,7 @@ public class Not extends AbstractUnaryExpr {
                 compiler.addInstruction(new CMP(1, Register.getR(i)));
                 compiler.getRegisterManager().free(i);
             } else {
-                int j = compiler.getRegisterManager().getSize() -1 ;
+                int j = compiler.getRegisterManager().getSize() -1;
                 compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
                 compiler.getTSTOManager().addCurrent(1);
                 getOperand().codeGenInst(compiler, Register.getR(j));

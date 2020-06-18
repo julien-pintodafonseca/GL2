@@ -46,7 +46,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             Type t = compiler.environmentType.BOOLEAN;
             setType(t);
             return t;
-        } else if(this instanceof AbstractOpExactCmp && (((t1.isClass() || t1.isNull()) && (t2.isClass() || t2.isNull())) || (t1.isBoolean() && t2.isBoolean()))) {
+        } else if (this instanceof AbstractOpExactCmp && (((t1.isClass() || t1.isNull()) && (t2.isClass() || t2.isNull())) || (t1.isBoolean() && t2.isBoolean()))) {
                 // TODO
                 Type t = compiler.environmentType.BOOLEAN;
                 setType(t);
@@ -71,7 +71,10 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
                 compiler.addInstruction(new CMP(Register.getR(j), Register.getR(i)));
                 compiler.getRegisterManager().free(j);
             } else {
-                int k = compiler.getRegisterManager().getSize() -1 ;
+                int k = compiler.getRegisterManager().getSize()-1;
+                if (k == i) {
+                    k = k-1;
+                }
                 compiler.addInstruction(new PUSH(Register.getR(k))); // chargement dans la pile de 1 registre
                 compiler.getTSTOManager().addCurrent(1);
                 getRightOperand().codeGenInst(compiler, Register.getR(k));
@@ -82,8 +85,8 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
 
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
-            int k = j - 1;
+            int j = compiler.getRegisterManager().getSize() -1;
+            int k = j-1;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 2 registres
             compiler.addInstruction(new PUSH(Register.getR(k)));
             compiler.getTSTOManager().addCurrent(2);

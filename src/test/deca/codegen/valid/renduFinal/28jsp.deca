@@ -1,10 +1,9 @@
 // Description:
-//      Procédure récursive convergente
+//      déclaration de variable dans un else
 //
 // Resultats:
 //      1
-//      22
-//      22
+//      2
 
 class A {
     float declP(float x, int e) {
