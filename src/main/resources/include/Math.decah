@@ -3,20 +3,55 @@
 // Library for class Math of Deca, coded in Deca
 
 class Math {
+    float MIN_VALUE = 1.4 * pow(10,-45);
+    int MAX_EXPONENT = 127;
+    int MIN_EXPONENT = -126;
+
+    float ulp(float f) {
+        int exp = 0;
+
+        if (exp == MAX_EXPONENT+1) {
+            return abs(f);
+        } else if (exp == MIN_EXPONENT+1) {
+            return MIN_VALUE;
+        }
+
+        println("ulp(f) not yet implemented");
+    }
+
     float sin(float f) {
         println("sin(f) not yet implemented");
     }
+
     float cos(float f) {
         println("cos(f) not yet implemented");
     }
+
     float asin(float f) {
         println("asin(f) not yet implemented");
     }
+
     float atan(float f) {
         println("atan(f) not yet implemented");
     }
-    float ulp(float f) {
-        println("ulp(f) not yet implemented");
+
+    float abs(float x) {
+        float f = 0.0;
+        if (x <= f) {
+            return f - x;
+        } else {
+            return x;
+        }
+    }
+
+    float pow(float x, float y) {
+        if (y == 0) {
+            return 1;
+        } else if (y % 2 == 0) {
+            return pow(x, y/2) * pow(x, y/2);
+        } else {
+            return x * pow(x, y/2) * pow(x, y/2);
+        }
     }
 }
 
