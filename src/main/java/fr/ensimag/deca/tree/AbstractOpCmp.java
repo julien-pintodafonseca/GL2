@@ -72,6 +72,9 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
                 compiler.getRegisterManager().free(j);
             } else {
                 int k = compiler.getRegisterManager().getSize() -1 ;
+                if(k == i) {
+                    k=k-1;
+                }
                 compiler.addInstruction(new PUSH(Register.getR(k))); // chargement dans la pile de 1 registre
                 compiler.getTSTOManager().addCurrent(1);
                 getRightOperand().codeGenInst(compiler, Register.getR(k));

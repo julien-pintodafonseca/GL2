@@ -32,27 +32,23 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestWhile {
 
     @Mock private AbstractExpr condition;
     @Mock private ListInst body;
 
-    
-
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        
-        
     }
+
     @Test
     public void testDecompile() {
     	 
     	While expr = new While(condition, body); 
     	 
         String result1 = expr.decompile();
-        String expected1 = "while () {\r\n}";
+        String expected1 = "while () {\n}";
         assertThat(result1, is(expected1));
                
     }
