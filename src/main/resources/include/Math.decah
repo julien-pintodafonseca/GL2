@@ -1,4 +1,5 @@
-// Grenoble INP - Ensimag projet GL -*- mode: java -*-
+// Grenoble INP - Ensimag
+// Projet Génie Logiciel 2020, Equipe GL2
 // Library for class Math of Deca, coded in Deca
 
 class Math {
@@ -18,6 +19,5 @@ class Math {
         println("ulp(f) not yet implemented");
     }
 }
-
 
 // End of Deca Math library

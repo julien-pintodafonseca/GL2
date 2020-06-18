@@ -86,7 +86,6 @@ test_codegen_valid () {
     fi
 }
 
-
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "provided"
 test_step_provided() {
@@ -105,8 +104,6 @@ test_step_provided() {
 
   # no src/test/deca/codegen/invalid/provided/
 }
-
-
 
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "renduInitial"
@@ -198,6 +195,24 @@ test_step_renduFinal() {
   # echo
 }
 
+# ----------------------------------------------------------------------------------------------------
+# Fonction permettant d'exécuter tous les tests de l'étape "bibliothequeStandard"
+test_step_bibliothequeStandard() {
+  echo "=== STEP: BIBLIOTHEQUE_STANDARD ==="
+
+  # no src/test/deca/context/interactive/bibliothequeStandard/
+
+  # echo "--- TEST: src/test/deca/codegen/valid/bibliothequeStandard/ ---"
+  for cas_de_test in src/test/deca/codegen/valid/bibliothequeStandard/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=${cas_de_test%.deca}
+      test_codegen_valid "$cas_de_test" "$expected.expected"
+  done
+  # echo
+
+  # no src/test/deca/codegen/invalid/bibliothequeStandard/
+}
 
 # ----------------------------------------------------------------------------------------------------
 # Main
@@ -210,5 +225,6 @@ test_step_renduInitial
 test_step_renduInter01
 test_step_renduInter02
 test_step_renduFinal
+test_step_bibliothequeStandard
 
 echo "##### RESULTS: $nbpassed/$nbtests #####"

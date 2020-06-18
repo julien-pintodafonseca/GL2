@@ -1,0 +1,42 @@
+`> [5, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [5, 0] DeclClass
+   |      +> [5, 6] Identifier (Hello)
+   |      |  definition: type defined at [5, 0], type=Hello
+   |      +> Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [6, 4] DeclMethod
+   |             +> [6, 4] Identifier (void)
+   |             |  definition: type (builtin), type=void
+   |             +> [6, 9] Identifier (helloWorld)
+   |             |  definition: method defined at [6, 4], type=void
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [6, 22] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [7, 8] Println
+   |                       `> ListExpr [List with 1 elements]
+   |                          []> [7, 16] StringLiteral (hello world!)
+   |                              type: string
+   `> [3, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [4, 10] DeclVar
+      |      +> [4, 4] Identifier (Hello)
+      |      |  definition: type defined at [5, 0], type=Hello
+      |      +> [4, 10] Identifier (h)
+      |      |  definition: variable defined at [4, 10], type=Hello
+      |      `> [4, 12] Initialization
+      |         `> [4, 14] New
+      |            type: Hello
+      |            `> [4, 18] Identifier (Hello)
+      |               definition: type defined at [5, 0], type=Hello
+      `> ListInst [List with 1 elements]
+         []> [5, 4] MethodCall
+             type: void
+             +> [5, 4] Identifier (h)
+             |  definition: variable defined at [4, 10], type=Hello
+             +> [5, 6] Identifier (helloWorld)
+             |  definition: method defined at [6, 4], type=void
+             `> ListExpr [List with 0 elements]

@@ -1,0 +1,11 @@
+// Grenoble INP - Ensimag
+// Projet Génie Logiciel 2020, Equipe GL2
+// Library for class Hello of Deca, coded in Deca
+
+class Hello {
+    void helloWorld() {
+        println("hello world!");
+    }
+}
+
+// End of Deca Hello library

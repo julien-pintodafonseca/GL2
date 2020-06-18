@@ -1,0 +1,6 @@
+#include "Hello.decah"
+
+{
+    Hello h = new Hello();
+    h.helloWorld();
+}

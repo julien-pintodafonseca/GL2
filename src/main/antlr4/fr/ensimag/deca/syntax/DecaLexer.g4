@@ -63,7 +63,6 @@ fragment POSITIVE_DIGIT: '1' .. '9';
 
 IDENT: (LETTER | '$' | '_') (LETTER | DIGIT | '$' | '_')*;
 
-
 fragment NUM: (DIGIT)+;
 fragment SIGN: ('+' | '-')?;
 fragment EXP: ('E' | 'e') SIGN NUM;
@@ -76,11 +75,16 @@ FLOAT: FLOATDEC | FLOATHEX;
 
 INT: '0' | POSITIVE_DIGIT DIGIT*;
 
+/* Gestion des chaînes de caractères */
 fragment STRING_CAR: ~ ('"' | '\\' | '\n');
 STRING: '"' (STRING_CAR | '\\"' | '\\\\')* '"';
 MULTI_LINE_STRING: '"' (STRING_CAR | '\n' | '\\"' | '\\\\')* '"';
 
-
+/* Gestion des commentaires */
 fragment MONOCOMMENT: '//' (~('\n'| '\r'))*;
 fragment MULTICOMMENT:'/*' .*? '*/';
 COMMENT:  (MONOCOMMENT | MULTICOMMENT) { skip(); };
+
+/* Gestion du #include */
+fragment FILENAME: (LETTER | DIGIT | '.' | '-' | '_')+;
+INCLUDE: '#include' (' ')* '"' FILENAME '"' { doInclude(getText()); };
