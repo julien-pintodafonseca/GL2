@@ -1,26 +1,15 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.AbstractExpr;
-import fr.ensimag.deca.tree.Or;
-import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.tree.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -28,60 +17,81 @@ import static org.mockito.Mockito.when;
  * @date 2020
  */
 public class TestOr {
-    private final List<String> IMACodeGenCMPExpectedOrFalse = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedOrTrue = new ArrayList<>();
-
-    @Mock private AbstractExpr sonL;
-    @Mock private AbstractExpr sonR;
-    @Mock private Label lb;
+    private final BooleanLiteral boolTrueExpr1 = new BooleanLiteral(true);
+    private final BooleanLiteral boolTrueExpr2 = new BooleanLiteral(true);
+    private final BooleanLiteral boolFalseExpr1 = new BooleanLiteral(false);
+    private final BooleanLiteral boolFalseExpr2 = new BooleanLiteral(false);
+    private final IntLiteral intExpr1 = new IntLiteral(5);
+    private final FloatLiteral floatExpr2 = new FloatLiteral(-742.221354f);
+    private final StringLiteral stringExpr2 = new StringLiteral("bonsoir");
 
     private DecacCompiler compiler;
 
     @Before
     public void setup() {
-        MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
-        compiler.setLabelManager();
-        when(sonL.getType()).thenReturn(compiler.environmentType.BOOLEAN);
-        when(sonR.getType()).thenReturn(compiler.environmentType.BOOLEAN);
-        IMACodeGenCMPExpectedOrFalse.add("");
-        IMACodeGenCMPExpectedOrTrue.add("BRA or_end0");
-        IMACodeGenCMPExpectedOrTrue.add("or0:");
-        IMACodeGenCMPExpectedOrTrue.add("or_end0:");
     }
 
     @Test
-    public void testCodeGenCMP() throws DecacFatalError {
-        Or or = new Or(sonL, sonR);
+    public void testVerifyExpr() throws ContextualError {
+        // true || true
+        verifyExprWithSpecificParams(boolTrueExpr1, boolTrueExpr2);
 
-        // Les appels récursifs à la méthode codeGenCMP() se font en gardant la même valeur pour l'argument "reverse"
-        or.codeGenCMP(compiler, lb, true);
-        verify(sonL).codeGenCMP(eq(compiler), any(Label.class), eq(true));
-        verify(sonR).codeGenCMP(compiler, lb, true);
+        // true || false
+        verifyExprWithSpecificParams(boolTrueExpr1, boolFalseExpr2);
 
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), or.getLeftOperand().getType());
-        assertThat(or.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), or.getRightOperand().getType());
-        assertThat(or.getRightOperand(), is(sonR));
+        // false || true
+        verifyExprWithSpecificParams(boolFalseExpr1, boolTrueExpr2);
 
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedOrTrue));
+        // false || false
+        verifyExprWithSpecificParams(boolFalseExpr1, boolFalseExpr2);
+    }
 
-        compiler = new DecacCompiler(null, null);
+    private void verifyExprWithSpecificParams(BooleanLiteral leftOperand, BooleanLiteral rightOperand)
+            throws ContextualError {
+        // check verifyExpr and verifyCondition
+        Or or = new Or(leftOperand, rightOperand);
 
-        // Les appels récursifs à la méthode codeGenCMP() se font en gardant la même valeur pour l'argument "reverse"
-        or.codeGenCMP(compiler, lb, false);
-        verify(sonL).codeGenCMP(compiler, lb, false);
-        verify(sonR).codeGenCMP(compiler, lb, false);
+        assertTrue(leftOperand.verifyExpr(compiler, null, null).isBoolean());
+        assertTrue(rightOperand.verifyExpr(compiler, null, null).isBoolean());
+        assertTrue(or.verifyExpr(compiler, null, null).isBoolean());
+    }
 
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(sonL.getType(), or.getLeftOperand().getType());
-        assertThat(or.getLeftOperand(), is(sonL));
-        assertEquals(sonR.getType(), or.getRightOperand().getType());
-        assertThat(or.getRightOperand(), is(sonR));
+    @Test
+    public void testWrongTypes() {
+        // check that verifyCondition with a INT leftOperand throws contextualError
+        Or or1 = new Or(intExpr1, boolTrueExpr2);
 
-        result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedOrFalse));
+        ContextualError expected1 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "int" + ".", null);
+        ContextualError result1 = assertThrows(ContextualError.class, () -> {
+            or1.verifyExpr(compiler, null, null);
+        });
+
+        assertThat(result1.getMessage(), is(expected1.getMessage()));
+
+
+        // check that verifyCondition with a FLOAT rightOperand throws contextualError
+        Or or2 = new Or(boolFalseExpr1, floatExpr2);
+
+        ContextualError expected2 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "float" + ".", null);
+        ContextualError result2 = assertThrows(ContextualError.class, () -> {
+            or2.verifyExpr(compiler, null, null);
+        });
+
+        assertThat(result2.getMessage(), is(expected2.getMessage()));
+
+
+        // check that verifyCondition with a STRING rightOperand throws contextualError
+        Or or3 = new Or(boolFalseExpr1, stringExpr2);
+
+        ContextualError expected3 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "string" + ".", null);
+        ContextualError result3 = assertThrows(ContextualError.class, () -> {
+            or3.verifyExpr(compiler, null, null);
+        });
+
+        assertThat(result3.getMessage(), is(expected3.getMessage()));
     }
 }

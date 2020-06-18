@@ -4,7 +4,6 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tools.SymbolTable;
 
 import java.io.PrintStream;
 
@@ -23,13 +22,12 @@ public class DeclParam extends AbstractDeclParam {
         this.varName = varName;
     }
 
-    @Override
-    public ExpDefinition getExpDefinition() {
+    protected ExpDefinition getExpDefinition() {
         return varName.getExpDefinition();
     }
 
     @Override
-    public Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
+    protected Type verifyParamMembers(DecacCompiler compiler, ClassDefinition currentClass, DeclMethod currentMethod) throws ContextualError {
         // Règle syntaxe contextuelle : (2.9)
         Type t = varType.verifyType(compiler);
         varType.setType(t);
@@ -41,7 +39,7 @@ public class DeclParam extends AbstractDeclParam {
     }
 
     @Override
-    public void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError {
+    protected void verifyParamBody(DecacCompiler compiler, EnvironmentExp envExpParams) throws ContextualError {
         // Règle syntaxe contextuelle : (3.13)
         ParamDefinition paramDef = new ParamDefinition(varType.getType(),getLocation());
         varName.setDefinition(paramDef);

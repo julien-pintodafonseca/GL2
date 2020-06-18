@@ -153,10 +153,10 @@ public class DecacCompiler implements Callable<Boolean> {
      * @see
      * fr.ensimag.ima.pseudocode.IMAProgram#addFirst(fr.ensimag.ima.pseudocode.Instruction,)
      */
+    // TODO : vérifier que cette méthode est utilisée quelque part
     public void addFirst(Instruction i) {
         program.addFirst(new Line(i));
     }
-
     
     private final CompilerOptions compilerOptions;
     private final File source;

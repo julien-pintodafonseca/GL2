@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.IntStream;
  * @date 2020
  */
 public class IncludeFileNotFound extends DecaRecognitionException {
+    private static final long serialVersionUID = -8541996188279897766L;
     private final String name;
 
     public IncludeFileNotFound(String name, AbstractDecaLexer recognizer, IntStream input) {
@@ -24,7 +25,4 @@ public class IncludeFileNotFound extends DecaRecognitionException {
     public String getMessage() {
         return name + ": include file not found";
     }
-    
-    private static final long serialVersionUID = -8541996188279897766L;
-
 }

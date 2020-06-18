@@ -1,8 +1,7 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.IntLiteral;
 import fr.ensimag.ima.pseudocode.Register;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +19,7 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
+// TODO
 public class TestIntLiteral {
     private final List<String> IMACodeGenInstExpectedInt0 = new ArrayList<>();
     private final List<String> IMACodeGenInstExpectedInt = new ArrayList<>();

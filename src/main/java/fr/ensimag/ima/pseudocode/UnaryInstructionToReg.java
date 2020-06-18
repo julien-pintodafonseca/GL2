@@ -10,5 +10,4 @@ public class UnaryInstructionToReg extends UnaryInstruction {
     public UnaryInstructionToReg(GPRegister op) {
         super(op);
     }
-
 }

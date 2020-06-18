@@ -1,7 +1,8 @@
 package fr.ensimag.ima.pseudocode;
 
-import java.io.PrintStream;
 import org.apache.commons.lang.Validate;
+
+import java.io.PrintStream;
 
 /**
  * Instruction with a single operand.
@@ -26,5 +27,4 @@ public abstract class UnaryInstruction extends Instruction {
     public Operand getOperand() {
         return operand;
     }
-
 }

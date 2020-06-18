@@ -12,16 +12,16 @@ import java.io.PrintStream;
  * @date 2020
  */
 public abstract class AbstractUnaryExpr extends AbstractExpr {
-
-    public AbstractExpr getOperand() {
-        return operand;
-    }
     private AbstractExpr operand;
+
     public AbstractUnaryExpr(AbstractExpr operand) {
         Validate.notNull(operand);
         this.operand = operand;
     }
 
+    public AbstractExpr getOperand() {
+        return operand;
+    }
 
     protected abstract String getOperatorName();
   
@@ -40,5 +40,4 @@ public abstract class AbstractUnaryExpr extends AbstractExpr {
     protected void prettyPrintChildren(PrintStream s, String prefix) {
         operand.prettyPrint(s, prefix, true);
     }
-
 }

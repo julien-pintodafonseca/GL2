@@ -1,54 +1,47 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.tree.*;
-import fr.ensimag.deca.utils.Utils;
-import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.Register;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
 public class TestMinus {
     private final Type INT = new IntType(null);
     private final Type FLOAT = new FloatType(null);
+    private final FloatLiteral anyFloatExpr = new FloatLiteral(-99999.999f);
+    private final StringLiteral stringExpr1 = new StringLiteral("bonsoir");
+    private final BooleanLiteral booleanExpr2 = new BooleanLiteral(true);
 
     @Mock private AbstractExpr intexpr1;
     @Mock private AbstractExpr intexpr2;
     @Mock private AbstractExpr floatexpr1;
     @Mock private AbstractExpr floatexpr2;
 
-    private GPRegister reg1;
-    private GPRegister reg2;
     private DecacCompiler compiler;
 
     @Before
     public void setup() throws ContextualError {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
-        reg1 = Register.R0;
-        reg2 = Register.R1;
+
         when(intexpr1.verifyExpr(compiler, null, null)).thenReturn(INT);
         when(intexpr2.verifyExpr(compiler, null, null)).thenReturn(INT);
         when(floatexpr1.verifyExpr(compiler, null, null)).thenReturn(FLOAT);
         when(floatexpr2.verifyExpr(compiler, null, null)).thenReturn(FLOAT);
-        when(intexpr1.getType()).thenReturn(INT);
-        when(intexpr2.getType()).thenReturn(INT);
-        when(floatexpr1.getType()).thenReturn(FLOAT);
-        when(floatexpr2.getType()).thenReturn(FLOAT);
     }
 
     @Test
@@ -56,6 +49,9 @@ public class TestMinus {
         Minus minus = new Minus(intexpr1, intexpr2);
         // check the result
         assertTrue(minus.verifyExpr(compiler, null, null).isInt());
+        // ConvFloat should not have been inserted
+        assertFalse(minus.getRightOperand() instanceof ConvFloat);
+        assertFalse(minus.getLeftOperand() instanceof ConvFloat);
         // check that the mocks have been called properly.
         verify(intexpr1).verifyExpr(compiler, null, null);
         verify(intexpr2).verifyExpr(compiler, null, null);
@@ -63,7 +59,7 @@ public class TestMinus {
 
     @Test
     public void testIntFloat() throws ContextualError {
-        Minus minus = new Minus(intexpr1, floatexpr1);
+        Minus minus = new Minus(intexpr1, floatexpr2);
         // check the result
         assertTrue(minus.verifyExpr(compiler, null, null).isFloat());
         // ConvFloat should have been inserted on the right side
@@ -71,77 +67,74 @@ public class TestMinus {
         assertFalse(minus.getRightOperand() instanceof ConvFloat);
         // check that the mocks have been called properly.
         verify(intexpr1).verifyExpr(compiler, null, null);
-        verify(floatexpr1).verifyExpr(compiler, null, null);
+        verify(floatexpr2).verifyExpr(compiler, null, null);
     }
 
     @Test
     public void testFloatInt() throws ContextualError {
-        Minus minus = new Minus(floatexpr1, intexpr1);
+        Minus minus = new Minus(floatexpr1, intexpr2);
         // check the result
         assertTrue(minus.verifyExpr(compiler, null, null).isFloat());
         // ConvFloat should have been inserted on the right side
         assertTrue(minus.getRightOperand() instanceof ConvFloat);
         assertFalse(minus.getLeftOperand() instanceof ConvFloat);
         // check that the mocks have been called properly.
-        verify(intexpr1).verifyExpr(compiler, null, null);
         verify(floatexpr1).verifyExpr(compiler, null, null);
+        verify(intexpr2).verifyExpr(compiler, null, null);
     }
 
     @Test
-    public void testCodeGenInstArith() throws DecacFatalError {
-        // on test l'ajout de l'instruction SUB
-        DecacCompiler myCompiler = new DecacCompiler(null, null);
-        myCompiler.setErrorLabelManager();
-
-        Minus minus = new Minus(intexpr1, intexpr2);
-        minus.codeGenInstArith(myCompiler, reg1, reg2);
-
-        List<String> expected = Collections.singletonList("SUB R0, R1");
-        String result = myCompiler.displayIMAProgram();
-
-        assertThat(Utils.normalizeDisplay(result).size(), is(expected.size()));
-        assertTrue(Utils.normalizeDisplay(result).containsAll(expected));
-
-        // ------------------------------------------------------------
-
-        // on test la boucle genCodeError
-        List<Minus> minusList = new ArrayList<>();
-        minusList.add(new Minus(intexpr1, floatexpr2));
-        minusList.add(new Minus(floatexpr1, intexpr2));
-        minusList.add(new Minus(floatexpr1, floatexpr2));
-
-        List<String> expectedFor = new ArrayList<>();
-        expectedFor.add("SUB R0, R1");
-        expectedFor.add("BOV arithmetic_overflow; Overflow : check for previous operation");
-
-        for (Minus m : minusList) {
-            // on reset le compiler
-            myCompiler = new DecacCompiler(null, null);
-            myCompiler.setErrorLabelManager();
-
-            // on test l'ajout de l'instruction SUB et BOV avec Overflow
-            m.codeGenInstArith(myCompiler, reg1, reg2);
-            String resultFor = myCompiler.displayIMAProgram();
-            assertThat(Utils.normalizeDisplay(resultFor).size(), is(expectedFor.size()));
-            assertTrue(Utils.normalizeDisplay(resultFor).containsAll(expectedFor));
-        }
+    public void testFloatFloat() throws ContextualError {
+        Minus minus = new Minus(floatexpr1, floatexpr2);
+        // check the result
+        assertTrue(minus.verifyExpr(compiler, null, null).isFloat());
+        // ConvFloat should not have been inserted
+        assertFalse(minus.getRightOperand() instanceof ConvFloat);
+        assertFalse(minus.getLeftOperand() instanceof ConvFloat);
+        // check that the mocks have been called properly.
+        verify(floatexpr1).verifyExpr(compiler, null, null);
+        verify(floatexpr2).verifyExpr(compiler, null, null);
     }
 
     @Test
-    public void testDecompile() {
-        Minus minus1 = new Minus(new IntLiteral(42), new IntLiteral(-6));
-        String result1 = minus1.decompile();
-        String expected1 = "(42 - -6)";
-        assertThat(result1, is(expected1));
+    public void testWrongTypes() throws ContextualError {
+        // check that verifyExpr with a STRING leftOperand throws contextualError
+        Minus minus1 = new Minus(stringExpr1, anyFloatExpr);
 
-        Minus minus2 = new Minus(new IntLiteral(0), new FloatLiteral(2.554f));
-        String result2 = minus2.decompile();
-        String expected2 = "(0 - 0x1.46e978p1)";
-        assertThat(result2, is(expected2));
+        Type tA1 = stringExpr1.verifyExpr(compiler, null, null);
+        Type tA2 = anyFloatExpr.verifyExpr(compiler, null, null);
+        assertTrue(tA1.isString());
+        assertTrue(tA2.isFloat());
 
-        Minus minus3 = new Minus(new FloatLiteral(-502.084f), new FloatLiteral(2.554f));
-        String result3 = minus3.decompile();
-        String expected3 = "(-0x1.f61582p8 - 0x1.46e978p1)";
-        assertThat(result3, is(expected3));
+        ContextualError expected1 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ARITHMETIC_OPERATION_INCOMPATIBLE_TYPE
+                        + tA1 + " (pour " + stringExpr1.decompile() + ") et " + tA2
+                        + " (pour " + anyFloatExpr.decompile() + ").", null);
+
+        ContextualError result1 = assertThrows(ContextualError.class, () -> {
+            minus1.verifyExpr(compiler, null, null);
+        });
+
+        assertThat(result1.getMessage(), is(expected1.getMessage()));
+
+
+        // check that verifyExpr with a BOOLEAN rightOperand throws contextualError
+        Minus minus2 = new Minus(anyFloatExpr, booleanExpr2);
+
+        Type tB1 = anyFloatExpr.verifyExpr(compiler, null, null);
+        Type tB2 = booleanExpr2.verifyExpr(compiler, null, null);
+        assertTrue(tB1.isFloat());
+        assertTrue(tB2.isBoolean());
+
+        ContextualError expected2 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_ARITHMETIC_OPERATION_INCOMPATIBLE_TYPE
+                        + tB1 + " (pour " + anyFloatExpr.decompile() + ") et " + tB2
+                        + " (pour " + booleanExpr2.decompile() + ").", null);
+
+        ContextualError result2 = assertThrows(ContextualError.class, () -> {
+            minus2.verifyExpr(compiler, null, null);
+        });
+
+        assertThat(result2.getMessage(), is(expected2.getMessage()));
     }
 }

@@ -2,159 +2,82 @@ package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.AbstractExpr;
-import fr.ensimag.deca.tree.BooleanLiteral;
-import fr.ensimag.deca.tree.Not;
-import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.tree.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertTrue;
 
-/**
- *
- * @author Equipe GL2
- * @date 2020
- */
 public class TestNot {
-    private final UnsupportedOperationException expectedNoMoreRegister =
-            new UnsupportedOperationException("no more available registers : policy not yet implemented");
-    private final List<String> IMACodeGenCMPExpectedNotBooleanLiteralFalse = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedNotBooleanLiteralTrue = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedNotAbstractExprFalse = new ArrayList<>();
-    private final List<String> IMACodeGenCMPExpectedNotAbstractExprTrue = new ArrayList<>();
-
-    @Mock private BooleanLiteral exprBoolean;
-    @Mock private AbstractExpr expr;
-    @Mock private Label lb;
+    private final BooleanLiteral boolTrueExpr = new BooleanLiteral(true);
+    private final BooleanLiteral boolFalseExpr = new BooleanLiteral(false);
+    private final IntLiteral intExpr = new IntLiteral(5);
+    private final FloatLiteral floatExpr = new FloatLiteral(-742.221354f);
+    private final StringLiteral stringExpr = new StringLiteral("bonsoir");
 
     private DecacCompiler compiler;
-    private DecacCompiler compilerWithoutAvailableRegisters;
 
     @Before
-    public void setup() throws ContextualError, DecacFatalError {
-        MockitoAnnotations.initMocks(this);
+    public void setup() {
         compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
-        when(expr.verifyExpr(compiler, null, null)).thenReturn(compiler.environmentType.BOOLEAN);
-        when(exprBoolean.verifyExpr(compiler, null, null)).thenReturn(compiler.environmentType.BOOLEAN);
-
-        compilerWithoutAvailableRegisters = new DecacCompiler(null, null);
-        compilerWithoutAvailableRegisters.setRegisterManager(8);
-        int i;
-        while ((i = compilerWithoutAvailableRegisters.getRegisterManager().nextAvailable()) != -1) { // on marque tous les registres comme étant utilisés
-            compilerWithoutAvailableRegisters.getRegisterManager().take(i);
-        }
-
-        IMACodeGenCMPExpectedNotBooleanLiteralFalse.add("CMP #1, R2");
-        IMACodeGenCMPExpectedNotBooleanLiteralFalse.add("BNE lb");
-        IMACodeGenCMPExpectedNotBooleanLiteralTrue.add("CMP #1, R2");
-        IMACodeGenCMPExpectedNotBooleanLiteralTrue.add("BEQ lb");
-        IMACodeGenCMPExpectedNotAbstractExprFalse.add("");
-        IMACodeGenCMPExpectedNotAbstractExprTrue.add("");
     }
 
     @Test
-    public void testVerifyExpr() throws ContextualError {
-        Not not = new Not(expr);
+    public void testVerifyExpr() throws ContextualError, DecacFatalError {
+        // !true
+        verifyExprWithSpecificParams(boolTrueExpr);
 
-        // Le type renvoyé est bien BOOLEAN
-        assertEquals(not.verifyExpr(compiler, null, null), compiler.environmentType.BOOLEAN);
-
-        // Le type de l'expression est bien BOOLEAN
-        assertEquals(not.getType(), compiler.environmentType.BOOLEAN);
+        // !false
+        verifyExprWithSpecificParams(boolFalseExpr);
     }
 
-    @Test // Cas où l'attribut "operand" est de type BooleanLiteral et le paramètre reverse=false
-    public void testCodeGenCMPBooleanLiteralReverseFalse() throws DecacFatalError {
-        Not notBoolean = new Not(exprBoolean);
+    private void verifyExprWithSpecificParams(BooleanLiteral NotOperand)
+            throws ContextualError, DecacFatalError {
+        // check verifyExpr and verifyCondition
+        Not not = new Not(NotOperand);
 
-        // Appel à la fonction codeGenInst() lorsqu'il reste un registre disponible
-        notBoolean.codeGenCMP(compiler, lb, false);
-        verify(exprBoolean).codeGenInst(eq(compiler), any(GPRegister.class));
-
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(exprBoolean.getType(), notBoolean.getOperand().getType());
-        assertThat(notBoolean.getOperand(), is(exprBoolean));
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotBooleanLiteralFalse));
-
-        // TODO
-        /*
-        // Levée d'une erreur si plus de registre disponible
-        UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {
-            notBoolean.codeGenCMP(compilerWithoutAvailableRegisters, lb, false); // Appel avec "reverse" = false
-        });
-        assertThat(resultNoMoreRegister.getMessage(), is(expectedNoMoreRegister.getMessage()));
-
-         */
-    }
-
-    @Test // Cas où l'attribut "operand" est de type BooleanLiteral et le paramètre reverse=true
-    public void testCodeGenCMPBooleanLiteralReverseTrue() throws DecacFatalError {
-        Not notBoolean = new Not(exprBoolean);
-
-        // Appel à la fonction codeGenInst() lorsqu'il reste un registre disponible
-        notBoolean.codeGenCMP(compiler, lb, true);
-        verify(exprBoolean).codeGenInst(eq(compiler), any(GPRegister.class));
-
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(exprBoolean.getType(), notBoolean.getOperand().getType());
-        assertThat(notBoolean.getOperand(), is(exprBoolean));
-
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotBooleanLiteralTrue));
-
-        // TODO
-        /*
-        // Levée d'une erreur si plus de registre disponible
-        UnsupportedOperationException resultNoMoreRegister = assertThrows(UnsupportedOperationException.class, () -> {
-            notBoolean.codeGenCMP(compilerWithoutAvailableRegisters, lb, true); // Appel avec "reverse" = true
-        });
-        assertThat(resultNoMoreRegister.getMessage(), is(expectedNoMoreRegister.getMessage()));
-         */
+        assertTrue(NotOperand.verifyExpr(compiler, null, null).isBoolean());
+        assertTrue(not.verifyExpr(compiler, null, null).isBoolean());
     }
 
     @Test
-    public void testCodeGenCMPAbstractExpr() throws DecacFatalError { // Cas où l'attribut "operand" est de type AbstractExpr
-        Not not = new Not(expr);
-        compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
+    public void testWrongTypes() {
+        // check that verifyCondition with a INT leftOperand throws contextualError
+        Not not1 = new Not(intExpr);
 
-        // Les appels récursifs à la méthode codeGenCMP() se font en donnant la valeur inverse pour l'argument "reverse"
-        not.codeGenCMP(compiler, lb, false); // i.e. si on appelle codeGenCMP avec reverse=false
-        verify(expr).codeGenCMP(compiler, lb, true); // alors la fonction rappelle la même méthode avec reverse=true
+        ContextualError expected1 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "int" + ".", null);
+        ContextualError result1 = assertThrows(ContextualError.class, () -> {
+            not1.verifyExpr(compiler, null, null);
+        });
 
-        String result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotAbstractExprFalse));
+        assertThat(result1.getMessage(), is(expected1.getMessage()));
 
-        compiler = new DecacCompiler(null, null);
-        compiler.setRegisterManager(5);
+        // check that verifyCondition with a FLOAT rightOperand throws contextualError
+        Not not2 = new Not(floatExpr);
 
-        // Les appels récursifs à la méthode codeGenCMP() se font en donnant la valeur inverse pour l'argument "reverse"
-        not.codeGenCMP(compiler, lb, true);
-        verify(expr).codeGenCMP(compiler, lb, false);
+        ContextualError expected2 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "float" + ".", null);
+        ContextualError result2 = assertThrows(ContextualError.class, () -> {
+            not2.verifyExpr(compiler, null, null);
+        });
 
-        result = compiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result), is(IMACodeGenCMPExpectedNotAbstractExprTrue));
+        assertThat(result2.getMessage(), is(expected2.getMessage()));
 
-        // Pas de modification des attributs lors de la génération de code
-        assertEquals(expr.getType(), not.getOperand().getType());
-        assertThat(not.getOperand(), is(expr));
+
+        // check that verifyCondition with a STRING rightOperand throws contextualError
+        Not not3 = new Not(stringExpr);
+
+        ContextualError expected3 =
+                new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CONDITION_BOOLEAN_INCOMPATIBLE_TYPE + "string" + ".", null);
+        ContextualError result3 = assertThrows(ContextualError.class, () -> {
+            not3.verifyExpr(compiler, null, null);
+        });
+
+        assertThat(result3.getMessage(), is(expected3.getMessage()));
     }
 }

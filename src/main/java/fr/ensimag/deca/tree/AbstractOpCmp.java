@@ -1,10 +1,10 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.codegen.LabelType;
 import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
@@ -58,7 +58,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
     }
 
     @Override
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
             compiler.getRegisterManager().take(i);

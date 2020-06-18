@@ -9,21 +9,20 @@ import org.apache.commons.lang.Validate;
  * @date 2020
  */
 public class LabelOperand extends DVal {
-    public Label getLabel() {
-        return label;
-    }
-
     private Label label;
-    
+
     public LabelOperand(Label label) {
         super();
         Validate.notNull(label);
         this.label = label;
     }
 
+    public Label getLabel() {
+        return label;
+    }
+
     @Override
     public String toString() {
         return label.toString();
     }
-
 }

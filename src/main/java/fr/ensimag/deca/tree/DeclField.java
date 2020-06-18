@@ -5,7 +5,6 @@ import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
@@ -77,7 +76,7 @@ public class DeclField extends AbstractDeclField {
     }
 
     @Override
-    public void codeGenField(DecacCompiler compiler, ClassDefinition currentClass) {
+    protected void codeGenField(DecacCompiler compiler, ClassDefinition currentClass) {
         compiler.addComment("Initialisation de " + currentClass.getType() + "." + varName.getName());
         compiler.addInstruction(new LOAD(0, Register.R0));
         varName.getFieldDefinition().setOperand(new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1));
@@ -86,7 +85,7 @@ public class DeclField extends AbstractDeclField {
     }
 
     @Override
-    public void codeGenFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
+    protected void codeGenFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
         if (initialization instanceof Initialization) {
             compiler.addComment("Initialisation explicite de " + currentClass.getType() + "." + varName.getName());
             initialization.codeGenInitializationField(compiler, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1)); // R1 contient l’adresse de l’objet
@@ -118,5 +117,4 @@ public class DeclField extends AbstractDeclField {
         varName.iterChildren(f);
         initialization.iterChildren(f);
     }
-
 }

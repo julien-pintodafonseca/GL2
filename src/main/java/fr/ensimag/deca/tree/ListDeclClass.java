@@ -25,7 +25,7 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
     /**
      * Pass 1 of [SyntaxeContextuelle]
      */
-    void verifyListClass(DecacCompiler compiler) throws ContextualError, DecacFatalError {
+    protected void verifyListClass(DecacCompiler compiler) throws ContextualError, DecacFatalError {
         LOG.debug("verify listClass: start");
         // Règle syntaxe contextuelle : (1.2)
         for (AbstractDeclClass declClass : getList()) {
@@ -37,7 +37,7 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
-    public void verifyListClassMembers(DecacCompiler compiler) throws ContextualError, DecacFatalError {
+    protected void verifyListClassMembers(DecacCompiler compiler) throws ContextualError, DecacFatalError {
         LOG.debug("verify listClassMembers: start");
         // Règle syntaxe contextuelle : (2.2)
         for (AbstractDeclClass declClass : getList()) {
@@ -49,7 +49,7 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
     /**
      * Pass 3 of [SyntaxeContextuelle]
      */
-    public void verifyListClassBody(DecacCompiler compiler) throws ContextualError, DecacFatalError {
+    protected void verifyListClassBody(DecacCompiler compiler) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.2)
         LOG.debug("verify listClassBody: start");
         for (AbstractDeclClass declClass : getList()) {
@@ -82,5 +82,4 @@ public class ListDeclClass extends TreeList<AbstractDeclClass> {
         }
         LOG.debug("codeGen MethodBody Table for ListDeclClass: end");
     }
-
 }

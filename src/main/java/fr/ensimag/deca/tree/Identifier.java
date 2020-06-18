@@ -10,11 +10,8 @@ import fr.ensimag.deca.tools.SymbolTable.Symbol;
 import fr.ensimag.ima.pseudocode.*;
 import fr.ensimag.ima.pseudocode.instructions.BEQ;
 import fr.ensimag.ima.pseudocode.instructions.BNE;
-import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.instructions.CMP;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
-import fr.ensimag.ima.pseudocode.instructions.WINT;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -203,7 +200,6 @@ public class Identifier extends AbstractIdentifier {
         }
     }
 
-
     private Definition definition;
 
     @Override
@@ -225,23 +221,23 @@ public class Identifier extends AbstractIdentifier {
     }
     
     @Override
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         ExpDefinition expDef = getExpDefinition();
-        if(expDef.isField()) {
+        if (expDef.isField()) {
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
         }
         compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R0));
         compiler.addInstruction(new CMP(expDef.getOperand(), Register.R0));
 
-    	if(reverse) {
+    	if (reverse) {
     		compiler.addInstruction(new BNE(label));
-    	}else{
+    	} else {
     		compiler.addInstruction(new BEQ(label));
     	}
     }
 
     @Override
-    public DAddr codeGenOperandAssign(DecacCompiler compiler) {
+    protected DAddr codeGenOperandAssign(DecacCompiler compiler) {
         ExpDefinition expDef = getExpDefinition();
         if(expDef.isField()) {
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));

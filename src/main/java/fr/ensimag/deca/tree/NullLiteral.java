@@ -1,18 +1,11 @@
 package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.GPRegister;
-import fr.ensimag.ima.pseudocode.ImmediateFloat;
-import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.WFLOAT;
-import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
 import java.io.PrintStream;
@@ -27,7 +20,7 @@ public class NullLiteral extends AbstractExpr {
     private static Logger LOG = Logger.getLogger(NullLiteral.class);
 
     public NullLiteral() {
-
+        // nothing
     }
 
     @Override

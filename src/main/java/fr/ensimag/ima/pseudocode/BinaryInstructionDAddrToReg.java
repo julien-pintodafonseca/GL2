@@ -12,5 +12,4 @@ public class BinaryInstructionDAddrToReg extends BinaryInstructionDValToReg {
     public BinaryInstructionDAddrToReg(DAddr op1, GPRegister op2) {
         super(op1, op2);
     }
-
 }

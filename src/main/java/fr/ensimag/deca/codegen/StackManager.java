@@ -1,8 +1,5 @@
 package fr.ensimag.deca.codegen;
 
-import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.ima.pseudocode.GPRegister;
-
 /**
  *
  * @author Equipe GL2
@@ -47,5 +44,4 @@ public class StackManager {
     public void incrLB() {
         LB++;
     }
-
 }

@@ -4,7 +4,6 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.deca.tools.SymbolTable;
@@ -39,13 +38,12 @@ public class DeclMethod extends AbstractDeclMethod {
         return methodName.getName();
     }
 
-    @Override
     public AbstractIdentifier getIdentifier() {
         return methodName;
     }
 
     @Override
-    public void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
+    protected void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (2.7)
         Type t = type.verifyType(compiler);
         type.setType(t);
@@ -59,7 +57,7 @@ public class DeclMethod extends AbstractDeclMethod {
             if (superMethName instanceof MethodDefinition) {
                 // les signatures de la méthode et de la méthode héritée sont identiques
                 Signature superSignature = ((MethodDefinition) superMethName).getSignature();
-                if(!superSignature.equals(s)) {
+                if (!superSignature.equals(s)) {
                     throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_DIFF_SIGNATURE_REDEFINED_METHOD + methodName.getName() + " (classe " + currentClass.getType() + ").", getLocation());
                 }
 
@@ -99,7 +97,7 @@ public class DeclMethod extends AbstractDeclMethod {
 
     @Override
     protected void codeGenMethod(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
-        if(currentClass.getType() == compiler.environmentType.OBJECT) {
+        if (currentClass.getType() == compiler.environmentType.OBJECT) {
             compiler.addComment("---------- Code de la methode " + methodName.getName() + " dans la classe Object");
         } else {
             compiler.addComment("---------- Code de la methode " + methodName.getName() + " dans la classe " + currentClass.getType() + " (ligne " + getLocation().getLine() + ")");

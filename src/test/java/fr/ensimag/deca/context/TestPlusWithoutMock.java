@@ -35,7 +35,7 @@ public class TestPlusWithoutMock {
 
         @Override
         public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv,
-                ClassDefinition currentClass) throws ContextualError {
+                ClassDefinition currentClass) {
             hasBeenVerified = true;
             return INT;
         }

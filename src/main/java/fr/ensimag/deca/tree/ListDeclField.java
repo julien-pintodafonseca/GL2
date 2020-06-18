@@ -7,16 +7,11 @@ import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tree.AbstractDeclField;
-import fr.ensimag.deca.tree.AbstractDeclParam;
-import fr.ensimag.deca.tree.TreeList;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.log4j.Logger;
-
-import java.util.zip.CheckedOutputStream;
 
 /**
  *
@@ -24,13 +19,12 @@ import java.util.zip.CheckedOutputStream;
  * @date 2020
  */
 public class ListDeclField extends TreeList<AbstractDeclField> {
-
     private static final Logger LOG = Logger.getLogger(ListDeclClass.class);
 
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
-    public void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
+    protected void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         LOG.debug("verify listClassFields : start");
         // Règle syntaxe contextuelle : (2.4)
         for (AbstractDeclField declField : getList()) {
@@ -60,7 +54,7 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
         }
     }
 
-    public void codeGenFields(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
+    protected void codeGenFields(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
         compiler.addLabel(new Label("init."+currentClass.getType()));
         if (!currentClass.getSuperClass().getType().isObject()) {
             compiler.addInstruction(new TSTO(3), "Test de debordement de pile");

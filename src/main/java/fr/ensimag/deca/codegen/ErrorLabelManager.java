@@ -60,7 +60,7 @@ public class ErrorLabelManager {
         }
     }
 
-    private void printError(DecacCompiler compiler, ErrorLabelType lt){
+    private void printError(DecacCompiler compiler, ErrorLabelType lt) {
         switch(lt) {
             case LB_ARITHMETIC_OVERFLOW:
                 compiler.addComment("--------------------------------------------------");

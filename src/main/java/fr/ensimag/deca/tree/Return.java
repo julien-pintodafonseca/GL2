@@ -1,19 +1,19 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import java.io.PrintStream;
-
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import org.apache.commons.lang.Validate;
+
+import java.io.PrintStream;
 
 /**
  *
@@ -41,9 +41,8 @@ public class Return extends AbstractInst {
             if (!compiler.environmentType.assignCompatible(returnType, argument.getType())) {
                 throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_RETURN_INCOMPATIBLE_TYPE + argument.getType().getName()
                         + " (" + argument.decompile() + ") au lieu de " + returnType.getName() + ".", getLocation());
-            } else if (returnType.isFloat() && argument.getType().isInt()){
-                ConvFloat conv = new ConvFloat(argument);
-                argument = conv;
+            } else if (returnType.isFloat() && argument.getType().isInt()) {
+                argument = new ConvFloat(argument);
             } else if (!returnType.sameType(argument.getType())) {
                 Cast cast = new Cast(new Identifier(returnType.getName()), argument);
                 cast.setType(returnType);

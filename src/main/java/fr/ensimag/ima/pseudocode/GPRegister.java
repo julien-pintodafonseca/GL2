@@ -7,17 +7,17 @@ package fr.ensimag.ima.pseudocode;
  * @date 2020
  */
 public class GPRegister extends Register {
-    /**
-     * @return the number of the register, e.g. 12 for R12.
-     */
-    public int getNumber() {
-        return number;
-    }
-
     private int number;
 
     public GPRegister(String name, int number) {
         super(name);
         this.number = number;
+    }
+
+    /**
+     * @return the number of the register, e.g. 12 for R12.
+     */
+    public int getNumber() {
+        return number;
     }
 }

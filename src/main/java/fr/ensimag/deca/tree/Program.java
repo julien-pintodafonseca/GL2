@@ -20,6 +20,8 @@ import java.io.PrintStream;
  */
 public class Program extends AbstractProgram {
     private static final Logger LOG = Logger.getLogger(Program.class);
+    private ListDeclClass classes;
+    private AbstractMain main;
     
     public Program(ListDeclClass classes, AbstractMain main) {
         Validate.notNull(classes);
@@ -27,14 +29,14 @@ public class Program extends AbstractProgram {
         this.classes = classes;
         this.main = main;
     }
+
     public ListDeclClass getClasses() {
         return classes;
     }
+
     public AbstractMain getMain() {
         return main;
     }
-    private ListDeclClass classes;
-    private AbstractMain main;
 
     @Override
     public void verifyProgram(DecacCompiler compiler) throws ContextualError, EnvironmentExp.DoubleDefException, DecacFatalError {

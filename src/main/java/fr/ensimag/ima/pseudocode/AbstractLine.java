@@ -9,5 +9,6 @@ import java.io.PrintStream;
  * @date 2020
  */
 public abstract class AbstractLine {
+
     abstract void display(PrintStream s);
 }

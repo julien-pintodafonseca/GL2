@@ -16,5 +16,4 @@ public class DecacInternalError extends RuntimeException {
     public DecacInternalError(String message) {
         super(message);
     }
-
 }

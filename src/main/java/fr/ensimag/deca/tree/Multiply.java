@@ -15,7 +15,7 @@ public class Multiply extends AbstractOpArith {
     }
 
     @Override
-    public void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
+    protected void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
         compiler.addInstruction(new MUL(register1, register2));
         if (getLeftOperand().getType().isFloat() || getRightOperand().getType().isFloat()) {
             codeGenError(compiler);
@@ -26,5 +26,4 @@ public class Multiply extends AbstractOpArith {
     protected String getOperatorName() {
         return "*";
     }
-
 }

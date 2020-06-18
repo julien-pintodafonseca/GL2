@@ -5,12 +5,10 @@ import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import java.io.PrintStream;
-
-import fr.ensimag.ima.pseudocode.instructions.ADDSP;
-import fr.ensimag.ima.pseudocode.instructions.HALT;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * @author Equipe GL2
@@ -41,7 +39,7 @@ public class Main extends AbstractMain {
     }
 
     @Override
-    public int getNumberDeclVariables() {
+    protected int getNumberDeclVariables() {
         return declVariables.size();
     }
 

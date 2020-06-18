@@ -22,6 +22,4 @@ public class ObjectType extends ClassType {
     public boolean sameType(Type otherType) {
         return otherType.isObject();
     }
-
-
 }

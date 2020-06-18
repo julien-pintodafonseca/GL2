@@ -6,12 +6,10 @@ import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.deca.tree.AbstractDeclMethod;
 import fr.ensimag.ima.pseudocode.*;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
 
-import javax.management.ListenerNotFoundException;
 import java.io.PrintStream;
 
 /**

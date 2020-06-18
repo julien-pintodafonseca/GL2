@@ -16,7 +16,6 @@ import fr.ensimag.ima.pseudocode.instructions.*;
  * @date 2020
  */
 public class UnaryMinus extends AbstractUnaryExpr {
-
     public UnaryMinus(AbstractExpr operand) {
         super(operand);
     }
@@ -67,5 +66,4 @@ public class UnaryMinus extends AbstractUnaryExpr {
     protected String getOperatorName() {
         return "-";
     }
-
 }

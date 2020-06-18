@@ -68,5 +68,4 @@ public class MethodDefinition extends ExpDefinition {
     public boolean isExpression() {
         return false;
     }
-
 }

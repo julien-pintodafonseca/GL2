@@ -6,12 +6,11 @@ import fr.ensimag.deca.tree.AbstractProgram;
 import fr.ensimag.deca.tree.Location;
 import fr.ensimag.deca.tree.LocationException;
 import fr.ensimag.deca.tree.Tree;
-
-import java.io.PrintStream;
-
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.apache.log4j.Logger;
+
+import java.io.PrintStream;
 
 /**
  * The super class of the generated parser. It is extended by the generated
@@ -99,4 +98,3 @@ public abstract class AbstractDecaParser extends Parser {
         addErrorListener(new DecacErrorListner(input));
     }
 }
-

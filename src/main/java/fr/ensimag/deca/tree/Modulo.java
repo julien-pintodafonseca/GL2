@@ -1,12 +1,12 @@
 package fr.ensimag.deca.tree;
 
+import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.Type;
-import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.instructions.REM;
 
@@ -42,7 +42,7 @@ public class Modulo extends AbstractOpArith {
     }
 
     @Override
-    public void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
+    protected void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
         compiler.addInstruction(new REM(register1, register2));
         codeGenError(compiler);
     }
@@ -51,5 +51,4 @@ public class Modulo extends AbstractOpArith {
     protected String getOperatorName() {
         return "%";
     }
-
 }

@@ -52,23 +52,23 @@ public class DecacMain {
             options.displayUsage();
         }
         if (options.getParallel()) {
-            List<Future<Boolean>> resultList = new ArrayList<Future<Boolean>>();
+            List<Future<Boolean>> resultList = new ArrayList<>();
             int nbProcessors = Runtime.getRuntime().availableProcessors();
             ExecutorService executorService = Executors.newFixedThreadPool(nbProcessors);
-            for (File source : options.getSourceFiles()){
+            for (File source : options.getSourceFiles()) {
                 Future<Boolean> future = executorService.submit(new DecacCompiler(options,source));
                 resultList.add(future);
             }
-            for (Future<Boolean> fb: resultList){
-                try{
+            for (Future<Boolean> fb: resultList) {
+                try {
                     if (fb.get()) {
                         error = true ;
                     }
-                }catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
-                }catch (ExecutionException e){
+                } catch (ExecutionException e) {
                     e.printStackTrace();
-                }finally {
+                } finally {
                     executorService.shutdown();
                 }
             }

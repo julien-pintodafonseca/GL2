@@ -35,5 +35,4 @@ public class VTable {
     public MethodDefinition getMethodDef(int i) {
         return vTable.get(i).getIdentifier().getMethodDefinition();
     }
-
 }

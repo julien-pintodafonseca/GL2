@@ -2,8 +2,10 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.codegen.ErrorLabelType;
-import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
@@ -43,5 +45,4 @@ public class ConvFloat extends AbstractUnaryExpr {
     protected String getOperatorName() {
         return "/* conv float */";
     }
-
 }

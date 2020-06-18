@@ -27,7 +27,7 @@ public abstract class AbstractDeclField extends Tree {
     protected abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError, DecacFatalError;
 
-    public abstract void codeGenField(DecacCompiler compiler, ClassDefinition currentClass);
+    protected abstract void codeGenField(DecacCompiler compiler, ClassDefinition currentClass);
 
-    public abstract void codeGenFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError;
+    protected abstract void codeGenFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError;
 }

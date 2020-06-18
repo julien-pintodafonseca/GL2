@@ -23,11 +23,11 @@ import java.io.PrintStream;
 public class Initialization extends AbstractInitialization {
     private static final Logger LOG = Logger.getLogger(Initialization.class);
 
+    private AbstractExpr expression;
+
     public AbstractExpr getExpression() {
         return expression;
     }
-
-    private AbstractExpr expression;
 
     public void setExpression(AbstractExpr expression) {
         Validate.notNull(expression);
@@ -40,7 +40,7 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    public void verifyInitialization(DecacCompiler compiler, Type t,
+    protected void verifyInitialization(DecacCompiler compiler, Type t,
             EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.8)
@@ -51,7 +51,7 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    public void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
+    protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
             compiler.getRegisterManager().take(i);

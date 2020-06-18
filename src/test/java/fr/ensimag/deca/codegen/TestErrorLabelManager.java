@@ -16,9 +16,6 @@ import static org.junit.Assert.*;
 public class TestErrorLabelManager {
     private final DecacFatalError expectedLabelTypeEx =
             new DecacFatalError(ErrorMessages.DECAC_FATAL_ERROR_LABEL_MANAGER_UNKNOWN_LABEL_TYPE);
-    private final String expectedErrorLabelName1 = "arithmetic_overflow";
-    private final String expectedErrorLabelName2 = "read_error_float";
-    private final String expectedErrorLabelName3 = "read_error_int";
 
     @Test
     public void testErrorLabelType() {
@@ -55,9 +52,12 @@ public class TestErrorLabelManager {
     public void testErrorLabelName() {
         ErrorLabelManager elm = new ErrorLabelManager();
 
+        String expectedErrorLabelName1 = "arithmetic_overflow";
         String result1 = elm.errorLabelName(ErrorLabelType.LB_ARITHMETIC_OVERFLOW);
         assertThat(result1, is(expectedErrorLabelName1));
 
+        String expectedErrorLabelName2 = "read_error_float";
+        String expectedErrorLabelName3 = "read_error_int";
         String result2 = elm.errorLabelName(ErrorLabelType.LB_READFLOAT_BAD_ENTRY);
         String result3 = elm.errorLabelName(ErrorLabelType.LB_READINT_BAD_ENTRY);
         assertThat(result2, is(expectedErrorLabelName2));

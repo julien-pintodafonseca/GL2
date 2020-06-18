@@ -7,6 +7,7 @@ package fr.ensimag.ima.pseudocode;
  * @date 2020
  */
 public class IMAInternalError extends RuntimeException {
+
     public IMAInternalError(String message, Throwable cause) {
         super(message, cause);
     }
@@ -16,5 +17,4 @@ public class IMAInternalError extends RuntimeException {
     }
 
     private static final long serialVersionUID = 3929345355905773360L;
-
 }

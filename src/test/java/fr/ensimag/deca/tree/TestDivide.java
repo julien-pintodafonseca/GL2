@@ -1,8 +1,11 @@
-package fr.ensimag.deca.context;
+package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.tree.*;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.FloatType;
+import fr.ensimag.deca.context.IntType;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.utils.Utils;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
@@ -21,6 +24,12 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ * @author Equipe GL2
+ * @date 2020
+ */
+// TODO
 public class TestDivide {
     private final Type INT = new IntType(null);
     private final Type FLOAT = new FloatType(null);

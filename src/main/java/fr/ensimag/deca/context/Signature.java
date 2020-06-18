@@ -36,7 +36,7 @@ public class Signature {
         if (this.size() != toCompare.size()) {
             return false;
         } else {
-            for(int i = 0; i < this.size(); i++) {
+            for (int i = 0; i < this.size(); i++) {
                 if (paramNumber(i) != toCompare.paramNumber(i)) {
                     return false;
                 }

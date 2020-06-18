@@ -3,7 +3,10 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
-import fr.ensimag.deca.context.*;
+import fr.ensimag.deca.context.ClassDefinition;
+import fr.ensimag.deca.context.ContextualError;
+import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.DecacInternalError;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.GPRegister;
@@ -23,11 +26,13 @@ import java.io.PrintStream;
  */
 public abstract class AbstractExpr extends AbstractInst {
     private static final Logger LOG = Logger.getLogger(AbstractExpr.class);
+
     /**
      * @return true if the expression does not correspond to any concrete token
      * in the source code (and should be decompiled to the empty string).
      */
-    boolean isImplicit() {
+    // TODO : vérifier que cette méthode est utilisée quelque part
+    public boolean isImplicit() {
         return false;
     }
 
@@ -38,7 +43,7 @@ public abstract class AbstractExpr extends AbstractInst {
         return type;
     }
 
-    public void setType(Type type) {
+    protected void setType(Type type) {
         Validate.notNull(type);
         this.type = type;
     }
@@ -128,7 +133,7 @@ public abstract class AbstractExpr extends AbstractInst {
      *            Definition of the class containing the expression, or null in
      *            the main program.
      */
-    void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
+    protected void verifyCondition(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass) throws ContextualError {
     	  // Règle syntaxe contextuelle : (3.29)
         if (!type.isBoolean()) {
@@ -142,7 +147,7 @@ public abstract class AbstractExpr extends AbstractInst {
      * @param compiler
      */
     protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        if(getType().isInt()) {
+        if (getType().isInt()) {
             compiler.addInstruction(new WINT());
         } else if (getType().isFloat()) {
             if (printHex) {
@@ -192,7 +197,7 @@ public abstract class AbstractExpr extends AbstractInst {
      *                with op a comparison operator
      * @throws DecacFatalError
      */
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         throw new UnsupportedOperationException("not yet implemented");
     }
     

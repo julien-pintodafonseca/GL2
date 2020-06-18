@@ -35,7 +35,7 @@ public class Selection extends AbstractLValue {
         // Syntaxe contextuelle : règles (3.65) et (3.66)
         obj.verifyExpr(compiler, localEnv, currentClass);
         Type typeClass = obj.getType();
-        if(typeClass.isClass()) {
+        if (typeClass.isClass()) {
             ClassDefinition classDef = compiler.environmentType.getClassDefinition(typeClass.getName());
             field.verifyExpr(compiler, classDef.getMembers(), currentClass);
 

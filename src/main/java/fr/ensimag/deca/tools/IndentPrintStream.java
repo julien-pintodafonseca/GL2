@@ -8,12 +8,14 @@ import java.io.PrintStream;
  * @date 2020
  */
 public class IndentPrintStream {
+    private int indent = 0;
+    private boolean indented = false;
+
     private PrintStream stream;
+
     public IndentPrintStream(PrintStream stream) {
         this.stream = stream;
     }
-    private int indent = 0;
-    private boolean indented = false;
 
     private void printIndent() {
         if (indented) {

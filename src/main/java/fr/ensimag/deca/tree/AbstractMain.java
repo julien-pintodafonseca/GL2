@@ -11,7 +11,7 @@ import fr.ensimag.deca.context.ContextualError;
  * @date 2020
  */
 public abstract class AbstractMain extends Tree {
-    public abstract int getNumberDeclVariables();
+    protected abstract int getNumberDeclVariables();
 
     protected abstract void codeGenMain(DecacCompiler compiler) throws DecacFatalError;
 

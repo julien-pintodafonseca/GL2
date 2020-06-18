@@ -13,10 +13,10 @@ import fr.ensimag.ima.pseudocode.instructions.BLE;
  * @date 2020
  */
 public class LowerOrEqual extends AbstractOpIneq {
+
     public LowerOrEqual(AbstractExpr leftOperand, AbstractExpr rightOperand) {
         super(leftOperand, rightOperand);
     }
-
 
     @Override
     protected String getOperatorName() {
@@ -24,7 +24,7 @@ public class LowerOrEqual extends AbstractOpIneq {
     }
 
     @Override
-    public void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         super.codeGenCMP(compiler, label, reverse);
         if (reverse) {
             compiler.addInstruction(new BGT(label));
@@ -32,5 +32,4 @@ public class LowerOrEqual extends AbstractOpIneq {
             compiler.addInstruction(new BLE(label));
         }
     }
-
 }

@@ -17,7 +17,7 @@ public class Divide extends AbstractOpArith {
     }
 
     @Override
-    public void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
+    protected void codeGenInstArith(DecacCompiler compiler, GPRegister register1, GPRegister register2) throws DecacFatalError {
         if (getType().isInt()) {
             compiler.addInstruction(new QUO(register1, register2));
         } else {
@@ -26,10 +26,8 @@ public class Divide extends AbstractOpArith {
         codeGenError(compiler);
     }
 
-
     @Override
     protected String getOperatorName() {
         return "/";
     }
-
 }
