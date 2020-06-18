@@ -43,10 +43,12 @@ public class Return extends AbstractInst {
                         + " (" + argument.decompile() + ") au lieu de " + returnType.getName() + ".", getLocation());
             } else if (returnType.isFloat() && argument.getType().isInt()) {
                 argument = new ConvFloat(argument);
+                argument.setType(compiler.environmentType.FLOAT);
             } else if (!returnType.sameType(argument.getType())) {
                 Cast cast = new Cast(new Identifier(returnType.getName()), argument);
                 cast.setType(returnType);
                 argument = cast;
+                // TODO : voir erreur pb de setType ?
             }
         } else {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_RETURN_METHOD_VOID_TYPE, getLocation());

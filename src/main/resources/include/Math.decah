@@ -14,9 +14,9 @@ class Math {
             return abs(f);
         } else if (exp == MIN_EXPONENT+1) {
             return MIN_VALUE;
+        } else {
+            println("ulp(f) not yet implemented");
         }
-
-        println("ulp(f) not yet implemented");
     }
 
     float sin(float f) {
@@ -33,6 +33,10 @@ class Math {
 
     float atan(float f) {
         println("atan(f) not yet implemented");
+    }
+
+    int getExponent(float x) {
+
     }
 
     float abs(float x) {
