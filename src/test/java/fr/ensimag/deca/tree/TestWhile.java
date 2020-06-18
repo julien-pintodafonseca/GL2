@@ -52,7 +52,7 @@ public class TestWhile {
     }
 
     @Test
-    public void testVerifyInst() throws ContextualError {
+    public void testVerifyInst() throws ContextualError, DecacFatalError {
         While whileNodeBool = new While(conditionBool, body);
         While whileNodeNotBool = new While(conditionNotBool, body);
 

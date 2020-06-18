@@ -1,6 +1,7 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.tree.*;
 import org.junit.Before;
@@ -33,7 +34,7 @@ public class TestAnd {
     }
 
     @Test
-    public void testVerifyExpr() throws ContextualError {
+    public void testVerifyExpr() throws ContextualError, DecacFatalError {
         // true && true
         verifyExprWithSpecificParams(boolTrueExpr1, boolTrueExpr2);
 
@@ -48,7 +49,7 @@ public class TestAnd {
     }
 
     private void verifyExprWithSpecificParams(BooleanLiteral leftOperand, BooleanLiteral rightOperand)
-            throws ContextualError {
+            throws ContextualError, DecacFatalError {
         // check verifyExpr and verifyCondition
         And and = new And(leftOperand, rightOperand);
 

@@ -43,7 +43,7 @@ public class TestModulo {
     private GPRegister reg2;
 
     @Before
-    public void setup() throws ContextualError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         reg1 = Register.R0;
         reg2 = Register.R1;
@@ -58,7 +58,7 @@ public class TestModulo {
     }
 
     @Test
-    public void testIntInt() throws ContextualError {
+    public void testIntInt() throws ContextualError, DecacFatalError {
         Modulo modulo = new Modulo(intexpr1, intexpr2);
         // check the result
         assertTrue(modulo.verifyExpr(compiler, null, null).isInt());

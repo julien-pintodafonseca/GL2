@@ -1,6 +1,7 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.tree.*;
 import org.junit.Before;
@@ -34,7 +35,7 @@ public class TestMinus {
     private DecacCompiler compiler;
 
     @Before
-    public void setup() throws ContextualError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
 
@@ -45,7 +46,7 @@ public class TestMinus {
     }
 
     @Test
-    public void testIntInt() throws ContextualError {
+    public void testIntInt() throws ContextualError, DecacFatalError {
         Minus minus = new Minus(intexpr1, intexpr2);
         // check the result
         assertTrue(minus.verifyExpr(compiler, null, null).isInt());
@@ -58,7 +59,7 @@ public class TestMinus {
     }
 
     @Test
-    public void testIntFloat() throws ContextualError {
+    public void testIntFloat() throws ContextualError, DecacFatalError {
         Minus minus = new Minus(intexpr1, floatexpr2);
         // check the result
         assertTrue(minus.verifyExpr(compiler, null, null).isFloat());
@@ -71,7 +72,7 @@ public class TestMinus {
     }
 
     @Test
-    public void testFloatInt() throws ContextualError {
+    public void testFloatInt() throws ContextualError, DecacFatalError {
         Minus minus = new Minus(floatexpr1, intexpr2);
         // check the result
         assertTrue(minus.verifyExpr(compiler, null, null).isFloat());
@@ -84,7 +85,7 @@ public class TestMinus {
     }
 
     @Test
-    public void testFloatFloat() throws ContextualError {
+    public void testFloatFloat() throws ContextualError, DecacFatalError {
         Minus minus = new Minus(floatexpr1, floatexpr2);
         // check the result
         assertTrue(minus.verifyExpr(compiler, null, null).isFloat());

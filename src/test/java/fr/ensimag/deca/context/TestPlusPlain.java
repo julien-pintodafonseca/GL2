@@ -1,6 +1,7 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.Plus;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class TestPlusPlain {
     private final Type FLOAT = new FloatType(null);
 
     @Test
-    public void testType() throws ContextualError {
+    public void testType() throws ContextualError, DecacFatalError {
         DecacCompiler compiler = new DecacCompiler(null, null);
         AbstractExpr left = Mockito.mock(AbstractExpr.class);
         when(left.verifyExpr(compiler, null, null)).thenReturn(INT);

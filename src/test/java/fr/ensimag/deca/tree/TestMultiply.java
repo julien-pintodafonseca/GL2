@@ -45,7 +45,7 @@ public class TestMultiply {
     private DecacCompiler compiler;
 
     @Before
-    public void setup() throws ContextualError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
         reg1 = Register.R0;
@@ -61,7 +61,7 @@ public class TestMultiply {
     }
 
     @Test
-    public void testIntInt() throws ContextualError {
+    public void testIntInt() throws ContextualError, DecacFatalError {
         Multiply multiply = new Multiply(intexpr1, intexpr2);
         // check the result
         assertTrue(multiply.verifyExpr(compiler, null, null).isInt());
@@ -71,7 +71,7 @@ public class TestMultiply {
     }
 
     @Test
-    public void testIntFloat() throws ContextualError {
+    public void testIntFloat() throws ContextualError, DecacFatalError {
         Multiply multiply = new Multiply(intexpr1, floatexpr1);
         // check the result
         assertTrue(multiply.verifyExpr(compiler, null, null).isFloat());
@@ -84,7 +84,7 @@ public class TestMultiply {
     }
 
     @Test
-    public void testFloatInt() throws ContextualError {
+    public void testFloatInt() throws ContextualError, DecacFatalError {
         Multiply multiply = new Multiply(floatexpr1, intexpr1);
         // check the result
         assertTrue(multiply.verifyExpr(compiler, null, null).isFloat());

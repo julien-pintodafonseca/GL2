@@ -1,6 +1,7 @@
 package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.tree.*;
 import org.junit.Before;
@@ -35,7 +36,7 @@ public class TestPlusAdvanced {
     private DecacCompiler compiler;
     
     @Before
-    public void setup() throws ContextualError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
         when(intExpr1.verifyExpr(compiler, null, null)).thenReturn(INT);
@@ -45,7 +46,7 @@ public class TestPlusAdvanced {
     }
 
     @Test
-    public void testIntInt() throws ContextualError {
+    public void testIntInt() throws ContextualError, DecacFatalError {
         Plus plus = new Plus(intExpr1, intExpr2);
         // check the result
         assertTrue(plus.verifyExpr(compiler, null, null).isInt());
@@ -58,7 +59,7 @@ public class TestPlusAdvanced {
     }
 
     @Test
-    public void testIntFloat() throws ContextualError {
+    public void testIntFloat() throws ContextualError, DecacFatalError {
         Plus plus = new Plus(intExpr1, floatExpr2);
         // check the result
         assertTrue(plus.verifyExpr(compiler, null, null).isFloat());
@@ -71,7 +72,7 @@ public class TestPlusAdvanced {
     }
 
     @Test
-    public void testFloatInt() throws ContextualError {
+    public void testFloatInt() throws ContextualError, DecacFatalError {
         Plus plus = new Plus(floatExpr1, intExpr2);
         // check the result
         assertTrue(plus.verifyExpr(compiler, null, null).isFloat());
@@ -84,7 +85,7 @@ public class TestPlusAdvanced {
     }
 
     @Test
-    public void testFloatFloat() throws ContextualError {
+    public void testFloatFloat() throws ContextualError, DecacFatalError {
         Plus plus = new Plus(floatExpr1, floatExpr2);
         // check the result
         assertTrue(plus.verifyExpr(compiler, null, null).isFloat());

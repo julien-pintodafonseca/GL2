@@ -44,7 +44,7 @@ public class TestDivide {
     private DecacCompiler compiler;
 
     @Before
-    public void setup() throws ContextualError {
+    public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
         compiler = new DecacCompiler(null, null);
         reg1 = Register.R0;
@@ -60,7 +60,7 @@ public class TestDivide {
     }
 
     @Test
-    public void testIntInt() throws ContextualError {
+    public void testIntInt() throws ContextualError, DecacFatalError {
         Divide divide = new Divide(intexpr1, intexpr2);
         // check the result
         assertTrue(divide.verifyExpr(compiler, null, null).isInt());
@@ -70,7 +70,7 @@ public class TestDivide {
     }
 
     @Test
-    public void testIntFloat() throws ContextualError {
+    public void testIntFloat() throws ContextualError, DecacFatalError {
         Divide divide = new Divide(intexpr1, floatexpr1);
         // check the result
         assertTrue(divide.verifyExpr(compiler, null, null).isFloat());
@@ -83,7 +83,7 @@ public class TestDivide {
     }
 
     @Test
-    public void testFloatInt() throws ContextualError {
+    public void testFloatInt() throws ContextualError, DecacFatalError {
         Divide divide = new Divide(floatexpr1, intexpr1);
         // check the result
         assertTrue(divide.verifyExpr(compiler, null, null).isFloat());

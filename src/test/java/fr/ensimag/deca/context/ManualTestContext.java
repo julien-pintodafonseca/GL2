@@ -2,6 +2,7 @@ package fr.ensimag.deca.context;
 
 import fr.ensimag.deca.CompilerOptions;
 import fr.ensimag.deca.DecacCompiler;
+import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.syntax.AbstractDecaLexer;
 import fr.ensimag.deca.syntax.DecaLexer;
 import fr.ensimag.deca.syntax.DecaParser;
@@ -38,6 +39,9 @@ public class ManualTestContext {
             System.exit(1);
         } catch (EnvironmentExp.DoubleDefException e) {
             e.printStackTrace();
+            System.exit(1);
+        } catch (DecacFatalError error) {
+            error.printStackTrace();
             System.exit(1);
         }
         prog.prettyPrint(System.out);

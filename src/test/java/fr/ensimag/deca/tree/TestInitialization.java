@@ -59,7 +59,7 @@ public class TestInitialization {
     }
 
     @Test
-    public void testVerifyInitialization() throws ContextualError {
+    public void testVerifyInitialization() throws ContextualError, DecacFatalError {
         Initialization initInt = new Initialization(exprInt);
         initInt.verifyInitialization(compiler, compiler.environmentType.INT, null, null);
         assertEquals(expectedIntLiteral, initInt.getExpression());
