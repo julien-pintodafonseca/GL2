@@ -12,9 +12,7 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.BRA;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
  *
@@ -73,16 +71,25 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
                 compiler.addInstruction(new CMP(Register.getR(j), Register.getR(i)));
                 compiler.getRegisterManager().free(j);
             } else {
-                // chargement dans la pile de 1 registre
-                throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-                // restauration dans le registre
+                int k = compiler.getRegisterManager().getSize() -1 ;
+                compiler.addInstruction(new PUSH(Register.getR(k))); // chargement dans la pile de 1 registre
+                getRightOperand().codeGenInst(compiler, Register.getR(k));
+                compiler.addInstruction(new CMP(Register.getR(k), Register.getR(i)));
+                compiler.addInstruction(new POP(Register.getR(k))); // restauration du registre
             }
 
             compiler.getRegisterManager().free(i);
         } else {
-            // chargement dans la pile de 2 registres
-            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-            // restauration dans les registres
+            int j = compiler.getRegisterManager().getSize() -1 ;
+            int k = j - 1;
+            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 2 registres
+            compiler.addInstruction(new PUSH(Register.getR(k)));
+
+            getRightOperand().codeGenInst(compiler, Register.getR(k));
+            compiler.addInstruction(new CMP(Register.getR(k), Register.getR(j)));
+
+            compiler.addInstruction(new POP(Register.getR(k))); // restauration des registres
+            compiler.addInstruction(new POP(Register.getR(j)));
         }
     }
 

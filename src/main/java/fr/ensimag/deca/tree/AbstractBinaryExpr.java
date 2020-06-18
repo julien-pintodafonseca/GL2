@@ -7,6 +7,8 @@ import java.io.PrintStream;
 
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -57,9 +59,12 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
             super.codeGenPrint(compiler, printHex);
             compiler.getRegisterManager().free(i);
         } else {
-            // chargement dans la pile de 1 registres
-            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-            // restauration du registre
+            int j = compiler.getRegisterManager().getSize() -1 ;
+            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            codeGenInst(compiler, Register.getR(j));
+            compiler.addInstruction(new LOAD(Register.getR(j), Register.R1));
+            super.codeGenPrint(compiler, printHex);
+            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
         }
     }
 

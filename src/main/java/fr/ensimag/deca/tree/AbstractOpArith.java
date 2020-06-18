@@ -12,9 +12,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.BOV;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
-import fr.ensimag.ima.pseudocode.instructions.OPP;
+import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
  * Arithmetic binary operations (+, -, /, ...)
@@ -71,9 +69,12 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             codeGenInstArith(compiler, Register.getR(i), register);
             compiler.getRegisterManager().free(i);
         } else {
-            // chargement dans la pile de 1 registres
-            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-            // restauration du registre
+            int j = compiler.getRegisterManager().getSize() -1 ;
+            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            getRightOperand().codeGenInst(compiler, Register.getR(j));
+
+            codeGenInstArith(compiler, Register.getR(j), register);
+            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
         }
     }
 

@@ -9,8 +9,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.OPP;
+import fr.ensimag.ima.pseudocode.instructions.*;
 
 /**
  * @author Equipe GL2
@@ -53,9 +52,12 @@ public class UnaryMinus extends AbstractUnaryExpr {
             super.codeGenPrint(compiler, printHex);
             compiler.getRegisterManager().free(i);
         } else {
-            // chargement dans la pile de 1 registre
-            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-            // restauration dans le registre
+            int j = compiler.getRegisterManager().getSize() -1 ;
+            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            getOperand().codeGenInst(compiler, Register.getR(j));
+            compiler.addInstruction(new OPP(Register.getR(j), Register.R1));
+            super.codeGenPrint(compiler, printHex);
+            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
         }
     }
 

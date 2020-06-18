@@ -10,8 +10,7 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
-import fr.ensimag.ima.pseudocode.instructions.STORE;
+import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -60,9 +59,11 @@ public class Initialization extends AbstractInitialization {
             compiler.addInstruction(new STORE(Register.getR(i), addr));
             compiler.getRegisterManager().free(i);
         } else {
-            // chargement dans la pile de 1 registres
-            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-            // restauration dans le registre
+            int j = compiler.getRegisterManager().getSize() -1 ;
+            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            getExpression().codeGenInst(compiler, Register.getR(j));
+            compiler.addInstruction(new STORE(Register.getR(j), addr));
+            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
         }
     }
 
@@ -76,9 +77,12 @@ public class Initialization extends AbstractInitialization {
             compiler.addInstruction(new STORE(Register.getR(i), addr));
             compiler.getRegisterManager().free(i);
         } else {
-            // chargement dans la pile de 1 registres
-            throw new UnsupportedOperationException("no more available registers : policy not yet implemented");
-            // restauration dans le registre
+            int j = compiler.getRegisterManager().getSize() -1 ;
+            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
+            getExpression().codeGenInst(compiler, Register.getR(j));
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l'adresse de l'objet
+            compiler.addInstruction(new STORE(Register.getR(j), addr));
+            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
         }
     }
 
