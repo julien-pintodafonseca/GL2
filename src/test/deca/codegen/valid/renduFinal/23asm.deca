@@ -1,0 +1,20 @@
+// Description:
+//      Ajout d'une méthode en langage assembleur avec affichage d'une chaine de caractère
+//
+// Resultats:
+//      A:OK
+//      3.5;
+
+class A {
+    float x = 3.5;
+    float getX() asm("WSTR \"OK\"
+        WNL
+        LOAD -2(LB), R1
+        LOAD 1(R1), R0
+        RTS");
+}
+
+{
+    A oA = new A();
+    println("A:", oA.getX(), ";");
+}
