@@ -1,0 +1,11 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m.ulp(0));            // 1,40130e-45
+    println(m.ulp(1));            // 1,19209e-07
+    println(m.ulp(-1));           // 1,19209e-07
+    println(m.ulp(27942));        // 1,95313e-03
+    println(m.ulp(-27942));       // 1,95313e-03
+}

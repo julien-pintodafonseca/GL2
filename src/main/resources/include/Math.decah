@@ -19,9 +19,10 @@ class Math {
         } else {
             exp = exp - (SIGNIFICAND_WIDTH-1);
             if (exp >= MIN_EXPONENT) {
-                println("oui1");
+                return pow(2,exp);
             } else {
-                println("oui2");
+                // TODO
+                return 1;
             }
         }
     }

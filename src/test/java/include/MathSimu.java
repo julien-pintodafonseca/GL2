@@ -1,5 +1,7 @@
 package include;
 
+import sun.misc.FloatConsts;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class MathSimu {
         getExponentSimu();
         absSimu();
         powSimu();
+        ulpSimu();
     }
 
     private static void getMaxValueSimu() {
@@ -92,6 +95,25 @@ public class MathSimu {
         System.out.println(String.format("%6.5e",java.lang.Math.pow(Double.MIN_VALUE,5)));
         //System.out.println(String.format("%6.5e",java.lang.Math.pow(512,Double.MAX_EXPONENT)));
         System.out.println(String.format("%6.5e",java.lang.Math.pow(675,Double.MIN_EXPONENT)));
+        System.out.println("--------------------");
+    }
+
+    private static void ulpSimu() {
+        System.out.println("float ulp(float f) :");
+        // lot de valeurs
+        List<Float> lf = new ArrayList<>();
+        lf.add(0f);
+        lf.add(1f);
+        lf.add(-1f);
+        lf.add(27942f);
+        lf.add(-27942f);
+
+        for (Float f : lf) {
+            // on applique notre fonction
+            Float val = java.lang.Math.ulp(f);
+
+            System.out.println(String.format("%6.5e",val));
+        }
         System.out.println("--------------------");
     }
 }
