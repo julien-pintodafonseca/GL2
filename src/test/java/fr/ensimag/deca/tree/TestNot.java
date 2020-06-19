@@ -41,14 +41,10 @@ public class TestNot {
     public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
 
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("PUSH R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("CMP #1, R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("POP R4");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("CMP #1, R0");
         IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("BEQ lb");
 
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("PUSH R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("CMP #1, R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("POP R4");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("CMP #1, R0");
         IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("BNE lb");
 
         IMACodeGenInitializationAbstractExpr.add("");
@@ -58,15 +54,15 @@ public class TestNot {
     public void testCodeGenCMPWithBooleanOperandAndReverse() throws DecacFatalError {
         // !true
         List<String> expectedTrue1 = new ArrayList<>();
-        expectedTrue1.add("LOAD #1, R2");
-        expectedTrue1.add("CMP #1, R2");
+        expectedTrue1.add("LOAD #1, R0");
+        expectedTrue1.add("CMP #1, R0");
         expectedTrue1.add("BEQ my_basic_label");
         codeGenCMPWithBooleanOperandAndSpecificParams(boolTrueExpr, true, expectedTrue1);
 
         // !false
         List<String> expectedTrue2 = new ArrayList<>();
-        expectedTrue2.add("LOAD #0, R2");
-        expectedTrue2.add("CMP #1, R2");
+        expectedTrue2.add("LOAD #0, R0");
+        expectedTrue2.add("CMP #1, R0");
         expectedTrue2.add("BEQ my_basic_label");
         codeGenCMPWithBooleanOperandAndSpecificParams(boolFalseExpr, true, expectedTrue2);
     }
@@ -75,15 +71,15 @@ public class TestNot {
     public void testCodeGenCMPWithoutBooleanOperandAndReverse() throws DecacFatalError {
         // !true
         List<String> expectedFalse1 = new ArrayList<>();;
-        expectedFalse1.add("LOAD #1, R2");
-        expectedFalse1.add("CMP #1, R2");
+        expectedFalse1.add("LOAD #1, R0");
+        expectedFalse1.add("CMP #1, R0");
         expectedFalse1.add("BNE my_basic_label");
         codeGenCMPWithBooleanOperandAndSpecificParams(boolTrueExpr, false, expectedFalse1);
 
         // !false
         List<String> expectedFalse2 = new ArrayList<>();
-        expectedFalse2.add("LOAD #0, R2");
-        expectedFalse2.add("CMP #1, R2");
+        expectedFalse2.add("LOAD #0, R0");
+        expectedFalse2.add("CMP #1, R0");
         expectedFalse2.add("BNE my_basic_label");
         codeGenCMPWithBooleanOperandAndSpecificParams(boolFalseExpr, false, expectedFalse2);
     }
