@@ -31,7 +31,7 @@ public class TestLabelManager {
         Label lb1 = new Label("test.1");
         Label lb2 = new Label("TEST2");
         Label lb3 = new Label("test3");
-        Label lb4 = new Label("");
+        Label lb4 = new Label("t");
 
         LabelManager lm = new LabelManager();
 

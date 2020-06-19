@@ -48,6 +48,7 @@ public class TestRegisterManager {
         assertEquals(16, rm3.getSize());
     }
 
+    @Test
     public void testNbMaxRegistersUsed() throws DecacFatalError {
         RegisterManager rm1 = new RegisterManager(6);
         rm1.resetNbMaxRegistersUsed();
