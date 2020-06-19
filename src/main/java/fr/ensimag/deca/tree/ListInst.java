@@ -26,7 +26,7 @@ public class ListInst extends TreeList<AbstractInst> {
      * @param returnType
      *          corresponds to "return" attribute (void in the main bloc).
      */
-    protected void verifyListInst(DecacCompiler compiler, EnvironmentExp localEnv,
+    public void verifyListInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.19)

@@ -19,7 +19,6 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestReadInt {
     private final List<String> IMACodeGenPrintExpected = new ArrayList<>();
     private final List<String> IMACodeGenInstExpected = new ArrayList<>();
@@ -34,17 +33,6 @@ public class TestReadInt {
         IMACodeGenInstExpected.add("RINT");
         IMACodeGenInstExpected.add("BOV read_error_int; Overflow check for previous operation");
         IMACodeGenInstExpected.add("LOAD R1, R0");
-    }
-
-    @Test
-    public void testVerifyExpr() {
-        ReadInt read = new ReadInt();
-
-        // Le type renvoyé est bien INT
-        assertEquals(read.verifyExpr(compiler, null, null), compiler.environmentType.INT);
-
-        // Le type de l'expression est bien INT
-        assertEquals(read.getType(), compiler.environmentType.INT);
     }
 
     @Test

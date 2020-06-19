@@ -53,7 +53,7 @@ public class Program extends AbstractProgram {
     @Override
     public void codeGenProgram(DecacCompiler compiler) throws DecacFatalError {
         compiler.setRegisterManager(compiler.getCompilerOptions().getRegisters());
-        compiler.setStackManager(compiler.getRegisterManager());
+        compiler.setStackManager();
         compiler.setLabelManager();
         compiler.setErrorLabelManager();
         compiler.setTSTOManager();

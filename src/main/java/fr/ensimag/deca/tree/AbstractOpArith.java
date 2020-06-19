@@ -12,8 +12,8 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BOV;
-import fr.ensimag.ima.pseudocode.instructions.PUSH;
 import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
 
 /**
  * Arithmetic binary operations (+, -, /, ...)
@@ -70,7 +70,7 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             codeGenInstArith(compiler, Register.getR(i), register);
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1;
+            int j = compiler.getRegisterManager().getSize()-1;
             if (Register.getR(j) == register) {
                 j = j-1;
             }

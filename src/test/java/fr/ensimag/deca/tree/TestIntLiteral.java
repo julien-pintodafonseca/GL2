@@ -19,7 +19,6 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestIntLiteral {
     private final List<String> IMACodeGenInstExpectedInt0 = new ArrayList<>();
     private final List<String> IMACodeGenInstExpectedInt = new ArrayList<>();
@@ -36,32 +35,6 @@ public class TestIntLiteral {
         IMACodeGenPrintExpectedInt0.add("WINT");
         IMACodeGenPrintExpectedInt.add("LOAD #5, R1");
         IMACodeGenPrintExpectedInt.add("WINT");
-    }
-
-    @Test
-    public void testGetValue() {
-        IntLiteral int1 = new IntLiteral(0); // Cas d'une valeur nulle
-        IntLiteral int2 = new IntLiteral(5); // Cas d'une valeur quelconque
-
-        // La valeur retournée par la méthode getValue() correspond à la valeur donnée lors de l'initilisation
-        assertEquals(0, int1.getValue());
-        assertEquals(5, int2.getValue());
-    }
-
-    @Test
-    public void testVerifyExpr() {
-        compiler = new DecacCompiler(null, null);
-
-        IntLiteral int1 = new IntLiteral(0); // Cas d'une valeur nulle
-        IntLiteral int2 = new IntLiteral(5); // Cas d'une valeur quelconque
-
-        // Le type renvoyé est bien INT
-        assertEquals(compiler.environmentType.INT, int1.verifyExpr(compiler, null, null));
-        assertEquals(compiler.environmentType.INT, int2.verifyExpr(compiler, null, null));
-
-        // Le type de l'expression est bien INT
-        assertEquals(compiler.environmentType.INT, int1.getType());
-        assertEquals(compiler.environmentType.INT, int2.getType());
     }
 
     @Test

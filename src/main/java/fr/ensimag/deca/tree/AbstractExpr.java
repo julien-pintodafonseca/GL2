@@ -31,7 +31,6 @@ public abstract class AbstractExpr extends AbstractInst {
      * @return true if the expression does not correspond to any concrete token
      * in the source code (and should be decompiled to the empty string).
      */
-    // TODO : vérifier que cette méthode est utilisée quelque part
     public boolean isImplicit() {
         return false;
     }

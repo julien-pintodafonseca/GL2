@@ -6,19 +6,14 @@ package fr.ensimag.deca.codegen;
  * @date 2020
  */
 public class StackManager {
-    private RegisterManager registerManager;
-
     private boolean inClass;
 
     private int GB; // Global Stack
     private int LB; // Local Stack
-    private int SP; // Stack Pointer
 
-    public StackManager(RegisterManager _registerManager) {
-        registerManager = _registerManager;
+    public StackManager() {
         GB = 1;
         LB = 1;
-        // SP = TODO
     }
 
     public void setInClass(boolean inClass) {

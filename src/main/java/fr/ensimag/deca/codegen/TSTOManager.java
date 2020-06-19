@@ -1,10 +1,5 @@
 package fr.ensimag.deca.codegen;
 
-import fr.ensimag.ima.pseudocode.Label;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Calcul of TSTO
  *
@@ -12,9 +7,7 @@ import java.util.Map;
  * @date 2020
  */
 public class TSTOManager {
-
     private int current;
-
     private int max;
 
     public void resetCurrentAndMax() {
