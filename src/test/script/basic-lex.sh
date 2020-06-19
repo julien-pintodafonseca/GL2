@@ -271,27 +271,9 @@ test_step_renduFinal() {
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "renduFinal"
 test_step_bibliothequeStandard() {
-  echo "=== STEP: BIBLIOTHEQUE_STANDARD ==="
-
-  # no src/test/deca/codegen/interactive/bibliothequeStandard/
-
-  # no src/test/deca/codegen/invalid/bibliothequeStandard/
-
-  # echo "--- TEST: src/test/deca/codegen/valid/bibliothequeStandard/ ---"
-  for cas_de_test in src/test/deca/codegen/valid/bibliothequeStandard/*.deca
-  do
-      nbtests=$((nbtests+1))
-      test_lex_valid "$cas_de_test"
-  done
-  # echo
-
-  # no src/test/deca/context/invalid/bibliothequeStandard/
-
-  # no src/test/deca/context/valid/bibliothequeStandard/
-
-  # no src/test/deca/syntax/valid/bibliothequeStandard/
-
-  # no src/test/deca/syntax/invalid/bibliothequeStandard/
+  nbtests=$((nbtests+1))
+    deca="src/test/deca/codegen/valid/bibliothequeStandard/00helloWorld.deca"
+    test_lex_valid "$deca"
 }
 
 # ----------------------------------------------------------------------------------------------------
