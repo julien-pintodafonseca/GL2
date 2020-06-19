@@ -195,6 +195,7 @@ public class Identifier extends AbstractIdentifier {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_TYPE + getName(), getLocation());
         } else {
             setDefinition(typeDef);
+            setType(typeDef.getType());
             LOG.debug("verify type: end ("+getName()+")");
             return typeDef.getType();
         }

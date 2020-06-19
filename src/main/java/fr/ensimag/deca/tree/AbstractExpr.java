@@ -103,7 +103,9 @@ public abstract class AbstractExpr extends AbstractInst {
                 conv.setType(expectedType);
                 return conv;
             } else {
-                Cast cast = new Cast(new Identifier(expectedType.getName()), this);
+                AbstractIdentifier ident = new Identifier(expectedType.getName());
+                ident.setType(expectedType);
+                Cast cast = new Cast(ident, this);
                 cast.setType(expectedType);
                 return cast;
             }

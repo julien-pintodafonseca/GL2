@@ -10,7 +10,6 @@ import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BRA;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import org.apache.commons.lang.Validate;
 
 import java.io.PrintStream;
@@ -44,7 +43,9 @@ public class Return extends AbstractInst {
             } else if (returnType.isFloat() && argument.getType().isInt()) {
                 argument = new ConvFloat(argument);
             } else if (!returnType.sameType(argument.getType())) {
-                Cast cast = new Cast(new Identifier(returnType.getName()), argument);
+                AbstractIdentifier ident = new Identifier(returnType.getName());
+                ident.setType(returnType);
+                Cast cast = new Cast(ident, argument);
                 cast.verifyExpr(compiler, localEnv, currentClass);
                 cast.setType(returnType);
                 argument = cast;
