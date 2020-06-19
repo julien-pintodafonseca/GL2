@@ -12,13 +12,11 @@ public class StackManager {
 
     private int GB; // Global Stack
     private int LB; // Local Stack
-    private int SP; // Stack Pointer
 
     public StackManager(RegisterManager _registerManager) {
         registerManager = _registerManager;
         GB = 1 ;
         LB = 1;
-        // SP = TODO
     }
 
     public void setInClass(boolean inClass) {

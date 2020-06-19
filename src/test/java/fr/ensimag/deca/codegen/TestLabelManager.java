@@ -2,6 +2,7 @@ package fr.ensimag.deca.codegen;
 
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.ima.pseudocode.Label;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,6 +24,29 @@ public class TestLabelManager {
         assertNotNull(LabelType.valueOf("LB_WHILE"));
         assertNotNull(LabelType.valueOf("LB_OR"));
         assertNotNull(LabelType.valueOf("LB_ELSE"));
+    }
+
+    @Test
+    public void testCurrentLabel() {
+        Label lb1 = new Label("test.1");
+        Label lb2 = new Label("TEST2");
+        Label lb3 = new Label("test3");
+        Label lb4 = new Label("");
+
+        LabelManager lm = new LabelManager();
+
+        lm.setCurrentLabel(lb1);
+        assertThat(lm.getCurrentLabel(), is(lb1));
+        assertThat(lm.getCurrentLabel(), is(lb1)); // faire un get ne supprime pas la valeur
+
+        lm.setCurrentLabel(lb2);
+        assertThat(lm.getCurrentLabel(), is(lb2));
+
+        lm.setCurrentLabel(lb3);
+        assertThat(lm.getCurrentLabel(), is(lb3));
+
+        lm.setCurrentLabel(lb4);
+        assertThat(lm.getCurrentLabel(), is(lb4));
     }
 
     @Test

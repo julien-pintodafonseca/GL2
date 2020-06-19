@@ -46,7 +46,24 @@ public class TestRegisterManager {
         assertEquals(9, rm2.getSize());
         RegisterManager rm3 = new RegisterManager(16); // Valeur maximum permise
         assertEquals(16, rm3.getSize());
+    }
 
+    public void testNbMaxRegistersUsed() throws DecacFatalError {
+        RegisterManager rm1 = new RegisterManager(6);
+        rm1.resetNbMaxRegistersUsed();
+        assertEquals(0, rm1.getNbMaxRegistersUsed());
+        rm1.take(2);
+        assertEquals(1, rm1.getNbMaxRegistersUsed());
+        rm1.take(4);
+        assertEquals(3, rm1.getNbMaxRegistersUsed());
+        rm1.free(2);
+        assertEquals(3, rm1.getNbMaxRegistersUsed());
+        rm1.free(4);
+        assertEquals(3, rm1.getNbMaxRegistersUsed());
+        rm1.take(5);
+        assertEquals(4, rm1.getNbMaxRegistersUsed());
+        rm1.resetNbMaxRegistersUsed();
+        assertEquals(0, rm1.getNbMaxRegistersUsed());
     }
 
     @Test
