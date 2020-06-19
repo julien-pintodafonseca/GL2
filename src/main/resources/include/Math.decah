@@ -3,7 +3,8 @@
 // Library for class Math of Deca, coded in Deca
 
 class Math {
-    float MIN_VALUE = 1.4 * pow(10,-45);
+    float MAX_VALUE = 3.40282 * pow(10,38);
+    float MIN_VALUE = 1.40130 * pow(10,-45);
     int MAX_EXPONENT = 127;
     int MIN_EXPONENT = -126;
 
@@ -35,12 +36,22 @@ class Math {
         println("atan(f) not yet implemented");
     }
 
+    float getMaxValue() {
+        return MAX_VALUE;
+    }
+
+    float getMinValue() {
+        return MIN_VALUE;
+    }
+
     int getExponent(float x) {
         int e = 0;
-        if (x == 0) {
-            return 0;
+        if (x <= MIN_VALUE || x == 0) {
+            return MIN_EXPONENT-1;
+        } else if (x >= MAX_VALUE) {
+            return MAX_EXPONENT;
         } else {
-            while (pow(2,e) <= x) {
+            while (pow(2,e) <= abs(x)) {
                 e = e+1;
             }
             return e-1;
