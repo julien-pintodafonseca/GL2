@@ -2,7 +2,7 @@ package fr.ensimag.deca.codegen;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -10,6 +10,27 @@ import static org.junit.Assert.assertEquals;
  * @date 2020
  */
 public class TestStackManager {
+
+    @Test
+    public void testInClass() {
+        StackManager sm = new StackManager(new RegisterManager(7));
+
+        sm.setInClass(true);
+        assertTrue(sm.getInClass());
+
+        sm.setInClass(true);
+        assertTrue(sm.getInClass()); // répéter l'opération ne change rien
+
+        sm.setInClass(false);
+        assertFalse(sm.getInClass());
+
+        sm.setInClass(false);
+        assertFalse(sm.getInClass()); // répéter l'opération ne change rien
+
+        sm.setInClass(true);
+        assertTrue(sm.getInClass());
+    }
+
     @Test
     public void testGetGB() {
         StackManager sm = new StackManager(new RegisterManager(7));

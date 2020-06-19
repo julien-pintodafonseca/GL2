@@ -31,7 +31,8 @@ public class Selection extends AbstractLValue {
     }
 
     @Override
-    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
+    public Type verifyExpr(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+            throws ContextualError, DecacFatalError {
         // Syntaxe contextuelle : règles (3.65) et (3.66)
         obj.verifyExpr(compiler, localEnv, currentClass);
         Type typeClass = obj.getType();
@@ -70,7 +71,7 @@ public class Selection extends AbstractLValue {
     }
 
     @Override
-    public DAddr codeGenOperandAssign(DecacCompiler compiler) throws DecacFatalError {
+    protected DAddr codeGenOperandAssign(DecacCompiler compiler) throws DecacFatalError {
         obj.codeGenInst(compiler, Register.R1);
         compiler.addInstruction(new CMP(new NullOperand(), Register.R1));
         compiler.addInstruction(new BEQ(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_NULL_DEREFERENCEMENT))));

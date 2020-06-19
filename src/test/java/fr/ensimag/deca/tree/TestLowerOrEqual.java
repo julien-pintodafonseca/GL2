@@ -21,7 +21,6 @@ import static org.hamcrest.core.Is.is;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestLowerOrEqual {
     private final List<String> IMACodeGenCMPExpectedReverseTrue = new ArrayList<>();
     private final List<String> IMACodeGenCMPExpectedReverseFalse = new ArrayList<>();

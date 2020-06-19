@@ -50,7 +50,7 @@ public class Main extends AbstractMain {
         compiler.addComment("           Code du programme principal            ");
         compiler.addComment("--------------------------------------------------");
         declVariables.codeGenListDeclVar(compiler);
-        if(insts.getList().size() != 0) {
+        if (insts.getList().size() != 0) {
             compiler.addComment("---------- Instructions :");
         }
         insts.codeGenListInst(compiler);

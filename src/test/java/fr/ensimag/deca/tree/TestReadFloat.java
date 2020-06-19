@@ -19,7 +19,6 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestReadFloat {
     private final List<String> IMACodeGenPrintExpected = new ArrayList<>();
     private final List<String> IMACodeGenInstExpected = new ArrayList<>();
@@ -36,16 +35,6 @@ public class TestReadFloat {
         IMACodeGenInstExpected.add("LOAD R1, R0");
     }
 
-    @Test
-    public void testVerifyExpr() {
-        ReadFloat read = new ReadFloat();
-
-        // Le type renvoyé est bien FLOAT
-        assertEquals(read.verifyExpr(compiler, null, null), compiler.environmentType.FLOAT);
-
-        // Le type de l'expression est bien FLOAT
-        assertEquals(read.getType(), compiler.environmentType.FLOAT);
-    }
 
     @Test
     public void testCodeGenPrint() throws DecacFatalError {

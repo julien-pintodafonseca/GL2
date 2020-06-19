@@ -19,7 +19,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
+
 public class TestFloatLiteral {
     private final List<String> IMACodeGenInstExpectedFloat0 = new ArrayList<>();
     private final List<String> IMACodeGenInstExpectedFloat = new ArrayList<>();
@@ -38,31 +38,6 @@ public class TestFloatLiteral {
         IMACodeGenPrintExpectedFloat.add("WFLOAT");
     }
 
-    @Test
-    public void testGetValue() {
-        FloatLiteral float1 = new FloatLiteral(0.0f); // Cas d'une valeur nulle
-        FloatLiteral float2 = new FloatLiteral(5.2f); // Cas d'une valeur quelconque
-
-        // La valeur retournée par la méthode getValue() correspond à la valeur donnée lors de l'initilisation
-        assertThat(float1.getValue(), equalTo(0.0f));
-        assertThat(float2.getValue(), equalTo(5.2f));
-    }
-
-    @Test
-    public void testVerifyExpr() {
-        compiler = new DecacCompiler(null, null);
-
-        FloatLiteral float1 = new FloatLiteral(0.0f); // Cas d'une valeur nulle
-        FloatLiteral float2 = new FloatLiteral(5.2f); // Cas d'une valeur quelconque
-
-        // Le type renvoyé est bien FLOAT
-        assertThat(compiler.environmentType.FLOAT, equalTo(float1.verifyExpr(compiler, null, null)));
-        assertThat(compiler.environmentType.FLOAT, equalTo(float2.verifyExpr(compiler, null, null)));
-
-        // Le type de l'expression est bien FLOAT
-        assertThat(compiler.environmentType.FLOAT, equalTo(float1.getType()));
-        assertThat(compiler.environmentType.FLOAT, equalTo(float2.getType()));
-    }
 
     @Test
     public void testCodeGenPrint() throws DecacFatalError {

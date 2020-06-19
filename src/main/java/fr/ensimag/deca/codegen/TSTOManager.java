@@ -1,6 +1,9 @@
 package fr.ensimag.deca.codegen;
 
+import fr.ensimag.deca.DecacFatalError;
+import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.ima.pseudocode.Label;
+import org.apache.commons.lang.Validate;
 
 import java.util.HashMap;
 import java.util.Map;

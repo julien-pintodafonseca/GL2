@@ -40,8 +40,8 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    protected void verifyInitialization(DecacCompiler compiler, Type t,
-            EnvironmentExp localEnv, ClassDefinition currentClass)
+    public void verifyInitialization(DecacCompiler compiler, Type t,
+                                     EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.8)
         LOG.debug("verify initialization: start");

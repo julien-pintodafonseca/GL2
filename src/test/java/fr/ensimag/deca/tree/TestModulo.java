@@ -2,7 +2,6 @@ package fr.ensimag.deca.tree;
 
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.utils.Utils;
@@ -16,11 +15,11 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -28,65 +27,57 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestModulo {
+    private final List<String> IMACodeGenInitializationNoMoreRegistersExpectedtrue = new ArrayList<>();
+    private final List<String> IMACodeGenInitializationNoMoreRegistersExpectedfalse = new ArrayList<>();
+    private final List<String> IMACodeGenInitializationAbstractExpr = new ArrayList<>();
+    
     private final DecacCompiler compiler = new DecacCompiler(null, null);
     private final Type INT = compiler.environmentType.INT;
-    private final Type FLOAT = compiler.environmentType.FLOAT;
 
     @Mock private AbstractExpr intexpr1;
     @Mock private AbstractExpr intexpr2;
-    @Mock private AbstractExpr floatexpr1;
-    @Mock private AbstractExpr floatexpr2;
-
+    @Mock private AbstractExpr sonL;
+    @Mock private AbstractExpr sonR;
+    
     private GPRegister reg1;
     private GPRegister reg2;
 
     @Before
     public void setup() throws ContextualError, DecacFatalError {
         MockitoAnnotations.initMocks(this);
+
         reg1 = Register.R0;
         reg2 = Register.R1;
         when(intexpr1.verifyExpr(compiler, null, null)).thenReturn(INT);
         when(intexpr2.verifyExpr(compiler, null, null)).thenReturn(INT);
-        when(floatexpr1.verifyExpr(compiler, null, null)).thenReturn(FLOAT);
-        when(floatexpr2.verifyExpr(compiler, null, null)).thenReturn(FLOAT);
         when(intexpr1.getType()).thenReturn(INT);
         when(intexpr2.getType()).thenReturn(INT);
-        when(floatexpr1.getType()).thenReturn(FLOAT);
-        when(floatexpr2.getType()).thenReturn(FLOAT);
-    }
+        when(sonL.getType()).thenReturn(INT);
+        when(sonR.getType()).thenReturn(INT);
 
-    @Test
-    public void testIntInt() throws ContextualError, DecacFatalError {
-        Modulo modulo = new Modulo(intexpr1, intexpr2);
-        // check the result
-        assertTrue(modulo.verifyExpr(compiler, null, null).isInt());
-        // check that the mocks have been called properly.
-        verify(intexpr1).verifyExpr(compiler, null, null);
-        verify(intexpr2).verifyExpr(compiler, null, null);
-    }
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("PUSH R4");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("PUSH R3");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("REM R3, R4");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("BOV arithmetic_overflow; Overflow : check for previous operation");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("POP R3");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("LOAD R4, R1");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("WINT");
+        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("POP R4");
 
-    @Test
-    public void testIntFloat() throws ContextualError {
-        Modulo modulo = new Modulo(intexpr1, floatexpr1);
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("PUSH R4");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("PUSH R3");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("REM R3, R4");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("BOV arithmetic_overflow; Overflow : check for previous operation");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("POP R3");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("LOAD R4, R1");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("WINT");
+        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("POP R4");
 
-        // Levée d'une erreur si une des opérandes n'est pas un entier
-        ContextualError resultModuloFloat = assertThrows(ContextualError.class, () -> {
-            modulo.verifyExpr(compiler, null, null);
-        });
-        assertThat(resultModuloFloat.getMessage(), is(ErrorMessages.CONTEXTUAL_ERROR_MODULO_INCOMPATIBLE_TYPE + INT + " (pour null) et " + FLOAT + " (pour null)."));
-    }
-
-    @Test
-    public void testFloatInt() throws ContextualError {
-        Modulo modulo = new Modulo(floatexpr1, intexpr1);
-
-        // Levée d'une erreur si une des opérandes n'est pas un entier
-        ContextualError resultModuloFloat = assertThrows(ContextualError.class, () -> {
-            modulo.verifyExpr(compiler, null, null);
-        });
-        assertThat(resultModuloFloat.getMessage(), is(ErrorMessages.CONTEXTUAL_ERROR_MODULO_INCOMPATIBLE_TYPE + FLOAT + " (pour null) et "+ INT + " (pour null)."));
+        IMACodeGenInitializationAbstractExpr.add("REM R3, R2");
+        IMACodeGenInitializationAbstractExpr.add("BOV arithmetic_overflow; Overflow : check for previous operation");
+        IMACodeGenInitializationAbstractExpr.add("LOAD R2, R1");
+        IMACodeGenInitializationAbstractExpr.add("WINT");
     }
 
     @Test
@@ -110,20 +101,91 @@ public class TestModulo {
     }
 
     @Test
-    public void testDecompile() {
-        Modulo modulo1 = new Modulo(new IntLiteral(42), new IntLiteral(-6));
-        String result1 = modulo1.decompile();
-        String expected1 = "(42 % -6)";
-        assertThat(result1, is(expected1));
+    public void testCodeGenPrintAbstractExprReverseFalse() throws DecacFatalError {
+        // check codeGenPrint
+        // with AbstractExpr operand
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setRegisterManager(5);
+        myCompiler.setLabelManager();
+        myCompiler.setErrorLabelManager();
 
-        Modulo modulo2 = new Modulo(new IntLiteral(0), new FloatLiteral(2.554f));
-        String result2 = modulo2.decompile();
-        String expected2 = "(0 % 0x1.46e978p1)";
-        assertThat(result2, is(expected2));
+        Modulo node = new Modulo(sonL, sonR);
+        node.setType(compiler.environmentType.INT);
+        node.codeGenPrint(myCompiler, false);
 
-        Modulo modulo3 = new Modulo(new FloatLiteral(-502.084f), new FloatLiteral(2.554f));
-        String result3 = modulo3.decompile();
-        String expected3 = "(-0x1.f61582p8 % 0x1.46e978p1)";
-        assertThat(result3, is(expected3));
+        String result = myCompiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenInitializationAbstractExpr));
     }
+
+    @Test
+    public void testCodeGenPrintAbstractExprReverseTrue() throws DecacFatalError {
+        // check codeGenPrint
+        // with AbstractExpr operand
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setRegisterManager(5);
+        myCompiler.setLabelManager();
+        myCompiler.setErrorLabelManager();
+
+        Modulo node = new Modulo(sonL, sonR);
+        node.setType(compiler.environmentType.INT);
+        node.codeGenPrint(myCompiler, true);
+
+        String result = myCompiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result), is(IMACodeGenInitializationAbstractExpr));
+    }
+
+    @Test
+    public void testCodeGenPrintNoMoreRegistersAvailableReverseFalse() throws DecacFatalError {
+        // check that codeGenPrint with no registers available throws UnsupportedOperationException
+        // with boolean operand
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setRegisterManager(5);
+        myCompiler.setLabelManager();
+        myCompiler.setErrorLabelManager();
+        myCompiler.setTSTOManager();
+        myCompiler.getRegisterManager().take(2);
+        myCompiler.getRegisterManager().take(3);
+        myCompiler.getRegisterManager().take(4);
+
+        Modulo node = new Modulo(sonL, sonR);
+        node.setType(compiler.environmentType.INT);
+
+        // Pas de modification des attributs lors de la génération de code
+        node.codeGenPrint(myCompiler, false);
+        assertEquals(sonL.getType(), node.getLeftOperand().getType());
+        assertEquals(sonR.getType(), node.getRightOperand().getType());
+        assertThat(node.getLeftOperand(), is(sonL));
+        assertThat(node.getRightOperand(), is(sonR));
+
+        String result2 = myCompiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpectedfalse));
+    }
+
+    @Test
+    public void testCodeGenPrintNoMoreRegistersAvailableReverseTrue() throws DecacFatalError {
+        // check that codeGenPrint with no registers available throws UnsupportedOperationException
+        // with boolean operand
+        DecacCompiler myCompiler = new DecacCompiler(null, null);
+        myCompiler.setRegisterManager(5);
+        myCompiler.setLabelManager();
+        myCompiler.setErrorLabelManager();
+        myCompiler.setTSTOManager();
+        myCompiler.getRegisterManager().take(2);
+        myCompiler.getRegisterManager().take(3);
+        myCompiler.getRegisterManager().take(4);
+
+        Modulo node = new Modulo(sonL, sonR);
+        node.setType(compiler.environmentType.INT);
+
+        // Pas de modification des attributs lors de la génération de code
+        node.codeGenPrint(myCompiler,true);
+        assertEquals(sonL.getType(), node.getLeftOperand().getType());
+        assertEquals(sonR.getType(), node.getRightOperand().getType());
+        assertThat(node.getLeftOperand(), is(sonL));
+        assertThat(node.getRightOperand(), is(sonR));
+
+        String result2 = myCompiler.displayIMAProgram();
+        assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpectedtrue));
+    }
+
 }

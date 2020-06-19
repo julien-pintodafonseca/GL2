@@ -32,7 +32,7 @@ public class While extends AbstractInst {
     }
 
     @Override
-    protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
+    public void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.25)
