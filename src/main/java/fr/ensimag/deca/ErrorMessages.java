@@ -65,4 +65,5 @@ public final class ErrorMessages {
     public static final String CODEGEN_ERROR_FULL_STACK = "Erreur : pile pleine.";
     public static final String CODEGEN_ERROR_NULL_DEREFERENCEMENT = "Erreur : déréférencement de null." ;
     public static final String CODEGEN_ERROR_CONV_FLOAT = "Erreur : conversion int -> float impossible.";
+    public static final String CODEGEN_ERROR_CAST_INT = "Erreur : cast float -> int impossible.";
 }

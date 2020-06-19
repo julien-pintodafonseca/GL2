@@ -1,0 +1,29 @@
+// Description:
+//      Utilisation de instanceof
+//      => Cas spécifique instanceof sert de condition dans le return d'une méthode
+//
+// Resultats:
+//      OK
+
+class A {
+
+}
+class B extends A {
+    boolean instanceB(A a){
+        return (a instanceof B);
+    }
+}
+class C extends B {
+
+}
+{
+   A a;
+   B b;
+   b = new B();
+   a = new C();
+   if(b.instanceB(a)){
+        print("OK");
+   }else{
+        print("NOK");
+   }
+}

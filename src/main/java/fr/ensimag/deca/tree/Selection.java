@@ -7,9 +7,7 @@ import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.*;
-import fr.ensimag.ima.pseudocode.instructions.BEQ;
-import fr.ensimag.ima.pseudocode.instructions.CMP;
-import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
 
 import java.io.PrintStream;
@@ -62,6 +60,33 @@ public class Selection extends AbstractLValue {
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_NULL_DEREFERENCEMENT);
         FieldDefinition fieldDef = field.getFieldDefinition();
         compiler.addInstruction(new LOAD(new RegisterOffset(fieldDef.getIndex(), Register.R1), register));
+    }
+
+    @Override
+    protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+        int k = compiler.getRegisterManager().nextAvailable();
+        if (k != -1) {
+            compiler.getRegisterManager().take(k);
+            codeGenInst(compiler, Register.getR(k));
+            compiler.addInstruction(new CMP(1, Register.getR(k)));
+            compiler.getRegisterManager().free(k);
+        } else {
+            int y = compiler.getRegisterManager().getSize() -1 ;
+            compiler.addInstruction(new PUSH(Register.getR(y))); // chargement dans la pile de 1 registre
+            compiler.getTSTOManager().addCurrent(1);
+
+            codeGenInst(compiler, Register.getR(y));
+            compiler.addInstruction(new CMP(1, Register.getR(y)));
+
+            compiler.addInstruction(new POP(Register.getR(y))); // restauration du registre
+            compiler.getTSTOManager().addCurrent(-1);
+        }
+
+        if(reverse) { // reverse = true
+            compiler.addInstruction(new BEQ(label));
+        } else { // reverse = false
+            compiler.addInstruction(new BNE(label));
+        }
     }
 
     @Override

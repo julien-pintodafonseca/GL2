@@ -47,6 +47,8 @@ public class ErrorLabelManager {
                 return "null_dereferencement";
             case LB_CONV_FLOAT:
                 return "conversion_int_float_impossible";
+            case LB_CAST_INT:
+                return "cast_float_int_impossible";
             default:
                 return null;
         }
@@ -129,6 +131,16 @@ public class ErrorLabelManager {
                 compiler.addComment("--------------------------------------------------");
                 compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_CONV_FLOAT)));
                 compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_CONV_FLOAT));
+                compiler.addInstruction(new WNL());
+                compiler.addInstruction(new ERROR());
+                break;
+            case LB_CAST_INT:
+                compiler.addComment("--------------------------------------------------");
+                compiler.addComment("       Message d’erreur : cast float -> int       ");
+                compiler.addComment("                    impossible                    ");
+                compiler.addComment("--------------------------------------------------");
+                compiler.addLabel(new Label(errorLabelName(ErrorLabelType.LB_CAST_INT)));
+                compiler.addInstruction(new WSTR(ErrorMessages.CODEGEN_ERROR_CAST_INT));
                 compiler.addInstruction(new WNL());
                 compiler.addInstruction(new ERROR());
                 break;

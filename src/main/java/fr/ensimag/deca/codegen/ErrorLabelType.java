@@ -12,5 +12,6 @@ public enum ErrorLabelType {
     LB_FULL_HEAP,
     LB_FULL_STACK,
     LB_NULL_DEREFERENCEMENT,
-    LB_CONV_FLOAT
+    LB_CONV_FLOAT,
+    LB_CAST_INT
 }

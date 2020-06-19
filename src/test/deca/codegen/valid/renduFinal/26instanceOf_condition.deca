@@ -1,0 +1,26 @@
+// Description:
+//      Utilisation de instanceof
+//      => Cas spécifique instanceof sert de condition dans if
+//
+// Resultats:
+//      OK
+
+class A {
+
+}
+class B extends A {
+
+}
+class C extends B {
+
+}
+{
+   A a;
+   B b;
+   a = new C();
+   if (a instanceof B) {
+      print("OK");
+   }else{
+     print("NOK");
+   }
+}

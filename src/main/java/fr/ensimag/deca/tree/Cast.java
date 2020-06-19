@@ -3,11 +3,18 @@ package fr.ensimag.deca.tree;
 import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
+import fr.ensimag.deca.codegen.ErrorLabelType;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.GPRegister;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.instructions.BOV;
+import fr.ensimag.ima.pseudocode.instructions.FLOAT;
+import fr.ensimag.ima.pseudocode.instructions.INT;
 import org.apache.commons.lang.Validate;
 
 import java.io.PrintStream;
@@ -43,6 +50,26 @@ public class Cast extends AbstractExpr {
             }
         } else {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_CAST_VOID_TYPE + expr.decompile() + ".", getLocation());
+        }
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        if (type.getType().isInt() && expr.getType().isFloat()) { // cast de int -> float
+            expr.codeGenInst(compiler, Register.R1);
+            compiler.addInstruction(new FLOAT(Register.R1, register));
+            compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_CONV_FLOAT))));
+            compiler.getErrorLabelManager().addError(ErrorLabelType.LB_CONV_FLOAT);
+        } else if (type.getType().isInt() && expr.getType().isFloat()) { // cast de float -> int
+            expr.codeGenInst(compiler, Register.R1);
+            compiler.addInstruction(new INT(Register.R1, register));
+            compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_CAST_INT))));
+            compiler.getErrorLabelManager().addError(ErrorLabelType.LB_CAST_INT);
+        } else if (!type.getType().sameType(expr.getType())) {
+            // TODO
+
+        } else {
+            expr.codeGenInst(compiler, register);
         }
     }
 

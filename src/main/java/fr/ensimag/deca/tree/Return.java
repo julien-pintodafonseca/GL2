@@ -45,6 +45,7 @@ public class Return extends AbstractInst {
                 argument = new ConvFloat(argument);
             } else if (!returnType.sameType(argument.getType())) {
                 Cast cast = new Cast(new Identifier(returnType.getName()), argument);
+                cast.verifyExpr(compiler, localEnv, currentClass);
                 cast.setType(returnType);
                 argument = cast;
             }
