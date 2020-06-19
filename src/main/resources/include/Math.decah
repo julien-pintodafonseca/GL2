@@ -5,6 +5,7 @@
 class Math {
     float MAX_VALUE = 3.40282 * pow(10,38);
     float MIN_VALUE = 1.40130 * pow(10,-45);
+    int SIGNIFICAND_WIDTH = 24;
     int MAX_EXPONENT = 127;
     int MIN_EXPONENT = -126;
 
@@ -13,10 +14,15 @@ class Math {
 
         if (exp == MAX_EXPONENT+1) {
             return abs(f);
-        } else if (exp == MIN_EXPONENT+1) {
+        } else if (exp == MIN_EXPONENT-1) {
             return MIN_VALUE;
         } else {
-            println("ulp(f) not yet implemented");
+            exp = exp - (SIGNIFICAND_WIDTH-1);
+            if (exp >= MIN_EXPONENT) {
+                println("oui1");
+            } else {
+                println("oui2");
+            }
         }
     }
 
