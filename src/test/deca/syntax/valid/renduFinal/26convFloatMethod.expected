@@ -1,0 +1,58 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [9, 0] DeclClass
+   |      +> [9, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [10, 4] DeclMethod
+   |             +> [10, 4] Identifier (float)
+   |             +> [10, 10] Identifier (cvf)
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [10, 14] DeclParam
+   |             |      +> [10, 14] Identifier (int)
+   |             |      `> [10, 18] Identifier (e)
+   |             `> [10, 21] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [11, 8] IfThenElse
+   |                       +> [11, 14] Equals
+   |                       |  +> [11, 12] Identifier (e)
+   |                       |  `> [11, 17] Int (0)
+   |                       +> ListInst [List with 1 elements]
+   |                       |  []> [12, 12] Return
+   |                       |      `> [12, 19] Int (1)
+   |                       `> ListInst [List with 1 elements]
+   |                          []> [14, 12] Return
+   |                              `> [14, 19] Int (22)
+   `> [19, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [20, 6] DeclVar
+      |      +> [20, 4] Identifier (A)
+      |      +> [20, 6] Identifier (a)
+      |      `> [20, 8] Initialization
+      |         `> [20, 10] New
+      |            `> [20, 14] Identifier (A)
+      `> ListInst [List with 3 elements]
+         []> [21, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [21, 12] MethodCall
+         ||         +> [21, 12] Identifier (a)
+         ||         +> [21, 14] Identifier (cvf)
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [21, 18] Int (0)
+         []> [22, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [22, 12] MethodCall
+         ||         +> [22, 12] Identifier (a)
+         ||         +> [22, 14] Identifier (cvf)
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [22, 18] UnaryMinus
+         ||                `> [22, 19] Int (33)
+         []> [23, 4] Println
+             `> ListExpr [List with 1 elements]
+                []> [23, 12] MethodCall
+                    +> [23, 12] Identifier (a)
+                    +> [23, 14] Identifier (cvf)
+                    `> ListExpr [List with 1 elements]
+                       []> [23, 18] Int (18)

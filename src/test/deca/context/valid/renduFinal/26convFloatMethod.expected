@@ -1,0 +1,90 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [9, 0] DeclClass
+   |      +> [9, 6] Identifier (A)
+   |      |  definition: type defined at [9, 0], type=A
+   |      +> Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [10, 4] DeclMethod
+   |             +> [10, 4] Identifier (float)
+   |             |  definition: type (builtin), type=float
+   |             +> [10, 10] Identifier (cvf)
+   |             |  definition: method defined at [10, 4], type=float
+   |             +> ListDeclParam [List with 1 elements]
+   |             |  []> [10, 14] DeclParam
+   |             |      +> [10, 14] Identifier (int)
+   |             |      |  definition: type (builtin), type=int
+   |             |      `> [10, 18] Identifier (e)
+   |             |         definition: parameter defined at [10, 14], type=int
+   |             `> [10, 21] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [11, 8] IfThenElse
+   |                       +> [11, 14] Equals
+   |                       |  type: boolean
+   |                       |  +> [11, 12] Identifier (e)
+   |                       |  |  definition: parameter defined at [10, 14], type=int
+   |                       |  `> [11, 17] Int (0)
+   |                       |     type: int
+   |                       +> ListInst [List with 1 elements]
+   |                       |  []> [12, 12] Return
+   |                       |      `> ConvFloat
+   |                       |         type: float
+   |                       |         `> [12, 19] Int (1)
+   |                       |            type: int
+   |                       `> ListInst [List with 1 elements]
+   |                          []> [14, 12] Return
+   |                              `> ConvFloat
+   |                                 type: float
+   |                                 `> [14, 19] Int (22)
+   |                                    type: int
+   `> [19, 0] Main
+      +> ListDeclVar [List with 1 elements]
+      |  []> [20, 6] DeclVar
+      |      +> [20, 4] Identifier (A)
+      |      |  definition: type defined at [9, 0], type=A
+      |      +> [20, 6] Identifier (a)
+      |      |  definition: variable defined at [20, 6], type=A
+      |      `> [20, 8] Initialization
+      |         `> [20, 10] New
+      |            type: A
+      |            `> [20, 14] Identifier (A)
+      |               definition: type defined at [9, 0], type=A
+      `> ListInst [List with 3 elements]
+         []> [21, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [21, 12] MethodCall
+         ||         type: float
+         ||         +> [21, 12] Identifier (a)
+         ||         |  definition: variable defined at [20, 6], type=A
+         ||         +> [21, 14] Identifier (cvf)
+         ||         |  definition: method defined at [10, 4], type=float
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [21, 18] Int (0)
+         ||                type: int
+         []> [22, 4] Println
+         ||  `> ListExpr [List with 1 elements]
+         ||     []> [22, 12] MethodCall
+         ||         type: float
+         ||         +> [22, 12] Identifier (a)
+         ||         |  definition: variable defined at [20, 6], type=A
+         ||         +> [22, 14] Identifier (cvf)
+         ||         |  definition: method defined at [10, 4], type=float
+         ||         `> ListExpr [List with 1 elements]
+         ||            []> [22, 18] UnaryMinus
+         ||                type: int
+         ||                `> [22, 19] Int (33)
+         ||                   type: int
+         []> [23, 4] Println
+             `> ListExpr [List with 1 elements]
+                []> [23, 12] MethodCall
+                    type: float
+                    +> [23, 12] Identifier (a)
+                    |  definition: variable defined at [20, 6], type=A
+                    +> [23, 14] Identifier (cvf)
+                    |  definition: method defined at [10, 4], type=float
+                    `> ListExpr [List with 1 elements]
+                       []> [23, 18] Int (18)
+                           type: int
