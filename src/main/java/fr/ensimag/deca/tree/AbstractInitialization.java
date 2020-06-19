@@ -29,6 +29,4 @@ public abstract class AbstractInitialization extends Tree {
             throws ContextualError, DecacFatalError;
 
     protected abstract void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError;
-
-    protected abstract void codeGenInitializationField(DecacCompiler compiler, DAddr addr) throws DecacFatalError;
 }

@@ -52,44 +52,12 @@ public class Initialization extends AbstractInitialization {
 
     @Override
     protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
-        int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            compiler.getRegisterManager().take(i);
-            getExpression().codeGenInst(compiler, Register.getR(i));
-            compiler.addInstruction(new STORE(Register.getR(i), addr));
-            compiler.getRegisterManager().free(i);
-        } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
-            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
-            compiler.getTSTOManager().addCurrent(1);
-            getExpression().codeGenInst(compiler, Register.getR(j));
-            compiler.addInstruction(new STORE(Register.getR(j), addr));
-            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
-            compiler.getTSTOManager().addCurrent(-1);
-        }
-    }
-
-    @Override
-    protected void codeGenInitializationField(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
-        int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            compiler.getRegisterManager().take(i);
-            getExpression().codeGenInst(compiler, Register.getR(i));
+        getExpression().codeGenInst(compiler, Register.R0);
+        if(compiler.getStackManager().getInClass()) { // si on est dans une classe, il s'agit de la déclaration d'un champ
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l'adresse de l'objet
-            compiler.addInstruction(new STORE(Register.getR(i), addr));
-            compiler.getRegisterManager().free(i);
-        } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
-            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
-            compiler.getTSTOManager().addCurrent(1);
-            getExpression().codeGenInst(compiler, Register.getR(j));
-            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l'adresse de l'objet
-            compiler.addInstruction(new STORE(Register.getR(j), addr));
-            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
-            compiler.getTSTOManager().addCurrent(-1);
         }
+        compiler.addInstruction(new STORE(Register.R0, addr));
     }
-
 
     @Override
     public void decompile(IndentPrintStream s) {

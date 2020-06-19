@@ -31,8 +31,7 @@ import static org.mockito.Mockito.when;
  */
 
 public class TestDivide {
-    private final List<String> IMACodeGenInitializationNoMoreRegistersExpectedtrue = new ArrayList<>();
-    private final List<String> IMACodeGenInitializationNoMoreRegistersExpectedfalse = new ArrayList<>();
+    private final List<String> IMACodeGenInitializationNoMoreRegistersExpected = new ArrayList<>();
     private final List<String> IMACodeGenInitializationAbstractExpr = new ArrayList<>();
     
     private final Type INT = new IntType(null);
@@ -64,25 +63,14 @@ public class TestDivide {
         when(floatexpr1.getType()).thenReturn(FLOAT);
         when(floatexpr2.getType()).thenReturn(FLOAT);
 
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("PUSH R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("PUSH R3");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("QUO R3, R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("BOV arithmetic_overflow; Overflow : check for previous operation");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("POP R3");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("LOAD R4, R1");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("WINT");
-        IMACodeGenInitializationNoMoreRegistersExpectedtrue.add("POP R4");
+        IMACodeGenInitializationNoMoreRegistersExpected.add("PUSH R4");
+        IMACodeGenInitializationNoMoreRegistersExpected.add("QUO R1, R4");
+        IMACodeGenInitializationNoMoreRegistersExpected.add("BOV arithmetic_overflow; Overflow : check for previous operation");
+        IMACodeGenInitializationNoMoreRegistersExpected.add("LOAD R4, R1");
+        IMACodeGenInitializationNoMoreRegistersExpected.add("POP R4");
+        IMACodeGenInitializationNoMoreRegistersExpected.add("WINT");
 
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("PUSH R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("PUSH R3");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("QUO R3, R4");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("BOV arithmetic_overflow; Overflow : check for previous operation");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("POP R3");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("LOAD R4, R1");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("WINT");
-        IMACodeGenInitializationNoMoreRegistersExpectedfalse.add("POP R4");
-
-        IMACodeGenInitializationAbstractExpr.add("QUO R3, R2");
+        IMACodeGenInitializationAbstractExpr.add("QUO R1, R2");
         IMACodeGenInitializationAbstractExpr.add("BOV arithmetic_overflow; Overflow : check for previous operation");
         IMACodeGenInitializationAbstractExpr.add("LOAD R2, R1");
         IMACodeGenInitializationAbstractExpr.add("WINT");
@@ -192,7 +180,7 @@ public class TestDivide {
         assertThat(node.getRightOperand(), is(sonR));
 
         String result2 = myCompiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpectedfalse));
+        assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpected));
     }
 
     @Test
@@ -219,7 +207,7 @@ public class TestDivide {
         assertThat(node.getRightOperand(), is(sonR));
 
         String result2 = myCompiler.displayIMAProgram();
-        assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpectedtrue));
+        assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpected));
     }
 
 }

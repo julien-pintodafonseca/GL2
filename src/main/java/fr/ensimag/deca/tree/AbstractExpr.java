@@ -184,7 +184,7 @@ public abstract class AbstractExpr extends AbstractInst {
      * @param register
      */
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
-        // nothing for the program like "hello";
+        // nothing to do for the program like "hello";
     }
 
     /**

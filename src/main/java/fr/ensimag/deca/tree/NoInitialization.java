@@ -35,11 +35,6 @@ public class NoInitialization extends AbstractInitialization {
         // do nothing
     }
 
-    @Override
-    protected void codeGenInitializationField(DecacCompiler compiler, DAddr addr) {
-        // do nothing
-    }
-
     /**
      * Node contains no real information, nothing to check.
      */

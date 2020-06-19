@@ -5,8 +5,10 @@ import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.IndentPrintStream;
+import fr.ensimag.ima.pseudocode.NullOperand;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
+import fr.ensimag.ima.pseudocode.instructions.FLOAT;
 import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.commons.lang.Validate;
@@ -78,7 +80,14 @@ public class DeclField extends AbstractDeclField {
     @Override
     protected void codeGenField(DecacCompiler compiler, ClassDefinition currentClass) {
         compiler.addComment("Initialisation de " + currentClass.getType() + "." + varName.getName());
-        compiler.addInstruction(new LOAD(0, Register.R0));
+        if(type.getType().isInt() || type.getType().isBoolean()) { // par défaut à la valeur 0 (qui signifie false dans le cas d'un booléen)
+            compiler.addInstruction(new LOAD(0, Register.R0));
+        } else if (type.getType().isFloat()) { // par défaut a la valeur 0.0
+            compiler.addInstruction(new LOAD(0, Register.R0));
+            compiler.addInstruction(new FLOAT(Register.R0, Register.R0));
+        } else { // par défaut à la valeur null pour toute classe
+            compiler.addInstruction(new LOAD(new NullOperand(), Register.R0));
+        }
         varName.getFieldDefinition().setOperand(new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1));
         compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l’adresse de l’objet
         compiler.addInstruction(new STORE(Register.R0, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1))); // R1 contient l’adresse de l’objet
@@ -88,7 +97,7 @@ public class DeclField extends AbstractDeclField {
     protected void codeGenFieldInit(DecacCompiler compiler, ClassDefinition currentClass) throws DecacFatalError {
         if (initialization instanceof Initialization) {
             compiler.addComment("Initialisation explicite de " + currentClass.getType() + "." + varName.getName());
-            initialization.codeGenInitializationField(compiler, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1)); // R1 contient l’adresse de l’objet
+            initialization.codeGenInitialization(compiler, new RegisterOffset(varName.getFieldDefinition().getIndex(), Register.R1)); // R1 contient l’adresse de l’objet
         }
     }
 

@@ -64,27 +64,12 @@ public class Selection extends AbstractLValue {
 
     @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
-        int k = compiler.getRegisterManager().nextAvailable();
-        if (k != -1) {
-            compiler.getRegisterManager().take(k);
-            codeGenInst(compiler, Register.getR(k));
-            compiler.addInstruction(new CMP(1, Register.getR(k)));
-            compiler.getRegisterManager().free(k);
-        } else {
-            int y = compiler.getRegisterManager().getSize() -1 ;
-            compiler.addInstruction(new PUSH(Register.getR(y))); // chargement dans la pile de 1 registre
-            compiler.getTSTOManager().addCurrent(1);
-
-            codeGenInst(compiler, Register.getR(y));
-            compiler.addInstruction(new CMP(1, Register.getR(y)));
-
-            compiler.addInstruction(new POP(Register.getR(y))); // restauration du registre
-            compiler.getTSTOManager().addCurrent(-1);
-        }
+        codeGenInst(compiler, Register.R1);
+        compiler.addInstruction(new CMP(1, Register.R1));
 
         if(reverse) { // reverse = true
             compiler.addInstruction(new BEQ(label));
-        } else { // reverse = false
+        } else{ // reverse = false
             compiler.addInstruction(new BNE(label));
         }
     }

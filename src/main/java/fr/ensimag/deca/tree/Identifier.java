@@ -212,12 +212,8 @@ public class Identifier extends AbstractIdentifier {
     
     @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
-        ExpDefinition expDef = getExpDefinition();
-        if (expDef.isField()) {
-            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
-        }
-        compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R0));
-        compiler.addInstruction(new CMP(expDef.getOperand(), Register.R0));
+        codeGenInst(compiler, Register.R0);
+        compiler.addInstruction(new CMP(new ImmediateInteger(1), Register.R0));
 
     	if (reverse) {
     		compiler.addInstruction(new BNE(label));

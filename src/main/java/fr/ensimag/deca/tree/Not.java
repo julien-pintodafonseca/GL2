@@ -45,21 +45,8 @@ public class Not extends AbstractUnaryExpr {
     protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         if (getOperand() instanceof BooleanLiteral) {
             // Si l'attribut "operand" est un booleanLiteral
-            int i = compiler.getRegisterManager().nextAvailable();
-            if (i != -1) {
-                compiler.getRegisterManager().take(i);
-                getOperand().codeGenInst(compiler, Register.getR(i));
-                compiler.addInstruction(new CMP(1, Register.getR(i)));
-                compiler.getRegisterManager().free(i);
-            } else {
-                int j = compiler.getRegisterManager().getSize() -1 ;
-                compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
-                compiler.getTSTOManager().addCurrent(1);
-                getOperand().codeGenInst(compiler, Register.getR(j));
-                compiler.addInstruction(new CMP(1, Register.getR(j)));
-                compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
-                compiler.getTSTOManager().addCurrent(-1);
-            }
+            getOperand().codeGenInst(compiler, Register.R0);
+            compiler.addInstruction(new CMP(1, Register.R0));
             if (reverse) {
                 compiler.addInstruction(new BEQ(label));
             } else {

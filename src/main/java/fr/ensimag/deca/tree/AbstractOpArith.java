@@ -12,6 +12,7 @@ import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.BOV;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
 import fr.ensimag.ima.pseudocode.instructions.PUSH;
 import fr.ensimag.ima.pseudocode.instructions.POP;
 
@@ -60,14 +61,14 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
-        getLeftOperand().codeGenInst(compiler, register);
-
         int i = compiler.getRegisterManager().nextAvailable();
         if (i != -1) {
             compiler.getRegisterManager().take(i);
-            getRightOperand().codeGenInst(compiler, Register.getR(i));
+            getLeftOperand().codeGenInst(compiler, Register.getR(i));
+            getRightOperand().codeGenInst(compiler, register);
 
-            codeGenInstArith(compiler, Register.getR(i), register);
+            codeGenInstArith(compiler, register, Register.getR(i));
+            compiler.addInstruction(new LOAD(Register.getR(i), register));
             compiler.getRegisterManager().free(i);
         } else {
             int j = compiler.getRegisterManager().getSize() -1 ;
@@ -76,9 +77,13 @@ public abstract class AbstractOpArith extends AbstractBinaryExpr {
             }
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
-            getRightOperand().codeGenInst(compiler, Register.getR(j));
 
-            codeGenInstArith(compiler, Register.getR(j), register);
+            getLeftOperand().codeGenInst(compiler, Register.getR(j));
+            getRightOperand().codeGenInst(compiler, register);
+
+            codeGenInstArith(compiler, register, Register.getR(j));
+            compiler.addInstruction(new LOAD(Register.getR(j), register));
+
             compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
             compiler.getTSTOManager().addCurrent(-1);
         }
