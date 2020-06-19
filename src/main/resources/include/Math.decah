@@ -52,12 +52,13 @@ class Math {
 
     int getExponent(float x) {
         int e = 0;
+        x = abs(x);
         if (x <= MIN_VALUE || x == 0) {
             return MIN_EXPONENT-1;
         } else if (x >= MAX_VALUE) {
             return MAX_EXPONENT;
         } else {
-            while (pow(2,e) <= abs(x)) {
+            while (pow(2,e) <= x) {
                 e = e+1;
             }
             return e-1;
