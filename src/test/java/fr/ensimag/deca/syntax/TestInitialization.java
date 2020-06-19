@@ -27,7 +27,6 @@ import static org.mockito.Mockito.when;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestInitialization {
 	
     @Mock private AbstractExpr expr;

@@ -18,7 +18,6 @@ import static org.junit.Assert.assertEquals;
  * @author Equipe GL2
  * @date 2020
  */
-// TODO
 public class TestIntLiteral {
     private final List<String> IMACodeGenInstExpectedInt0 = new ArrayList<>();
     private final List<String> IMACodeGenInstExpectedInt = new ArrayList<>();
