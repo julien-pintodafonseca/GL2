@@ -41,12 +41,6 @@ public class UnaryMinus extends AbstractUnaryExpr {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        codeGenInst(compiler, Register.R1);
-        super.codeGenPrint(compiler, printHex);
-    }
-
-    @Override
     protected String getOperatorName() {
         return "-";
     }
