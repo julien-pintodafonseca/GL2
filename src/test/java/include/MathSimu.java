@@ -1,7 +1,5 @@
 package include;
 
-import sun.misc.FloatConsts;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,10 +101,17 @@ public class MathSimu {
         // lot de valeurs
         List<Float> lf = new ArrayList<>();
         lf.add(0f);
+        lf.add(Float.MIN_VALUE);
+        lf.add(0.5f);
+        lf.add(-0.5f);
         lf.add(1f);
         lf.add(-1f);
-        lf.add(27942f);
-        lf.add(-27942f);
+        lf.add(2f);
+        lf.add(-2f);
+        lf.add(333.333f);
+        lf.add(-333.333f);
+        lf.add(Float.MAX_VALUE);
+        //lf.add((float)java.lang.Math.pow(42.0,-130));
 
         for (Float f : lf) {
             // on applique notre fonction

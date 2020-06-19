@@ -21,8 +21,8 @@ class Math {
             if (exp >= MIN_EXPONENT) {
                 return pow(2,exp);
             } else {
-                // TODO
-                return 1;
+                // pas trop sûr mais ça semble bien
+                return MIN_VALUE;
             }
         }
     }
