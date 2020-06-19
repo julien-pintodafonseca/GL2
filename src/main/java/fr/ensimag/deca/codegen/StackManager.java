@@ -29,6 +29,8 @@ public class StackManager {
         return inClass;
     }
 
+    public void resetLB() { this.LB = 1;}
+
     public int getGB() {
         return GB;
     }

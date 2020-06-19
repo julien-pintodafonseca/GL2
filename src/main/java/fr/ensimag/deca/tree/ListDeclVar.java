@@ -52,6 +52,7 @@ public class ListDeclVar extends TreeList<AbstractDeclVar> {
         if (getList().size() != 0) {
             compiler.addComment("---------- Declarations des variables :");
         }
+        compiler.getStackManager().resetLB();
         for (AbstractDeclVar declVar : getList()) {
             declVar.codeGenDeclVar(compiler);
         }
