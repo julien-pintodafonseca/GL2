@@ -116,12 +116,6 @@ public class MethodCall extends AbstractExpr {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        codeGenInst(compiler, Register.R1);
-        super.codeGenPrint(compiler, printHex);
-    }
-
-    @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
         int k = compiler.getRegisterManager().nextAvailable();
         if (k != -1) {

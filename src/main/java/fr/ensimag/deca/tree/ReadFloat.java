@@ -33,17 +33,12 @@ public class ReadFloat extends AbstractReadExpr {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        compiler.addInstruction(new RFLOAT()); // load the read value in the register R1
-        codeGenError(compiler);
-        super.codeGenPrint(compiler, printHex);
-    }
-
-    @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
         compiler.addInstruction(new RFLOAT()); // load the read value in the register R1
         codeGenError(compiler);
-        compiler.addInstruction(new LOAD(Register.R1, register));
+        if (register != Register.R1) {
+            compiler.addInstruction(new LOAD(Register.R1, register));
+        }
     }
 
     @Override

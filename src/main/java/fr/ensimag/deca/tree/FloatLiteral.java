@@ -50,12 +50,6 @@ public class FloatLiteral extends AbstractExpr {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        compiler.addInstruction(new LOAD(new ImmediateFloat(getValue()), Register.R1));
-        super.codeGenPrint(compiler, printHex);
-    }
-
-    @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
         compiler.addInstruction(new LOAD(new ImmediateFloat(getValue()), register));
     }

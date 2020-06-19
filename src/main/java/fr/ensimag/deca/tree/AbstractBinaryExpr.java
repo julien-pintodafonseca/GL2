@@ -50,28 +50,6 @@ public abstract class AbstractBinaryExpr extends AbstractExpr {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            compiler.getRegisterManager().take(i);
-            codeGenInst(compiler, Register.getR(i));
-            compiler.addInstruction(new LOAD(Register.getR(i), Register.R1));
-            super.codeGenPrint(compiler, printHex);
-            compiler.getRegisterManager().free(i);
-        } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
-            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
-            compiler.getTSTOManager().addCurrent(1);
-            codeGenInst(compiler, Register.getR(j));
-            compiler.addInstruction(new LOAD(Register.getR(j), Register.R1));
-            super.codeGenPrint(compiler, printHex);
-            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
-            compiler.getTSTOManager().addCurrent(-1);
-        }
-    }
-
-
-    @Override
     public void decompile(IndentPrintStream s) {
         s.print("(");
         getLeftOperand().decompile(s);

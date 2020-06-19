@@ -90,12 +90,6 @@ public class Selection extends AbstractLValue {
     }
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        codeGenInst(compiler, Register.R1);
-        super.codeGenPrint(compiler, printHex);
-    }
-
-    @Override
     protected DAddr codeGenOperandAssign(DecacCompiler compiler) throws DecacFatalError {
         obj.codeGenInst(compiler, Register.R1);
         compiler.addInstruction(new CMP(new NullOperand(), Register.R1));

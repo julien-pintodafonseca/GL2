@@ -36,30 +36,14 @@ public class UnaryMinus extends AbstractUnaryExpr {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
-        getOperand().codeGenInst(compiler, register);
-        compiler.addInstruction(new OPP(register, Register.R1));
-        compiler.addInstruction(new LOAD(Register.R1, register));
+        getOperand().codeGenInst(compiler, Register.R0);
+        compiler.addInstruction(new OPP(Register.R0, register));
     }
 
     @Override
     protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        int i = compiler.getRegisterManager().nextAvailable();
-        if (i != -1) {
-            compiler.getRegisterManager().take(i);
-            getOperand().codeGenInst(compiler, Register.getR(i));
-            compiler.addInstruction(new OPP(Register.getR(i), Register.R1));
-            super.codeGenPrint(compiler, printHex);
-            compiler.getRegisterManager().free(i);
-        } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
-            compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
-            compiler.getTSTOManager().addCurrent(1);
-            getOperand().codeGenInst(compiler, Register.getR(j));
-            compiler.addInstruction(new OPP(Register.getR(j), Register.R1));
-            super.codeGenPrint(compiler, printHex);
-            compiler.addInstruction(new POP(Register.getR(j))); // restauration du registre
-            compiler.getTSTOManager().addCurrent(-1);
-        }
+        codeGenInst(compiler, Register.R1);
+        super.codeGenPrint(compiler, printHex);
     }
 
     @Override

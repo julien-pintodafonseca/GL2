@@ -1,0 +1,44 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 3 elements]
+   |  []> [8, 0] DeclClass
+   |  ||  +> [8, 6] Identifier (A)
+   |  ||  +> Identifier (Object)
+   |  ||  +> ListDeclField [List with 0 elements]
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [11, 0] DeclClass
+   |  ||  +> [11, 6] Identifier (B)
+   |  ||  +> [11, 16] Identifier (A)
+   |  ||  +> ListDeclField [List with 0 elements]
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [14, 0] DeclClass
+   |      +> [14, 6] Identifier (C)
+   |      +> [14, 16] Identifier (B)
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [17, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [18, 5] DeclVar
+      |  ||  +> [18, 3] Identifier (A)
+      |  ||  +> [18, 5] Identifier (a)
+      |  ||  `> NoInitialization
+      |  []> [19, 5] DeclVar
+      |      +> [19, 3] Identifier (B)
+      |      +> [19, 5] Identifier (b)
+      |      `> NoInitialization
+      `> ListInst [List with 2 elements]
+         []> [20, 5] Assign
+         ||  +> [20, 3] Identifier (a)
+         ||  `> [20, 7] New
+         ||     `> [20, 11] Identifier (C)
+         []> [21, 3] IfThenElse
+             +> [21, 9] InstanceOf
+             |  +> [21, 7] Identifier (a)
+             |  `> [21, 20] Identifier (B)
+             +> ListInst [List with 1 elements]
+             |  []> [22, 6] Print
+             |      `> ListExpr [List with 1 elements]
+             |         []> [22, 12] StringLiteral (OK)
+             `> ListInst [List with 1 elements]
+                []> [24, 5] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [24, 11] StringLiteral (NOK)

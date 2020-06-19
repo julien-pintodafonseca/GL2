@@ -1,0 +1,63 @@
+`> [8, 0] Program
+   +> ListDeclClass [List with 3 elements]
+   |  []> [8, 0] DeclClass
+   |  ||  +> [8, 6] Identifier (A)
+   |  ||  |  definition: type defined at [8, 0], type=A
+   |  ||  +> Identifier (Object)
+   |  ||  |  definition: type (builtin), type=Object
+   |  ||  +> ListDeclField [List with 0 elements]
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [11, 0] DeclClass
+   |  ||  +> [11, 6] Identifier (B)
+   |  ||  |  definition: type defined at [11, 0], type=B
+   |  ||  +> [11, 16] Identifier (A)
+   |  ||  |  definition: type defined at [8, 0], type=A
+   |  ||  +> ListDeclField [List with 0 elements]
+   |  ||  `> ListDeclMethod [List with 0 elements]
+   |  []> [14, 0] DeclClass
+   |      +> [14, 6] Identifier (C)
+   |      |  definition: type defined at [14, 0], type=C
+   |      +> [14, 16] Identifier (B)
+   |      |  definition: type defined at [11, 0], type=B
+   |      +> ListDeclField [List with 0 elements]
+   |      `> ListDeclMethod [List with 0 elements]
+   `> [17, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [18, 5] DeclVar
+      |  ||  +> [18, 3] Identifier (A)
+      |  ||  |  definition: type defined at [8, 0], type=A
+      |  ||  +> [18, 5] Identifier (a)
+      |  ||  |  definition: variable defined at [18, 5], type=A
+      |  ||  `> NoInitialization
+      |  []> [19, 5] DeclVar
+      |      +> [19, 3] Identifier (B)
+      |      |  definition: type defined at [11, 0], type=B
+      |      +> [19, 5] Identifier (b)
+      |      |  definition: variable defined at [19, 5], type=B
+      |      `> NoInitialization
+      `> ListInst [List with 2 elements]
+         []> [20, 5] Assign
+         ||  type: A
+         ||  +> [20, 3] Identifier (a)
+         ||  |  definition: variable defined at [18, 5], type=A
+         ||  `> [20, 7] New
+         ||     type: C
+         ||     `> [20, 11] Identifier (C)
+         ||        definition: type defined at [14, 0], type=C
+         []> [21, 3] IfThenElse
+             +> [21, 9] InstanceOf
+             |  type: boolean
+             |  +> [21, 7] Identifier (a)
+             |  |  definition: variable defined at [18, 5], type=A
+             |  `> [21, 20] Identifier (B)
+             |     definition: type defined at [11, 0], type=B
+             +> ListInst [List with 1 elements]
+             |  []> [22, 6] Print
+             |      `> ListExpr [List with 1 elements]
+             |         []> [22, 12] StringLiteral (OK)
+             |             type: string
+             `> ListInst [List with 1 elements]
+                []> [24, 5] Print
+                    `> ListExpr [List with 1 elements]
+                       []> [24, 11] StringLiteral (NOK)
+                           type: string

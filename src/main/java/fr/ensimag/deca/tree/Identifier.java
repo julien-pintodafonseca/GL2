@@ -203,16 +203,6 @@ public class Identifier extends AbstractIdentifier {
     private Definition definition;
 
     @Override
-    protected void codeGenPrint(DecacCompiler compiler, boolean printHex) throws DecacFatalError {
-        ExpDefinition expDef = getExpDefinition();
-        if(expDef.isField()) {
-            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
-        }
-        compiler.addInstruction(new LOAD(expDef.getOperand(), Register.R1));
-        super.codeGenPrint(compiler, printHex);
-    }
-
-    @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
         if(getExpDefinition().isField()) {
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
