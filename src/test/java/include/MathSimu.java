@@ -79,7 +79,19 @@ public class MathSimu {
 
     private static void powSimu() {
         System.out.println("float pow(float x, int e) :");
-        // TODO
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(0,0)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(2,0)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(1,126)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(2,3)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(2,-3)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(-2,3)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(-2,-3)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(-99456,1)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(2.5,2)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(Double.MAX_VALUE,5)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(Double.MIN_VALUE,5)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(512,Double.MAX_EXPONENT)));
+        System.out.println(String.format("%6.5e",java.lang.Math.pow(675,Double.MIN_EXPONENT)));
         System.out.println("--------------------");
     }
 }
