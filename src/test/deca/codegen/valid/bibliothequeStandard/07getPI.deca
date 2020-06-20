@@ -1,0 +1,7 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m.getPI());     // 3.141592+00
+}

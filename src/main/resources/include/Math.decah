@@ -3,6 +3,7 @@
 // Library for class Math of Deca, coded in Deca
 
 class Math {
+    float PI = 3.14159265358979323846;
     float MAX_VALUE = 3.40282 * _pow(10,38);
     float MIN_VALUE = 1.40130 * _pow(10,-45);
     int SIGNIFICAND_WIDTH = 24;
@@ -89,6 +90,18 @@ class Math {
 
     float atan(float rad) {
         println("atan(rad) not yet implemented");
+    }
+
+    float _getPI() {
+        return PI;
+    }
+
+    float _toDegrees(float rad) {
+        return (rad*180.0)/PI;
+    }
+
+    float _toRadians(float deg) {
+        return (deg/180.0)*PI;
     }
 }
 

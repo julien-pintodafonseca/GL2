@@ -20,6 +20,7 @@ public class MathSimu {
         absSimu();
         powSimu();
         ulpSimu();
+        sinSimu();
     }
 
     private static void getMaxValueSimu() {
@@ -118,6 +119,24 @@ public class MathSimu {
         for (Float f : lf) {
             // on applique Math.ulp
             Float val = Math.ulp(f);
+
+            System.out.println(String.format("%6.5e",val));
+        }
+        System.out.println("--------------------");
+    }
+
+    private static void sinSimu() {
+        System.out.println("float sin(float f) :");
+        // lot de valeurs
+        List<Float> lf = new ArrayList<>();
+        lf.add(0f);
+        lf.add((float)Math.PI/2);
+        lf.add((float)Math.PI/999999);
+        lf.add(999999999f);
+
+        for (Float f : lf) {
+            // on applique notre fonction
+            double val = Math.sin(f);
 
             System.out.println(String.format("%6.5e",val));
         }

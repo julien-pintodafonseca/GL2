@@ -1,0 +1,7 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    // TODO
+}
