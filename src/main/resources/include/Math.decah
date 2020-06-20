@@ -179,17 +179,23 @@ class Math {
         } else if (_abs(deg) > MAX_INT/16) {
             v = 134217720;
         } else if (_abs(deg) > MAX_INT/32) {
-            v = 67108860;
+            v = 67108680;
         } else if (_abs(deg) > MAX_INT/64) {
-            v = 33554430;
+            v = 33554160;
         } else if (_abs(deg) > MAX_INT/128) {
-            v = 16777215;
+            v = 16777080;
         } else if (_abs(deg) > MAX_INT/256) {
-            v = 8388607;
+            v = 8388360;
         } else if (_abs(deg) > MAX_INT/512) {
-            v = 4194303;
+            v = 4194000;
         } else if (_abs(deg) > MAX_INT/1024) {
-            v = 2097151;
+            v = 2097000;
+        } else if (_abs(deg) > MAX_INT/2048) {
+            v = 1048320;
+        } else if (_abs(deg) > MAX_INT/4096) {
+            v = 524160;
+        } else if (_abs(deg) > MAX_INT/8192) {
+            v = 262080;
         } else {
             v = 360;
         }
