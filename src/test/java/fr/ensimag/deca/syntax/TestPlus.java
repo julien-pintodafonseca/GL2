@@ -1,6 +1,9 @@
 package fr.ensimag.deca.syntax;
 
-import fr.ensimag.deca.tree.*;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.FloatLiteral;
+import fr.ensimag.deca.tree.IntLiteral;
+import fr.ensimag.deca.tree.Plus;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,7 +18,6 @@ import static org.hamcrest.core.Is.is;
  * @date 2020
  */
 public class TestPlus {
-
     @Mock private AbstractExpr sonL;
     @Mock private AbstractExpr sonR;
 

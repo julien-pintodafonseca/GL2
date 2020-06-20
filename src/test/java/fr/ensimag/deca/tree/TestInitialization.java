@@ -43,11 +43,11 @@ public class TestInitialization {
         MockitoAnnotations.initMocks(this);
         compiler1 = new DecacCompiler(null, null);
         compiler1.setRegisterManager(4);
-        compiler1.setStackManager(compiler1.getRegisterManager());
+        compiler1.setStackManager();
         compiler1.getStackManager().setInClass(false);
         compiler2 = new DecacCompiler(null, null);
         compiler2.setRegisterManager(4);
-        compiler2.setStackManager(compiler2.getRegisterManager());
+        compiler2.setStackManager();
         compiler2.getStackManager().setInClass(true);
         when(exprInt.verifyRValue(compiler1, null, null, compiler1.environmentType.INT)).thenReturn(expectedIntLiteral);
         when(exprFloat.verifyRValue(compiler1, null, null, compiler1.environmentType.FLOAT)).thenReturn(expectedFloatLiteral);

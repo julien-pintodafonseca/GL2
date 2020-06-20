@@ -1,0 +1,19 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m.pow(0,0));                 // 1.00000e+00
+    println(m.pow(2,0));                 // 1.00000e+00
+    println(m.pow(1,126));               // 1.00000e+00
+    println(m.pow(2,3));                 // 8.00000e+00
+    println(m.pow(2,-3));                // 1.25000e-01
+    println(m.pow(-2,3));                // -8.00000e+00
+    println(m.pow(-2,-3));               // -1.25000e-01
+    println(m.pow(-99456,1));            // -9.94560e+04
+    println(m.pow(2.5,2));               // 6.25000e+00
+    //println(m.pow(m.getMaxValue(),5)); // Infinity (erreur déclenchée par DecacCompiler : ok)
+    println(m.pow(m.getMinValue(),5));   // 0.00000e+00
+    //println(m.pow(512,127));           // Infinity (erreur déclenchée par DecacCompiler : ok)
+    println(m.pow(675,-126));            // 0.00000e+00
+}

@@ -1,26 +1,15 @@
 package fr.ensimag.deca.syntax;
 
 import fr.ensimag.deca.DecacCompiler;
-import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.context.*;
 import fr.ensimag.deca.tools.DecacInternalError;
-import fr.ensimag.deca.tree.*;
-import fr.ensimag.ima.pseudocode.DAddr;
-import org.junit.Before;
+import fr.ensimag.deca.tree.AbstractIdentifier;
+import fr.ensimag.deca.tree.Identifier;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static fr.ensimag.deca.utils.Utils.normalizeDisplay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-import static org.mockito.Mockito.when;
 
 /**
  *
@@ -28,7 +17,6 @@ import static org.mockito.Mockito.when;
  * @date 2020
  */
 public class TestIdentifier {
-
     private DecacCompiler compiler = new DecacCompiler(null, null);
 
     @Test

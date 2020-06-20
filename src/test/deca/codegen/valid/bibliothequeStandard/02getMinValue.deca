@@ -1,0 +1,7 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m.getMinValue());       // 1.40130e-45
+}

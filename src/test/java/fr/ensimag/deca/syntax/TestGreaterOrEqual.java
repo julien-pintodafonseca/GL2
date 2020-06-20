@@ -31,5 +31,4 @@ public class TestGreaterOrEqual {
         String expected1 = "( >= )";
         assertThat(result1, is(expected1));
     }
-
 }

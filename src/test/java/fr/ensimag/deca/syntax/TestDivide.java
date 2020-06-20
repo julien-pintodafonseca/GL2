@@ -1,6 +1,9 @@
 package fr.ensimag.deca.syntax;
 
-import fr.ensimag.deca.tree.*;
+import fr.ensimag.deca.tree.AbstractExpr;
+import fr.ensimag.deca.tree.Divide;
+import fr.ensimag.deca.tree.FloatLiteral;
+import fr.ensimag.deca.tree.IntLiteral;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

@@ -31,9 +31,9 @@ public abstract class AbstractExpr extends AbstractInst {
      * @return true if the expression does not correspond to any concrete token
      * in the source code (and should be decompiled to the empty string).
      */
-    /*public boolean isImplicit() {
+    public boolean isImplicit() {
         return false;
-    }*/
+    }
 
     /**
      * Get the type decoration associated to this expression (i.e. the type computed by contextual verification).
@@ -170,7 +170,7 @@ public abstract class AbstractExpr extends AbstractInst {
             codeGenInst(compiler, Register.getR(i));
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
+            int j = compiler.getRegisterManager().getSize() -1;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
             codeGenInst(compiler, Register.getR(j));

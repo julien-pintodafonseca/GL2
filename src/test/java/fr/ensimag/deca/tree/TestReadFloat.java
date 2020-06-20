@@ -35,7 +35,6 @@ public class TestReadFloat {
         IMACodeGenInstExpected.add("LOAD R1, R0");
     }
 
-
     @Test
     public void testCodeGenPrint() throws DecacFatalError {
         compiler = new DecacCompiler(null, null);

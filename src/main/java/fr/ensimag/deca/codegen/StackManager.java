@@ -6,16 +6,13 @@ package fr.ensimag.deca.codegen;
  * @date 2020
  */
 public class StackManager {
-    private RegisterManager registerManager;
-
     private boolean inClass;
 
     private int GB; // Global Stack
     private int LB; // Local Stack
 
-    public StackManager(RegisterManager _registerManager) {
-        registerManager = _registerManager;
-        GB = 1 ;
+    public StackManager() {
+        GB = 1;
         LB = 1;
     }
 
@@ -26,7 +23,7 @@ public class StackManager {
     public boolean getInClass() {
         return inClass;
     }
-
+    
     public void resetLB() {
         this.LB = 1;
     }

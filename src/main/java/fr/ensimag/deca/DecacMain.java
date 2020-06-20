@@ -62,7 +62,7 @@ public class DecacMain {
             for (Future<Boolean> fb: resultList) {
                 try {
                     if (fb.get()) {
-                        error = true ;
+                        error = true;
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

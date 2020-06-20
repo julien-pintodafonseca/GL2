@@ -1,14 +1,8 @@
 package fr.ensimag.deca.codegen;
 
-import fr.ensimag.deca.DecacFatalError;
-import fr.ensimag.deca.ErrorMessages;
 import org.junit.Test;
 
-import javax.swing.text.TabStop;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -18,7 +12,7 @@ import static org.junit.Assert.*;
 public class TestTSTOManager {
 
     @Test
-    public void testResetCurrentAndMax() throws DecacFatalError {
+    public void testResetCurrentAndMax() {
         TSTOManager manager = new TSTOManager();
 
         manager.resetCurrentAndMax();

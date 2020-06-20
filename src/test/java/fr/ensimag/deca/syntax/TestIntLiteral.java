@@ -1,14 +1,13 @@
 package fr.ensimag.deca.syntax;
 
-import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.tree.IntLiteral;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import static org.hamcrest.MatcherAssert.assertThat;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 
@@ -23,8 +22,6 @@ public class TestIntLiteral {
     private final List<String> IMACodeGenInstExpectedInt = new ArrayList<>();
     private final List<String> IMACodeGenPrintExpectedInt0 = new ArrayList<>();
     private final List<String> IMACodeGenPrintExpectedInt = new ArrayList<>();
-
-    private DecacCompiler compiler;
 
     @Before
     public void setup() {
@@ -57,7 +54,6 @@ public class TestIntLiteral {
         
         String result2 = int2.decompile();
         String expected2 = "5";
-        assertThat(result1, is(expected1));
+        assertThat(result2, is(expected2));
     }
-
 }

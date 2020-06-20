@@ -45,8 +45,8 @@ public class MethodBody extends AbstractMethodBody {
     }
 
     @Override
-    protected void codeGenMethodBody(DecacCompiler compiler, ClassDefinition currentClass, SymbolTable.Symbol methodName,
-                                     Type type) throws DecacFatalError {
+    protected void codeGenMethodBody(DecacCompiler compiler, ClassDefinition currentClass,
+                                     SymbolTable.Symbol methodName, Type type) throws DecacFatalError {
         compiler.getTSTOManager().resetCurrentAndMax();
         Line lineTSTO = new Line(new TSTO(0));
         compiler.add(lineTSTO); // TSTO #d

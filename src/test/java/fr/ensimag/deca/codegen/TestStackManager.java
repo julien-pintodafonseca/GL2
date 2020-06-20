@@ -13,7 +13,7 @@ public class TestStackManager {
 
     @Test
     public void testInClass() {
-        StackManager sm = new StackManager(new RegisterManager(7));
+        StackManager sm = new StackManager();
 
         sm.setInClass(true);
         assertTrue(sm.getInClass());
@@ -33,7 +33,7 @@ public class TestStackManager {
 
     @Test
     public void testGetGB() {
-        StackManager sm = new StackManager(new RegisterManager(7));
+        StackManager sm = new StackManager();
 
         // Premier GB disponible
         assertEquals(1, sm.getGB());
@@ -41,7 +41,7 @@ public class TestStackManager {
 
     @Test
     public void testGetLB() {
-        StackManager sm = new StackManager(new RegisterManager(7));
+        StackManager sm = new StackManager();
 
         // Premier LB disponible
         assertEquals(1, sm.getLB());
@@ -49,7 +49,7 @@ public class TestStackManager {
 
     @Test
     public void testIncrGB() {
-        StackManager sm = new StackManager(new RegisterManager(7));
+        StackManager sm = new StackManager();
 
         // GB augmente de 1 en 1
         assertEquals(1, sm.getGB());
@@ -64,7 +64,7 @@ public class TestStackManager {
 
     @Test
     public void testIncrLB() {
-        StackManager sm = new StackManager(new RegisterManager(7));
+        StackManager sm = new StackManager();
 
         // GB augmente de 1 en 1
         assertEquals(1, sm.getLB());

@@ -4,10 +4,10 @@ import fr.ensimag.deca.DecacCompiler;
 import fr.ensimag.deca.DecacFatalError;
 import fr.ensimag.deca.ErrorMessages;
 import fr.ensimag.deca.codegen.LabelType;
-import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.context.ClassDefinition;
 import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
+import fr.ensimag.deca.context.Type;
 import fr.ensimag.ima.pseudocode.GPRegister;
 import fr.ensimag.ima.pseudocode.ImmediateInteger;
 import fr.ensimag.ima.pseudocode.Label;
@@ -70,9 +70,9 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
                 compiler.addInstruction(new CMP(Register.getR(j), Register.getR(i)));
                 compiler.getRegisterManager().free(j);
             } else {
-                int k = compiler.getRegisterManager().getSize() -1 ;
-                if(k == i) {
-                    k=k-1;
+                int k = compiler.getRegisterManager().getSize()-1;
+                if (k == i) {
+                    k = k-1;
                 }
                 compiler.addInstruction(new PUSH(Register.getR(k))); // chargement dans la pile de 1 registre
                 compiler.getTSTOManager().addCurrent(1);
@@ -84,8 +84,8 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
 
             compiler.getRegisterManager().free(i);
         } else {
-            int j = compiler.getRegisterManager().getSize() -1 ;
-            int k = j - 1;
+            int j = compiler.getRegisterManager().getSize() -1;
+            int k = j-1;
             compiler.addInstruction(new PUSH(Register.getR(j))); // chargement dans la pile de 2 registres
             compiler.addInstruction(new PUSH(Register.getR(k)));
             compiler.getTSTOManager().addCurrent(2);

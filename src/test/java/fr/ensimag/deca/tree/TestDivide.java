@@ -77,7 +77,6 @@ public class TestDivide {
 
     }
 
-   
     @Test
     public void testCodeGenInstArith() throws DecacFatalError, ContextualError {
         // on test l'ajout de l'instruction QUO
@@ -209,5 +208,4 @@ public class TestDivide {
         String result2 = myCompiler.displayIMAProgram();
         assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpected));
     }
-
 }

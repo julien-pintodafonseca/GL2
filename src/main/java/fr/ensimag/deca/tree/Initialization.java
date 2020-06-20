@@ -10,7 +10,10 @@ import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.DAddr;
 import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.RegisterOffset;
-import fr.ensimag.ima.pseudocode.instructions.*;
+import fr.ensimag.ima.pseudocode.instructions.LOAD;
+import fr.ensimag.ima.pseudocode.instructions.POP;
+import fr.ensimag.ima.pseudocode.instructions.PUSH;
+import fr.ensimag.ima.pseudocode.instructions.STORE;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 
@@ -40,9 +43,8 @@ public class Initialization extends AbstractInitialization {
     }
 
     @Override
-    public void verifyInitialization(DecacCompiler compiler, Type t,
-                                     EnvironmentExp localEnv, ClassDefinition currentClass)
-            throws ContextualError, DecacFatalError {
+    public void verifyInitialization(DecacCompiler compiler, Type t, EnvironmentExp localEnv,
+                                     ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.8)
         LOG.debug("verify initialization: start");
         AbstractExpr rightExpr = getExpression().verifyRValue(compiler, localEnv, currentClass, t);

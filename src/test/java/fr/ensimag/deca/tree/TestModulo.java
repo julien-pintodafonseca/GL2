@@ -175,5 +175,4 @@ public class TestModulo {
         String result2 = myCompiler.displayIMAProgram();
         assertThat(normalizeDisplay(result2), is(IMACodeGenInitializationNoMoreRegistersExpected));
     }
-
 }

@@ -3,7 +3,6 @@ package fr.ensimag.deca.syntax;
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.And;
 import fr.ensimag.deca.tree.BooleanLiteral;
-import fr.ensimag.deca.tree.Or;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

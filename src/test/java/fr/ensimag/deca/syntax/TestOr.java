@@ -2,7 +2,6 @@ package fr.ensimag.deca.syntax;
 
 import fr.ensimag.deca.tree.AbstractExpr;
 import fr.ensimag.deca.tree.BooleanLiteral;
-import fr.ensimag.deca.tree.Greater;
 import fr.ensimag.deca.tree.Or;
 import org.junit.Before;
 import org.junit.Test;

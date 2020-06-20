@@ -61,8 +61,8 @@ public class DecacCompiler implements Callable<Boolean> {
      */
     private StackManager stackManager;
     public StackManager getStackManager() { return stackManager; }
-    public void setStackManager(RegisterManager rm) {
-        stackManager = new StackManager(rm);
+    public void setStackManager() {
+        stackManager = new StackManager();
     }
 
     /**
@@ -153,7 +153,6 @@ public class DecacCompiler implements Callable<Boolean> {
      * @see
      * fr.ensimag.ima.pseudocode.IMAProgram#addFirst(fr.ensimag.ima.pseudocode.Instruction,)
      */
-    // TODO : vérifier que cette méthode est utilisée quelque part
     public void addFirst(Instruction i) {
         program.addFirst(new Line(i));
     }

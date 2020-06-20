@@ -1,0 +1,10 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m.abs(16));             // 1.60000e+01
+    println(m.abs(-3));             // 3.00000e+00
+    println(m.abs(134.4));          // 1.34400e+02
+    println(m.abs(-246.22221));     // 2.46222e+02
+}

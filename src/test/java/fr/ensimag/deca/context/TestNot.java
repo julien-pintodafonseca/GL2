@@ -57,6 +57,7 @@ public class TestNot {
 
         assertThat(result1.getMessage(), is(expected1.getMessage()));
 
+
         // check that verifyCondition with a FLOAT rightOperand throws contextualError
         Not not2 = new Not(floatExpr);
 
