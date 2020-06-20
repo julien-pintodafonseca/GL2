@@ -32,6 +32,13 @@
     println(m.sin(-(m._getPI()*1.25)));             // -225°
     println(m.sin(-(m._getPI()*1.5)));              // -270°
     println(m.sin(-(m._getPI()+m._getPI()/3)));     // -330°
+    println("--- random numbers");
+    println(m.sin(-97543.54));
+    println(m.sin(264.01));
+    println(m.sin(555));
+    println(m.sin(3333.333));
+    println(m.sin(-373.25));
+    println(m.sin(98765.4));
     //println("--- big numbers");
     //println(m.sin(987654321));
     //println(m.sin(m._getMaxInt()));

@@ -158,6 +158,13 @@ public class MathSimu {
         lf.add(-((float)Math.PI*1.25f));            // -225°
         lf.add(-((float)Math.PI*1.5f));             // -270°
         lf.add(-((float)Math.PI+(float)Math.PI/3)); // -330°
+        // random numbers
+        lf.add(-97543.54f);
+        lf.add(264.01f);
+        lf.add(555f);
+        lf.add(3333.333f);
+        lf.add(-373.25f);
+        lf.add(98765.4f);
         // big numbers
         //lf.add(987654300f);
         //lf.add(Integer.MAX_VALUE);
