@@ -3,5 +3,5 @@
 {
     Math m = new Math();
 
-    println(m._pow(m.getMaxValue(),5)); // Infinity (MAX_VALUE)
+    println(m._pow(m._getMaxValue(),5));    // Infinity (MAX_VALUE)
 }

@@ -3,8 +3,8 @@
 // Library for class Math of Deca, coded in Deca
 
 class Math {
-    float MAX_VALUE = 3.40282 * pow(10,38);
-    float MIN_VALUE = 1.40130 * pow(10,-45);
+    float MAX_VALUE = 3.40282 * _pow(10,38);
+    float MIN_VALUE = 1.40130 * _pow(10,-45);
     int SIGNIFICAND_WIDTH = 24;
     int MAX_EXPONENT = 127;
     int MIN_EXPONENT = -126;

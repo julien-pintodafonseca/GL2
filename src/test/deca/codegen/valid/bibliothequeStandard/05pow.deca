@@ -12,6 +12,6 @@
     println(m._pow(-2,-3));               // -1.25000e-01
     println(m._pow(-99456,1));            // -9.94560e+04
     println(m._pow(2.5,2));               // 6.25000e+00
-    println(m._pow(m.getMinValue(),5));   // 0.00000e+00
+    println(m._pow(m._getMinValue(),5));  // 0.00000e+00
     println(m._pow(675,-126));            // 0.00000e+00
 }
