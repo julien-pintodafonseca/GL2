@@ -3,5 +3,5 @@
 {
     Math m = new Math();
 
-    println(m.getPI());     // 3.141592+00
+    println(m._getPI());     // 3.14159e+00
 }
