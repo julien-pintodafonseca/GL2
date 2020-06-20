@@ -4,7 +4,7 @@
     Math m = new Math();
 
     println(m.sin(0));                  // 0.00000e+00
-    println(m.sin(m.getPI()/2));        // 1.00000e+00
-    println(m.sin(m.getPI()/999999));   // 3.14160e-06
+    println(m.sin(m._getPI()/2));       // 1.00000e+00
+    println(m.sin(m._getPI()/999999));  // 3.14160e-06
     println(m.sin(999999999));          // 5.45843e-01
 }
