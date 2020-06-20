@@ -77,7 +77,51 @@ class Math {
     }
 
     float sin(float rad) {
-        println("sin(rad) not yet implemented");
+        float deg;
+        int quadrant;
+        int sign;
+        float sine;
+
+        // 1. We use periodicity
+        // If we don't have 0 <= deg <= 360
+        deg = _toDegrees(rad);
+        if (!(deg >= 0 && deg < 360)) {
+            deg = deg%360;
+        }
+
+        // 2. We use symmetry
+        // If quadrant isn't equal to 1
+        quadrant = (deg/90)%4 + 1;
+        sign=0; // by default we want to return +sin(deg)
+        if (quadrant != 1) {
+            while (_abs(deg-180) < _abs(deg)) {
+                deg = deg-180;
+            }
+            if (quadrant != 2) {
+                sign=1; // we want to return -sin(deg)
+            }
+        }
+
+        // 3. We use the cofunction
+        // If we have 45 <= deg <= 90
+        if (!(deg < 45)) {
+            // instead of calculating sin(x) we will calculate cos(90°-x)
+            // sine = cos(_toRadians(90)-_toRadians(deg));
+            // if (sign == 0) {
+            //    return sine;
+            // } else {
+            //    return -sine;
+            // }
+        }
+
+        // 4. We use the sine polynomial (based on Taylor's series)
+        // If we have 0 <= deg < 45
+        sine = _toRadians(deg) - _pow(_toRadians(deg),3)/6 + _pow(_toRadians(deg),5)/120;
+        if (sign == 0) {
+            return sine;
+        } else {
+            return -sine;
+        }
     }
 
     float cos(float rad) {
