@@ -3,7 +3,9 @@
 {
     Math m = new Math();
 
+    println("--- null");
     println(m.sin(0.0000));                         // 00°
+    println("--- positive");
     println(m.sin(0.1750));                         // 01°
     println(m.sin(0.8730));                         // 05°
     println(m.sin(0.1745));                         // 10°
@@ -22,6 +24,7 @@
     println(m.sin(m._getPI()*1.5));                 // 270°
     println(m.sin(m._getPI()+m._getPI()/3));        // 330°
     println(m.sin(m._getPI()*2));                   // 360°
+    println("--- negative");
     println(m.sin(-0.2618));                        // -15°
     println(m.sin(-(m._getPI()/2)));                // -90°
     println(m.sin(-(m._getPI()/1.5)));              // -120°
@@ -29,6 +32,7 @@
     println(m.sin(-(m._getPI()*1.25)));             // -225°
     println(m.sin(-(m._getPI()*1.5)));              // -270°
     println(m.sin(-(m._getPI()+m._getPI()/3)));     // -330°
+    println("--- big numbers");
     println(m.sin(m._getMaxInt()+256));
     println(m.sin(-m._getMaxInt()+256));
 }
