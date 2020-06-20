@@ -86,7 +86,7 @@ class Math {
         // 1. We use periodicity if we don't have 0 <= deg <= 360
         deg = _toDegrees(rad);
         if (!(deg >= 0 && deg < 360)) {
-            while (deg > MAX_INT) {
+            while (_abs(deg) > MAX_INT) {
                 deg = _reduceDegrees(deg); // reduce value to avoid int arithmetic overflow
             }
             deg = (int)(deg)%360;
@@ -121,7 +121,17 @@ class Math {
 
         // 4. We use the sine polynomial (based on Taylor's series)
         // If we have 0 <= deg < 45
-        sine = _toRadians(deg) - _pow(_toRadians(deg),3)/6 + _pow(_toRadians(deg),5)/120;
+        sine = _toRadians(deg);
+        sine = sine - _pow(_toRadians(deg),3) / _fact(3);
+        sine = sine + _pow(_toRadians(deg),5) / _fact(5);
+        sine = sine - _pow(_toRadians(deg),7) / _fact(7);
+        sine = sine + _pow(_toRadians(deg),9) / _fact(9);
+        sine = sine - _pow(_toRadians(deg),11) / _fact(11);
+        sine = sine + _pow(_toRadians(deg),13) / _fact(13);
+        sine = sine - _pow(_toRadians(deg),15) / _fact(15);
+        sine = sine + _pow(_toRadians(deg),17) / _fact(17);
+        sine = sine - _pow(_toRadians(deg),19) / _fact(19);
+        sine = sine + _pow(_toRadians(deg),21) / _fact(21);
         if (sign == 0) {
             return sine;
         } else {
@@ -158,32 +168,59 @@ class Math {
     }
 
     float _reduceDegrees(float deg) {
-        if (deg > 2*MAX_INT) {
-            deg = deg-2147483520;
-        } else if (deg > MAX_INT/2) {
-            deg = deg-1073741760;
-        } else if (deg > MAX_INT/4) {
-            deg = deg-536870880;
-        } else if (deg > MAX_INT/8) {
-            deg = deg-268435440;
-        } else if (deg > MAX_INT/16) {
-            deg = deg-134217720;
-        } else if (deg > MAX_INT/32) {
-            deg = deg-67108860;
-        } else if (deg > MAX_INT/64) {
-            deg = deg-33554430;
-        } else if (deg > MAX_INT/128) {
-            deg = deg-16777215;
-        } else if (deg > MAX_INT/256) {
-            deg = deg-8388607;
-        } else if (deg > MAX_INT/512) {
-            deg = deg-4194303;
-        } else if (deg > MAX_INT/1024) {
-            deg = deg-2097151;
+        float v;
+
+        if (_abs(deg) > 2*MAX_INT) {
+            v = 2147483520;
+        } else if (_abs(deg) > MAX_INT/2) {
+            v = 1073741760;
+        } else if (_abs(deg) > MAX_INT/4) {
+            v = 536870880;
+        } else if (_abs(deg) > MAX_INT/8) {
+            v = 268435440;
+        } else if (_abs(deg) > MAX_INT/16) {
+            v = 134217720;
+        } else if (_abs(deg) > MAX_INT/32) {
+            v = 67108860;
+        } else if (_abs(deg) > MAX_INT/64) {
+            v = 33554430;
+        } else if (_abs(deg) > MAX_INT/128) {
+            v = 16777215;
+        } else if (_abs(deg) > MAX_INT/256) {
+            v = 8388607;
+        } else if (_abs(deg) > MAX_INT/512) {
+            v = 4194303;
+        } else if (_abs(deg) > MAX_INT/1024) {
+            v = 2097151;
         } else {
-            deg = deg-360;
+            v = 360;
         }
-        return deg;
+
+        if (deg > 0) {
+            return deg-v;
+        } else if (deg < 0) {
+            return deg+v;
+        } else {
+            return 0;
+        }
+    }
+
+    int _fact(int n) {
+        int fact = 1;
+        int i;
+
+        // Factorial of a negative number doesn't exists
+        if (n < 0) {
+            n = -n;
+        }
+
+        // Calcul
+        i = 1;
+        while (i <= n) {
+            fact = fact*i;
+            i = i+1;
+        }
+        return fact;
     }
 }
 

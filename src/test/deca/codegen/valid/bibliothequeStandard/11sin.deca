@@ -29,5 +29,6 @@
     println(m.sin(-(m._getPI()*1.25)));             // -225°
     println(m.sin(-(m._getPI()*1.5)));              // -270°
     println(m.sin(-(m._getPI()+m._getPI()/3)));     // -330°
+    println(m.sin(m._getMaxInt()+256));
     println(m.sin(-m._getMaxInt()+256));
 }
