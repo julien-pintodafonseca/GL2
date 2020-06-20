@@ -54,62 +54,28 @@ public class InstanceOf extends AbstractExpr {
     // and expr could be cast to type without raising a ClassCastException. Otherwise the result is false.
     @Override
     protected void codeGenCMP(DecacCompiler compiler, Label label, boolean reverse) throws DecacFatalError {
+        int x = compiler.getLabelManager().getLabelValue(LabelType.LB_RETURN_TRUE);
+        compiler.getLabelManager().incrLabelValue(LabelType.LB_RETURN_TRUE);
+        Label labelReturnTrue = new Label("true" + x);
+        Label labelAfterReturnTrue = new Label("after_true" + x);
+
         int k = compiler.getRegisterManager().nextAvailable();
         if (k != -1) {
             compiler.getRegisterManager().take(k);
-            codeGenCMPIN(compiler, label, reverse, k);
+            codeGenIn(compiler, labelReturnTrue, Register.getR(k));
             compiler.getRegisterManager().free(k);
         } else {
             int y = compiler.getRegisterManager().getSize() -1 ;
             compiler.addInstruction(new PUSH(Register.getR(y))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
 
-            codeGenCMPIN(compiler, label, reverse, y);
+            codeGenIn(compiler, labelReturnTrue, Register.getR(y));
 
             compiler.addInstruction(new POP(Register.getR(y))); // restauration du registre
             compiler.getTSTOManager().addCurrent(-1);
         }
-    }
 
-    private void codeGenCMPIN(DecacCompiler compiler, Label label, boolean reverse, int k) throws DecacFatalError {
-        int i = compiler.getLabelManager().getLabelValue(LabelType.LB_WHILE);
-        Label labelWhileBegin = new Label("while" + i);
-        Label labelWhileEnd = new Label("while_end" + i);
-        compiler.getLabelManager().incrLabelValue(LabelType.LB_WHILE);
-        int j = compiler.getLabelManager().getLabelValue(LabelType.LB_ELSE);
-        compiler.getLabelManager().incrLabelValue(LabelType.LB_ELSE);
-        Label labelIfEnd = new Label("end_if" + j);
-        int x = compiler.getLabelManager().getLabelValue(LabelType.LB_RETURN_TRUE);
-        compiler.getLabelManager().incrLabelValue(LabelType.LB_RETURN_TRUE);
-        Label labelReturnTrue = new Label("true" + x);
-        Label labelAfterReturnTrue = new Label("after_true" + x);
-
-
-        // Avant boucle while, superClass = expr
-        DAddr addrExpr = compiler.environmentType.getClassDefinition(expr.getType().getName()).getOperand();
-        compiler.addInstruction(new LOAD(addrExpr, Register.getR(k)));
-
-        compiler.addLabel(labelWhileBegin); // while(superClass != null) {
-        compiler.addInstruction(new CMP(new NullOperand(), Register.getR(k)));
-        compiler.addInstruction(new BEQ(labelWhileEnd));
-
-        //if(superClass == type){
-        compiler.addInstruction(new CMP(type.getClassDefinition().getOperand(), Register.getR(k)));
-        compiler.addInstruction(new BNE(labelIfEnd));
-
-        // Branche then
-        compiler.addInstruction(new BRA(labelReturnTrue));
-
-        // Label de fin du if
-        compiler.addLabel(labelIfEnd);
-
-        // superClass = superClass.superClass()
-        compiler.addInstruction(new LOAD(new RegisterOffset(0, Register.getR(k)), Register.getR(k)));
-
-        compiler.addInstruction(new BRA(labelWhileBegin));
-        compiler.addLabel(labelWhileEnd);
-
-        if(!reverse) { // correspond à (expr instanceof type)
+        if(reverse) { // correspond à (expr instanceof type)
             compiler.addInstruction(new BRA(label)); // si le résultat de l'instance est faux, on exécute la branche fausse commençant au label label
             // sinon, on ne fait rien
             compiler.addLabel(labelReturnTrue);
@@ -123,8 +89,7 @@ public class InstanceOf extends AbstractExpr {
         }
     }
 
-    @Override
-    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+    private void codeGenIn(DecacCompiler compiler, Label labelReturnTrue, GPRegister register) throws DecacFatalError {
         int i = compiler.getLabelManager().getLabelValue(LabelType.LB_WHILE);
         Label labelWhileBegin = new Label("while" + i);
         Label labelWhileEnd = new Label("while_end" + i);
@@ -132,22 +97,23 @@ public class InstanceOf extends AbstractExpr {
         int j = compiler.getLabelManager().getLabelValue(LabelType.LB_ELSE);
         compiler.getLabelManager().incrLabelValue(LabelType.LB_ELSE);
         Label labelIfEnd = new Label("end_if" + j);
-        int x = compiler.getLabelManager().getLabelValue(LabelType.LB_RETURN_TRUE);
-        compiler.getLabelManager().incrLabelValue(LabelType.LB_RETURN_TRUE);
-        Label labelReturnTrue = new Label("true" + x);
-        Label labelAfterReturnTrue = new Label("after_true" + x);
-
 
         // Avant boucle while, superClass = expr
-        DAddr addrExpr = compiler.environmentType.getClassDefinition(expr.getType().getName()).getOperand();
-        compiler.addInstruction(new LOAD(addrExpr, register));
+        expr.codeGenInst(compiler, register);
+        compiler.addInstruction(new LOAD(new RegisterOffset(0, register), register)); // Récupération du type dynamique
 
         compiler.addLabel(labelWhileBegin); // while(superClass != null) {
         compiler.addInstruction(new CMP(new NullOperand(), register));
         compiler.addInstruction(new BEQ(labelWhileEnd));
 
         //if(superClass == type){
-        compiler.addInstruction(new CMP(type.getClassDefinition().getOperand(), register));
+        if(register == Register.R0) {
+            compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R1));
+            compiler.addInstruction(new CMP(Register.R1, register));
+        } else {
+            compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R0));
+            compiler.addInstruction(new CMP(Register.R0, register));
+        }
         compiler.addInstruction(new BNE(labelIfEnd));
 
         // Branche then
@@ -161,14 +127,24 @@ public class InstanceOf extends AbstractExpr {
 
         compiler.addInstruction(new BRA(labelWhileBegin));
         compiler.addLabel(labelWhileEnd);
+    }
+
+    @Override
+    protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
+        int x = compiler.getLabelManager().getLabelValue(LabelType.LB_RETURN_TRUE);
+        compiler.getLabelManager().incrLabelValue(LabelType.LB_RETURN_TRUE);
+        Label labelReturnTrue = new Label("true" + x);
+        Label labelAfterReturnTrue = new Label("after_true" + x);
+
+        codeGenIn(compiler, labelReturnTrue, register);
 
         // Retourne faux
-        compiler.addInstruction(new LOAD(0, Register.R0));
+        compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.R0));
         compiler.addInstruction(new BRA(labelAfterReturnTrue));
 
         // Retourne true
         compiler.addLabel(labelReturnTrue);
-        compiler.addInstruction(new LOAD(1, Register.R0));
+        compiler.addInstruction(new LOAD(new ImmediateInteger(1), Register.R0));
         compiler.addLabel(labelAfterReturnTrue);
     }
 

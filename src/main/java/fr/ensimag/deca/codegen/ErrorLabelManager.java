@@ -49,6 +49,8 @@ public class ErrorLabelManager {
                 return "conversion_int_float_impossible";
             case LB_CAST_INT:
                 return "cast_float_int_impossible";
+            case LB_CAST_IMPOSSIBLE:
+                return "cast_impossible";
             default:
                 return null;
         }
@@ -144,6 +146,7 @@ public class ErrorLabelManager {
                 compiler.addInstruction(new WNL());
                 compiler.addInstruction(new ERROR());
                 break;
+            // case LB_CAST_IMPOSSIBLE: => erreur traitée en local dans la classe CAST pour un message d'erreur plus précis
         }
     }
 

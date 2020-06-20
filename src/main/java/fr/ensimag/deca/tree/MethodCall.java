@@ -70,7 +70,9 @@ public class MethodCall extends AbstractExpr {
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
         // Cas spécifique où il faut stocker le résultat retourné par la méthode appellée dans le registre register
         this.codeGenInst(compiler);
-        compiler.addInstruction(new LOAD(Register.R0, register));
+        if(register != Register.R0) {
+            compiler.addInstruction(new LOAD(Register.R0, register));
+        }
     }
 
     @Override
@@ -121,9 +123,9 @@ public class MethodCall extends AbstractExpr {
         compiler.addInstruction(new CMP(1, Register.R0));
 
         if(reverse) { // reverse = true
-            compiler.addInstruction(new BEQ(label));
-        } else { // reverse = false
             compiler.addInstruction(new BNE(label));
+        } else { // reverse = false
+            compiler.addInstruction(new BEQ(label));
         }
     }
 

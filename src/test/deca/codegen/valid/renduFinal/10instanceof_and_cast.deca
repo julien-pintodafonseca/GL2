@@ -2,15 +2,15 @@
 //      Utilisation du cast et de l'instruction instanceof
 //
 // Resultats:
-//
-//
-//
+//      A:3.50000e+00;Eq
+//      Diff
+//      B:11;A:3.50000e+00;Eq
 
 class A {
     float x = 3.5;
     boolean equalsA (A a) {
         print("A:", x, ";");
-        return a !=null && a.x==x;
+        return a != null && a.x==x;
     }
     boolean equals (Object o) {
         return o instanceof A && equalsA((A)(o));

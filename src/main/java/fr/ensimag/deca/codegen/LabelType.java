@@ -9,5 +9,6 @@ public enum LabelType {
     LB_WHILE,
     LB_OR,
     LB_ELSE,
-    LB_RETURN_TRUE
+    LB_RETURN_TRUE,
+    LB_CAST_POSSIBLE
 }
