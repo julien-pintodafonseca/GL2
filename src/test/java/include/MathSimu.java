@@ -1,9 +1,14 @@
 package include;
 
+import sun.awt.windows.WPrinterJob;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * We manually call methods from Math library to compare their results
+ * with similar methods from Math.decah library. We can use this class to verify
+ * Math.decah compliance or to improve it
  * 
  * @author Equipe GL2
  * @date 2020
@@ -52,8 +57,8 @@ public class MathSimu {
         lf.add(Float.MIN_VALUE);
 
         for (Float f : lf) {
-            // on applique notre fonction
-            int val = java.lang.Math.getExponent(f);
+            // on applique Math.getExponent
+            int val = Math.getExponent(f);
 
             System.out.println(val);
         }
@@ -70,8 +75,8 @@ public class MathSimu {
         lf.add(-246.22221f);
 
         for (Float f : lf) {
-            // on applique notre fonction
-            Float val = java.lang.Math.abs(f);
+            // on applique Math.abs
+            Float val = Math.abs(f);
 
             System.out.println(String.format("%6.5e",val));
         }
@@ -80,19 +85,19 @@ public class MathSimu {
 
     private static void powSimu() {
         System.out.println("float pow(float x, int e) :");
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(0,0)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(2,0)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(1,126)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(2,3)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(2,-3)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(-2,3)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(-2,-3)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(-99456,1)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(2.5,2)));
-        //System.out.println(String.format("%6.5e",java.lang.Math.pow(Double.MAX_VALUE,5)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(Double.MIN_VALUE,5)));
-        //System.out.println(String.format("%6.5e",java.lang.Math.pow(512,Double.MAX_EXPONENT)));
-        System.out.println(String.format("%6.5e",java.lang.Math.pow(675,Double.MIN_EXPONENT)));
+        System.out.println(String.format("%6.5e",Math.pow(0,0)));
+        System.out.println(String.format("%6.5e",Math.pow(2,0)));
+        System.out.println(String.format("%6.5e",Math.pow(1,126)));
+        System.out.println(String.format("%6.5e",Math.pow(2,3)));
+        System.out.println(String.format("%6.5e",Math.pow(2,-3)));
+        System.out.println(String.format("%6.5e",Math.pow(-2,3)));
+        System.out.println(String.format("%6.5e",Math.pow(-2,-3)));
+        System.out.println(String.format("%6.5e",Math.pow(-99456,1)));
+        System.out.println(String.format("%6.5e",Math.pow(2.5,2)));
+        System.out.println(String.format("%6.5e",Math.pow(Double.MIN_VALUE,5)));
+        System.out.println(String.format("%6.5e",Math.pow(675,Double.MIN_EXPONENT)));
+        System.out.println(String.format("%6.5e",Math.pow(Double.MAX_VALUE,5)));
+        System.out.println(String.format("%6.5e",Math.pow(512,Double.MAX_EXPONENT)));
         System.out.println("--------------------");
     }
 
@@ -111,11 +116,10 @@ public class MathSimu {
         lf.add(333.333f);
         lf.add(-333.333f);
         lf.add(Float.MAX_VALUE);
-        //lf.add((float)java.lang.Math.pow(42.0,-130));
 
         for (Float f : lf) {
-            // on applique notre fonction
-            Float val = java.lang.Math.ulp(f);
+            // on applique Math.ulp
+            Float val = Math.ulp(f);
 
             System.out.println(String.format("%6.5e",val));
         }
