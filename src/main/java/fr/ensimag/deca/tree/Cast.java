@@ -57,7 +57,7 @@ public class Cast extends AbstractExpr {
             // 1. Conversion de la forme (T)(e) où T est le type boolean, int ou float et e est une expression de type T.
             // Il suffit de coder l’expression, la conversion est l’opération identité.
             expr.codeGenInst(compiler, register);
-        if (type.getType().isInt() && expr.getType().isFloat()) { // cast de int -> float
+        if (type.getType().isFloat() && expr.getType().isInt()) { // cast de int -> float
             // 2. Conversion de la forme (float)(e), où e est une expression de type int. On code l’expression, puis on effectue une opération FLOAT.
             expr.codeGenInst(compiler, Register.R1);
             compiler.addInstruction(new FLOAT(Register.R1, register));
