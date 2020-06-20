@@ -26,15 +26,15 @@
    |  ||     ||        ||     []> [12, 20] Identifier (x)
    |  ||     ||        ||     []> [12, 23] StringLiteral (;)
    |  ||     ||        []> [13, 8] Return
-   |  ||     ||            `> [13, 24] And
+   |  ||     ||            `> [13, 25] And
    |  ||     ||               +> [13, 17] NotEquals
    |  ||     ||               |  +> [13, 15] Identifier (a)
-   |  ||     ||               |  `> [13, 19] NullLiteral
-   |  ||     ||               `> [13, 30] Equals
-   |  ||     ||                  +> [13, 28] Selection
-   |  ||     ||                  |  +> [13, 27] Identifier (a)
-   |  ||     ||                  |  `> [13, 29] Identifier (x)
-   |  ||     ||                  `> [13, 32] Identifier (x)
+   |  ||     ||               |  `> [13, 20] NullLiteral
+   |  ||     ||               `> [13, 31] Equals
+   |  ||     ||                  +> [13, 29] Selection
+   |  ||     ||                  |  +> [13, 28] Identifier (a)
+   |  ||     ||                  |  `> [13, 30] Identifier (x)
+   |  ||     ||                  `> [13, 33] Identifier (x)
    |  ||     []> [15, 4] DeclMethod
    |  ||     ||  +> [15, 4] Identifier (boolean)
    |  ||     ||  +> [15, 12] Identifier (equals)

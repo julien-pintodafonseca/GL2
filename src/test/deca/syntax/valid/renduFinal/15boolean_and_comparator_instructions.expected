@@ -19,9 +19,9 @@
          []> [15, 4] GreaterOrEqual
          ||  +> [15, 3] Int (3)
          ||  `> [15, 6] Int (5)
-         []> [16, 10] Equals
-         ||  +> [16, 3] StringLiteral (hello)
-         ||  `> [16, 12] StringLiteral (false)
+         []> [16, 4] Equals
+         ||  +> [16, 3] Int (2)
+         ||  `> [16, 6] Float (3.5)
          []> [17, 4] NotEquals
          ||  +> [17, 3] Int (3)
          ||  `> [17, 6] Int (5)
