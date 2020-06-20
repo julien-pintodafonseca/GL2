@@ -129,7 +129,9 @@ public class MathSimu {
         System.out.println("float sin(float f) :");
         // lot de valeurs
         List<Float> lf = new ArrayList<>();
+        // null
         lf.add(0.0000f);                            // 00°
+        // positive
         lf.add(0.1750f);                            // 01°
         lf.add(0.8730f);                            // 05°
         lf.add(0.1745f);                            // 10°
@@ -148,6 +150,7 @@ public class MathSimu {
         lf.add((float)Math.PI*1.5f);                // 270°
         lf.add((float)Math.PI+(float)Math.PI/3);    // 330°
         lf.add((float)Math.PI*2);                   // 360°
+        // negative
         lf.add(-0.2618f);                           // -15°
         lf.add(-((float)Math.PI/2));                // -90°
         lf.add(-((float)Math.PI/1.5f));             // -120°
@@ -155,8 +158,9 @@ public class MathSimu {
         lf.add(-((float)Math.PI*1.25f));            // -225°
         lf.add(-((float)Math.PI*1.5f));             // -270°
         lf.add(-((float)Math.PI+(float)Math.PI/3)); // -330°
-        lf.add(Integer.MAX_VALUE+256f);
-        lf.add(-Integer.MAX_VALUE+256f);
+        // big numbers
+        lf.add(2147483647f+256f);
+        lf.add(-(2147483647f+256f));
 
         for (Float f : lf) {
             // on applique notre fonction

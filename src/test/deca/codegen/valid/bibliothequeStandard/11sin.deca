@@ -34,5 +34,5 @@
     println(m.sin(-(m._getPI()+m._getPI()/3)));     // -330°
     println("--- big numbers");
     println(m.sin(m._getMaxInt()+256));
-    println(m.sin(-m._getMaxInt()+256));
+    println(m.sin(-(m._getMaxInt()+256)));
 }

@@ -6,7 +6,7 @@ class Math {
     float PI = 3.14159265358979323846;
     float MAX_VALUE = 3.40282 * _pow(10,38);
     float MIN_VALUE = 1.40130 * _pow(10,-45);
-    float MAX_INT = 2147483647.0;
+    float MAX_INT = 2147483647;
     int SIGNIFICAND_WIDTH = 24;
     int MAX_EXPONENT = 127;
     int MIN_EXPONENT = -126;
@@ -81,20 +81,29 @@ class Math {
         float deg;
         int quadrant;
         int sign;
-        float sine;
+        float res;
 
         // 1. We use periodicity if we don't have 0 <= deg <= 360
         deg = _toDegrees(rad);
+        sign=1; // by default, sign=1 because we want to return +sin(deg)
+        if (deg < 0) {
+            sign=-sign; // if sign=-1, we want to return -sin(deg)
+        }
         if (!(deg >= 0 && deg < 360)) {
             while (_abs(deg) > MAX_INT) {
                 deg = _reduceDegrees(deg); // reduce value to avoid int arithmetic overflow
             }
             deg = (int)(deg)%360;
+            if (deg > 0) {
+                deg = (int)(deg)%360;
+            } else {
+                deg = (int)(deg)%360;
+                deg = -deg;
+            }
         }
 
         // 2. We use symmetry if quadrant isn't equal to 1
         quadrant = ((int)(deg)/90)%4 + 1;
-        sign=0; // by default we want to return +sin(deg)
         if (quadrant != 1) {
             while (_abs(deg-180) < _abs(deg)) {
                 if (deg > 0) {
@@ -104,38 +113,27 @@ class Math {
                 }
             }
             if (quadrant != 2) {
-                sign=-sign; // if sign=-1 we want to return -sin(deg)
+                sign=-sign;
             }
         }
 
         // 3. We use the cofunction if we have 45 <= deg <= 90
         if (!(deg < 45)) {
             // instead of calculating sin(x) we will calculate cos(90°-x)
-            // sine = cos(_toRadians(90)-_toRadians(deg));
-            // if (sign == 0) {
-            //    return sine;
+            // res = cos(_toRadians(90)-_toRadians(deg));
+            // if (sign == 1) {
+            //    return res;
             // } else {
-            //    return -sine;
+            //    return -res;
             // }
         }
 
-        // 4. We use the sine polynomial (based on Taylor's series)
-        // If we have 0 <= deg < 45
-        sine = _toRadians(deg);
-        sine = sine - _pow(_toRadians(deg),3) / _fact(3);
-        sine = sine + _pow(_toRadians(deg),5) / _fact(5);
-        sine = sine - _pow(_toRadians(deg),7) / _fact(7);
-        sine = sine + _pow(_toRadians(deg),9) / _fact(9);
-        sine = sine - _pow(_toRadians(deg),11) / _fact(11);
-        sine = sine + _pow(_toRadians(deg),13) / _fact(13);
-        sine = sine - _pow(_toRadians(deg),15) / _fact(15);
-        sine = sine + _pow(_toRadians(deg),17) / _fact(17);
-        sine = sine - _pow(_toRadians(deg),19) / _fact(19);
-        sine = sine + _pow(_toRadians(deg),21) / _fact(21);
-        if (sign == 0) {
-            return sine;
+        // 4. We use the sine polynomial (based on Taylor's series) if we have 0 <= deg < 45
+        res = _sinTaylorSeries(_toRadians(deg), 33);
+        if (sign == 1) {
+            return res;
         } else {
-            return -sine;
+            return -res;
         }
     }
 
@@ -221,6 +219,20 @@ class Math {
             i = i+1;
         }
         return fact;
+    }
+
+    float _sinTaylorSeries(float rad, int order) {
+        int i = 3;
+        int j = 5;
+
+        float res = rad;
+        while (j <= order) {
+            res = res - (_pow(rad,i) / _fact(i));
+            res = res + (_pow(rad,j) / _fact(j));
+            i = i+4;
+            j = j+4;
+        }
+        return res;
     }
 }
 
