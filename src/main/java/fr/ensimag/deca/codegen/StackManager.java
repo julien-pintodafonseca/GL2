@@ -23,7 +23,7 @@ public class StackManager {
     public boolean getInClass() {
         return inClass;
     }
-    
+
     public void resetLB() {
         this.LB = 1;
     }
