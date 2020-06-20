@@ -3,5 +3,5 @@
 {
     Math m = new Math();
 
-    // TODO
+    println(m._reduceDegrees(0));     // 0.00000e+00
 }

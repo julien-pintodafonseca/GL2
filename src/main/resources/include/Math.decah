@@ -95,9 +95,9 @@ class Math {
             //    deg = _reduceDegrees(deg); // reduce value to avoid int arithmetic overflow
             //}
             if (deg > 0) {
-                deg = (int)(deg)%360;
+                deg = deg - (int)(deg) + (int)(deg)%360;
             } else {
-                deg = (int)(deg)%360;
+                deg = deg - (int)(deg) + (int)(deg)%360;
                 deg = -deg;
             }
         }

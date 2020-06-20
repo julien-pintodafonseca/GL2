@@ -132,8 +132,8 @@ public class MathSimu {
         // null
         lf.add(0.0000f);                            // 00°
         // positive
-        lf.add(0.1750f);                            // 01°
-        lf.add(0.8730f);                            // 05°
+        lf.add(0.0175f);                            // 01°
+        lf.add(0.0873f);                            // 05°
         lf.add(0.1745f);                            // 10°
         lf.add(0.2618f);                            // 15°
         lf.add(0.3491f);                            // 20°
@@ -148,7 +148,7 @@ public class MathSimu {
         lf.add((float)Math.PI);                     // 180°
         lf.add((float)Math.PI*1.25f);               // 225°
         lf.add((float)Math.PI*1.5f);                // 270°
-        lf.add((float)Math.PI+(float)Math.PI/3);    // 330°
+        lf.add((float)Math.PI*1.5f+0.5236f*2);      // 330°
         lf.add((float)Math.PI*2);                   // 360°
         // negative
         lf.add(-0.2618f);                           // -15°
@@ -157,7 +157,7 @@ public class MathSimu {
         lf.add(-((float)Math.PI));                  // -180°
         lf.add(-((float)Math.PI*1.25f));            // -225°
         lf.add(-((float)Math.PI*1.5f));             // -270°
-        lf.add(-((float)Math.PI+(float)Math.PI/3)); // -330°
+        lf.add(-((float)Math.PI*1.5f+0.5236f*2));   // -330°
         // random numbers
         lf.add(-97543.54f);
         lf.add(264.01f);
@@ -166,9 +166,9 @@ public class MathSimu {
         lf.add(-373.25f);
         lf.add(98765.4f);
         // big numbers
-        //lf.add(987654300f);
-        //lf.add(Integer.MAX_VALUE);
-        //lf.add(-(Integer.MAX_VALUE));
+        lf.add(987654300f);
+        lf.add((float)Integer.MAX_VALUE);
+        lf.add(-((float)Integer.MAX_VALUE));
 
         for (Float f : lf) {
             // on applique notre fonction
