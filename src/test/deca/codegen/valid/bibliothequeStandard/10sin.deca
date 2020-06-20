@@ -3,10 +3,31 @@
 {
     Math m = new Math();
 
-    println(m.sin(0));                      // 0.00000e+00
-    println(m.sin(m._getPI()/2));           // 1.00000e+00
-    println(m.sin(m._getPI()*999999));      // 1.19969e-02
-    println(m.sin(m._getPI()/999999));      // 3.14160e-06
-    println(m.sin(m._getPI()));             // -8.74228e-08
-    println(m.sin(m._getMaxInt()+256));     // -1.98979e-01
+    println(m.sin(0.0000));                         // 00°
+    println(m.sin(0.1750));                         // 01°
+    println(m.sin(0.8730));                         // 05°
+    println(m.sin(0.1745));                         // 10°
+    println(m.sin(0.2618));                         // 15°
+    println(m.sin(0.3491));                         // 20°
+    println(m.sin(0.4363));                         // 25°
+    println(m.sin(0.5236));                         // 30°
+    println(m.sin(0.6109));                         // 35°
+    println(m.sin(0.6981));                         // 40°
+    println(m.sin(m._getPI()/4));                   // 45°
+    println(m.sin(m._getPI()/3));                   // 60°
+    println(m.sin(m._getPI()/2));                   // 90°
+    println(m.sin(m._getPI()/1.5));                 // 120°
+    println(m.sin(m._getPI()));                     // 180°
+    println(m.sin(m._getPI()*1.25));                // 225°
+    println(m.sin(m._getPI()*1.5));                 // 270°
+    println(m.sin(m._getPI()+m._getPI()/3));        // 330°
+    println(m.sin(m._getPI()*2));                   // 360°
+    println(m.sin(-0.2618));                        // -15°
+    println(m.sin(-(m._getPI()/2)));                // -90°
+    println(m.sin(-(m._getPI()/1.5)));              // -120°
+    println(m.sin(-(m._getPI())));                  // -180°
+    println(m.sin(-(m._getPI()*1.25)));             // -225°
+    println(m.sin(-(m._getPI()*1.5)));              // -270°
+    println(m.sin(-(m._getPI()+m._getPI()/3)));     // -330°
+    println(m.sin(-m._getMaxInt()+256));
 }

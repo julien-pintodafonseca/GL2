@@ -129,11 +129,32 @@ public class MathSimu {
         System.out.println("float sin(float f) :");
         // lot de valeurs
         List<Float> lf = new ArrayList<>();
-        lf.add(0f);
-        lf.add((float)Math.PI/2);
-        lf.add((float)Math.PI*999999);
-        lf.add((float)Math.PI/999999);
-        lf.add((float)Math.PI);
+        lf.add(0.0000f);                            // 00°
+        lf.add(0.1750f);                            // 01°
+        lf.add(0.8730f);                            // 05°
+        lf.add(0.1745f);                            // 10°
+        lf.add(0.2618f);                            // 15°
+        lf.add(0.3491f);                            // 20°
+        lf.add(0.4363f);                            // 25°
+        lf.add(0.5236f);                            // 30°
+        lf.add(0.6109f);                            // 35°
+        lf.add(0.6981f);                            // 40°
+        lf.add((float)Math.PI/4);                   // 45°
+        lf.add((float)Math.PI/3);                   // 60°
+        lf.add((float)Math.PI/2);                   // 90°
+        lf.add((float)Math.PI/1.5f);                // 120°
+        lf.add((float)Math.PI);                     // 180°
+        lf.add((float)Math.PI*1.25f);               // 225°
+        lf.add((float)Math.PI*1.5f);                // 270°
+        lf.add((float)Math.PI+(float)Math.PI/3);    // 330°
+        lf.add((float)Math.PI*2);                   // 360°
+        lf.add(-0.2618f);                           // -15°
+        lf.add(-((float)Math.PI/2));                // -90°
+        lf.add(-((float)Math.PI/1.5f));             // -120°
+        lf.add(-((float)Math.PI));                  // -180°
+        lf.add(-((float)Math.PI*1.25f));            // -225°
+        lf.add(-((float)Math.PI*1.5f));             // -270°
+        lf.add(-((float)Math.PI+(float)Math.PI/3)); // -330°
         lf.add(Integer.MAX_VALUE+256f);
 
         for (Float f : lf) {
