@@ -86,12 +86,12 @@ class Math {
         // If we don't have 0 <= deg <= 360
         deg = _toDegrees(rad);
         if (!(deg >= 0 && deg < 360)) {
-            deg = _mod(deg,360);
+            deg = _modF(deg,360);
         }
 
         // 2. We use symmetry
         // If quadrant isn't equal to 1
-        quadrant = _mod(deg/90,4) + 1;
+        quadrant = _modI(deg/90,4) + 1;
         sign=0; // by default we want to return +sin(deg)
         if (quadrant != 1) {
             while (_abs(deg-180) < _abs(deg)) {
@@ -148,7 +148,16 @@ class Math {
         return (deg/180.0)*PI;
     }
 
-    float _mod(float deg, int modVal) {
+    float _modF(float deg, int modVal) {
+        int tmp;
+        tmp = deg;              // XXX.YYY => XXX.000
+        deg = deg-tmp;          // XXX.YYY => (XXX.YYY - XXX.000) = 000.YYY
+        tmp = tmp%modVal;       // XXX.000 => (XXX.000 % modVal)  = ZZZ.000
+        deg = deg+tmp;          // 000.YYY => (000.YYY + ZZZ.000) = ZZZ.YYY
+        return deg;
+    }
+
+    int _modI(float deg, int modVal) {
         int tmp;
         tmp = deg;              // XXX.YYY => XXX.000
         deg = deg-tmp;          // XXX.YYY => (XXX.YYY - XXX.000) = 000.YYY
