@@ -131,8 +131,10 @@ public class MathSimu {
         List<Float> lf = new ArrayList<>();
         lf.add(0f);
         lf.add((float)Math.PI/2);
+        lf.add((float)Math.PI*999999);
         lf.add((float)Math.PI/999999);
-        lf.add(999999999f);
+        lf.add((float)Math.PI);
+        lf.add(Integer.MAX_VALUE+256f);
 
         for (Float f : lf) {
             // on applique notre fonction

@@ -3,8 +3,10 @@
 {
     Math m = new Math();
 
-    println(m.sin(0));                  // 0.00000e+00
-    println(m.sin(m._getPI()/2));       // 1.00000e+00
-    println(m.sin(m._getPI()/999999));  // 3.14160e-06
-    println(m.sin(999999999));          // 5.45843e-01
+    println(m.sin(0));                      // 0.00000e+00
+    println(m.sin(m._getPI()/2));           // 1.00000e+00
+    println(m.sin(m._getPI()*999999));      // 1.19969e-02
+    println(m.sin(m._getPI()/999999));      // 3.14160e-06
+    println(m.sin(m._getPI()));             // -8.74228e-08
+    println(m.sin(m._getMaxInt()+256));     // -1.98979e-01
 }

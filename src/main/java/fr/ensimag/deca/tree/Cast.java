@@ -83,9 +83,9 @@ public class Cast extends AbstractExpr {
             compiler.addInstruction(new BEQ(suite)); // si expr.getType().isNull(), on exécute la suite des instructions
 
             // si !expr.getType().isNull(), on teste si expr instanceof type
-            InstanceOf instanceOf = new InstanceOf(expr, type);
+            /*InstanceOf instanceOf = new InstanceOf(expr, type);
             Label lbError = new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_CAST_IMPOSSIBLE) + i);
-            instanceOf.codeGenCMP(compiler, lbError, true); // si !(expr instanceof type), on saute au label d'erreur
+            instanceOf.codeGenCMP(compiler, lbError, true); // si !(expr instanceof type), on saute au label d'erreur*/
             //compiler.getErrorLabelManager().addError(ErrorLabelType.LB_CAST_IMPOSSIBLE);
 
             compiler.addInstruction(new BRA(suite));
