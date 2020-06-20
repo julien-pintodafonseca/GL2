@@ -3,5 +3,5 @@
 {
     Math m = new Math();
 
-    println(m.getMaxValue());       // 3.40282e+38
+    println(m._getMaxValue());       // 3.40282e+38
 }
