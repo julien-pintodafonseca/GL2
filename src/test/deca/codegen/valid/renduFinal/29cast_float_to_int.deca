@@ -9,15 +9,15 @@
 class A {
     float x = 3.5;
     A a;
-    float getAx() {
-        return a.x;
+    float getX() {
+        return this.x;
     }
 }
 
 {
     A oA = new A();
     int y = 0;
-    y = (int)(oA.getAx());
+    y = (int)(oA.getX());
     print("y = ",y);
 }
 
