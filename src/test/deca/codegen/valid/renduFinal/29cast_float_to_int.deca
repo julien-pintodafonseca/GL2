@@ -1,0 +1,23 @@
+// Description:
+//      Utilisation du cast
+//      => Cas spécifique : float to int
+//
+// Resultats:
+//      y = 3
+//      
+
+class A {
+    float x = 3.5;
+    A a;
+    float getAx() {
+        return a.x;
+    }
+}
+
+{
+    A oA = new A();
+    int y = 0;
+    y = (int)(oA.getAx());
+    print("y = ",y);
+}
+
