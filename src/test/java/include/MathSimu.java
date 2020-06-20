@@ -159,8 +159,9 @@ public class MathSimu {
         lf.add(-((float)Math.PI*1.5f));             // -270°
         lf.add(-((float)Math.PI+(float)Math.PI/3)); // -330°
         // big numbers
-        lf.add(2147483647f+256f);
-        lf.add(-(2147483647f+256f));
+        //lf.add(987654300f);
+        //lf.add(Integer.MAX_VALUE);
+        //lf.add(-(Integer.MAX_VALUE));
 
         for (Float f : lf) {
             // on applique notre fonction

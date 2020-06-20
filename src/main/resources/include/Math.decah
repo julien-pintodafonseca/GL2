@@ -4,9 +4,9 @@
 
 class Math {
     float PI = 3.14159265358979323846;
-    float MAX_VALUE = 3.40282 * _pow(10,38);
-    float MIN_VALUE = 1.40130 * _pow(10,-45);
-    float MAX_INT = 2147483647;
+    float MAX_VALUE = 3.40282347 * _pow(10,38);
+    float MIN_VALUE = 1.40129846 * _pow(10,-45);
+    float MAX_INT   = 2.14748365 * _pow(10,9);
     int SIGNIFICAND_WIDTH = 24;
     int MAX_EXPONENT = 127;
     int MIN_EXPONENT = -126;
@@ -90,10 +90,10 @@ class Math {
             sign=-sign; // if sign=-1, we want to return -sin(deg)
         }
         if (!(deg >= 0 && deg < 360)) {
-            while (_abs(deg) > MAX_INT) {
-                deg = _reduceDegrees(deg); // reduce value to avoid int arithmetic overflow
-            }
-            deg = (int)(deg)%360;
+            //while (_abs(deg) > MAX_INT/8192) {
+            //    // TODO : cas à traiter
+            //    deg = _reduceDegrees(deg); // reduce value to avoid int arithmetic overflow
+            //}
             if (deg > 0) {
                 deg = (int)(deg)%360;
             } else {
