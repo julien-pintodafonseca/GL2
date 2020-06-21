@@ -165,8 +165,8 @@ class Math {
             }
         }
 
-        // 3. We use the cofunction if we are in [45;90]
-        if (!(deg < 45)) {
+        // 3. We use the cofunction if we are in ]45;90]
+        if (deg > 45 && deg <= 90) {
             // instead of calculating sin(x) we will calculate cos(90°-x)
             if (sign == 1) {
                 return cos(_toRadians(90 - deg));
@@ -175,7 +175,7 @@ class Math {
             }
         }
 
-        // 4. We use the sine polynomial if we are in [0;45[
+        // 4. We use the sine polynomial if we are in [0;45]
         if (sign == 1) {
             return _sinePoly(_toRadians(deg), 31);
         } else {
@@ -221,17 +221,17 @@ class Math {
             }
         }
 
-        // 3. We use the cofunction if we are in [PI/4;PI/2]
-        if (rad >= PI/4 && rad <= PI/2) {
+        // 3. We use the cofunction if we are in ]PI/4;PI/2]
+        if (rad > PI/4 && rad <= PI/2) {
             // instead of calculating sin(x) we will calculate cos(90°-x)
-            // if (sign == 1) {
-            //    return cos(PI/2 - rad);
-            // } else {
-            //    return -cos(PI/2 - rad);
-            // }
+            if (sign == 1) {
+                return cos(PI/2 - rad);
+            } else {
+                return -cos(PI/2 - rad);
+            }
         }
 
-        // 4. We use the sine polynomial if we are in [0;PI/4[
+        // 4. We use the sine polynomial if we are in [0;PI/4]
         if (sign == 1) {
             return _sinePoly(rad, 31);
         } else {
@@ -288,8 +288,8 @@ class Math {
             }
         }
 
-        // 3. We use the cofunction if we are in [45;90]
-        if (!(deg < 45)) {
+        // 3. We use the cofunction if we are in ]45;90]
+        if (deg > 45 && deg <= 90) {
             // instead of calculating cos(x) we will calculate sin(90°-x)
             if (sign == 1) {
                 return sin(_toRadians(90 - deg));
@@ -298,7 +298,7 @@ class Math {
             }
         }
 
-        // 4. We use the cosine polynomial if we are in [0;45[
+        // 4. We use the cosine polynomial if we are in [0;45]
         if (sign == 1) {
             return _cosinePoly(_toRadians(deg), 31);
         } else {
