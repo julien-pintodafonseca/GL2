@@ -205,7 +205,7 @@ public class Identifier extends AbstractIdentifier {
 
     @Override
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) {
-        if(getExpDefinition().isField()) {
+        if (getExpDefinition().isField()) {
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
         }
         compiler.addInstruction(new LOAD(getExpDefinition().getOperand(), register));
@@ -226,7 +226,7 @@ public class Identifier extends AbstractIdentifier {
     @Override
     protected DAddr codeGenOperandAssign(DecacCompiler compiler) {
         ExpDefinition expDef = getExpDefinition();
-        if(expDef.isField()) {
+        if (expDef.isField()) {
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
         }
         return expDef.getOperand();

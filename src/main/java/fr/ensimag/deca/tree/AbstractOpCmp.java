@@ -46,7 +46,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
             Type t = compiler.environmentType.BOOLEAN;
             setType(t);
             return t;
-        } else if(this instanceof AbstractOpExactCmp && (((t1.isClass() || t1.isNull()) && (t2.isClass() || t2.isNull())) || (t1.isBoolean() && t2.isBoolean()))) {
+        } else if (this instanceof AbstractOpExactCmp && (((t1.isClass() || t1.isNull()) && (t2.isClass() || t2.isNull())) || (t1.isBoolean() && t2.isBoolean()))) {
                 Type t = compiler.environmentType.BOOLEAN;
                 setType(t);
                 return t;
@@ -106,7 +106,7 @@ public abstract class AbstractOpCmp extends AbstractBinaryExpr {
         codeGenCMP(compiler, lb, false);
 
         compiler.addInstruction(new LOAD(new ImmediateInteger(0), Register.R0));
-        if(compiler.getLabelManager().getCurrentLabel() != null) {
+        if (compiler.getLabelManager().getCurrentLabel() != null) {
             compiler.addInstruction(new BRA(compiler.getLabelManager().getCurrentLabel()));
         }
         compiler.addLabel(lb);

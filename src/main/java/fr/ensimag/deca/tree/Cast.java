@@ -10,7 +10,10 @@ import fr.ensimag.deca.context.ContextualError;
 import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.context.Type;
 import fr.ensimag.deca.tools.IndentPrintStream;
-import fr.ensimag.ima.pseudocode.*;
+import fr.ensimag.ima.pseudocode.GPRegister;
+import fr.ensimag.ima.pseudocode.Label;
+import fr.ensimag.ima.pseudocode.NullOperand;
+import fr.ensimag.ima.pseudocode.Register;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.commons.lang.Validate;
 
@@ -57,7 +60,7 @@ public class Cast extends AbstractExpr {
             // 1. Conversion de la forme (T)(e) où T est le type boolean, int ou float et e est une expression de type T.
             // Il suffit de coder l’expression, la conversion est l’opération identité.
             expr.codeGenInst(compiler, register);
-        }else if (type.getType().isFloat() && expr.getType().isInt()) { // cast de int -> float
+        } else if (type.getType().isFloat() && expr.getType().isInt()) { // cast de int -> float
             // 2. Conversion de la forme (float)(e), où e est une expression de type int. On code l’expression, puis on effectue une opération FLOAT.
             expr.codeGenInst(compiler, Register.R1);
             compiler.addInstruction(new FLOAT(Register.R1, register));
@@ -97,7 +100,7 @@ public class Cast extends AbstractExpr {
 
             compiler.addLabel(suite);
             /*expr.codeGenInst(compiler, register);
-            if(register == Register.R0) {
+            if (register == Register.R0) {
                 compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R1));
                 compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(0, register)));
             } else {

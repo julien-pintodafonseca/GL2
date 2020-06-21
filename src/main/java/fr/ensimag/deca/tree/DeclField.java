@@ -80,7 +80,7 @@ public class DeclField extends AbstractDeclField {
     @Override
     protected void codeGenField(DecacCompiler compiler, ClassDefinition currentClass) {
         compiler.addComment("Initialisation de " + currentClass.getType() + "." + varName.getName());
-        if(type.getType().isInt() || type.getType().isBoolean()) { // par défaut à la valeur 0 (qui signifie false dans le cas d'un booléen)
+        if (type.getType().isInt() || type.getType().isBoolean()) { // par défaut à la valeur 0 (qui signifie false dans le cas d'un booléen)
             compiler.addInstruction(new LOAD(0, Register.R0));
         } else if (type.getType().isFloat()) { // par défaut a la valeur 0.0
             compiler.addInstruction(new LOAD(0, Register.R0));

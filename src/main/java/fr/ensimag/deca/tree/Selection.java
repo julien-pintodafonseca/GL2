@@ -67,9 +67,9 @@ public class Selection extends AbstractLValue {
         codeGenInst(compiler, Register.R1);
         compiler.addInstruction(new CMP(1, Register.R1));
 
-        if(reverse) { // reverse = true
+        if (reverse) { // reverse = true
             compiler.addInstruction(new BEQ(label));
-        } else{ // reverse = false
+        } else { // reverse = false
             compiler.addInstruction(new BNE(label));
         }
     }

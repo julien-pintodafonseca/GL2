@@ -55,7 +55,7 @@ public class Initialization extends AbstractInitialization {
     @Override
     protected void codeGenInitialization(DecacCompiler compiler, DAddr addr) throws DecacFatalError {
         getExpression().codeGenInst(compiler, Register.R0);
-        if(compiler.getStackManager().getInClass()) { // si on est dans une classe, il s'agit de la déclaration d'un champ
+        if (compiler.getStackManager().getInClass()) { // si on est dans une classe, il s'agit de la déclaration d'un champ
             compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1)); // R1 contient l'adresse de l'objet
         }
         compiler.addInstruction(new STORE(Register.R0, addr));

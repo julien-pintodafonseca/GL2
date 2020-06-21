@@ -54,7 +54,7 @@ public class New extends AbstractExpr {
         compiler.addInstruction(new NEW(ident.getClassDefinition().getNumberOfFields() + 1, register));
         compiler.addInstruction(new BOV(new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_FULL_HEAP))));
         compiler.getErrorLabelManager().addError(ErrorLabelType.LB_FULL_HEAP);
-        if(register == Register.R0) {
+        if (register == Register.R0) {
             compiler.addInstruction(new LEA(ident.getClassDefinition().getOperand(), Register.R1));
             compiler.addInstruction(new STORE(Register.R1, new RegisterOffset(0, register)));
         } else {

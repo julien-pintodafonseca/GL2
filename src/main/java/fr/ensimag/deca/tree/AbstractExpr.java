@@ -102,10 +102,9 @@ public abstract class AbstractExpr extends AbstractInst {
                 ConvFloat conv = new ConvFloat(this);
                 conv.setType(expectedType);
                 return conv;
-            }else if(rightType.isNull()){
+            } else if (rightType.isNull()) {
             	return this;
-            	
-        	}else {
+        	} else {
                 AbstractIdentifier ident = new Identifier(expectedType.getName());
                 ident.verifyExpr(compiler, localEnv, currentClass);
                 ident.setType(expectedType);

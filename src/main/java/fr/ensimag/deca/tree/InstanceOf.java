@@ -65,7 +65,7 @@ public class InstanceOf extends AbstractExpr {
             codeGenIn(compiler, labelReturnTrue, Register.getR(k));
             compiler.getRegisterManager().free(k);
         } else {
-            int y = compiler.getRegisterManager().getSize() -1 ;
+            int y = compiler.getRegisterManager().getSize() -1;
             compiler.addInstruction(new PUSH(Register.getR(y))); // chargement dans la pile de 1 registre
             compiler.getTSTOManager().addCurrent(1);
 
@@ -75,7 +75,7 @@ public class InstanceOf extends AbstractExpr {
             compiler.getTSTOManager().addCurrent(-1);
         }
 
-        if(reverse) { // correspond à (expr instanceof type)
+        if (reverse) { // correspond à (expr instanceof type)
             compiler.addInstruction(new BRA(label)); // si le résultat de l'instance est faux, on exécute la branche fausse commençant au label label
             // sinon, on ne fait rien
             compiler.addLabel(labelReturnTrue);
@@ -106,8 +106,8 @@ public class InstanceOf extends AbstractExpr {
         compiler.addInstruction(new CMP(new NullOperand(), register));
         compiler.addInstruction(new BEQ(labelWhileEnd));
 
-        //if(superClass == type){
-        if(register == Register.R0) {
+        //if (superClass == type) {
+        if (register == Register.R0) {
             compiler.addInstruction(new LEA(type.getClassDefinition().getOperand(), Register.R1));
             compiler.addInstruction(new CMP(Register.R1, register));
         } else {

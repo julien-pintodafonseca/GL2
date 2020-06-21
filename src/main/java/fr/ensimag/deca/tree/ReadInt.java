@@ -37,7 +37,7 @@ public class ReadInt extends AbstractReadExpr {
     protected void codeGenInst(DecacCompiler compiler, GPRegister register) throws DecacFatalError {
         compiler.addInstruction(new RINT()); // load the read value in the register R1
         codeGenError(compiler);
-        if(register != Register.R1) {
+        if (register != Register.R1) {
             compiler.addInstruction(new LOAD(Register.R1, register));
         }
     }
