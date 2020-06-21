@@ -114,64 +114,6 @@ class Math {
         }
     }
 
-    // experimental method
-    float _sinX(float rad) {
-        float quadrant;
-        int sign;
-
-        // 1. We use periodicity if we aren't in [0;2*PI]
-        sign = 1;
-        if (rad < 0) {
-            sign=-sign;
-        }
-        if (!(rad >= 0 && rad <= 2*PI)) {
-            if (rad > 0) {
-                rad = rad / (2*PI);
-                rad = (rad - (int)(rad)) * (2*PI);
-            } else {
-                rad = rad / (2*PI);
-                rad = (rad - (int)(rad)) * (2*PI);
-                rad = -rad;
-            }
-        }
-        println("r: ", rad);
-
-        // 2. We use symmetry if we aren't in [0;PI/2] (quadrant=1)
-        quadrant = (rad/(PI/2)) / 4;
-        quadrant = (quadrant - (int)(quadrant)) * 4;
-        quadrant = (int)(quadrant) + 1;
-        if (quadrant != 1) {
-            while (_abs(rad-(PI/2)) < _abs(rad)) {
-                if (rad > 0) {
-                    rad = _abs(rad-(PI/2));
-                } else {
-                    rad = -_abs(rad+(PI/2));
-                }
-            }
-            if (quadrant != 2) {
-                sign=-sign;
-            }
-        }
-        println("q :",quadrant);
-
-        // 3. We use the cofunction if we are in [PI/4;PI/2]
-        if (rad >= PI/4 && rad <= PI/2) {
-            // instead of calculating sin(x) we will calculate cos(90°-x)
-            // if (sign == 1) {
-            //    return cos(PI/2 - rad);
-            // } else {
-            //    return -cos(PI/2 - rad);
-            // }
-        }
-
-        // 4. We use the sine polynomial if we are in [0;PI/4[
-        if (sign == 1) {
-            return _sinePoly(rad, 31);
-        } else {
-            return -_sinePoly(rad, 31);
-        }
-    }
-
     /**
      * Returns the trigonometric sine of an angle.  Special cases:
      * If the argument is zero, then the result is a zero with the
@@ -238,6 +180,62 @@ class Math {
             return _sinePoly(_toRadians(deg), 31);
         } else {
             return -_sinePoly(_toRadians(deg), 31);
+        }
+    }
+
+    // experimental method
+    float _sinX(float rad) {
+        float quadrant;
+        int sign;
+
+        // 1. We use periodicity if we aren't in [0;2*PI]
+        sign = 1;
+        if (rad < 0) {
+            sign=-sign;
+        }
+        if (!(rad >= 0 && rad <= 2*PI)) {
+            if (rad > 0) {
+                rad = rad / (2*PI);
+                rad = (rad - (int)(rad)) * (2*PI);
+            } else {
+                rad = rad / (2*PI);
+                rad = (rad - (int)(rad)) * (2*PI);
+                rad = -rad;
+            }
+        }
+
+        // 2. We use symmetry if we aren't in [0;PI/2] (quadrant=1)
+        quadrant = (rad/(PI/2)) / 4;
+        quadrant = (quadrant - (int)(quadrant)) * 4;
+        quadrant = (int)(quadrant) + 1;
+        if (quadrant != 1) {
+            while (_abs(rad-(PI/2)) < _abs(rad)) {
+                if (rad > 0) {
+                    rad = _abs(rad-(PI/2));
+                } else {
+                    rad = -_abs(rad+(PI/2));
+                }
+            }
+            if (quadrant != 2) {
+                sign=-sign;
+            }
+        }
+
+        // 3. We use the cofunction if we are in [PI/4;PI/2]
+        if (rad >= PI/4 && rad <= PI/2) {
+            // instead of calculating sin(x) we will calculate cos(90°-x)
+            // if (sign == 1) {
+            //    return cos(PI/2 - rad);
+            // } else {
+            //    return -cos(PI/2 - rad);
+            // }
+        }
+
+        // 4. We use the sine polynomial if we are in [0;PI/4[
+        if (sign == 1) {
+            return _sinePoly(rad, 31);
+        } else {
+            return -_sinePoly(rad, 31);
         }
     }
 
@@ -381,7 +379,7 @@ class Math {
     }
 
     // Experimental method
-    float _sinePolyRAD(float rad) {
+    float _sinePolyX(float rad) {
         int i = 3, j = 5;
         int limit = 31;
         float x = rad;
