@@ -1,0 +1,46 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println("--- null");
+    println(m.cos(0.0000));                         // 1.00000e+00  | 00°
+    println("--- positive");
+    println(m.cos(0.0175));                         // 9.99847e-01  | 01°
+    println(m.cos(0.0873));                         // 9.96192e-01  | 05°
+    println(m.cos(0.1745));                         // 9.84813e-01  | 10°
+    println(m.cos(0.2618));                         // 9.65926e-01  | 15°
+    println(m.cos(0.3491));                         // 9.39681e-01  | 20°
+    println(m.cos(0.4363));                         // 9.06321e-01  | 25°
+    println(m.cos(0.5236));                         // 8.66025e-01  | 30°
+    println(m.cos(0.6109));                         // 8.19132e-01  | 35°
+    println(m.cos(0.6981));                         // 7.66065e-01  | 40°
+    println(m.cos(m._getPI()/4));                   // 7.07107e-01  | 45°
+    println(m.cos(m._getPI()/3));                   // 5.00000e-01  | 60°
+    println(m.cos(m._getPI()/2));                   // -4.37114e-08 | 90°
+    println(m.cos(m._getPI()/1.5));                 // -5.00000e-01 | 120°
+    println(m.cos(m._getPI()));                     // -1.00000e+00 | 180°
+    println(m.cos(m._getPI()*1.25));                // -7.07107e-01 | 225°
+    println(m.cos(m._getPI()*1.5));                 // 1.19249e-08  | 270°
+    println(m.cos(m._getPI()*1.5+0.5236*2));        // 8.66027e-01  | 330°
+    println(m.cos(m._getPI()*2));                   // 1.00000e+00  | 360°
+    println("--- negative");
+    println(m.cos(-0.2618));                        // 9.65926e-01  | -15°
+    println(m.cos(-(m._getPI()/2)));                // -4.37114e-08 | -90°
+    println(m.cos(-(m._getPI()/1.5)));              // -5.00000e-01 | -120°
+    println(m.cos(-(m._getPI())));                  // -1.00000e+00 | -180°
+    println(m.cos(-(m._getPI()*1.25)));             // -7.07107e-01 | -225°
+    println(m.cos(-(m._getPI()*1.5)));              // 1.19249e-08  | -270°
+    println(m.cos(-(m._getPI()*1.5+0.5236*2)));     // 8.66027e-01  | -330°
+    println("--- random numbers");
+    println(m.cos(-97543.54));                      // -9.73948e-01
+    println(m.cos(264.01));                         // 9.93253e-01
+    println(m.cos(555));                            // -4.87214e-01
+    println(m.cos(3333.333));                       // -9.94679e-01
+    println(m.cos(-373.25));                        // -8.25603e-01
+    println(m.cos(98765.4));                        // 9.99963e-01
+    //println("--- big numbers");
+    //println(m.cos(987654321));                    // -9.59638e-01
+    //println(m.cos(m._getMaxInt()));               // 2.37816e-01
+    //println(m.cos(-(m._getMaxInt())));            // 2.37816e-01
+}

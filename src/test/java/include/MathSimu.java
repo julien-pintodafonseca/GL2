@@ -21,8 +21,10 @@ public class MathSimu {
         powSimu();
         ulpSimu();
         sinSimu();
+        cosSimu();
+    }
 
-        /*
+    private static void experimental() {
         int i = 3;
         int j = 5;
 
@@ -40,7 +42,6 @@ public class MathSimu {
         //System.out.println(Math.sin(x));
         //System.out.println(res);
         System.out.println(x);
-         */
     }
 
     private static float fact(int n) {
@@ -201,6 +202,60 @@ public class MathSimu {
         for (Float f : lf) {
             // on applique notre fonction
             double val = Math.sin(f);
+
+            System.out.println(String.format("%6.5e",val));
+        }
+        System.out.println("--------------------");
+    }
+
+    private static void cosSimu() {
+        System.out.println("float cos(float f) :");
+        // lot de valeurs
+        List<Float> lf = new ArrayList<>();
+        // null
+        lf.add(0.0000f);                            // 00°
+        // positive
+        lf.add(0.0175f);                            // 01°
+        lf.add(0.0873f);                            // 05°
+        lf.add(0.1745f);                            // 10°
+        lf.add(0.2618f);                            // 15°
+        lf.add(0.3491f);                            // 20°
+        lf.add(0.4363f);                            // 25°
+        lf.add(0.5236f);                            // 30°
+        lf.add(0.6109f);                            // 35°
+        lf.add(0.6981f);                            // 40°
+        lf.add((float)Math.PI/4);                   // 45°
+        lf.add((float)Math.PI/3);                   // 60°
+        lf.add((float)Math.PI/2);                   // 90°
+        lf.add((float)Math.PI/1.5f);                // 120°
+        lf.add((float)Math.PI);                     // 180°
+        lf.add((float)Math.PI*1.25f);               // 225°
+        lf.add((float)Math.PI*1.5f);                // 270°
+        lf.add((float)Math.PI*1.5f+0.5236f*2);      // 330°
+        lf.add((float)Math.PI*2);                   // 360°
+        // negative
+        lf.add(-0.2618f);                           // -15°
+        lf.add(-((float)Math.PI/2));                // -90°
+        lf.add(-((float)Math.PI/1.5f));             // -120°
+        lf.add(-((float)Math.PI));                  // -180°
+        lf.add(-((float)Math.PI*1.25f));            // -225°
+        lf.add(-((float)Math.PI*1.5f));             // -270°
+        lf.add(-((float)Math.PI*1.5f+0.5236f*2));   // -330°
+        // random numbers
+        lf.add(-97543.54f);
+        lf.add(264.01f);
+        lf.add(555f);
+        lf.add(3333.333f);
+        lf.add(-373.25f);
+        lf.add(98765.4f);
+        // big numbers
+        //lf.add(987654300f);
+        //lf.add((float)Integer.MAX_VALUE);
+        //lf.add(-((float)Integer.MAX_VALUE));
+
+        for (Float f : lf) {
+            // on applique notre fonction
+            double val = Math.cos(f);
 
             System.out.println(String.format("%6.5e",val));
         }

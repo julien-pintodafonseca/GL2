@@ -93,7 +93,7 @@ class Math {
      * Returns the value of the first argument raised to the power of the
      * second argument.
      *
-     * @param   x    the base.
+     * @param   x   the base.
      * @param   e   the exponent.
      * @return  the value x^e.
      */
@@ -117,7 +117,7 @@ class Math {
     /**
      * Returns the trigonometric sine of an angle.  Special cases:
      * If the argument is zero, then the result is a zero with the
-     * same sign as the argument.</ul>
+     * same sign as the argument.
      *
      * @param   rad   an angle, in radians.
      * @return  the sine of the argument.
@@ -127,7 +127,7 @@ class Math {
         float quadrant;
         int sign;
 
-        // 1. We use periodicity if we aren't in [0;360]
+        // 1. We use periodicity if we aren't in [0;360[
         deg = _toDegrees(rad);
         sign=1; // by default, sign=1 because we want to return +sin(deg)
         if (deg < 0) {
@@ -168,11 +168,11 @@ class Math {
         // 3. We use the cofunction if we are in [45;90]
         if (!(deg < 45)) {
             // instead of calculating sin(x) we will calculate cos(90°-x)
-            // if (sign == 1) {
-            //    return cos(_toRadians(90)-_toRadians(deg));
-            // } else {
-            //    return -cos(_toRadians(90)-_toRadians(deg));
-            // }
+            if (sign == 1) {
+                return cos(_toRadians(90 - deg));
+            } else {
+                return -cos(_toRadians(90 - deg));
+            }
         }
 
         // 4. We use the sine polynomial if we are in [0;45[
@@ -188,12 +188,12 @@ class Math {
         float quadrant;
         int sign;
 
-        // 1. We use periodicity if we aren't in [0;2*PI]
+        // 1. We use periodicity if we aren't in [0;2*PI[
         sign = 1;
         if (rad < 0) {
             sign=-sign;
         }
-        if (!(rad >= 0 && rad <= 2*PI)) {
+        if (!(rad >= 0 && rad < 2*PI)) {
             if (rad > 0) {
                 rad = rad / (2*PI);
                 rad = (rad - (int)(rad)) * (2*PI);
@@ -246,7 +246,64 @@ class Math {
      * @return  the cosine of the argument.
      */
     float cos(float rad) {
-        println("cos(rad) not yet implemented");
+        float deg;
+        float quadrant;
+        int sign;
+
+        // 1. We use periodicity if we aren't in [0;360[
+        deg = _toDegrees(rad);
+        sign=1; // by default, sign=1 because we want to return +sin(deg)
+        if (deg < 0) {
+            sign=-sign; // if sign=-1, we want to return -sin(deg)
+        }
+        if (!(deg >= 0 && deg < 360)) {
+            //while (_abs(deg) > MAX_INT/8192) {
+            //    // TODO : cas à traiter
+            //    deg = _reduceDegrees(deg); // reduce value to avoid int arithmetic overflow
+            //}
+            if (deg > 0) {
+                deg = deg / 360;
+                deg = (deg - (int)(deg)) * 360;
+            } else {
+                deg = deg / 360;
+                deg = (deg - (int)(deg)) * 360;
+                deg = -deg;
+            }
+        }
+
+        // 2. We use symmetry if we aren't in [0;90] (quadrant 1)
+        quadrant = (deg/90) / 4;
+        quadrant = (quadrant - (int)(quadrant)) * 4;
+        quadrant = (int)(quadrant) + 1;
+        if (quadrant != 1) {
+            while (_abs(deg-180) < _abs(deg)) {
+                if (deg > 0) {
+                    deg = _abs(deg-180);
+                } else {
+                    deg = -_abs(deg+180);
+                }
+            }
+            if (quadrant != 2) {
+                sign=-sign;
+            }
+        }
+
+        // 3. We use the cofunction if we are in [45;90]
+        if (!(deg < 45)) {
+            // instead of calculating cos(x) we will calculate sin(90°-x)
+            if (sign == 1) {
+                return sin(_toRadians(90 - deg));
+            } else {
+                return -sin(_toRadians(90 - deg));
+            }
+        }
+
+        // 4. We use the cosine polynomial if we are in [0;45[
+        if (sign == 1) {
+            return _cosinePoly(_toRadians(deg), 31);
+        } else {
+            return -_cosinePoly(_toRadians(deg), 31);
+        }
     }
 
     /**
@@ -385,6 +442,29 @@ class Math {
         float x = rad;
 
         while (ulp(x) > ulp(rad) && j <= limit) {
+            x = x - (_pow(rad,i) / _fact(i));
+            x = x + (_pow(rad,j) / _fact(j));
+            i = i+4;
+            j = j+4;
+        }
+        return x;
+    }
+
+    /**
+     * Return the cosine polynomiale based on Taylor series. The greater its
+     * maximum order value, the more accurate the result ; the result is
+     * an approximation.
+     *
+     * @param   rad     an angle, in radians.
+     * @param   order   the maximum order.
+     * @return  the result of cosine polynomiale.
+     */
+    float _cosinePoly(float rad, int order) {
+        int i = 2;
+        int j = 4;
+        float x = 1;
+
+        while (j <= order) {
             x = x - (_pow(rad,i) / _fact(i));
             x = x + (_pow(rad,j) / _fact(j));
             i = i+4;
