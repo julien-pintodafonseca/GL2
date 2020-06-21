@@ -7,7 +7,7 @@ import java.util.List;
  * We manually call methods from Math library to compare their results
  * with similar methods from Math.decah library. We can use this class to verify
  * Math.decah compliance or to improve it
- * 
+ *
  * @author Equipe GL2
  * @date 2020
  */
@@ -21,6 +21,34 @@ public class MathSimu {
         powSimu();
         ulpSimu();
         sinSimu();
+
+        /*
+        int i = 3;
+        int j = 5;
+
+        float x = (int)526%(int)(2*Math.PI);
+        double res = x;
+        while (j <= 7) {
+            res = (float) (res - (Math.pow(x,i) / fact(i)));
+            res = (float) (res + (Math.pow(x,j) / fact(j)));
+            i = i+4;
+            j = j+4;
+        }
+        System.out.println(Math.ulp(Math.sin(x)));
+        System.out.println(Math.ulp(res));
+        System.out.println(Math.ulp(res) > Math.ulp(Math.sin(x)));
+        //System.out.println(Math.sin(x));
+        //System.out.println(res);
+        System.out.println(x);
+         */
+    }
+
+    private static float fact(int n) {
+        float fact = 1;
+        for (int i = 2; i <= n; i++) {
+            fact = fact * i;
+        }
+        return fact;
     }
 
     private static void getMaxValueSimu() {
@@ -166,9 +194,9 @@ public class MathSimu {
         lf.add(-373.25f);
         lf.add(98765.4f);
         // big numbers
-        lf.add(987654300f);
-        lf.add((float)Integer.MAX_VALUE);
-        lf.add(-((float)Integer.MAX_VALUE));
+        //lf.add(987654300f);
+        //lf.add((float)Integer.MAX_VALUE);
+        //lf.add(-((float)Integer.MAX_VALUE));
 
         for (Float f : lf) {
             // on applique notre fonction
