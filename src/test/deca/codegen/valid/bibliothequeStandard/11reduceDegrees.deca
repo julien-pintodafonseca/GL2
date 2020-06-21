@@ -4,4 +4,8 @@
     Math m = new Math();
 
     println(m._reduceDegrees(0));     // 0.00000e+00
+    println(m._reduceDegrees(360));   // 0.00000e+00
+    println(m._reduceDegrees(-360));  // -0.00000e+00
+    println(m._reduceDegrees(720));   // 3.60000e+02
+    println(m._reduceDegrees(-720));  // -3.60000e+02
 }
