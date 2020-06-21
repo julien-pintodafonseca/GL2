@@ -1,0 +1,27 @@
+// Description:
+//      Utilisation du cast
+//      => Cas spécifique : caster boolean dans boolean, int dand int et float dans float.
+//
+// Resultats:
+//      y = 2
+//		t = 2.30000e+00
+//      OK
+
+{
+    int x = 2;
+    int y;
+    boolean a = true;
+    boolean b;
+    float z = 2.3;
+    float t;
+    y = (int)(x);
+    b = (boolean)(a);
+    t = (float)(z);
+    
+    println(" y = ",y);
+    println(" t = ",t);
+    if(b){
+    	println("OK");
+    }
+}
+

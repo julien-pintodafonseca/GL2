@@ -4,7 +4,7 @@
 //
 // Resultats:
 //    Erreur à l'exécution
-//    Ligne 20 : cast invalide
+//    Ligne 20 : cast impossible de B vers A
 
 class B {
 

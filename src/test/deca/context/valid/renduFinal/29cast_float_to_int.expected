@@ -1,0 +1,81 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [9, 0] DeclClass
+   |      +> [9, 6] Identifier (A)
+   |      |  definition: type defined at [9, 0], type=A
+   |      +> Identifier (Object)
+   |      |  definition: type (builtin), type=Object
+   |      +> ListDeclField [List with 2 elements]
+   |      |  []> [10, 10] DeclField
+   |      |  ||  +> [10, 4] Identifier (float)
+   |      |  ||  |  definition: type (builtin), type=float
+   |      |  ||  +> [10, 10] Identifier (x)
+   |      |  ||  |  definition: field defined at [10, 10], type=float
+   |      |  ||  `> Initialization
+   |      |  ||     `> [10, 14] Float (3.5)
+   |      |  ||        type: float
+   |      |  []> [11, 6] DeclField
+   |      |      +> [11, 4] Identifier (A)
+   |      |      |  definition: type defined at [9, 0], type=A
+   |      |      +> [11, 6] Identifier (a)
+   |      |      |  definition: field defined at [11, 6], type=A
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [12, 4] DeclMethod
+   |             +> [12, 4] Identifier (float)
+   |             |  definition: type (builtin), type=float
+   |             +> [12, 10] Identifier (getX)
+   |             |  definition: method defined at [12, 4], type=float
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [12, 17] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [13, 8] Return
+   |                       `> [13, 19] Selection
+   |                          type: float
+   |                          +> [13, 15] This
+   |                          |  type: A
+   |                          `> [13, 20] Identifier (x)
+   |                             definition: field defined at [10, 10], type=float
+   `> [17, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [18, 6] DeclVar
+      |  ||  +> [18, 4] Identifier (A)
+      |  ||  |  definition: type defined at [9, 0], type=A
+      |  ||  +> [18, 6] Identifier (oA)
+      |  ||  |  definition: variable defined at [18, 6], type=A
+      |  ||  `> [18, 9] Initialization
+      |  ||     `> [18, 11] New
+      |  ||        type: A
+      |  ||        `> [18, 15] Identifier (A)
+      |  ||           definition: type defined at [9, 0], type=A
+      |  []> [19, 8] DeclVar
+      |      +> [19, 4] Identifier (int)
+      |      |  definition: type (builtin), type=int
+      |      +> [19, 8] Identifier (y)
+      |      |  definition: variable defined at [19, 8], type=int
+      |      `> [19, 10] Initialization
+      |         `> [19, 12] Int (0)
+      |            type: int
+      `> ListInst [List with 2 elements]
+         []> [20, 6] Assign
+         ||  type: int
+         ||  +> [20, 4] Identifier (y)
+         ||  |  definition: variable defined at [19, 8], type=int
+         ||  `> [20, 8] Cast
+         ||     type: int
+         ||     +> [20, 9] Identifier (int)
+         ||     |  definition: type (builtin), type=int
+         ||     `> [20, 14] MethodCall
+         ||        type: float
+         ||        +> [20, 14] Identifier (oA)
+         ||        |  definition: variable defined at [18, 6], type=A
+         ||        +> [20, 17] Identifier (getX)
+         ||        |  definition: method defined at [12, 4], type=float
+         ||        `> ListExpr [List with 0 elements]
+         []> [21, 4] Print
+             `> ListExpr [List with 2 elements]
+                []> [21, 10] StringLiteral (y = )
+                ||  type: string
+                []> [21, 17] Identifier (y)
+                    definition: variable defined at [19, 8], type=int

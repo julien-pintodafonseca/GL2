@@ -1,6 +1,6 @@
 // Description:
 //      Utilisation du cast
-//      => Cas spécifique : cast d'un objet classe fille vers un un objet de sa classe mère
+//      => Cas spécifique : cast d'un objet classe fille vers un objet de sa classe mère
 //
 // Resultats:
 //     

@@ -1,6 +1,6 @@
 // Description:
 //      Utilisation du cast
-//      => Cas spécifique : float to int
+//      => Cas spécifique : caster une variable de type float dans une variable de type int
 //
 // Resultats:
 //      y = 3

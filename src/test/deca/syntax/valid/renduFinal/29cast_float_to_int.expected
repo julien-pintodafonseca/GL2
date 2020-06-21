@@ -1,0 +1,53 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [9, 0] DeclClass
+   |      +> [9, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 2 elements]
+   |      |  []> [10, 10] DeclField
+   |      |  ||  +> [10, 4] Identifier (float)
+   |      |  ||  +> [10, 10] Identifier (x)
+   |      |  ||  `> Initialization
+   |      |  ||     `> [10, 14] Float (3.5)
+   |      |  []> [11, 6] DeclField
+   |      |      +> [11, 4] Identifier (A)
+   |      |      +> [11, 6] Identifier (a)
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [12, 4] DeclMethod
+   |             +> [12, 4] Identifier (float)
+   |             +> [12, 10] Identifier (getX)
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [12, 17] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [13, 8] Return
+   |                       `> [13, 19] Selection
+   |                          +> [13, 15] This
+   |                          `> [13, 20] Identifier (x)
+   `> [17, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [18, 6] DeclVar
+      |  ||  +> [18, 4] Identifier (A)
+      |  ||  +> [18, 6] Identifier (oA)
+      |  ||  `> [18, 9] Initialization
+      |  ||     `> [18, 11] New
+      |  ||        `> [18, 15] Identifier (A)
+      |  []> [19, 8] DeclVar
+      |      +> [19, 4] Identifier (int)
+      |      +> [19, 8] Identifier (y)
+      |      `> [19, 10] Initialization
+      |         `> [19, 12] Int (0)
+      `> ListInst [List with 2 elements]
+         []> [20, 6] Assign
+         ||  +> [20, 4] Identifier (y)
+         ||  `> [20, 8] Cast
+         ||     +> [20, 9] Identifier (int)
+         ||     `> [20, 14] MethodCall
+         ||        +> [20, 14] Identifier (oA)
+         ||        +> [20, 17] Identifier (getX)
+         ||        `> ListExpr [List with 0 elements]
+         []> [21, 4] Print
+             `> ListExpr [List with 2 elements]
+                []> [21, 10] StringLiteral (y = )
+                []> [21, 17] Identifier (y)

@@ -1,0 +1,62 @@
+`> [10, 0] Program
+   +> ListDeclClass [List with 0 elements]
+   `> [10, 0] Main
+      +> ListDeclVar [List with 6 elements]
+      |  []> [11, 8] DeclVar
+      |  ||  +> [11, 4] Identifier (int)
+      |  ||  +> [11, 8] Identifier (x)
+      |  ||  `> [11, 10] Initialization
+      |  ||     `> [11, 12] Int (2)
+      |  []> [12, 8] DeclVar
+      |  ||  +> [12, 4] Identifier (int)
+      |  ||  +> [12, 8] Identifier (y)
+      |  ||  `> NoInitialization
+      |  []> [13, 12] DeclVar
+      |  ||  +> [13, 4] Identifier (boolean)
+      |  ||  +> [13, 12] Identifier (a)
+      |  ||  `> [13, 14] Initialization
+      |  ||     `> [13, 16] BooleanLiteral (true)
+      |  []> [14, 12] DeclVar
+      |  ||  +> [14, 4] Identifier (boolean)
+      |  ||  +> [14, 12] Identifier (b)
+      |  ||  `> NoInitialization
+      |  []> [15, 10] DeclVar
+      |  ||  +> [15, 4] Identifier (float)
+      |  ||  +> [15, 10] Identifier (z)
+      |  ||  `> [15, 12] Initialization
+      |  ||     `> [15, 14] Float (2.3)
+      |  []> [16, 10] DeclVar
+      |      +> [16, 4] Identifier (float)
+      |      +> [16, 10] Identifier (t)
+      |      `> NoInitialization
+      `> ListInst [List with 6 elements]
+         []> [17, 6] Assign
+         ||  +> [17, 4] Identifier (y)
+         ||  `> [17, 8] Cast
+         ||     +> [17, 9] Identifier (int)
+         ||     `> [17, 14] Identifier (x)
+         []> [18, 6] Assign
+         ||  +> [18, 4] Identifier (b)
+         ||  `> [18, 8] Cast
+         ||     +> [18, 9] Identifier (boolean)
+         ||     `> [18, 18] Identifier (a)
+         []> [19, 6] Assign
+         ||  +> [19, 4] Identifier (t)
+         ||  `> [19, 8] Cast
+         ||     +> [19, 9] Identifier (float)
+         ||     `> [19, 16] Identifier (z)
+         []> [21, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [21, 12] StringLiteral ( y = )
+         ||     []> [21, 20] Identifier (y)
+         []> [22, 4] Println
+         ||  `> ListExpr [List with 2 elements]
+         ||     []> [22, 12] StringLiteral ( t = )
+         ||     []> [22, 20] Identifier (t)
+         []> [23, 4] IfThenElse
+             +> [23, 7] Identifier (b)
+             +> ListInst [List with 1 elements]
+             |  []> [24, 5] Println
+             |      `> ListExpr [List with 1 elements]
+             |         []> [24, 13] StringLiteral (OK)
+             `> ListInst [List with 0 elements]

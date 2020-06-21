@@ -1,0 +1,43 @@
+`> [9, 0] Program
+   +> ListDeclClass [List with 1 elements]
+   |  []> [9, 0] DeclClass
+   |      +> [9, 6] Identifier (A)
+   |      +> Identifier (Object)
+   |      +> ListDeclField [List with 2 elements]
+   |      |  []> [10, 10] DeclField
+   |      |  ||  +> [10, 4] Identifier (float)
+   |      |  ||  +> [10, 10] Identifier (x)
+   |      |  ||  `> Initialization
+   |      |  ||     `> [10, 14] Float (3.5)
+   |      |  []> [11, 6] DeclField
+   |      |      +> [11, 4] Identifier (A)
+   |      |      +> [11, 6] Identifier (a)
+   |      |      `> NoInitialization
+   |      `> ListDeclMethod [List with 1 elements]
+   |         []> [12, 4] DeclMethod
+   |             +> [12, 4] Identifier (float)
+   |             +> [12, 10] Identifier (getAx)
+   |             +> ListDeclParam [List with 0 elements]
+   |             `> [12, 18] MethodBody
+   |                +> ListDeclVar [List with 0 elements]
+   |                `> ListInst [List with 1 elements]
+   |                   []> [13, 8] Return
+   |                       `> [13, 16] Selection
+   |                          +> [13, 15] Identifier (a)
+   |                          `> [13, 17] Identifier (x)
+   `> [17, 0] Main
+      +> ListDeclVar [List with 2 elements]
+      |  []> [18, 6] DeclVar
+      |  ||  +> [18, 4] Identifier (A)
+      |  ||  +> [18, 6] Identifier (oA)
+      |  ||  `> [18, 9] Initialization
+      |  ||     `> [18, 11] NullLiteral
+      |  []> [19, 10] DeclVar
+      |      +> [19, 4] Identifier (float)
+      |      +> [19, 10] Identifier (x)
+      |      `> [19, 12] Initialization
+      |         `> [19, 14] MethodCall
+      |            +> [19, 14] Identifier (oA)
+      |            +> [19, 17] Identifier (getAx)
+      |            `> ListExpr [List with 0 elements]
+      `> ListInst [List with 0 elements]

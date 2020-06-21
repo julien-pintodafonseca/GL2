@@ -1,9 +1,9 @@
 // Description:
 //      Utilisation du cast
-//      => Cas spécifique : int to float
+//      => Cas spécifique : caster une variable de type int dans une variable de type float
 //
 // Resultats:
-//      y = 3.0
+//      y = 3.00000e+00
 //      
 
 class A {
