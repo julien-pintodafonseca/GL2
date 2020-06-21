@@ -11,6 +11,15 @@ class Math {
     int MAX_EXPONENT = 127;
     int MIN_EXPONENT = -126;
 
+    /**
+     * Returns the size of an ulp of the argument.  An ulp, unit in
+     * the last place, of a float value is the positive distance
+     * between this floating-point value and the float value next
+     * larger in magnitude.
+     *
+     * @param   f   the floating-point value whose ulp is to be returned.
+     * @return  the size of an ulp of the argument.
+     */
     float ulp(float f) {
         int exp = _getExponent(f);
 
@@ -29,14 +38,23 @@ class Math {
         }
     }
 
+    /* getter of MAX_VALUE */
     float _getMaxValue() {
         return MAX_VALUE;
     }
 
+    /* getter of MIN_VALUE */
     float _getMinValue() {
         return MIN_VALUE;
     }
 
+    /**
+     * Returns the unbiased exponent used in the representation of a
+     * float.
+     *
+     * @param   f   a float value.
+     * @return  the unbiased exponent of the argument.
+     */
     int _getExponent(float x) {
         int e = 0;
         x = _abs(x);
@@ -52,6 +70,17 @@ class Math {
         }
     }
 
+    /**
+     * Returns the absolute value of a float value.
+     * If the argument is not negative, the argument is returned.
+     * If the argument is negative, the negation of the argument is returned.
+     * Special case:
+     * If the argument is positive zero or negative zero, the
+     * result is positive zero.
+     *
+     * @param   x   the float argument whose absolute value is to be determined.
+     * @return  the absolute value of the float argument.
+     */
     float _abs(float x) {
         if (x < 0) {
             return -x;
@@ -60,6 +89,14 @@ class Math {
         }
     }
 
+    /**
+     * Returns the value of the first argument raised to the power of the
+     * second argument.
+     *
+     * @param   x    the base.
+     * @param   e   the exponent.
+     * @return  the value x^e.
+     */
     float _pow(float x, int e) {
         float p;
         if (e == 0) {
@@ -135,6 +172,14 @@ class Math {
         }
     }
 
+    /**
+     * Returns the trigonometric sine of an angle.  Special cases:
+     * If the argument is zero, then the result is a zero with the
+     * same sign as the argument.</ul>
+     *
+     * @param   rad   an angle, in radians.
+     * @return  the sine of the argument.
+     */
     float sin(float rad) {
         float deg;
         float quadrant;
@@ -196,34 +241,78 @@ class Math {
         }
     }
 
+    /**
+     * Returns the trigonometric cosine of an angle.
+     *
+     * @param   rad   an angle, in radians.
+     * @return  the cosine of the argument.
+     */
     float cos(float rad) {
         println("cos(rad) not yet implemented");
     }
 
+    /**
+     * Returns the arc sine of a value; the returned angle is in the
+     * range -pi/2 through pi/2.  Special case:
+     * If the argument is zero, then the result is a zero with the
+     * same sign as the argument.
+     *
+     * @param   rad   the value whose arc sine is to be returned.
+     * @return  the arc sine of the argument.
+     */
     float asin(float rad) {
         println("asin(rad) not yet implemented");
     }
 
+    /**
+     * Returns the arc tangent of a value; the returned angle is in the
+     * range -pi/2 through pi/2.  Special case:
+     * If the argument is zero, then the result is a zero with the
+     * same sign as the argument.
+     *
+     * @param   rad   the value whose arc tangent is to be returned.
+     * @return  the arc tangent of the argument.
+     */
     float atan(float rad) {
         println("atan(rad) not yet implemented");
     }
 
+    /* getter of PI */
     float _getPI() {
         return PI;
     }
 
+    /* getter of MAX_INT */
     float _getMaxInt() {
         return MAX_INT;
     }
 
+    /**
+     * Converts an angle measured in radians to an approximately
+     * equivalent angle measured in degrees.  The conversion from
+     * radians to degrees is generally inexact; users should
+     * not expect cos(toRadians(90.0)) to exactly equal 0.0.
+     *
+     * @param   rad   an angle, in radians.
+     * @return  the measurement of the angle rad in degrees.
+     */
     float _toDegrees(float rad) {
         return (rad*180.0)/PI;
     }
 
+    /**
+     * Converts an angle measured in degrees to an approximately
+     * equivalent angle measured in radians.  The conversion from
+     * degrees to radians is generally inexact.
+     *
+     * @param   deg   an angle, in degrees.
+     * @return  the measurement of the angle deg in radians.
+     */
     float _toRadians(float deg) {
         return (deg/180.0)*PI;
     }
 
+    // Experimental method
     float _reduceDegrees(float deg) {
         float v;
 
@@ -268,7 +357,15 @@ class Math {
         }
     }
 
-    // sine polynomiale based on Taylor series
+    /**
+     * Return the sine polynomiale based on Taylor series. The greater its
+     * maximum order value, the more accurate the result ; the result is
+     * an approximation.
+     *
+     * @param   rad     an angle, in radians.
+     * @param   order   the maximum order.
+     * @return  the result of sine polynomiale.
+     */
     float _sinePoly(float rad, int order) {
         int i = 3;
         int j = 5;
@@ -283,7 +380,7 @@ class Math {
         return x;
     }
 
-    // experimental method
+    // Experimental method
     float _sinePolyRAD(float rad) {
         int i = 3, j = 5;
         int limit = 31;
@@ -298,6 +395,15 @@ class Math {
         return x;
     }
 
+    /**
+     * Return the factorial of n. Special cases:
+     * If n is a negative number, we will return the factorial of
+     * its absolute.
+     * If n is null, the result will be 1.
+     *
+     * @param   n   the integer number.
+     * @return  the integer value of !n.
+     */
     int _fact(int n) {
         int i, fact = 1;
 

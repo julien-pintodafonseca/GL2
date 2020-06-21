@@ -4,43 +4,43 @@
     Math m = new Math();
 
     println("--- null");
-    println(m.sin(0.0000));                         // 0,00000e+00  | 00°
+    println(m.sin(0.0000));                         // 0.00000e+00  | 00°
     println("--- positive");
-    println(m.sin(0.0175));                         // 1,74991e-02  | 01°
-    println(m.sin(0.0873));                         // 8,71892e-02  | 05°
-    println(m.sin(0.1745));                         // 1,73616e-01  | 10°
-    println(m.sin(0.2618));                         // 2,58820e-01  | 15°
-    println(m.sin(0.3491));                         // 3,42052e-01  | 20°
-    println(m.sin(0.4363));                         // 4,22589e-01  | 25°
-    println(m.sin(0.5236));                         // 5,00001e-01  | 30°
-    println(m.sin(0.6109));                         // 5,73605e-01  | 35°
-    println(m.sin(0.6981));                         // 6,42763e-01  | 40°
-    println(m.sin(m._getPI()/4));                   // 7,07107e-01  | 45°
-    println(m.sin(m._getPI()/3));                   // 8,66025e-01  | 60°
-    println(m.sin(m._getPI()/2));                   // 1,00000e+00  | 90°
-    println(m.sin(m._getPI()/1.5));                 // 8,66025e-01  | 120°
-    println(m.sin(m._getPI()));                     // -8,74228e-08 | 180°
-    println(m.sin(m._getPI()*1.25));                // -7,07107e-01 | 225°
-    println(m.sin(m._getPI()*1.5));                 // -1,00000e+00 | 270°
-    println(m.sin(m._getPI()*1.5+0.5236*2));        // -4,99998e-01 | 330°
-    println(m.sin(m._getPI()*2));                   // 1,74846e-07  | 360°
+    println(m.sin(0.0175));                         // 1.74991e-02  | 01°
+    println(m.sin(0.0873));                         // 8.71892e-02  | 05°
+    println(m.sin(0.1745));                         // 1.73616e-01  | 10°
+    println(m.sin(0.2618));                         // 2.58820e-01  | 15°
+    println(m.sin(0.3491));                         // 3.42052e-01  | 20°
+    println(m.sin(0.4363));                         // 4.22589e-01  | 25°
+    println(m.sin(0.5236));                         // 5.00001e-01  | 30°
+    println(m.sin(0.6109));                         // 5.73605e-01  | 35°
+    println(m.sin(0.6981));                         // 6.42763e-01  | 40°
+    println(m.sin(m._getPI()/4));                   // 7.07107e-01  | 45°
+    println(m.sin(m._getPI()/3));                   // 8.66025e-01  | 60°
+    println(m.sin(m._getPI()/2));                   // 1.00000e+00  | 90°
+    println(m.sin(m._getPI()/1.5));                 // 8.66025e-01  | 120°
+    println(m.sin(m._getPI()));                     // -8.74228e-08 | 180°
+    println(m.sin(m._getPI()*1.25));                // -7.07107e-01 | 225°
+    println(m.sin(m._getPI()*1.5));                 // -1.00000e+00 | 270°
+    println(m.sin(m._getPI()*1.5+0.5236*2));        // -4.99998e-01 | 330°
+    println(m.sin(m._getPI()*2));                   // 1.74846e-07  | 360°
     println("--- negative");
-    println(m.sin(-0.2618));                        // -2,58820e-01 | -15°
-    println(m.sin(-(m._getPI()/2)));                // -1,00000e+00 | -90°
-    println(m.sin(-(m._getPI()/1.5)));              // -8,66025e-01 | -120°
-    println(m.sin(-(m._getPI())));                  // 8,74228e-08  | -180°
-    println(m.sin(-(m._getPI()*1.25)));             // 7,07107e-01  | -225°
-    println(m.sin(-(m._getPI()*1.5)));              // 1,00000e+00  | -270°
-    println(m.sin(-(m._getPI()*1.5+0.5236*2)));     // 4,99998e-01  | -330°
+    println(m.sin(-0.2618));                        // -2.58820e-01 | -15°
+    println(m.sin(-(m._getPI()/2)));                // -1.00000e+00 | -90°
+    println(m.sin(-(m._getPI()/1.5)));              // -8.66025e-01 | -120°
+    println(m.sin(-(m._getPI())));                  // 8.74228e-08  | -180°
+    println(m.sin(-(m._getPI()*1.25)));             // 7.07107e-01  | -225°
+    println(m.sin(-(m._getPI()*1.5)));              // 1.00000e+00  | -270°
+    println(m.sin(-(m._getPI()*1.5+0.5236*2)));     // 4.99998e-01  | -330°
     println("--- random numbers");
-    println(m.sin(-97543.54));                      // 2,26771e-01
-    println(m.sin(264.01));                         // 1,15965e-01
-    println(m.sin(555));                            // 8,73283e-01
-    println(m.sin(3333.333));                       // -1,03019e-01
-    println(m.sin(-373.25));                        // -5,64251e-01
-    println(m.sin(98765.4));                        // 8,59384e-03
+    println(m.sin(-97543.54));                      // 2.26771e-01
+    println(m.sin(264.01));                         // 1.15965e-01
+    println(m.sin(555));                            // 8.73283e-01
+    println(m.sin(3333.333));                       // -1.03019e-01
+    println(m.sin(-373.25));                        // -5.64251e-01
+    println(m.sin(98765.4));                        // 8.59384e-03
     //println("--- big numbers");
-    //println(m.sin(987654321));                    // 2,81239e-01
-    //println(m.sin(m._getMaxInt()));               // -9,71310e-01
-    //println(m.sin(-(m._getMaxInt())));            // 9,71310e-01
+    //println(m.sin(987654321));                    // 2.81239e-01
+    //println(m.sin(m._getMaxInt()));               // -9.71310e-01
+    //println(m.sin(-(m._getMaxInt())));            // 9.71310e-01
 }

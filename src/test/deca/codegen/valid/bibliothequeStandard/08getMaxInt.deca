@@ -3,5 +3,5 @@
 {
     Math m = new Math();
 
-    println(m._getPI());     // 2.14748e+09;
+    println(m._getMaxInt());     // 2.14748e+09;
 }
