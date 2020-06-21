@@ -1,0 +1,21 @@
+// Description:
+//      Utilisation du cast
+//      => On ne peut pas cast un objet d'une classe mère dans une classe fille.
+//
+// Resultats:
+//    Erreur à l'exécution
+//    Ligne 20 : cast invalide
+
+class B {
+
+}
+
+class A extends B {
+
+}
+
+{
+    A a = new A();
+    B b = new B();
+    a = (A)(b);
+}

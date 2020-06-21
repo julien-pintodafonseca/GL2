@@ -1,0 +1,21 @@
+// Description:
+//      Utilisation du cast
+//      => Cas spécifique : cast d'un objet classe fille vers un un objet de sa classe mère
+//
+// Resultats:
+//     
+//
+
+class B {
+
+}
+
+class A extends B {
+
+}
+
+{
+    A a = new A();
+    B b = new B();
+    b = (B)(a);
+}
