@@ -211,7 +211,14 @@ test_step_bibliothequeStandard() {
   done
   # echo
 
-  # no src/test/deca/codegen/invalid/bibliothequeStandard/
+  # echo "--- TEST: src/test/deca/codegen/invalid/bibliothequeStandard/ ---"
+  for cas_de_test in src/test/deca/codegen/invalid/bibliothequeStandard/*.deca
+  do
+      nbtests=$((nbtests+1))
+      expected=${cas_de_test%.deca}
+      test_codegen_invalid "$cas_de_test" "$expected.expected"
+  done
+  # echo
 }
 
 # ----------------------------------------------------------------------------------------------------

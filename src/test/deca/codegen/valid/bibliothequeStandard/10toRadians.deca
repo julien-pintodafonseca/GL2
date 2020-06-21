@@ -1,0 +1,16 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m._toRadians(0));                       // 0.00000e+00;
+    println(m._toRadians(1));                       // 1.75000e-02;
+    println(m._toRadians(5));                       // 8.73000e-02;
+    println(m._toRadians(10));                      // 1.74500e-01;
+    println(m._toRadians(15));                      // 2.61800e-01;
+    println(m._toRadians(20));                      // 3.49100e-01;
+    println(m._toRadians(25));                      // 4.36300e-01;
+    println(m._toRadians(30));                      // 5.52360e-01;
+    println(m._toRadians(35));                      // 6.10900e-01;
+    println(m._toRadians(45));                      // 6.98100e-01;
+}

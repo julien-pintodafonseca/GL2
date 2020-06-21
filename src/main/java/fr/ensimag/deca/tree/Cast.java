@@ -57,7 +57,7 @@ public class Cast extends AbstractExpr {
             // 1. Conversion de la forme (T)(e) où T est le type boolean, int ou float et e est une expression de type T.
             // Il suffit de coder l’expression, la conversion est l’opération identité.
             expr.codeGenInst(compiler, register);
-        if (type.getType().isInt() && expr.getType().isFloat()) { // cast de int -> float
+        if (type.getType().isFloat() && expr.getType().isInt()) { // cast de int -> float
             // 2. Conversion de la forme (float)(e), où e est une expression de type int. On code l’expression, puis on effectue une opération FLOAT.
             expr.codeGenInst(compiler, Register.R1);
             compiler.addInstruction(new FLOAT(Register.R1, register));
@@ -83,9 +83,9 @@ public class Cast extends AbstractExpr {
             compiler.addInstruction(new BEQ(suite)); // si expr.getType().isNull(), on exécute la suite des instructions
 
             // si !expr.getType().isNull(), on teste si expr instanceof type
-            InstanceOf instanceOf = new InstanceOf(expr, type);
+            /*InstanceOf instanceOf = new InstanceOf(expr, type);
             Label lbError = new Label(compiler.getErrorLabelManager().errorLabelName(ErrorLabelType.LB_CAST_IMPOSSIBLE) + i);
-            instanceOf.codeGenCMP(compiler, lbError, true); // si !(expr instanceof type), on saute au label d'erreur
+            instanceOf.codeGenCMP(compiler, lbError, true); // si !(expr instanceof type), on saute au label d'erreur*/
             //compiler.getErrorLabelManager().addError(ErrorLabelType.LB_CAST_IMPOSSIBLE);
 
             compiler.addInstruction(new BRA(suite));

@@ -3,15 +3,15 @@
 {
     Math m = new Math();
 
-    println(m.ulp(0));                  // 1,40130e-45
-    println(m.ulp(m.getMinValue()));    // 1,40130e-45
-    println(m.ulp(0.5));                // 5,96046e-08
-    println(m.ulp(-0.5));               // 5,96046e-08
-    println(m.ulp(1));                  // 1,19209e-07
-    println(m.ulp(-1));                 // 1,19209e-07
-    println(m.ulp(2));                  // 2,38419e-07
-    println(m.ulp(-2));                 // 2,38419e-07
-    println(m.ulp(333.3333));           // 3,05176e-05
-    println(m.ulp(-333.3333));          // 3,05176e-05
-    println(m.ulp(m.getMaxValue()));    // 2,02824e+31
+    println(m.ulp(0));                  // 1.40130e-45
+    println(m.ulp(m._getMinValue()));   // 1.40130e-45
+    println(m.ulp(0.5));                // 5.96046e-08
+    println(m.ulp(-0.5));               // 5.96046e-08
+    println(m.ulp(1));                  // 1.19209e-07
+    println(m.ulp(-1));                 // 1.19209e-07
+    println(m.ulp(2));                  // 2.38419e-07
+    println(m.ulp(-2));                 // 2.38419e-07
+    println(m.ulp(333.3333));           // 3.05176e-05
+    println(m.ulp(-333.3333));          // 3.05176e-05
+    println(m.ulp(m._getMaxValue()));   // 2.02824e+31
 }

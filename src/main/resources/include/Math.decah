@@ -3,23 +3,34 @@
 // Library for class Math of Deca, coded in Deca
 
 class Math {
-    float MAX_VALUE = 3.40282 * pow(10,38);
-    float MIN_VALUE = 1.40130 * pow(10,-45);
+    float PI = 3.14159265358979323846;
+    float MAX_VALUE = 3.40282347 * _pow(10,38);
+    float MIN_VALUE = 1.40129846 * _pow(10,-45);
+    float MAX_INT   = 2.14748365 * _pow(10,9);
     int SIGNIFICAND_WIDTH = 24;
     int MAX_EXPONENT = 127;
     int MIN_EXPONENT = -126;
 
+    /**
+     * Returns the size of an ulp of the argument.  An ulp, unit in
+     * the last place, of a float value is the positive distance
+     * between this floating-point value and the float value next
+     * larger in magnitude.
+     *
+     * @param   f   the floating-point value whose ulp is to be returned.
+     * @return  the size of an ulp of the argument.
+     */
     float ulp(float f) {
-        int exp = getExponent(f);
+        int exp = _getExponent(f);
 
         if (exp == MAX_EXPONENT+1) {
-            return abs(f);
+            return _abs(f);
         } else if (exp == MIN_EXPONENT-1) {
             return MIN_VALUE;
         } else {
             exp = exp - (SIGNIFICAND_WIDTH-1);
             if (exp >= MIN_EXPONENT) {
-                return pow(2,exp);
+                return _pow(2,exp);
             } else {
                 // pas trop sûr mais ça semble bien
                 return MIN_VALUE;
@@ -27,46 +38,50 @@ class Math {
         }
     }
 
-    float sin(float f) {
-        println("sin(f) not yet implemented");
-    }
-
-    float cos(float f) {
-        println("cos(f) not yet implemented");
-    }
-
-    float asin(float f) {
-        println("asin(f) not yet implemented");
-    }
-
-    float atan(float f) {
-        println("atan(f) not yet implemented");
-    }
-
-    float getMaxValue() {
+    /* getter of MAX_VALUE */
+    float _getMaxValue() {
         return MAX_VALUE;
     }
 
-    float getMinValue() {
+    /* getter of MIN_VALUE */
+    float _getMinValue() {
         return MIN_VALUE;
     }
 
-    int getExponent(float x) {
+    /**
+     * Returns the unbiased exponent used in the representation of a
+     * float.
+     *
+     * @param   f   a float value.
+     * @return  the unbiased exponent of the argument.
+     */
+    int _getExponent(float x) {
         int e = 0;
-        x = abs(x);
+        x = _abs(x);
         if (x <= MIN_VALUE || x == 0) {
             return MIN_EXPONENT-1;
         } else if (x >= MAX_VALUE) {
             return MAX_EXPONENT;
         } else {
-            while (pow(2,e) <= x) {
+            while (_pow(2,e) <= x) {
                 e = e+1;
             }
             return e-1;
         }
     }
 
-    float abs(float x) {
+    /**
+     * Returns the absolute value of a float value.
+     * If the argument is not negative, the argument is returned.
+     * If the argument is negative, the negation of the argument is returned.
+     * Special case:
+     * If the argument is positive zero or negative zero, the
+     * result is positive zero.
+     *
+     * @param   x   the float argument whose absolute value is to be determined.
+     * @return  the absolute value of the float argument.
+     */
+    float _abs(float x) {
         if (x < 0) {
             return -x;
         } else {
@@ -74,12 +89,20 @@ class Math {
         }
     }
 
-    float pow(float x, int e) {
+    /**
+     * Returns the value of the first argument raised to the power of the
+     * second argument.
+     *
+     * @param   x    the base.
+     * @param   e   the exponent.
+     * @return  the value x^e.
+     */
+    float _pow(float x, int e) {
         float p;
         if (e == 0) {
             return 1;
         } else {
-            p = pow(x, e/2);
+            p = _pow(x, e/2);
 
             if (e%2 == 0) {
                 return p*p;
@@ -89,6 +112,316 @@ class Math {
                 return (p*p)/x;
             }
         }
+    }
+
+    /**
+     * Returns the trigonometric sine of an angle.  Special cases:
+     * If the argument is zero, then the result is a zero with the
+     * same sign as the argument.</ul>
+     *
+     * @param   rad   an angle, in radians.
+     * @return  the sine of the argument.
+     */
+    float sin(float rad) {
+        float deg;
+        float quadrant;
+        int sign;
+
+        // 1. We use periodicity if we aren't in [0;360]
+        deg = _toDegrees(rad);
+        sign=1; // by default, sign=1 because we want to return +sin(deg)
+        if (deg < 0) {
+            sign=-sign; // if sign=-1, we want to return -sin(deg)
+        }
+        if (!(deg >= 0 && deg < 360)) {
+            //while (_abs(deg) > MAX_INT/8192) {
+            //    // TODO : cas à traiter
+            //    deg = _reduceDegrees(deg); // reduce value to avoid int arithmetic overflow
+            //}
+            if (deg > 0) {
+                deg = deg / 360;
+                deg = (deg - (int)(deg)) * 360;
+            } else {
+                deg = deg / 360;
+                deg = (deg - (int)(deg)) * 360;
+                deg = -deg;
+            }
+        }
+
+        // 2. We use symmetry if we aren't in [0;90] (quadrant 1)
+        quadrant = (deg/90) / 4;
+        quadrant = (quadrant - (int)(quadrant)) * 4;
+        quadrant = (int)(quadrant) + 1;
+        if (quadrant != 1) {
+            while (_abs(deg-180) < _abs(deg)) {
+                if (deg > 0) {
+                    deg = _abs(deg-180);
+                } else {
+                    deg = -_abs(deg+180);
+                }
+            }
+            if (quadrant != 2) {
+                sign=-sign;
+            }
+        }
+
+        // 3. We use the cofunction if we are in [45;90]
+        if (!(deg < 45)) {
+            // instead of calculating sin(x) we will calculate cos(90°-x)
+            // if (sign == 1) {
+            //    return cos(_toRadians(90)-_toRadians(deg));
+            // } else {
+            //    return -cos(_toRadians(90)-_toRadians(deg));
+            // }
+        }
+
+        // 4. We use the sine polynomial if we are in [0;45[
+        if (sign == 1) {
+            return _sinePoly(_toRadians(deg), 31);
+        } else {
+            return -_sinePoly(_toRadians(deg), 31);
+        }
+    }
+
+    // experimental method
+    float _sinX(float rad) {
+        float quadrant;
+        int sign;
+
+        // 1. We use periodicity if we aren't in [0;2*PI]
+        sign = 1;
+        if (rad < 0) {
+            sign=-sign;
+        }
+        if (!(rad >= 0 && rad <= 2*PI)) {
+            if (rad > 0) {
+                rad = rad / (2*PI);
+                rad = (rad - (int)(rad)) * (2*PI);
+            } else {
+                rad = rad / (2*PI);
+                rad = (rad - (int)(rad)) * (2*PI);
+                rad = -rad;
+            }
+        }
+
+        // 2. We use symmetry if we aren't in [0;PI/2] (quadrant=1)
+        quadrant = (rad/(PI/2)) / 4;
+        quadrant = (quadrant - (int)(quadrant)) * 4;
+        quadrant = (int)(quadrant) + 1;
+        if (quadrant != 1) {
+            while (_abs(rad-(PI/2)) < _abs(rad)) {
+                if (rad > 0) {
+                    rad = _abs(rad-(PI/2));
+                } else {
+                    rad = -_abs(rad+(PI/2));
+                }
+            }
+            if (quadrant != 2) {
+                sign=-sign;
+            }
+        }
+
+        // 3. We use the cofunction if we are in [PI/4;PI/2]
+        if (rad >= PI/4 && rad <= PI/2) {
+            // instead of calculating sin(x) we will calculate cos(90°-x)
+            // if (sign == 1) {
+            //    return cos(PI/2 - rad);
+            // } else {
+            //    return -cos(PI/2 - rad);
+            // }
+        }
+
+        // 4. We use the sine polynomial if we are in [0;PI/4[
+        if (sign == 1) {
+            return _sinePoly(rad, 31);
+        } else {
+            return -_sinePoly(rad, 31);
+        }
+    }
+
+    /**
+     * Returns the trigonometric cosine of an angle.
+     *
+     * @param   rad   an angle, in radians.
+     * @return  the cosine of the argument.
+     */
+    float cos(float rad) {
+        println("cos(rad) not yet implemented");
+    }
+
+    /**
+     * Returns the arc sine of a value; the returned angle is in the
+     * range -pi/2 through pi/2.  Special case:
+     * If the argument is zero, then the result is a zero with the
+     * same sign as the argument.
+     *
+     * @param   rad   the value whose arc sine is to be returned.
+     * @return  the arc sine of the argument.
+     */
+    float asin(float rad) {
+        println("asin(rad) not yet implemented");
+    }
+
+    /**
+     * Returns the arc tangent of a value; the returned angle is in the
+     * range -pi/2 through pi/2.  Special case:
+     * If the argument is zero, then the result is a zero with the
+     * same sign as the argument.
+     *
+     * @param   rad   the value whose arc tangent is to be returned.
+     * @return  the arc tangent of the argument.
+     */
+    float atan(float rad) {
+        println("atan(rad) not yet implemented");
+    }
+
+    /* getter of PI */
+    float _getPI() {
+        return PI;
+    }
+
+    /* getter of MAX_INT */
+    float _getMaxInt() {
+        return MAX_INT;
+    }
+
+    /**
+     * Converts an angle measured in radians to an approximately
+     * equivalent angle measured in degrees.  The conversion from
+     * radians to degrees is generally inexact; users should
+     * not expect cos(toRadians(90.0)) to exactly equal 0.0.
+     *
+     * @param   rad   an angle, in radians.
+     * @return  the measurement of the angle rad in degrees.
+     */
+    float _toDegrees(float rad) {
+        return (rad*180.0)/PI;
+    }
+
+    /**
+     * Converts an angle measured in degrees to an approximately
+     * equivalent angle measured in radians.  The conversion from
+     * degrees to radians is generally inexact.
+     *
+     * @param   deg   an angle, in degrees.
+     * @return  the measurement of the angle deg in radians.
+     */
+    float _toRadians(float deg) {
+        return (deg/180.0)*PI;
+    }
+
+    // Experimental method
+    float _reduceDegrees(float deg) {
+        float v;
+
+        if (_abs(deg) > 2*MAX_INT) {
+            v = 2147483520;
+        } else if (_abs(deg) > MAX_INT/2) {
+            v = 1073741760;
+        } else if (_abs(deg) > MAX_INT/4) {
+            v = 536870880;
+        } else if (_abs(deg) > MAX_INT/8) {
+            v = 268435440;
+        } else if (_abs(deg) > MAX_INT/16) {
+            v = 134217720;
+        } else if (_abs(deg) > MAX_INT/32) {
+            v = 67108680;
+        } else if (_abs(deg) > MAX_INT/64) {
+            v = 33554160;
+        } else if (_abs(deg) > MAX_INT/128) {
+            v = 16777080;
+        } else if (_abs(deg) > MAX_INT/256) {
+            v = 8388360;
+        } else if (_abs(deg) > MAX_INT/512) {
+            v = 4194000;
+        } else if (_abs(deg) > MAX_INT/1024) {
+            v = 2097000;
+        } else if (_abs(deg) > MAX_INT/2048) {
+            v = 1048320;
+        } else if (_abs(deg) > MAX_INT/4096) {
+            v = 524160;
+        } else if (_abs(deg) > MAX_INT/8192) {
+            v = 262080;
+        } else {
+            v = 360;
+        }
+
+        if (deg > 0) {
+            return deg-v;
+        } else if (deg < 0) {
+            return deg+v;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Return the sine polynomiale based on Taylor series. The greater its
+     * maximum order value, the more accurate the result ; the result is
+     * an approximation.
+     *
+     * @param   rad     an angle, in radians.
+     * @param   order   the maximum order.
+     * @return  the result of sine polynomiale.
+     */
+    float _sinePoly(float rad, int order) {
+        int i = 3;
+        int j = 5;
+        float x = rad;
+
+        while (j <= order) {
+            x = x - (_pow(rad,i) / _fact(i));
+            x = x + (_pow(rad,j) / _fact(j));
+            i = i+4;
+            j = j+4;
+        }
+        return x;
+    }
+
+    // Experimental method
+    float _sinePolyX(float rad) {
+        int i = 3, j = 5;
+        int limit = 31;
+        float x = rad;
+
+        while (ulp(x) > ulp(rad) && j <= limit) {
+            x = x - (_pow(rad,i) / _fact(i));
+            x = x + (_pow(rad,j) / _fact(j));
+            i = i+4;
+            j = j+4;
+        }
+        return x;
+    }
+
+    /**
+     * Return the factorial of n. Special cases:
+     * If n is a negative number, we will return the factorial of
+     * its absolute.
+     * If n is null, the result will be 1.
+     *
+     * @param   n   the integer number.
+     * @return  the integer value of !n.
+     */
+    int _fact(int n) {
+        int i, fact = 1;
+
+        // Factorial of a negative number doesn't exists
+        if (n < 0) {
+            n = -n;
+        }
+
+        // Factorial of 0
+        if (n == 0) {
+            return 1;
+        }
+
+        // Calcul
+        i = 1;
+        while (i <= n) {
+            fact = fact*i;
+            i = i+1;
+        }
+        return fact;
     }
 }
 

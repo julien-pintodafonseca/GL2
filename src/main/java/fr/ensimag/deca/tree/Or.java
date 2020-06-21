@@ -27,7 +27,7 @@ public class Or extends AbstractOpBool {
         if (reverse) {
             // expr1 || expr2
             int i = compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
-            compiler.getLabelManager().getLabelValue(LabelType.LB_OR);
+            compiler.getLabelManager().incrLabelValue(LabelType.LB_OR);
             Label labelBegin = new Label("or" + i);
             Label labelEnd = new Label("or_end" + i);
 

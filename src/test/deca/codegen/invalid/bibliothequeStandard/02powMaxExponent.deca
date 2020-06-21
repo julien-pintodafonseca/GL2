@@ -1,0 +1,7 @@
+#include "Math.decah"
+
+{
+    Math m = new Math();
+
+    println(m._pow(512,127));           // Infinity (MAX_EXPONENT)
+}
