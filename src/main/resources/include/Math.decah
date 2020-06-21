@@ -252,9 +252,9 @@ class Math {
 
         // 1. We use periodicity if we aren't in [0;360[
         deg = _toDegrees(rad);
-        sign=1; // by default, sign=1 because we want to return +sin(deg)
+        sign=1; // by default, sign=1 because we want to return +cos(deg)
         if (deg < 0) {
-            sign=-sign; // if sign=-1, we want to return -sin(deg)
+            sign=-sign; // if sign=-1, we want to return -cos(deg)
         }
         if (!(deg >= 0 && deg < 360)) {
             //while (_abs(deg) > MAX_INT/8192) {
@@ -283,7 +283,7 @@ class Math {
                     deg = -_abs(deg+180);
                 }
             }
-            if (quadrant != 2) {
+            if (quadrant != 4) {
                 sign=-sign;
             }
         }
