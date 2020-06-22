@@ -18,13 +18,12 @@ public abstract class AbstractDeclField extends Tree {
      * Pass 2 of [SyntaxeContextuelle]. Verify that the fields members
      * are OK, without looking at field initialization.
      */
-    protected abstract void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass)
-            throws ContextualError;
+    protected abstract void verifyFieldMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError;
 
     /**
      * Pass 3 of [SyntaxeContextuelle]. Look at field initialization.
      */
-    protected abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+    protected abstract void verifyFieldBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError, DecacFatalError;
 
     protected abstract void codeGenField(DecacCompiler compiler, ClassDefinition currentClass);

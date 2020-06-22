@@ -41,8 +41,8 @@ public class DeclField extends AbstractDeclField {
     }
 
     @Override
-    protected void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError{
-        // Règle syntaxe contextuelle : (2.5)
+    protected void verifyFieldMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError{
+        // Règle syntaxe contextuelle : (2.5) 
         Type t = type.verifyType(compiler);
         type.setType(t);
 
@@ -70,7 +70,7 @@ public class DeclField extends AbstractDeclField {
     }
 
     @Override
-    protected void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
+    protected void verifyFieldBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.7)
         LOG.debug("verify declFieldInit: start");
         initialization.verifyInitialization(compiler, type.getType(), localEnv, currentClass);
