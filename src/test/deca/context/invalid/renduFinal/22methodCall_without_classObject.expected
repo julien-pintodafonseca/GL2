@@ -1,1 +1,1 @@
-22methodCall_without_classObject.deca:17:4: Vous essayez d'accéder à une méthode suivante sans préciser la classe où elle est définie : init.
+22methodCall_without_classObject.deca:17:4: Vous essayez d'accéder à la méthode suivante sans préciser la classe où elle est définie : init.

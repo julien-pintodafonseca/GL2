@@ -42,7 +42,7 @@ public class DeclField extends AbstractDeclField {
 
     @Override
     protected void verifyFieldMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError{
-        // Règle syntaxe contextuelle : (2.5) 
+        // Règle syntaxe contextuelle : (2.5)
         Type t = type.verifyType(compiler);
         type.setType(t);
 

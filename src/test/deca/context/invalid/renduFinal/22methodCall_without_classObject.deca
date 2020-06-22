@@ -3,7 +3,7 @@
 //
 // Resultats:
 //      Erreur contextuelle
-//      Ligne 17 : Vous essayez d'accéder à une méthode suivante sans préciser la classe où elle est définie : init
+//      Ligne 17 : Vous essayez d'accéder à la méthode suivante sans préciser la classe où elle est définie : init
 
 class C {
     int z ;

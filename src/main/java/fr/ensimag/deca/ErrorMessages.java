@@ -45,16 +45,16 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_METHOD_DECLPARAM_DUPE =    "Une méthode prend des paramètres avec un nom unique. Or, le paramètre suivant existe déjà : ";
     public static final String CONTEXTUAL_ERROR_BAD_USED_THIS = "Le mot-clef this ne peut être utilisé qu'au sein d'une classe. Or, vous l'utilisez dans la fonction main.";
     public static final String CONTEXTUAL_ERROR_SELECTION_BAD_SUBTYPE = "Vous essayez d'accéder à un attribut protégé. Or, le type ";
-    public static final String CONTEXTUAL_ERROR_SELECTION_EXPR_IS_NOT_CLASS = "L'accès aux champs d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression ";
-    public static final String CONTEXTUAL_ERROR_METHODCALL_EXPR_IS_NOT_CLASS = "L'accès aux méthodes d'une classe n'est possible que si le type de l'expression correspond a une classe. Or, l'expression ";
-    public static final String CONTEXTUAL_ERROR_METHODCALL_WITHOUT_CLASS = "Vous essayez d'accéder à une méthode suivante sans préciser la classe où elle est définie : ";
+    public static final String CONTEXTUAL_ERROR_SELECTION_EXPR_IS_NOT_CLASS = "L'accès aux champs d'une classe n'est possible que si le type de l'expression correspond à une classe. Or, l'expression ";
+    public static final String CONTEXTUAL_ERROR_METHODCALL_EXPR_IS_NOT_CLASS = "L'accès aux méthodes d'une classe n'est possible que si le type de l'expression correspond à une classe. Or, l'expression ";
+    public static final String CONTEXTUAL_ERROR_METHODCALL_WITHOUT_CLASS = "Vous essayez d'accéder à la méthode suivante sans préciser la classe où elle est définie : ";
     public static final String CONTEXTUAL_ERROR_RETURN_METHOD_VOID_TYPE = "La méthode est de type void : elle ne nécessite donc pas d'instruction \"return\"";
     public static final String CONTEXTUAL_ERROR_RETURN_INCOMPATIBLE_TYPE = "L'instruction return renvoie une expression dont le type n'est pas un sous-type du type de retour de la méthode : ";
     public static final String CONTEXTUAL_ERROR_METHODCALL_NO_PARAM_EXPECTED = "La méthode suivante n'attend aucun paramètre en entrée : ";
     public static final String CONTEXTUAL_ERROR_METHODCALL_MORE_OR_LESS_PARAM_EXPECTED = "La méthode suivante prend en entrée "; // x paramètres au lieu de y paramètres : method.getName()
     public static final String CONTEXTUAL_ERROR_INSTANCEOF_NOT_NULL_OR_CLASS = "L'opérateur instanceof n'accepte comme première opérande que l'instance d'une classe ou l'élément null. Or, l'expression suivante est de type ";
     public static final String CONTEXTUAL_ERROR_INSTANCEOF_NOT_CLASS = "L'opérateur instanceof n'accepte comme seconde opérande qu'un type de classe. Or, la seconde opérande est de type : ";
-    public static final String CONTEXTUAL_ERROR_CAST_VOID_TYPE = "Vous essayer de caster l'expression suivante qui est de type void : ";
+    public static final String CONTEXTUAL_ERROR_CAST_VOID_TYPE = "Vous essayez de caster l'expression suivante qui est de type void : ";
     public static final String CONTEXTUAL_ERROR_CAST_INCOMPATIBLE_TYPE = "L'expression suivante ne peut pas être castée dans le type ";
 
     // CodegenError messages
