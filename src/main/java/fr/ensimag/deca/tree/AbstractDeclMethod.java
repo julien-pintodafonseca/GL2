@@ -20,16 +20,16 @@ public abstract class AbstractDeclMethod extends Tree {
     public abstract AbstractIdentifier getIdentifier();
 
     /**
-     * Pass 2 of [SyntaxeContextuelle]. Verify that the methods) are OK,
+     * Pass 2 of [SyntaxeContextuelle]. Verify that the methods are OK,
      * without looking at method body.
      */
-    protected abstract void verifyClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError, DecacFatalError;
+    protected abstract void verifyMethodMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError, DecacFatalError;
 
     /**
      * Pass 3 of [SyntaxeContextuelle]. Verify that instructions and expressions
      * contained in the method are OK.
      */
-    protected abstract void verifyClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError;
+    protected abstract void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError;
 
     /**
      * Generate the code of the method

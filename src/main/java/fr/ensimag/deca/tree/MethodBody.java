@@ -40,7 +40,7 @@ public class MethodBody extends AbstractMethodBody {
     protected void verifyMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass,
                                     Type returnType) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.14) -> (3.18)
-        declVariables.verifyListDeclVariable(compiler, localEnv, currentClass);
+        declVariables.verifyListDeclVar(compiler, localEnv, currentClass);
         insts.verifyListInst(compiler, localEnv, currentClass, returnType);
     }
 

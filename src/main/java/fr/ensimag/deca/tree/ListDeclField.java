@@ -9,7 +9,6 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
-import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.log4j.Logger;
 
@@ -24,11 +23,11 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
-    protected void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
+    protected void verifyListFieldMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError {
         LOG.debug("verify listClassFields : start");
         // Règle syntaxe contextuelle : (2.4)
         for (AbstractDeclField declField : getList()) {
-            declField.verifyClassMembers(compiler, currentClass);
+            declField.verifyFieldMembers(compiler, currentClass);
         }
         LOG.debug("verify listClassFields: end");
     }
@@ -36,12 +35,12 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
     /**
      * Pass 3 of [SyntaxeContextuelle]
      */
-    protected void verifyListClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
+    protected void verifyListFieldBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass)
             throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.6)
         LOG.debug("verify declFieldInit: start");
         for (AbstractDeclField declField : getList()) {
-            declField.verifyClassBody(compiler, localEnv, currentClass);
+            declField.verifyFieldBody(compiler, localEnv, currentClass);
         }
         LOG.debug("verify declFieldInit : end");
     }

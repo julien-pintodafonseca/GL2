@@ -27,11 +27,11 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
     /**
      * Pass 2 of [SyntaxeContextuelle]
      */
-    protected void verifyListClassMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
+    protected void verifyListMethodMembers(DecacCompiler compiler, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         LOG.debug("verify listClassMethods : start");
         // Règle syntaxe contextuelle : (2.6)
         for (AbstractDeclMethod declMethod : getList()) {
-            declMethod.verifyClassMembers(compiler, currentClass);
+            declMethod.verifyMethodMembers(compiler, currentClass);
         }
         LOG.debug("verify listClassMethods: end");
     }
@@ -39,11 +39,11 @@ public class ListDeclMethod extends TreeList<AbstractDeclMethod> {
     /**
      * Pass 3 of [SyntaxeContextuelle]
      */
-    protected void verifyListClassBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
+    protected void verifyListMethodBody(DecacCompiler compiler, EnvironmentExp localEnv, ClassDefinition currentClass) throws ContextualError, DecacFatalError {
         LOG.debug("verify listClassMethodsBody : start");
         // Règle syntaxe contextuelle : (3.10)
         for (AbstractDeclMethod declMethod : getList()) {
-            declMethod.verifyClassBody(compiler, localEnv, currentClass);
+            declMethod.verifyMethodBody(compiler, localEnv, currentClass);
         }
         LOG.debug("verify listClassMethodsBody : end");
     }

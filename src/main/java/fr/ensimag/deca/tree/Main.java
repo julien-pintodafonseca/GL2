@@ -33,7 +33,7 @@ public class Main extends AbstractMain {
         // Règles syntaxe contextuelle : (3.4) -> (3.18)
         LOG.debug("verify Main: start");
         EnvironmentExp env = new EnvironmentExp(null);
-        declVariables.verifyListDeclVariable(compiler, env, null);
+        declVariables.verifyListDeclVar(compiler, env, null);
         insts.verifyListInst(compiler, env, null, compiler.environmentType.VOID);
         LOG.debug("verify Main: end");
     }

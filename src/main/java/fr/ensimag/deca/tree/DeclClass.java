@@ -74,15 +74,15 @@ public class DeclClass extends AbstractDeclClass {
         className.getClassDefinition().setNumberOfFields(superClassDef.getNumberOfFields());
         className.getClassDefinition().setNumberOfMethods(superClassDef.getNumberOfMethods());
 
-        fields.verifyListClassMembers(compiler, className.getClassDefinition());
-        methods.verifyListClassMembers(compiler, className.getClassDefinition());
+        fields.verifyListFieldMembers(compiler, className.getClassDefinition());
+        methods.verifyListMethodMembers(compiler, className.getClassDefinition());
     }
     
     @Override
     protected void verifyClassBody(DecacCompiler compiler) throws ContextualError, DecacFatalError {
         // Règle syntaxe contextuelle : (3.5)
-        fields.verifyListClassBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());
-        methods.verifyListClassBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());
+        fields.verifyListFieldBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());
+        methods.verifyListMethodBody(compiler, className.getClassDefinition().getMembers(), className.getClassDefinition());
     }
 
     @Override
