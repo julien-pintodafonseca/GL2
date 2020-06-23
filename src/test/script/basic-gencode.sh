@@ -11,28 +11,87 @@
 cd "$(dirname "$0")"/../../.. || exit 1
 
 PATH=./src/test/script/launchers:./src/main/bin:"$PATH"
+PROGRESS=-1
+
+DEFAULT='\033[0m'
+RED='\033[0;31m'
+BROWN='\033[0;33m'
+GREEN='\033[0;32m'
+
+# Barre de progression
+progress_bar () {
+    path=$1
+    state=$2
+    unique=$3
+
+    # shopt -s nullglob
+    folder="${path%/*}/*.deca"
+
+    TOTAL=$(find ${path%/*} -type f -name "*.deca" | wc -l)
+    if [ -n "$3" ] && [ "$unique" -eq "1" ]; then
+        TOTAL=1
+    fi
+
+    TEXT=$folder
+    if [ "$TOTAL" -eq "1" ]; then
+        TEXT=${path}
+    fi
+
+    if [ "$2" -eq "1" ]; then
+        if [ "$PROGRESS" -eq "-1" ]; then
+            PROGRESS=1
+        else
+            PROGRESS=$(( $PROGRESS + 1 ))
+        fi
+
+        pd=$(( $PROGRESS * 73 / $TOTAL ))
+        d1=$(( $PROGRESS * 100 / $TOTAL ))
+        d2=$(( ($PROGRESS * 1000 / $TOTAL) % 10 ))
+        if [ "$d1" -lt "30" ]; then
+            printf "${RED}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $d1 $d2
+        elif [ "$d1" -lt "100" ]; then
+            printf "${BROWN}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $d1 $d2
+        else
+            printf "${GREEN}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $d1 $d2
+        fi
+        if [ "$PROGRESS" -eq "$TOTAL" ]; then
+            echo
+            PROGRESS=0
+        fi
+    else
+        if [ "$PROGRESS" -eq "-1" ] || [ "$PROGRESS" -eq "0" ]; then
+            printf "${RED}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $(( 0 * 100 / $TOTAL )) $(( (0 * 1000 / $TOTAL) % 10 ))
+        fi
+    fi
+}
 
 # Fonction vérifiant les tests invalides à l'exécution
 test_codegen_invalid () {
     # $1 = fichier .deca
     # $2 = fichier .expected
-
+    # $3 = 1 (optionnel : uniquement si le test est lancé sur un fichier isolé)
     ass_file="${1%.deca}.ass"
-
     rm -f $ass_file 2>/dev/null
-
     decac $1 # On génère le fichier assembleur .ass
 
+    # init progress bar
+    progress_bar $ass_file 0 $3
+
+    # test
     if [ $? -ne 0 ]; then
+        echo
         echo "[FAILED] $1 : KO (pour la génération de code)"
     elif [ ! -f $ass_file ]; then
+        echo
         echo "[FAILED] $1 : Fichier .ass non généré."
     else
         resultat=$(ima $ass_file) # On exécute le fichier assembleur
 
         if [ $? -eq 0 ]; then
+            echo
             echo "[FAILED] $1 : KO"
         elif [ ! -f $2 ]; then
+            echo
             echo "[FAILED] $1 : Fichier .expected inexistant"
         else
             # si le test s'est exécuté avec une erreur, on regarde si le résultat obtenu correspond à celui attendu
@@ -40,6 +99,7 @@ test_codegen_invalid () {
                 # echo "$1 : PASSED"
                 nbpassed=$((nbpassed+1))
             else
+                echo
                 echo "[FAILED] $1 : FAILED"
                 echo "Résultat inattendu de ima:"
                 echo "$resultat"
@@ -47,29 +107,38 @@ test_codegen_invalid () {
         fi
         rm -f $ass_file
     fi
+
+    # progress bar
+    progress_bar $ass_file 1 $3
 }
 
 # Fonction vérifiant les tests valides à l'exécution
 test_codegen_valid () {
     # $1 = fichier .deca
     # $2 = fichier .expected
-
+    # $3 = 1 (optionnel : uniquement si le test est lancé sur un fichier isolé)
     ass_file="${1%.deca}.ass"
-
     rm -f $ass_file 2>/dev/null
-
     decac $1 # On génère le fichier assembleur .ass
 
+    # init progress bar
+    progress_bar $ass_file 0 $3
+
+    # test
     if [ $? -ne 0 ]; then
+        echo
         echo "[FAILED] $1 : KO (pour la génération de code)"
     elif [ ! -f $ass_file ]; then
+        echo
         echo "[FAILED] $1 : Fichier .ass non généré."
     else
         resultat=$(ima $ass_file) # On exécute le fichier assembleur
 
         if [ $? -ne 0 ]; then
+            echo
             echo "[FAILED] $1 : KO (fichier assembleur inexécutable)"
         elif [ ! -f $2 ]; then
+            echo
             echo "[FAILED] $1 : Fichier .expected inexistant"
         else
             # On regarde si le résultat obtenu correspond à celui attendu
@@ -77,6 +146,7 @@ test_codegen_valid () {
                 # echo "$1 : PASSED"
                 nbpassed=$((nbpassed+1))
             else
+                echo
                 echo "[FAILED] $1 : FAILED"
                 echo "Résultat inattendu de ima:"
                 echo "$resultat"
@@ -84,6 +154,9 @@ test_codegen_valid () {
         fi
         rm -f $ass_file
     fi
+
+    # progress bar
+    progress_bar $ass_file 1 $3
 }
 
 # ----------------------------------------------------------------------------------------------------

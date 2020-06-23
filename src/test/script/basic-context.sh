@@ -15,18 +15,75 @@
 cd "$(dirname "$0")"/../../.. || exit 1
 
 PATH=./src/test/script/launchers:"$PATH"
+PROGRESS=-1
+
+DEFAULT='\033[0m'
+RED='\033[0;31m'
+BROWN='\033[0;33m'
+GREEN='\033[0;32m'
+
+# Barre de progression
+progress_bar () {
+    path=$1
+    state=$2
+    unique=$3
+
+    # shopt -s nullglob
+    folder="${path%/*}/*.deca"
+
+    TOTAL=$(find ${path%/*} -type f -name "*.deca" | wc -l)
+    if [ -n "$3" ] && [ "$unique" -eq "1" ]; then
+        TOTAL=1
+    fi
+
+    TEXT=$folder
+    if [ "$TOTAL" -eq "1" ]; then
+        TEXT=${path}
+    fi
+
+    if [ "$2" -eq "1" ]; then
+        if [ "$PROGRESS" -eq "-1" ]; then
+            PROGRESS=1
+        else
+            PROGRESS=$(( $PROGRESS + 1 ))
+        fi
+
+        pd=$(( $PROGRESS * 73 / $TOTAL ))
+        d1=$(( $PROGRESS * 100 / $TOTAL ))
+        d2=$(( ($PROGRESS * 1000 / $TOTAL) % 10 ))
+        if [ "$d1" -lt "30" ]; then
+            printf "${RED}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $d1 $d2
+        elif [ "$d1" -lt "100" ]; then
+            printf "${BROWN}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $d1 $d2
+        else
+            printf "${GREEN}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $d1 $d2
+        fi
+        if [ "$PROGRESS" -eq "$TOTAL" ]; then
+            echo
+            PROGRESS=0
+        fi
+    else
+        if [ "$PROGRESS" -eq "-1" ] || [ "$PROGRESS" -eq "0" ]; then
+            printf "${RED}\r%3d.%1d%% %.${pd}s${DEFAULT} - $TEXT" $(( 0 * 100 / $TOTAL )) $(( (0 * 1000 / $TOTAL) % 10 ))
+        fi
+    fi
+}
 
 # Fonction vérifiant les tests invalides contextuellement
 test_context_invalid () {
     # $1 = fichier .deca
     # $2 = fichier .expected
-
+    # $3 = 1 (optionnel : uniquement si le test est lancé sur un fichier isolé)
     path=$(echo $1 | tr '\\' '/')
-
     cmd=$(test_context "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
 
+    # init progress bar
+    progress_bar $path 0 $3
+
+    # test
     if [ $code -eq 0 ]; then
+        echo
         echo "[FAILED] $1 : KO"
     else
         # si le test s'est exécuté avec une erreur, on regarde si l'erreur générée correspond à celle attendue
@@ -38,25 +95,33 @@ test_context_invalid () {
                 # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
+                echo
                 echo "[FAILED] $1 : FAILED."
                 echo "DID NOT FOUND STRING \"$(cat ${file}.expected)\""
             fi
         else
+            echo
             echo "[FAILED] $1 : Fichier .expected inexistant"
         fi
     fi
+
+    # progress bar
+    progress_bar $path 1 $3
 }
 
 # Fonction vérifiant les tests valides contextuellement
 test_context_valid () {
     # $1 = fichier .deca
     # $2 = fichier .expected
-
+    # $3 = 1 (optionnel : uniquement si le test est lancé sur un fichier isolé)
     path=$(echo $1 | tr '\\' '/')
-
     cmd=$(test_context "$path" 2>&1) # on exécute notre test
     code=$? # si code vaut 0 alors succès, sinon échec
 
+    # init progress bar
+    progress_bar $path 0 $3
+
+    # test
     if [ $code -eq 0 ]; then
         # si le test s'est exécuté sans erreur, on regarde si le résultat généré correspond à celui attendu
         file=${2%*.expected}
@@ -67,15 +132,21 @@ test_context_valid () {
                 # echo "$1 : PASSED."
                 nbpassed=$((nbpassed+1))
             else
+                echo
                 echo "[FAILED] $1 : FAILED."
                 diff "$2" "${file}.res"
             fi
         else
+            echo
             echo "[FAILED] $1 : Fichier .expected inexistant"
         fi
     else
+        echo
         echo "[FAILED] $1 : KO"
     fi
+
+    # progress bar
+    progress_bar $path 1 $3
 }
 
 # ----------------------------------------------------------------------------------------------------
@@ -184,8 +255,8 @@ test_step_renduInter01() {
   do
       nbtests=$((nbtests+1))
       expected=$(basename $cas_de_test .${cas_de_test##*.})
-      file="src/test/deca/context/invalid/renduInter01/$expected"
-      test_context_invalid "$cas_de_test" "$file.expected"
+      file="src/test/deca/context/invalid/renduInter01/$expected.expected"
+      test_context_invalid "$cas_de_test" "$file"
   done
   # echo
 }
@@ -232,8 +303,8 @@ test_step_renduInter02() {
   do
       nbtests=$((nbtests+1))
       expected=$(basename $cas_de_test .${cas_de_test##*.})
-      file="src/test/deca/context/invalid/renduInter02/$expected"
-      test_context_invalid "$cas_de_test" "$file.expected"
+      file="src/test/deca/context/invalid/renduInter02/$expected.expected"
+      test_context_invalid "$cas_de_test" "$file"
   done
   # echo
 }
@@ -280,8 +351,8 @@ test_step_renduFinal() {
   do
       nbtests=$((nbtests+1))
       expected=$(basename $cas_de_test .${cas_de_test##*.})
-      file="src/test/deca/context/invalid/renduFinal/$expected"
-      test_context_invalid "$cas_de_test" "$file.expected"
+      file="src/test/deca/context/invalid/renduFinal/$expected.expected"
+      test_context_invalid "$cas_de_test" "$file"
   done
   # echo
 }
@@ -290,10 +361,10 @@ test_step_renduFinal() {
 # Fonction permettant d'exécuter tous les tests de l'étape "bibliothequeStandard"
 test_step_bibliothequeStandard() {
   echo "=== STEP: BIBLIOTHEQUE_STANDARD ==="
-    nbtests=$((nbtests+1))
-    deca="src/test/deca/codegen/valid/bibliothequeStandard/00helloWorld.deca"
-    expected="src/test/deca/context/valid/bibliothequeStandard/00helloWorld.expected"
-    test_context_valid "$deca" "$expected"
+  nbtests=$((nbtests+1))
+  deca="src/test/deca/codegen/valid/bibliothequeStandard/00helloWorld.deca"
+  expected="src/test/deca/context/valid/bibliothequeStandard/00helloWorld.expected"
+  test_context_valid "$deca" "$expected" 1
 }
 
 # ----------------------------------------------------------------------------------------------------
