@@ -14,6 +14,20 @@ cd "$(dirname "$0")"/../../.. || exit 1
 
 PATH=./src/test/script/launchers:"$PATH"
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' #no color
+
+progressBar () {
+    # Process data
+    _progress=$(((${1}*100/${2}*100)/100))
+    _done=$(( (${_progress}*4)/10))
+    _left=$((40-$_done))
+    
+    # Build progressbar strings and print the ProgressBar line
+    printf "\rProgress : [${GREEN}$(for i in $(seq ${_done}); do echo -n "#"; done)${RED}$(for i in $(seq ${_left}); do echo -n "-"; done)${NC}]${_progress}%%"
+}
+
 # Fonction vérifiant les tests valides lexicalement
 test_lex_valid () {
     # $1 = fichier .deca
@@ -27,6 +41,7 @@ test_lex_valid () {
         # echo "$1 : OK"
         nbpassed=$((nbpassed+1))
     fi
+    progressBar $nbpassed $TOTAL
 }
 
 # Fonction vérifiant les test invalides lexicalement
@@ -42,13 +57,14 @@ test_lex_invalid () {
     else
         echo "[FAILED] $1 : FAILED"
     fi
+    progressBar $nbpassed $TOTAL
 }
 
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "provided"
 test_step_provided() {
-  echo "=== STEP: PROVIDED ==="
-
+  echo "\r=== STEP: PROVIDED ===                                           "
+  progressBar $nbpassed $TOTAL
   # no src/test/deca/codegen/interactive/provided/
 
   # no src/test/deca/codegen/invalid/provided/
@@ -95,8 +111,8 @@ test_step_provided() {
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "renduInitial"
 test_step_renduInitial() {
-  echo "=== STEP: RENDU_INITIAL ==="
-
+  echo "\r=== STEP: RENDU_INITIAL ===                                              "
+  progressBar $nbpassed $TOTAL
   # no src/test/deca/codegen/interactive/renduInitial/
 
   # no src/test/deca/codegen/invalid/renduInitial/
@@ -133,8 +149,8 @@ test_step_renduInitial() {
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "renduInter01"
 test_step_renduInter01() {
-  echo "=== STEP: RENDU_INTER01 ==="
-
+  echo "\r=== STEP: RENDU_INTER01 ===                                        "
+  progressBar $nbpassed $TOTAL
   # echo "--- TEST: src/test/deca/codegen/interactive/renduInter01/ ---"
   for cas_de_test in src/test/deca/codegen/interactive/renduInter01/*.deca
   do
@@ -177,8 +193,8 @@ test_step_renduInter01() {
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "renduInter02"
 test_step_renduInter02() {
-  echo "=== STEP: RENDU_INTER02 ==="
-
+  echo "\r=== STEP: RENDU_INTER02 ===                                          "
+  progressBar $nbpassed $TOTAL
   # echo "--- TEST: src/test/deca/codegen/interactive/renduInter02/ ---"
   for cas_de_test in src/test/deca/codegen/interactive/renduInter02/*.deca
   do
@@ -227,8 +243,8 @@ test_step_renduInter02() {
 # ----------------------------------------------------------------------------------------------------
 # Fonction permettant d'exécuter tous les tests de l'étape "renduFinal"
 test_step_renduFinal() {
-  echo "=== STEP: RENDU_FINAL ==="
-
+  echo "\r=== STEP: RENDU_FINAL ===                                      "
+  progressBar $nbpassed $TOTAL
   # echo "--- TEST: src/test/deca/codegen/interactive/renduFinal/ ---"
   for cas_de_test in src/test/deca/codegen/interactive/renduFinal/*.deca
   do
@@ -278,7 +294,8 @@ test_step_bibliothequeStandard() {
 
 # ----------------------------------------------------------------------------------------------------
 # Main
-
+TOTAL=$(find ./src/test/deca/ -name "*.deca" -type f | wc -l )
+TOTAL=220
 nbtests=0
 nbpassed=0
 
@@ -289,4 +306,5 @@ test_step_renduInter02
 test_step_renduFinal
 test_step_bibliothequeStandard
 
+echo " "
 echo "##### RESULTS: $nbpassed/$nbtests #####"
