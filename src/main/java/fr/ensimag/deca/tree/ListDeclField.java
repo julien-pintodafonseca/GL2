@@ -9,6 +9,7 @@ import fr.ensimag.deca.context.EnvironmentExp;
 import fr.ensimag.deca.tools.IndentPrintStream;
 import fr.ensimag.ima.pseudocode.Label;
 import fr.ensimag.ima.pseudocode.Register;
+import fr.ensimag.ima.pseudocode.RegisterOffset;
 import fr.ensimag.ima.pseudocode.instructions.*;
 import org.apache.log4j.Logger;
 
@@ -67,6 +68,7 @@ public class ListDeclField extends TreeList<AbstractDeclField> {
 
             // Appel de l’initialisation des champs hérités
             compiler.addComment("Appel de l’initialisation des champs herites de " + currentClass.getSuperClass().getType());
+            compiler.addInstruction(new LOAD(new RegisterOffset(-2, Register.LB), Register.R1));
             compiler.addInstruction(new PUSH(Register.R1)); // on empile l’objet à initialiser
             compiler.addInstruction(new BSR(new Label("init." + currentClass.getSuperClass().getType().toString())));
             compiler.addInstruction(new SUBSP(1)); // on remet la pile dans son état initial

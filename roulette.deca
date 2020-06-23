@@ -15,12 +15,12 @@ class Roulette {
         println("------------------------------------------------------------------------------------------------------------------------------");
         println("BIENVENUE à ma table de roulette !!!");
         println("");
-        print("Vous devez choisir des numéros entre 0 et 49. ");
+        print("Vous devez choisir des numéros entre 0 et 37. ");
         println("Les numéros pairs sont de couleur noire et les numéros impairs de couleur rouge.");
-        println("Lors de chaque round, vous devez miser sur le nombre qui sortira. Attention : vous ne pouvez pas miser plus que votre budget !");
+        println("Lors de chaque manche, vous devez miser sur le nombre qui sortira. Attention : vous ne pouvez pas miser plus que votre budget !");
 
-        println("A l'issue d'un round, trois résultats sont possibles : ");
-        println("			-si vous obtenez le bon numéro, vous gagnez trois fois votre mise ;");
+        println("A l'issue d'une manche, trois résultats sont possibles : ");
+        println("			-si vous obtenez le bon numéro, vous gagnez 38 fois votre mise ;");
         println("			-si vous obtenez la bonne couleur, vous gagnez la moitié de votre mise ;");
         println("			-sinon vous perdez votre mise.");
         println("");
@@ -50,10 +50,10 @@ class Roulette {
         round = this.round + 1;
 
         // Choix d'une case
-        println("Veuillez entrer un nombre entier entre 0 et 49 pour choisir une case :");
+        println("Veuillez entrer un nombre entier entre 0 et 37 pour choisir une case :");
         choice = readInt();
 
-        while(choice < 0 || choice > 49) {
+        while(choice < 0 || choice > 37) {
             println("Numéro de case invalide. Veuillez entrer un nombre entier entre 0 et 49 pour choisir une case :");
             choice = readInt();
         }
@@ -96,28 +96,28 @@ class Roulette {
         }
         random = generateRandom();
         println(random, "!");
-        return random % 50;
+        return random % 38;
     }
 
-    /* Génère un nombre aléatoire compris en 0 et 49
+    /* Génère un nombre aléatoire compris en 0 et 37
        (Standard minimal)
     */
     int generateRandom() {
         Math math = new Math();
-        float tmp = 16807 * (random%127773) - 2836* (math._abs(random/127773));
+        float tmp = 16807 * (random%127773) - 2836* (random/127773);
         if (tmp >= 0 ) {
             random = (int)(tmp);
         } else {
             random = (int)(tmp + math._pow(2, 31) -1 );
         }
-        return random % 50;
+        return random % 38;
     }
 
     // Détermine si la manche est un succès
     // et calcule le nouveau budget
     void failureOrSuccess(int random, float set, int choice) {
         if (random == choice ) {
-            this.budget =  budget + (3*set);
+            this.budget =  budget + (38*set);
             println("Bravo ! Vous remportez 3 fois votre mise !");
         } else if ((random % 2) == (choice % 2)) {
             budget = budget + 0.5*set;
@@ -134,7 +134,7 @@ class Roulette {
         int lecture = -1;
         // S'il reste du budget, on demande à l'utilisateur s'il veut jouer la manche suivante
         if (getBudget() > 0) {
-                while(lecture > 2 || lecture < 0 ) {
+            while(lecture > 2 || lecture < 0 ) {
                 println("Continuez ? Tapez : ");
                 println("             - 1 pour oui ;");
                 println("             - 0 pour non ;");
