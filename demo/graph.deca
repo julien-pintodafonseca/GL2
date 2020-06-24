@@ -1,0 +1,143 @@
+#include "Math.decah"
+
+class Fonction {
+    float pi = 3.14159265359;
+    Math m = new Math();
+
+    void affichage(float a, float b, int xScale, int yScale) { // affichage de la fonction y = fonction(a, b, x) avec l'échelle xScale/100 en x et yScale/100 en y
+        int min = (int)(-a * 100);
+        int x = -1 * 100;
+        int yCurrent;
+        int y;
+        while (x <= 1 * 100) {
+            y = calcul(a, b, x);
+            displayCoord(x, y);
+            if (y%yScale > yScale/2) { // arrondi au nombre sup
+                y = y - y%yScale + yScale;
+            } else { // arrondi au nombre inf
+                y = y - y%yScale;
+            }
+            yCurrent = min;
+            while (yCurrent < y) {
+                if (yCurrent == 0) {
+                    print("|");
+                }
+                print(" ");
+                yCurrent = yCurrent + yScale;
+            }
+            print("x");
+            yCurrent = yCurrent + yScale;
+            if (y < 0) {
+                while (yCurrent <= 0) {
+                    if (yCurrent == 0) {
+                        print("|");
+                    }
+                    print(" ");
+                    yCurrent = yCurrent + yScale;
+                }
+            }
+            println(" ");
+            x = x + xScale;
+        }
+    }
+
+    void displayCoord(int x, int y) {
+        if (x < 10 && x >= 0) {
+            print("( 00", x);
+        } else if (x > -10 && x<0) {
+            print("(-00", -x);
+        } else if (x < 100 && x > 0) {
+            print("( 0", x);
+        } else if (x < 0 && x > -100) {
+            print("(-0", -x);
+        } else if (x > 0) {
+            print("( ", x);
+        } else {
+            print("(", x);
+        }
+        print("E-2");
+        if (y < 10 && y >= 0) {
+            print("; 00", y);
+        } else if (y > -10 && y<0) {
+            print(";-00", -y);
+        } else if (y < 100 && y > 0) {
+            print("; 0", y);
+        } else if (y < 0 && y > -100) {
+            print(";-0", -y);
+        } else if (y > 0) {
+            print("; ", y);
+        } else {
+            print(";", y);
+        }
+        print("E-2)");
+    }
+
+    int calcul(float a, float b, int x) { // y = ax + b
+            return (int)(a*x + b);
+    }
+}
+
+class Sin extends Fonction {
+    int calcul(float a, float b, int x) { // y = a* sin(b*x)
+        return (int) (a * this.m.sin(b * (float)(x)/100*pi) *100);
+    }
+}
+
+class Cos extends Fonction {
+    int calcul(float a, float b, int x) {  // y = a* cos(b*x)
+        return (int)(a * this.m.cos(b * (float)(x)/100*this.pi) * 100);
+    }
+}
+
+{
+    Fonction func;
+    boolean replay = true;
+    int lecture;
+    float a;
+    float b;
+    float x; // Echelle
+    float y;
+
+    // Tant que l'utilisateur veut afficher des fonctions
+    while(replay) {
+        // Choix de l'utilisateur
+        lecture = -1;
+        while(lecture > 2 || lecture < 0 ) {
+            println("Quel type de fonction voulez-vous visualiser ? Tapez : ");
+            println("             - 0 pour une fonction affine (y = a*x + b) ;");
+            println("             - 1 pour une fonction cos (y = a * cos(b * x) );");
+            println("             - 2 pour une fonction sin (y = a * sin(b * x) );");
+            println("             - 3 pour quitter.");
+            lecture = readInt();
+        }
+        if (lecture == 2) {
+            func = new Sin();
+        } else if (lecture == 1) {
+            func = new Cos();
+        } else if (lecture == 0) {
+            func = new Fonction();
+        } else {
+            replay = false;
+        }
+        println("");
+
+        if (replay) {
+            // Choix des paramètres
+            println("Choix des paramètres :");
+            println("Attention : veuillez saisir un nombre à virgule. Par exemple, pour la valeur '1', veuillez taper '1.0'.");
+            println("Valeur de a : ");
+            a = readFloat();
+            println("Valeur de b : ");
+            b = readFloat();
+            println("Echelle en x : ");
+            x = readFloat();
+            println("Echelle en y : ");
+            y = readFloat();
+
+            func.affichage(a, b, (int)(x*100), (int)(y*100));
+
+            println("");
+            println("");
+        }
+    }
+}
