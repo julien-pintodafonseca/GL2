@@ -1,0 +1,37 @@
+// codegen/valid à essayer avec "decac -r 4"
+// NB: doit afficher 6 lignes: "ok 1\n ... ok 6\n".
+
+class A {
+  
+  A a;
+  
+  A getThis(int x){
+    if ((x == 1 && a == null) || ((x==3 || x==5) && (a == this))) {
+      println("ok ", x);
+    } else {
+      println("ko ", x);
+    }
+    return this;
+  }
+  
+  A get_a(int x) {
+    if (a.f == 421) {
+      println("ok ", x);
+    } else {
+      println("ko: ", a.f , "!= 421");
+    }
+    return a;
+  }
+
+  int f=421;
+}
+
+{
+	A a = new A();
+	(a.a = a.getThis(1)).f = 666 - a.get_a(2).getThis(3).get_a(4).getThis(426 - a.f).f;
+	if (a.f == 245){
+	   print("ok 6");
+	} else {
+          print("ko: ", a.f, "!= 245");
+	}
+}

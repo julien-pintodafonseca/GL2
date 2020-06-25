@@ -1,0 +1,16 @@
+class A {
+      int m(int x) {
+        int y = 421;
+      	m=x;
+        return y;
+      }
+}
+
+class B extends A {}
+
+{
+  B o = new B();
+  int x = o.m(666);
+  println(x);
+  println((A)(o).m(666));
+}

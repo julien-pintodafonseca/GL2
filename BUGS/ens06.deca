@@ -1,0 +1,19 @@
+class A {
+  int fact(int n) {
+    int r;
+    if (n <= 1) {
+      return 1;
+    } else {
+      r = fact(n-1);
+      println("\"",fact,"\"(", n-1,") = ", r);
+      return r*n;
+    }
+  }
+}
+
+{
+  int r ;
+  println("Computing fact until 6!:");
+  r=(new A()).fact(6);
+  println("6!=",r);
+} 

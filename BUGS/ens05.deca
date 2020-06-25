@@ -1,0 +1,19 @@
+// codegen/valid
+{
+  int x = 0; 
+  float y = 2.15e9; 
+
+  x=(int)(y);
+  if (x==2147483647) {
+    println("ok");
+  } else {
+    println("erreur: 2147483647 != ",x);
+  } 
+  y=-y;
+  x=(int)(y);
+  if (x+1==-2147483647) {
+    println("ok");
+  } else {
+    println("erreur: -2147483648 != ",x);
+  } 
+}

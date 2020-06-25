@@ -1,0 +1,21 @@
+#include "Math.decah"
+
+class A extends Math { }
+
+{
+  float r;
+  Math m = new A();
+  r = m.sin(0.0);
+  if (r == 0) {
+    println("ok");
+  } else {
+    printlnx("ko:", r);
+  }
+  r = m.sin(0x1.0p110);
+  if (-1.0 <= r && r <= 1.0) {
+    println("OK");
+  } else {
+    println("KO");
+  }
+}
+

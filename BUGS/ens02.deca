@@ -1,0 +1,21 @@
+// codegen/valid
+class $ {
+   int $;
+}
+
+{
+   $ $ = new $();
+
+   if (($.$ = 666) - ($.$ = 245) == 421) {
+     println("ok 1");
+   } else {
+     println("ko");
+   }
+
+   if ($.$ != 245) {
+     println("ko: ", $.$, " != 245");
+   } else {
+     println("ok 2");
+   }
+
+}

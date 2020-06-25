@@ -1,0 +1,12 @@
+// codegen/valid
+
+class A {
+   void MethoD () { println("ok 1"); }
+   void method () { println("ok 2"); }
+}
+
+{
+	A a = new A ();
+	a.MethoD();
+	a.method();
+}
