@@ -1,3 +1,4 @@
+// OK
 class A {
   int fact(int n) {
     int r;
