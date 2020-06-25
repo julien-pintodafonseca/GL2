@@ -112,7 +112,8 @@ public class DeclMethod extends AbstractDeclMethod {
         }
 
         // Label de fin de la méthode
-        Label end = new Label("fin." + currentClass.getType() + "." + methodName.getName());
+        
+        Label end = new Label("fin." + methodName.getMethodDefinition().getLabel());
         compiler.getLabelManager().setCurrentLabel(end);
 
         methodBody.codeGenMethodBody(compiler, currentClass, methodName.getName(), type.getType()); // Code de la méthode
