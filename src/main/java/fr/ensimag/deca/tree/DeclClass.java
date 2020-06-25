@@ -104,7 +104,7 @@ public class DeclClass extends AbstractDeclClass {
         // Ajout de la méthode equals
         for (AbstractDeclMethod method : methods.getList()) {
             MethodDefinition methodDef = (MethodDefinition) className.getClassDefinition().getMembers().get(method.getName());
-            methodDef.setLabel(new Label("code." + className.getName() + "." + method.getName()+methodDef.getIndex()));
+            methodDef.setLabel(new Label("code." + className.getName() + "." + "method"+methodDef.getIndex()));
             className.getClassDefinition().getVTable().addMethod(method);
         }
 
