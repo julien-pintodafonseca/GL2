@@ -38,7 +38,7 @@ public class MethodCall extends AbstractExpr {
             Type typeClass = obj.getType();
             if (typeClass.isClass()) {
                 ClassDefinition classDef = compiler.environmentType.getClassDefinition(typeClass.getName());
-                meth.verifyExpr(compiler, classDef.getMembers(), currentClass);
+                meth.verifyExprMethodCall(compiler, classDef.getMembers(), currentClass);
                 Signature signMeth = meth.getMethodDefinition().getSignature();
                 int paramNumber = 0;
                 int numberOfParam = signMeth.size();

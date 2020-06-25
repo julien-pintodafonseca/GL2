@@ -47,7 +47,6 @@ public abstract class AbstractPrint extends AbstractInst {
             expr.verifyExpr(compiler, localEnv, currentClass);
             if (!expr.getType().isInt() && !expr.getType().isFloat() && !expr.getType().isString()) {
             	throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_PRINT_INCOMPATIBLE_TYPE + expr.getType(), getLocation());
-            	
             }
         }
         LOG.debug("verify inst: end (abstractPrint)");

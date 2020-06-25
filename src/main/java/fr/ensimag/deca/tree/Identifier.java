@@ -174,6 +174,27 @@ public class Identifier extends AbstractIdentifier {
         if (expDef == null) {
             throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_VAR + getName(), getLocation());
         } else {
+            if (expDef.isMethod()) {
+                throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_PRINT_METHOD_WITHOUT_METHODCALL + getName(), getLocation());
+            }
+            setDefinition(expDef);
+            LOG.debug("verify expr: end ("+getName()+")");
+            setType(expDef.getType());
+            return getType();
+        }
+    }
+
+    // pour les identifier dans methodCall
+    @Override
+    public Type verifyExprMethodCall(DecacCompiler compiler, EnvironmentExp localEnv,
+                           ClassDefinition currentClass) throws ContextualError {
+        // Règle syntaxe contextuelle : (0.1)
+        LOG.debug("verify expr: start ("+getName()+")");
+        ExpDefinition expDef = localEnv.get(getName());
+
+        if (expDef == null) {
+            throw new ContextualError(ErrorMessages.CONTEXTUAL_ERROR_IDENT_NULL_VAR + getName(), getLocation());
+        } else {
             setDefinition(expDef);
             LOG.debug("verify expr: end ("+getName()+")");
             setType(expDef.getType());

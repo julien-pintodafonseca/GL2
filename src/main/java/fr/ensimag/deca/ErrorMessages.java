@@ -56,6 +56,7 @@ public final class ErrorMessages {
     public static final String CONTEXTUAL_ERROR_INSTANCEOF_NOT_CLASS = "L'opérateur instanceof n'accepte comme seconde opérande qu'un type de classe. Or, la seconde opérande est de type : ";
     public static final String CONTEXTUAL_ERROR_CAST_VOID_TYPE = "Vous essayez de caster l'expression suivante qui est de type void : ";
     public static final String CONTEXTUAL_ERROR_CAST_INCOMPATIBLE_TYPE = "L'expression suivante ne peut pas être castée dans le type ";
+    public static final String CONTEXTUAL_ERROR_PRINT_METHOD_WITHOUT_METHODCALL = "Vous ne pouvez afficher la variable suivante car il s'agit d'une méthode et donc doit être appelé avec des parenthèses :";
 
     // CodegenError messages
     public static final String CODEGEN_ERROR_ARITHMETIC_OVERFLOW_OR_DIVISION_BY_ZERO = "Erreur : dépassement arithmétique sur les flottants ou division par zéro.";
